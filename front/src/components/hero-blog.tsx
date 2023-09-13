@@ -1,4 +1,4 @@
-export default function HeroBlog() {
+const HeroBlog = () => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -37,4 +37,6 @@ export default function HeroBlog() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroBlog;

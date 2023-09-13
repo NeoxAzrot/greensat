@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-import VideoThumb from '@/public/images/hero-image-01.jpg';
+import VideoThumb from '@/public/images/template/hero-image-01.jpg';
 
 import ModalVideo01 from '@/components/modal-video-01';
 
-export default function HeroHome() {
+const HeroHome = () => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -61,4 +61,6 @@ export default function HeroHome() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroHome;

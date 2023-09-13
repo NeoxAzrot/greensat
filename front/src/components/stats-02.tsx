@@ -1,4 +1,4 @@
-export default function Stats02() {
+const Stats02 = () => {
   return (
     <section className="-translate-y-1/2">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -35,4 +35,6 @@ export default function Stats02() {
       </div>
     </section>
   );
-}
+};
+
+export default Stats02;

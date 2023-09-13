@@ -28,8 +28,6 @@ const Producers = () => {
   const popularPosts = allPosts.slice(4, 7);
   const productPosts = allPosts.slice(7, 10);
 
-  const router = useRouter();
-
   return (
     <>
       <Hero />
@@ -38,7 +36,7 @@ const Producers = () => {
       {/* Featured article */}
       <section>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <Map allPosts={allPosts} router={router} />
+          <Map allPosts={allPosts} />
           <div className="py-8 md:py-16">
             <article className="max-w-sm mx-auto space-y-5 md:max-w-none md:flex md:items-center md:space-y-0 md:space-x-8 lg:space-x-16">
               {/* Image */}

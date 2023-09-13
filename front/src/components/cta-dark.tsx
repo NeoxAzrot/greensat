@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function CtaDark() {
+const CtaDark = () => {
   return (
     <section className="bg-slate-900">
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
@@ -41,4 +41,6 @@ export default function CtaDark() {
       </div>
     </section>
   );
-}
+};
+
+export default CtaDark;

@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   generator: 'Page generator',
 };
 
-interface Props {
+interface RootLayoutProps {
   children: ReactNode;
 }
 
-const RootLayout = ({ children }: Props) => {
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="fr">
       <body

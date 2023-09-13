@@ -1,10 +1,10 @@
 import Image from 'next/image';
 
-import Testimonial01 from '@/public/images/testimonial-01.jpg';
-import Testimonial02 from '@/public/images/testimonial-02.jpg';
-import Testimonial03 from '@/public/images/testimonial-03.jpg';
+import Testimonial01 from '@/public/images/template/testimonial-01.jpg';
+import Testimonial02 from '@/public/images/template/testimonial-02.jpg';
+import Testimonial03 from '@/public/images/template/testimonial-03.jpg';
 
-export default function RelatedStories() {
+const RelatedStories = () => {
   return (
     <aside className="bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -198,4 +198,6 @@ export default function RelatedStories() {
       </div>
     </aside>
   );
-}
+};
+
+export default RelatedStories;

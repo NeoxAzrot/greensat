@@ -1,15 +1,15 @@
 import Image from 'next/image';
 
-import TeamMemberImage01 from '@/public/images/team-member-01.jpg';
-import TeamMemberImage02 from '@/public/images/team-member-02.jpg';
-import TeamMemberImage03 from '@/public/images/team-member-03.jpg';
-import TeamMemberImage04 from '@/public/images/team-member-04.jpg';
-import TeamMemberImage05 from '@/public/images/team-member-05.jpg';
-import TeamMemberImage06 from '@/public/images/team-member-06.jpg';
-import TeamMemberImage07 from '@/public/images/team-member-07.jpg';
-import TeamMemberImage08 from '@/public/images/team-member-08.jpg';
+import TeamMemberImage01 from '@/public/images/template/team-member-01.jpg';
+import TeamMemberImage02 from '@/public/images/template/team-member-02.jpg';
+import TeamMemberImage03 from '@/public/images/template/team-member-03.jpg';
+import TeamMemberImage04 from '@/public/images/template/team-member-04.jpg';
+import TeamMemberImage05 from '@/public/images/template/team-member-05.jpg';
+import TeamMemberImage06 from '@/public/images/template/team-member-06.jpg';
+import TeamMemberImage07 from '@/public/images/template/team-member-07.jpg';
+import TeamMemberImage08 from '@/public/images/template/team-member-08.jpg';
 
-export default function TeamMembers() {
+const TeamMembers = () => {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -185,4 +185,6 @@ export default function TeamMembers() {
       </div>
     </section>
   );
-}
+};
+
+export default TeamMembers;

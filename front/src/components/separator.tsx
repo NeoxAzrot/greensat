@@ -1,4 +1,4 @@
-export default function Separator() {
+const Separator = () => {
   return (
     <div className="flex justify-center my-14" aria-hidden="true">
       <svg className="fill-slate-400" height="4" width="36">
@@ -8,4 +8,6 @@ export default function Separator() {
       </svg>
     </div>
   );
-}
+};
+
+export default Separator;

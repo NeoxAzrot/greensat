@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import Tooltip from '@/components/utils/tooltip';
+import Tooltip from '@/components/layout/tooltip';
 
-export default function FeaturesTable() {
+const FeaturesTable = () => {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -403,4 +403,6 @@ export default function FeaturesTable() {
       </div>
     </section>
   );
-}
+};
+
+export default FeaturesTable;

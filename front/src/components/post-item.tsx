@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import PostDate from '@/components/post-date';
 
-export default function PostItem({ ...props }) {
+const PostItem = ({ ...props }) => {
   return (
     <article className="h-full flex flex-col space-y-5" data-aos="fade-up">
       {props.image && (
@@ -55,4 +55,6 @@ export default function PostItem({ ...props }) {
       </div>
     </article>
   );
-}
+};
+
+export default PostItem;

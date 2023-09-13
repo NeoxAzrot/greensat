@@ -15,7 +15,7 @@ interface ModalVideo01Props {
   videoHeight: number;
 }
 
-export default function ModalVideo01({
+const ModalVideo01 = ({
   thumb,
   thumbWidth,
   thumbHeight,
@@ -23,7 +23,7 @@ export default function ModalVideo01({
   video,
   videoWidth,
   videoHeight,
-}: ModalVideo01Props) {
+}: ModalVideo01Props) => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -104,4 +104,6 @@ export default function ModalVideo01({
       </Transition>
     </div>
   );
-}
+};
+
+export default ModalVideo01;

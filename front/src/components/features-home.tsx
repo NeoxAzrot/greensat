@@ -4,9 +4,9 @@ import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-import FeaturesImage from '@/public/images/features-home-01.jpg';
+import FeaturesImage from '@/public/images/template/features-home-01.jpg';
 
-export default function FeaturesHome() {
+const FeaturesHome = () => {
   const [tab, setTab] = useState<number>(1);
 
   const tabs = useRef<HTMLDivElement>(null);
@@ -229,4 +229,6 @@ export default function FeaturesHome() {
       </div>
     </section>
   );
-}
+};
+
+export default FeaturesHome;

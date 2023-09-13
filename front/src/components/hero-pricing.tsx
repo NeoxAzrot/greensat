@@ -1,6 +1,6 @@
 import PricingTables from './pricing-tables';
 
-export default function HeroPricing() {
+const HeroPricing = () => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -23,4 +23,6 @@ export default function HeroPricing() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroPricing;

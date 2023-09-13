@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
-import AvatarImage01 from '@/public/images/support-avatar-01.jpg';
-import AvatarImage02 from '@/public/images/support-avatar-02.jpg';
-import AvatarImage03 from '@/public/images/support-avatar-03.jpg';
-import AvatarImage04 from '@/public/images/support-avatar-04.jpg';
-import AvatarImage05 from '@/public/images/support-avatar-05.jpg';
-import AvatarImage06 from '@/public/images/support-avatar-06.jpg';
+import AvatarImage01 from '@/public/images/template/support-avatar-01.jpg';
+import AvatarImage02 from '@/public/images/template/support-avatar-02.jpg';
+import AvatarImage03 from '@/public/images/template/support-avatar-03.jpg';
+import AvatarImage04 from '@/public/images/template/support-avatar-04.jpg';
+import AvatarImage05 from '@/public/images/template/support-avatar-05.jpg';
+import AvatarImage06 from '@/public/images/template/support-avatar-06.jpg';
 
 const SupportContent = () => {
   return (

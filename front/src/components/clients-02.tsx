@@ -1,4 +1,4 @@
-export default function Clients02() {
+const Clients02 = () => {
   return (
     <section className="bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -120,4 +120,6 @@ export default function Clients02() {
       </div>
     </section>
   );
-}
+};
+
+export default Clients02;

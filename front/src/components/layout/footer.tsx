@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Footer() {
+const Footer = () => {
   return (
     <footer>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -46,7 +46,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="/producers"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
                 >
                   Les producteurs
@@ -69,7 +69,7 @@ export default function Footer() {
             <ul className="text-sm font-medium space-y-2">
               <li>
                 <Link
-                  href="/signin"
+                  href="/login"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
                 >
                   Se connecter
@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/request-demo"
+                  href="/register"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
                 >
                   S'inscrire
@@ -92,7 +92,7 @@ export default function Footer() {
             <ul className="text-sm font-medium space-y-2">
               <li>
                 <Link
-                  href="#"
+                  href="/terms-of-use"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
                 >
                   Mentions légales
@@ -100,7 +100,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/privacy-policy"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
                 >
                   Politique de confidentialité
@@ -152,4 +152,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

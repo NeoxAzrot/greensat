@@ -1,4 +1,4 @@
-export default function Cta02() {
+const Cta02 = () => {
   return (
     <section className="bg-slate-100">
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
@@ -35,4 +35,6 @@ export default function Cta02() {
       </div>
     </section>
   );
-}
+};
+
+export default Cta02;

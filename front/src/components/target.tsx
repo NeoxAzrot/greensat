@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import TargetImage from '@/public/images/target.png';
+import TargetImage from '@/public/images/template/target.png';
 
-export default function Target() {
+const Target = () => {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -77,4 +77,6 @@ export default function Target() {
       </div>
     </section>
   );
-}
+};
+
+export default Target;

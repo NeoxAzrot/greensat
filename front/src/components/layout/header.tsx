@@ -3,7 +3,11 @@ import Link from 'next/link';
 import Logo from './logo';
 import MobileMenu from './mobile-menu';
 
-export default function Header({ mode = 'dark' }: { mode?: string }) {
+interface HeaderProps {
+  mode?: 'light' | 'dark';
+}
+
+const Header = ({ mode = 'dark' }: HeaderProps) => {
   return (
     <header className={`absolute w-full z-30 ${mode !== 'light' && 'dark'}`}>
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
@@ -27,7 +31,7 @@ export default function Header({ mode = 'dark' }: { mode?: string }) {
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="/producers"
                   className="font-medium text-slate-800 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-600 px-3 lg:px-5 py-2 flex items-center transition duration-150 ease-in-out"
                 >
                   Les producteurs
@@ -47,7 +51,7 @@ export default function Header({ mode = 'dark' }: { mode?: string }) {
             <ul className="flex grow justify-end flex-wrap items-center">
               <li>
                 <Link
-                  href="/signin"
+                  href="/login"
                   className="font-medium text-slate-800 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-600 px-3 lg:px-5 py-2 flex items-center transition duration-150 ease-in-out"
                 >
                   Se connecter
@@ -55,7 +59,7 @@ export default function Header({ mode = 'dark' }: { mode?: string }) {
               </li>
               <li>
                 <Link
-                  href="/request-demo"
+                  href="/register"
                   className="font-medium text-blue-600 dark:text-slate-300 dark:hover:text-white px-3 lg:px-5 py-2 flex items-center transition duration-150 ease-in-out group"
                 >
                   S'inscrire{' '}
@@ -72,4 +76,6 @@ export default function Header({ mode = 'dark' }: { mode?: string }) {
       </div>
     </header>
   );
-}
+};
+
+export default Header;

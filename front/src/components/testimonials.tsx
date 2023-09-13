@@ -1,13 +1,13 @@
 import Image from 'next/image';
 
-import TestimonialImage01 from '@/public/images/testimonial-01.jpg';
-import TestimonialImage02 from '@/public/images/testimonial-02.jpg';
-import TestimonialImage03 from '@/public/images/testimonial-03.jpg';
-import TestimonialImage04 from '@/public/images/testimonial-04.jpg';
-import TestimonialImage05 from '@/public/images/testimonial-05.jpg';
-import TestimonialImage06 from '@/public/images/testimonial-06.jpg';
+import TestimonialImage01 from '@/public/images/template/testimonial-01.jpg';
+import TestimonialImage02 from '@/public/images/template/testimonial-02.jpg';
+import TestimonialImage03 from '@/public/images/template/testimonial-03.jpg';
+import TestimonialImage04 from '@/public/images/template/testimonial-04.jpg';
+import TestimonialImage05 from '@/public/images/template/testimonial-05.jpg';
+import TestimonialImage06 from '@/public/images/template/testimonial-06.jpg';
 
-export default function Testimonials() {
+const Testimonials = () => {
   return (
     <section className="bg-slate-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -336,4 +336,6 @@ export default function Testimonials() {
       </div>
     </section>
   );
-}
+};
+
+export default Testimonials;

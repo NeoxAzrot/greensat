@@ -4,11 +4,11 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ReactNode, useEffect } from 'react';
 
-interface Props {
+interface AuthLayoutProps {
   children: ReactNode;
 }
 
-const AuthLayout = ({ children }: Props) => {
+const AuthLayout = ({ children }: AuthLayoutProps) => {
   useEffect(() => {
     AOS.init({
       once: true,

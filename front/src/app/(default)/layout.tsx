@@ -7,11 +7,11 @@ import { ReactNode, useEffect } from 'react';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 
-interface Props {
+interface DefaultLayoutProps {
   children: ReactNode;
 }
 
-const DefaultLayout = ({ children }: Props) => {
+const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   useEffect(() => {
     AOS.init({
       once: true,

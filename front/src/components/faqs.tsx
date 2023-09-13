@@ -1,6 +1,6 @@
 import Accordion from '@/components/layout/accordion';
 
-export default function Faqs() {
+const Faqs = () => {
   return (
     <section className="bg-slate-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -43,4 +43,6 @@ export default function Faqs() {
       </div>
     </section>
   );
-}
+};
+
+export default Faqs;

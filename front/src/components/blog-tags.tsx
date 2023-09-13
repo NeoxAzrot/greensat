@@ -1,4 +1,4 @@
-export default function BlogTags() {
+const BlogTags = () => {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -39,4 +39,6 @@ export default function BlogTags() {
       </div>
     </section>
   );
-}
+};
+
+export default BlogTags;

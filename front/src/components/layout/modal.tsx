@@ -1,17 +1,17 @@
 'use client';
 
 import { Transition } from '@headlessui/react';
-import { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
-type ModalProps = {
-  children: React.ReactNode;
+interface ModalProps {
+  children: ReactNode;
   id: string;
   ariaLabel: string;
   show: boolean;
   handleClose: () => void;
-};
+}
 
-export default function Modal({ children, id, ariaLabel, show, handleClose }: ModalProps) {
+const Modal = ({ children, id, ariaLabel, show, handleClose }: ModalProps) => {
   const modalContent = useRef<HTMLDivElement>(null);
 
   // close the modal on click outside
@@ -71,4 +71,6 @@ export default function Modal({ children, id, ariaLabel, show, handleClose }: Mo
       </Transition>
     </>
   );
-}
+};
+
+export default Modal;

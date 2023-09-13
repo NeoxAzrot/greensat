@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
-export default function MobileMenu() {
+const MobileMenu = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
 
   const trigger = useRef<HTMLButtonElement>(null);
@@ -84,7 +84,7 @@ export default function MobileMenu() {
             </li>
             <li>
               <Link
-                href="/blog"
+                href="/producers"
                 className="flex font-medium text-slate-800 hover:text-blue-600 py-2"
                 onClick={() => setMobileNavOpen(false)}
               >
@@ -102,7 +102,7 @@ export default function MobileMenu() {
             </li>
             <li>
               <Link
-                href="/signin"
+                href="/login"
                 className="flex font-medium w-full text-slate-800 hover:text-blue-600 py-2"
                 onClick={() => setMobileNavOpen(false)}
               >
@@ -111,7 +111,7 @@ export default function MobileMenu() {
             </li>
             <li>
               <Link
-                href="/request-demo"
+                href="/register"
                 className="flex font-medium text-blue-600 py-2 group"
                 onClick={() => setMobileNavOpen(false)}
               >
@@ -126,4 +126,6 @@ export default function MobileMenu() {
       </div>
     </div>
   );
-}
+};
+
+export default MobileMenu;

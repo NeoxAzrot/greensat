@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next/types';
 
-import CustomerAvatar from '@/public/images/customer-avatar-04.jpg';
-import PageBg from '@/public/images/request-demo-bg.jpg';
+import CustomerAvatar from '@/public/images/template/customer-avatar-04.jpg';
+import PageBg from '@/public/images/template/request-demo-bg.jpg';
 
 export const metadata: Metadata = {
   title: 'Request Demo - Tidy',

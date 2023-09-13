@@ -1,18 +1,18 @@
 'use client';
 
 import { Transition } from '@headlessui/react';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
-type TooltipProps = {
-  children: React.ReactNode;
+interface TooltipProps {
+  children: ReactNode;
   className?: string;
-  position?: string;
-};
+  position?: 'top' | 'right' | 'bottom' | 'left';
+}
 
-export default function Tooltip({ children, className = '', position = 'top' }: TooltipProps) {
+const Tooltip = ({ children, className = '', position = 'top' }: TooltipProps) => {
   const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
 
-  const positionOuterClasses = (position: string) => {
+  const positionOuterClasses = () => {
     switch (position) {
       case 'right':
         return 'left-full top-1/2 transform -translate-y-1/2';
@@ -25,7 +25,7 @@ export default function Tooltip({ children, className = '', position = 'top' }: 
     }
   };
 
-  const positionInnerClasses = (position: string) => {
+  const positionInnerClasses = () => {
     switch (position) {
       case 'right':
         return 'ml-2';
@@ -56,13 +56,11 @@ export default function Tooltip({ children, className = '', position = 'top' }: 
           <path d="M8 0c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8Zm0 14c3.3 0 6-2.7 6-6s-2.7-6-6-6-6 2.7-6 6 2.7 6 6 6ZM7 7h2v5H7V7Zm1-1a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
         </svg>
       </button>
-      <div className={`z-10 absolute ${positionOuterClasses(position)}`}>
+      <div className={`z-10 absolute ${positionOuterClasses()}`}>
         <Transition
           show={tooltipOpen}
           as="div"
-          className={`min-w-[12rem] bg-slate-800 p-2 rounded overflow-hidden ${positionInnerClasses(
-            position,
-          )}`}
+          className={`min-w-[12rem] bg-slate-800 p-2 rounded overflow-hidden ${positionInnerClasses()}`}
           enter="transition ease-out duration-200 transform"
           enterFrom="opacity-0 -translate-y-2"
           enterTo="opacity-100 translate-y-0"
@@ -75,4 +73,6 @@ export default function Tooltip({ children, className = '', position = 'top' }: 
       </div>
     </div>
   );
-}
+};
+
+export default Tooltip;

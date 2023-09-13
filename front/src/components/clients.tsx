@@ -1,4 +1,4 @@
-export default function Clients() {
+const Clients = () => {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -97,4 +97,6 @@ export default function Clients() {
       </div>
     </section>
   );
-}
+};
+
+export default Clients;

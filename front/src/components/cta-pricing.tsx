@@ -1,4 +1,4 @@
-export default function CtaPricing() {
+const CtaPricing = () => {
   return (
     <section className="relative">
       {/* Gray background */}
@@ -31,4 +31,6 @@ export default function CtaPricing() {
       </div>
     </section>
   );
-}
+};
+
+export default CtaPricing;

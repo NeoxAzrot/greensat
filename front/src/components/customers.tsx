@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import CustomerAvatar01 from '@/public/images/customer-avatar-01.jpg';
-import CustomerAvatar02 from '@/public/images/customer-avatar-02.jpg';
-import CustomerAvatar03 from '@/public/images/customer-avatar-03.jpg';
-import Customers01 from '@/public/images/customers-01.jpg';
-import Customers02 from '@/public/images/customers-02.jpg';
-import Customers03 from '@/public/images/customers-03.jpg';
+import CustomerAvatar01 from '@/public/images/template/customer-avatar-01.jpg';
+import CustomerAvatar02 from '@/public/images/template/customer-avatar-02.jpg';
+import CustomerAvatar03 from '@/public/images/template/customer-avatar-03.jpg';
+import Customers01 from '@/public/images/template/customers-01.jpg';
+import Customers02 from '@/public/images/template/customers-02.jpg';
+import Customers03 from '@/public/images/template/customers-03.jpg';
 
-export default function Customers() {
+const Customers = () => {
   return (
     <section>
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
@@ -280,4 +280,6 @@ export default function Customers() {
       </div>
     </section>
   );
-}
+};
+
+export default Customers;

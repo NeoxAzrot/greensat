@@ -1,10 +1,10 @@
 import Image from 'next/image';
 
-import FeaturesImage01 from '@/public/images/features-home-3-01.jpg';
-import FeaturesImage02 from '@/public/images/features-home-3-02.jpg';
-import FeaturesImage03 from '@/public/images/features-home-3-03.jpg';
+import FeaturesImage01 from '@/public/images/template/features-home-3-01.jpg';
+import FeaturesImage02 from '@/public/images/template/features-home-3-02.jpg';
+import FeaturesImage03 from '@/public/images/template/features-home-3-03.jpg';
 
-export default function FeaturesHome03() {
+const FeaturesHome03 = () => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -148,4 +148,6 @@ export default function FeaturesHome03() {
       </div>
     </section>
   );
-}
+};
+
+export default FeaturesHome03;

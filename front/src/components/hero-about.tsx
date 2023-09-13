@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
-import HeroImage from '@/public/images/about-hero.jpg';
-import IntroImage from '@/public/images/about-intro.jpg';
+import HeroImage from '@/public/images/template/about-hero.jpg';
+import IntroImage from '@/public/images/template/about-intro.jpg';
 
-export default function HeroAbout() {
+const HeroAbout = () => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -47,4 +47,6 @@ export default function HeroAbout() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroAbout;

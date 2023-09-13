@@ -1,4 +1,4 @@
-export default function FeaturesBlocks() {
+const FeaturesBlocks = () => {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -519,4 +519,6 @@ export default function FeaturesBlocks() {
       </div>
     </section>
   );
-}
+};
+
+export default FeaturesBlocks;

@@ -1,10 +1,10 @@
 import Image from 'next/image';
 
-import TeamImage01 from '@/public/images/team-01.jpg';
-import TeamImage02 from '@/public/images/team-02.jpg';
-import TeamImage03 from '@/public/images/team-03.jpg';
+import TeamImage01 from '@/public/images/template/team-01.jpg';
+import TeamImage02 from '@/public/images/template/team-02.jpg';
+import TeamImage03 from '@/public/images/template/team-03.jpg';
 
-export default function Team() {
+const Team = () => {
   return (
     <section className="bg-slate-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -136,4 +136,6 @@ export default function Team() {
       </div>
     </section>
   );
-}
+};
+
+export default Team;

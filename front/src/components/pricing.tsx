@@ -1,6 +1,6 @@
 import PricingTables from './pricing-tables';
 
-export default function Pricing() {
+const Pricing = () => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -23,4 +23,6 @@ export default function Pricing() {
       </div>
     </section>
   );
-}
+};
+
+export default Pricing;

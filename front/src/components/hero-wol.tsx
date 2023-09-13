@@ -1,8 +1,8 @@
-import VideoThumb from '@/public/images/wof-hero.jpg';
+import VideoThumb from '@/public/images/template/wof-hero.jpg';
 
 import ModalVideo02 from '@/components/modal-video-02';
 
-export default function HeroWol() {
+const HeroWol = () => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -37,4 +37,6 @@ export default function HeroWol() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroWol;

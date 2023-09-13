@@ -1,4 +1,4 @@
-export default function HeroSupport() {
+const HeroSupport = () => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -40,4 +40,6 @@ export default function HeroSupport() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroSupport;

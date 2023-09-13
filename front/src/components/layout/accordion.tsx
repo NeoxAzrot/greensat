@@ -1,20 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
-type AccordionpProps = {
-  children: React.ReactNode;
+interface AccordionProps {
+  children: ReactNode;
   tag?: string;
   title: string;
   active?: boolean;
-};
+}
 
-export default function Accordion({
-  children,
-  tag = 'li',
-  title,
-  active = false,
-}: AccordionpProps) {
+const Accordion = ({ children, tag = 'li', title, active = false }: AccordionProps) => {
   const [accordionOpen, setAccordionOpen] = useState<boolean>(false);
   const accordion = useRef<HTMLDivElement>(null);
   const Component = tag as keyof JSX.IntrinsicElements;
@@ -56,4 +51,6 @@ export default function Accordion({
       </div>
     </Component>
   );
-}
+};
+
+export default Accordion;

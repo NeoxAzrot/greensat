@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next/types';
 
-import PageBg from '@/public/images/reset-password-bg.jpg';
+import PageBg from '@/public/images/template/reset-password-bg.jpg';
 
 export const metadata: Metadata = {
   title: 'Reset Password - Tidy',

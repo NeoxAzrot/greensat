@@ -5,10 +5,10 @@ import mapboxgl from 'mapbox-gl';
 import { createRef, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
-const Marker = ({ onClick, children, feature, router }: any) => {
+const Marker = ({ onClick, children, feature }: any) => {
   const _onClick = () => {
     // onClick(feature.title);
-    router.push(`/blog/${feature.slug}`);
+    // router.push(`/blog/${feature.slug}`);
   };
 
   return (
@@ -32,7 +32,7 @@ const Marker = ({ onClick, children, feature, router }: any) => {
   );
 };
 
-export default function Map({ allPosts, router }: { allPosts: Post[]; router: any }) {
+const Map = ({ allPosts }: { allPosts: Post[] }) => {
   const mapContainer = useRef(null);
   const [lng, setLng] = useState(1.48);
   const [lat, setLat] = useState(43.53);
@@ -61,9 +61,7 @@ export default function Map({ allPosts, router }: { allPosts: Post[]; router: an
       const ref = createRef();
       (ref.current as HTMLElement) = document.createElement('div') as any;
 
-      createRoot(ref.current as any).render(
-        <Marker onClick={markerClicked} feature={feature} router={router} />,
-      );
+      createRoot(ref.current as any).render(<Marker onClick={markerClicked} feature={feature} />);
 
       new mapboxgl.Marker(ref.current as any)
         .setLngLat({ lat: feature.lat, lng: feature.lng })
@@ -85,4 +83,6 @@ export default function Map({ allPosts, router }: { allPosts: Post[]; router: an
       />
     </section>
   );
-}
+};
+
+export default Map;

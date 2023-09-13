@@ -1,4 +1,4 @@
-export default function FeaturesPricing() {
+const FeaturesPricing = () => {
   return (
     <section className="bg-slate-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -399,4 +399,6 @@ export default function FeaturesPricing() {
       </div>
     </section>
   );
-}
+};
+
+export default FeaturesPricing;

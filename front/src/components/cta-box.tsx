@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import CtaImage from '@/public/images/cta-image.png';
+import CtaImage from '@/public/images/template/cta-image.png';
 
-export default function CtaBox() {
+const CtaBox = () => {
   return (
     <div data-aos="fade-up">
       <div className="relative bg-slate-900 rounded-sm py-10 px-8 md:p-10 md:mt-24">
@@ -37,4 +37,6 @@ export default function CtaBox() {
       </div>
     </div>
   );
-}
+};
+
+export default CtaBox;

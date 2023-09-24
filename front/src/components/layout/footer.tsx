@@ -80,7 +80,7 @@ const Footer = () => {
                   href="/register"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
                 >
-                  S'inscrire
+                  S&apos;inscrire
                 </Link>
               </li>
             </ul>
@@ -147,7 +147,9 @@ const Footer = () => {
           </ul>
 
           {/* Copyrights note */}
-          <div className="text-sm text-slate-500 mr-4">© Greensat. Tous droits réservés.</div>
+          <div className="text-sm text-slate-500 mr-4">
+            © Greensa&apos;table. Tous droits réservés.
+          </div>
         </div>
       </div>
     </footer>

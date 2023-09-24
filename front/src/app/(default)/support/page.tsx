@@ -5,8 +5,31 @@ import Hero from '@/components/hero-support';
 import Content from './content';
 
 export const metadata: Metadata = {
-  title: 'Support - Tidy',
-  description: 'Page description',
+  title: "Besoin d'aide ? On est là pour toi",
+  description:
+    "T'as des questions ? Consulte notre FAQ pour des réponses rapides ou contacte notre équipe. On est là pour t'aider, t'es pas tout seul dans cette aventure !",
+  alternates: {
+    canonical: 'https://greensatable.fr/support',
+    languages: {
+      fr: 'https://greensatable.fr/support',
+    },
+  },
+  openGraph: {
+    title: "Besoin d'aide ? On est là pour toi",
+    url: 'https://greensatable.fr/support',
+    description:
+      "T'as des questions ? Consulte notre FAQ pour des réponses rapides ou contacte notre équipe. On est là pour t'aider, t'es pas tout seul dans cette aventure !",
+  },
+  twitter: {
+    title: "Besoin d'aide ? On est là pour toi",
+    description:
+      "T'as des questions ? Consulte notre FAQ pour des réponses rapides ou contacte notre équipe. On est là pour t'aider, t'es pas tout seul dans cette aventure !",
+  },
+  appLinks: {
+    web: {
+      url: 'https://greensatable.fr/support',
+    },
+  },
 };
 
 const Support = () => {

@@ -10,8 +10,31 @@ import TeamMembers from '@/components/team-members';
 import Content from './content';
 
 export const metadata: Metadata = {
-  title: 'About - Tidy',
-  description: 'Page description',
+  title: 'Les petits détails légaux importants',
+  description:
+    "On te partage les détails légaux ici. Ce n'est pas la partie la plus fun, mais c'est important. Sois au courant de nos règles du jeu.",
+  alternates: {
+    canonical: 'https://greensatable.fr/terms-of-use',
+    languages: {
+      fr: 'https://greensatable.fr/terms-of-use',
+    },
+  },
+  openGraph: {
+    title: 'Les petits détails légaux importants',
+    url: 'https://greensatable.fr/terms-of-use',
+    description:
+      "On te partage les détails légaux ici. Ce n'est pas la partie la plus fun, mais c'est important. Sois au courant de nos règles du jeu.",
+  },
+  twitter: {
+    title: 'Les petits détails légaux importants',
+    description:
+      "On te partage les détails légaux ici. Ce n'est pas la partie la plus fun, mais c'est important. Sois au courant de nos règles du jeu.",
+  },
+  appLinks: {
+    web: {
+      url: 'https://greensatable.fr/terms-of-use',
+    },
+  },
 };
 
 const TermsOfUSe = () => {

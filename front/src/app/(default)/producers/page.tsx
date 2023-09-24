@@ -1,7 +1,6 @@
 import { allPosts } from 'contentlayer/generated';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Metadata } from 'next/types';
 
 import Tags from '@/components/blog-tags';
@@ -12,8 +11,31 @@ import PostDate from '@/components/post-date';
 import PostItem from '@/components/post-item';
 
 export const metadata: Metadata = {
-  title: 'Blog - Tidy',
-  description: 'Page description',
+  title: 'Découvre les producteurs locaux',
+  description:
+    "Découvre les producteurs locaux près de l'ENSAT sur notre carte interactive. Fais tes courses avec style et soutiens l'éco-responsabilité !",
+  alternates: {
+    canonical: 'https://greensatable.fr/producers',
+    languages: {
+      fr: 'https://greensatable.fr/producers',
+    },
+  },
+  openGraph: {
+    title: 'Découvre les producteurs locaux',
+    url: 'https://greensatable.fr/producers',
+    description:
+      "Découvre les producteurs locaux près de l'ENSAT sur notre carte interactive. Fais tes courses avec style et soutiens l'éco-responsabilité !",
+  },
+  twitter: {
+    title: 'Découvre les producteurs locaux',
+    description:
+      "Découvre les producteurs locaux près de l'ENSAT sur notre carte interactive. Fais tes courses avec style et soutiens l'éco-responsabilité !",
+  },
+  appLinks: {
+    web: {
+      url: 'https://greensatable.fr/producers',
+    },
+  },
 };
 
 const Producers = () => {
@@ -43,7 +65,7 @@ const Producers = () => {
               {featuredPost.image && (
                 <Link
                   className="relative block group overflow-hidden md:w-1/2"
-                  href={`/blog/${featuredPost.slug}`}
+                  href={`/producers/${featuredPost.slug}`}
                   data-aos="fade-down"
                 >
                   <Image
@@ -71,7 +93,7 @@ const Producers = () => {
                   <h2 className="h4 md:text-4xl lg:text-5xl font-playfair-display mb-3">
                     <Link
                       className="text-slate-800 hover:underline hover:decoration-blue-100"
-                      href={`/blog/${featuredPost.slug}`}
+                      href={`/producers/${featuredPost.slug}`}
                     >
                       {featuredPost.title}
                     </Link>

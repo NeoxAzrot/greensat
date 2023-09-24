@@ -27,11 +27,11 @@ const NotFound = () => {
                 <h1 className="h1 font-playfair-display text-slate-800 mb-4">Oops!</h1>
               </div>
               <p className="text-xl text-slate-500">
-                Nous n'avons pas trouvé la page que vous recherchez.
+                Nous n&apos;avons pas trouvé la page que vous recherchez.
               </p>
               <div className="mt-8">
                 <Link className="btn text-white bg-blue-600 hover:bg-blue-700" href="/">
-                  Revenir à l'accueil
+                  Revenir à l&apos;accueil
                 </Link>
               </div>
             </div>

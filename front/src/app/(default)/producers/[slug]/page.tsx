@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { Mdx } from '@/components/mdx/mdx';
+import Mdx from '@/components/mdx/mdx';
 import Newsletter from '@/components/newsletter';
 import PostDate from '@/components/post-date';
 import Separator from '@/components/separator';
@@ -15,6 +15,8 @@ export async function generateStaticParams() {
   }));
 }
 
+// TODO: Metadata like everywhere : https://nextjs.org/docs/app/api-reference/functions/generate-metadata
+// Add a attribut in object to define the meta description and meta title (title of the post)
 export async function generateMetadata({
   params,
 }: {
@@ -55,7 +57,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
                   <div className="text-center md:text-left">
                     <Link
                       className="inline-flex font-semibold text-blue-600 hover:text-blue-500 transition duration-150 ease-in-out group mb-2"
-                      href="/blog"
+                      href="/producers"
                       data-aos="fade-down"
                     >
                       <span className="tracking-normal text-blue-600 group-hover:-translate-x-0.5 transition-transform duration-150 ease-in-out mr-1">

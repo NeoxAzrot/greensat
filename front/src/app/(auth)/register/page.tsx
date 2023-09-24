@@ -6,8 +6,31 @@ import CustomerAvatar from '@/public/images/template/customer-avatar-04.jpg';
 import PageBg from '@/public/images/template/request-demo-bg.jpg';
 
 export const metadata: Metadata = {
-  title: 'Request Demo - Tidy',
-  description: 'Page description',
+  title: 'Rejoins la révolution green',
+  description:
+    "Fais partie de la vibe Greensa’table en t'inscrivant ici. Soutiens l'achat local, gagne des avantages, et deviens un membre de la team éco-friendly. Let's go green !",
+  alternates: {
+    canonical: 'https://greensatable.fr/register',
+    languages: {
+      fr: 'https://greensatable.fr/register',
+    },
+  },
+  openGraph: {
+    title: 'Rejoins la révolution green',
+    url: 'https://greensatable.fr/register',
+    description:
+      "Fais partie de la vibe Greensa’table en t'inscrivant ici. Soutiens l'achat local, gagne des avantages, et deviens un membre de la team éco-friendly. Let's go green !",
+  },
+  twitter: {
+    title: 'Rejoins la révolution green',
+    description:
+      "Fais partie de la vibe Greensa’table en t'inscrivant ici. Soutiens l'achat local, gagne des avantages, et deviens un membre de la team éco-friendly. Let's go green !",
+  },
+  appLinks: {
+    web: {
+      url: 'https://greensatable.fr/register',
+    },
+  },
 };
 
 const Register = () => {
@@ -116,7 +139,7 @@ const Register = () => {
                 </div>
                 <div className="mt-6">
                   <button className="btn-sm w-full text-sm text-white bg-blue-600 hover:bg-blue-700 group">
-                    Rejoindre Greensat{' '}
+                    Rejoindre Greensa’table{' '}
                     <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                       -&gt;
                     </span>
@@ -126,13 +149,13 @@ const Register = () => {
                   <label className="flex items-start">
                     <input type="checkbox" className="form-checkbox mt-0.5" defaultChecked />
                     <span className="text-sm text-slate-500 ml-3">
-                      En cliquant sur Rejoindre Greensat, vous acceptez nos{' '}
+                      En cliquant sur Rejoindre Greensa’table, vous acceptez nos{' '}
                       <Link
                         className="text-blue-600 hover:underline"
                         href="terms-of-use"
                         aria-label="Terms of Use"
                       >
-                        Conditions d'utilisation
+                        Conditions d&apos;utilisation
                       </Link>{' '}
                       et notre{' '}
                       <Link
@@ -182,7 +205,9 @@ const Register = () => {
         <div className="min-h-screen h-full flex flex-col justify-center">
           <div className="px-5 sm:px-6">
             <div className="w-full max-w-lg mx-auto">
-              <h2 className="h3 md:text-4xl font-playfair-display text-slate-100 mb-4">Greensat</h2>
+              <h2 className="h3 md:text-4xl font-playfair-display text-slate-100 mb-4">
+                Greensa’table
+              </h2>
               <div className="space-y-3">
                 <svg className="fill-blue-600" width="20" height="16" viewBox="0 0 20 16">
                   <path d="M2.76 16c2.577 0 5.154-3.219 5.154-5.996 0-1.357-.613-2.272-1.748-2.272s-2.27.726-3.283 1.64C3.16 6.439 5.613 3.346 9.571.885L9.233 0C3.466 2.903 0 7.732 0 12.213 0 14.517.828 16 2.76 16Zm10.43 0c2.577 0 5.154-3.219 5.154-5.996 0-1.357-.614-2.272-1.749-2.272-1.135 0-2.27.726-3.282 1.64.276-2.934 2.73-6.027 6.687-8.488L19.663 0c-5.767 2.903-9.234 7.732-9.234 12.213 0 2.304.829 3.787 2.761 3.787Z" />
@@ -206,7 +231,7 @@ const Register = () => {
                 <div className="font-medium">
                   <span className="text-slate-200">Lise Michel</span>
                   <span className="text-slate-600"> · </span>
-                  <span className="text-slate-500">CEO, Greensat</span>
+                  <span className="text-slate-500">CEO, Greensa’table</span>
                 </div>
               </div>
             </div>

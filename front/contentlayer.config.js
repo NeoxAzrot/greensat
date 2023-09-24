@@ -37,6 +37,14 @@ const Post = defineDocumentType(() => ({
       type: 'number',
       required: true,
     },
+    address: {
+      type: 'string',
+      required: true,
+    },
+    businessType: {
+      type: 'string',
+      required: true,
+    },
   },
   computedFields: {
     slug: {

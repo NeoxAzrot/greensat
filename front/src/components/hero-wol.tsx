@@ -19,7 +19,7 @@ const HeroWol = () => {
               Join 70K+ companies and investors
             </h1>
             <p className="text-xl text-slate-400">
-              We're proud to have played a part in these amazing journeys.
+              We&apos;re proud to have played a part in these amazing journeys.
             </p>
           </div>
 

@@ -34,8 +34,8 @@ const Customers = () => {
                   </Link>
                 </h2>
                 <p className="text-lg text-slate-500 border-l-2 border-slate-800 pl-4 mb-8">
-                  Award-winning design firm Black Inc. didn't get the personalized approach they
-                  wanted from colloboration tools - until they met Tidy.
+                  Award-winning design firm Black Inc. didn&apos;t get the personalized approach
+                  they wanted from colloboration tools - until they met Tidy.
                 </p>
                 <div className="space-y-3">
                   <svg className="fill-blue-600" width="20" height="16" viewBox="0 0 20 16">
@@ -119,8 +119,8 @@ const Customers = () => {
                   </Link>
                 </h2>
                 <p className="text-lg text-slate-500 border-l-2 border-slate-800 pl-4 mb-8">
-                  Professional communication studio Leon didn't get the personalized approach they
-                  wanted from colloboration tools - until they met Tidy.
+                  Professional communication studio Leon didn&apos;t get the personalized approach
+                  they wanted from colloboration tools - until they met Tidy.
                 </p>
                 <div className="space-y-3">
                   <svg className="fill-blue-600" width="20" height="16" viewBox="0 0 20 16">
@@ -204,8 +204,8 @@ const Customers = () => {
                   </Link>
                 </h2>
                 <p className="text-lg text-slate-500 border-l-2 border-slate-800 pl-4 mb-8">
-                  Award-winning design firm Black Inc. didn't get the personalized approach they
-                  wanted from colloboration tools - until they met Tidy.
+                  Award-winning design firm Black Inc. didn&apos;t get the personalized approach
+                  they wanted from colloboration tools - until they met Tidy.
                 </p>
                 <div className="space-y-3">
                   <svg className="fill-blue-600" width="20" height="16" viewBox="0 0 20 16">

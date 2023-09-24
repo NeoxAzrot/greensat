@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 import PostDate from '@/components/post-date';
 
-const PostItem = ({ ...props }) => {
+const PostItem = ({ ...props }: any) => {
   return (
     <article className="h-full flex flex-col space-y-5" data-aos="fade-up">
       {props.image && (
-        <Link className="block group overflow-hidden" href={`/blog/${props.slug}`}>
+        <Link className="block group overflow-hidden" href={`/producers/${props.slug}`}>
           <img
             className="w-full aspect-[16/9] md:aspect-[27/17] object-cover group-hover:scale-105 transition duration-700 ease-out"
             src={props.image}
@@ -22,7 +22,7 @@ const PostItem = ({ ...props }) => {
           <h3 className="h4 font-playfair-display mb-3">
             <Link
               className="text-slate-800 hover:underline hover:decoration-blue-100"
-              href={`/blog/${props.slug}`}
+              href={`/producers/${props.slug}`}
             >
               {props.title}
             </Link>

@@ -8,34 +8,34 @@ import PageBG from '@/public/images/template/sign-in-bg.jpg';
 import Logo from '@/components/layout/logo';
 
 export const metadata: Metadata = {
-  title: 'Connecte-toi et rejoins la fête verte',
+  title: 'Ton espace personnel',
   description:
-    "Connecte-toi à ton compte en un clin d'œil. Accède à des offres spéciales, gère tes produits gratuits et deviens un héros éco-responsable !",
+    'Bienvenue dans ton espace personnel ! Gère tes affaires, tes produits gratuits, et explore les avantages éco-responsables. Ta vie, ton compte !',
   alternates: {
-    canonical: 'https://greensatable.fr/login',
+    canonical: 'https://greensatable.fr/account',
     languages: {
-      fr: 'https://greensatable.fr/login',
+      fr: 'https://greensatable.fr/account',
     },
   },
   openGraph: {
-    title: 'Connecte-toi et rejoins la fête verte',
-    url: 'https://greensatable.fr/login',
+    title: 'Ton espace personnel',
+    url: 'https://greensatable.fr/account',
     description:
-      "Connecte-toi à ton compte en un clin d'œil. Accède à des offres spéciales, gère tes produits gratuits et deviens un héros éco-responsable !",
+      'Bienvenue dans ton espace personnel ! Gère tes affaires, tes produits gratuits, et explore les avantages éco-responsables. Ta vie, ton compte !',
   },
   twitter: {
-    title: 'Connecte-toi et rejoins la fête verte',
+    title: 'Ton espace personnel',
     description:
-      "Connecte-toi à ton compte en un clin d'œil. Accède à des offres spéciales, gère tes produits gratuits et deviens un héros éco-responsable !",
+      'Bienvenue dans ton espace personnel ! Gère tes affaires, tes produits gratuits, et explore les avantages éco-responsables. Ta vie, ton compte !',
   },
   appLinks: {
     web: {
-      url: 'https://greensatable.fr/login',
+      url: 'https://greensatable.fr/account',
     },
   },
 };
 
-const Login = () => {
+const Account = () => {
   return (
     <>
       {/* Content */}
@@ -168,4 +168,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Account;

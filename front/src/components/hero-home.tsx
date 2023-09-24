@@ -20,11 +20,12 @@ const HeroHome = () => {
             {/* Content */}
             <div className="text-center md:text-left md:min-w-[30rem]" data-aos="fade-right">
               <h1 className="h1 font-playfair-display text-slate-100 mb-4">
-                Create stunning web experiences
+                Bienvenue sur la Greensa’table !
               </h1>
               <p className="text-xl text-slate-400 mb-8">
-                Our landing page template works on all devices, so you only have to set it up once,
-                and get beautiful results forever.
+                Parfois, manger localement coûte plus cher. Grâce à greensatable, tu auras accès à
+                des réductions et produits gratuits auprès des commerçant.es et producteur.trices
+                proches de l’ENSAT.
               </p>
               <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
                 <div>
@@ -32,15 +33,15 @@ const HeroHome = () => {
                     className="btn text-white bg-blue-600 hover:bg-blue-700 w-full group"
                     href="/request-demo"
                   >
-                    Request Demo{' '}
-                    <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                    Voir la carte{' '}
+                    <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                       -&gt;
                     </span>
                   </Link>
                 </div>
                 <div>
                   <Link className="btn text-white bg-slate-700 hover:bg-slate-800 w-full" href="#0">
-                    Explore Product
+                    En savoir plus
                   </Link>
                 </div>
               </div>

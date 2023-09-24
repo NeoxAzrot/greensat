@@ -10,7 +10,7 @@ const Target = () => {
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
             <h2 className="h2 font-playfair-display text-slate-800 mb-3">
-              We're experts and brand creators
+              We&apos;re experts and brand creators
             </h2>
             <p className="text-xl text-slate-500">
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt

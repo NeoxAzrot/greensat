@@ -88,10 +88,9 @@ const FeaturesBlocks = () => {
                 <use fill="#000" filter="url(#fb1-d)" xlinkHref="#fb1-e" />
                 <use fillOpacity=".64" fill="#E2EEFF" xlinkHref="#fb1-e" />
               </svg>
-              <h3 className="h4 font-playfair-display mb-2">Robust Workflow</h3>
+              <h3 className="h4 font-playfair-display mb-2">Locale</h3>
               <p className="text-lg text-slate-500">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.
+                Au moins 90% des produits auxquels tu as accès viennent du Sud de la France.
               </p>
             </div>
 
@@ -181,10 +180,10 @@ const FeaturesBlocks = () => {
                   fill="#5091EE"
                 />
               </svg>
-              <h3 className="h4 font-playfair-display mb-2">Robust Workflow</h3>
+              <h3 className="h4 font-playfair-display mb-2">Juste</h3>
               <p className="text-lg text-slate-500">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.
+                Nous soutenons les petits producteurs et accompagnons des étudiants dans leur
+                alimentation du quotidien.
               </p>
             </div>
 
@@ -262,10 +261,10 @@ const FeaturesBlocks = () => {
                 <use fill="#000" filter="url(#fb3-c)" xlinkHref="#fb3-d" />
                 <use fill="url(#fb3-e)" xlinkHref="#fb3-d" />
               </svg>
-              <h3 className="h4 font-playfair-display mb-2">Robust Workflow</h3>
+              <h3 className="h4 font-playfair-display mb-2">Durable</h3>
               <p className="text-lg text-slate-500">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.
+                Les producteurs sont sélectionnés sur leurs pratiques socio-environnementales, afin
+                que nous avancions tous vers une consommation pérenne.
               </p>
             </div>
 

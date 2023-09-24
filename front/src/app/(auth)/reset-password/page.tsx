@@ -5,8 +5,31 @@ import { Metadata } from 'next/types';
 import PageBg from '@/public/images/template/reset-password-bg.jpg';
 
 export const metadata: Metadata = {
-  title: 'Reset Password - Tidy',
-  description: 'Page description',
+  title: "Oups, t'as perdu ton code ?",
+  description:
+    "Pas de panique ! Réinitialise ton mot de passe en deux temps trois mouvements. Tu vas retrouver l'accès en un clin d'œil.",
+  alternates: {
+    canonical: 'https://greensatable.fr/reset-password',
+    languages: {
+      fr: 'https://greensatable.fr/reset-password',
+    },
+  },
+  openGraph: {
+    title: "Oups, t'as perdu ton code ?",
+    url: 'https://greensatable.fr/reset-password',
+    description:
+      "Pas de panique ! Réinitialise ton mot de passe en deux temps trois mouvements. Tu vas retrouver l'accès en un clin d'œil.",
+  },
+  twitter: {
+    title: "Oups, t'as perdu ton code ?",
+    description:
+      "Pas de panique ! Réinitialise ton mot de passe en deux temps trois mouvements. Tu vas retrouver l'accès en un clin d'œil.",
+  },
+  appLinks: {
+    web: {
+      url: 'https://greensatable.fr/reset-password',
+    },
+  },
 };
 
 const ResetPassword = () => {

@@ -17,20 +17,19 @@ const Cta = () => {
 
             <div className="relative">
               <h2 className="h2 font-playfair-display text-slate-800 mb-4">
-                Say goodbye to long queues, big updates, and{' '}
-                <span className="text-emerald-500">confusion</span>.
+                Découvre la <span className="text-pink-500">carte</span> des producteurs locaux
               </h2>
               <p className="text-xl text-slate-500 mb-8">
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum — semper quis lectus nulla at volutpat diam ut venenatis.
+                Trouve les producteurs éco-friendly sur notre carte interactive. Explore et soutiens
+                les acteurs locaux !
               </p>
               <div>
                 <Link
                   className="btn text-white bg-blue-600 hover:bg-blue-700 group"
-                  href="/request-demo"
+                  href="/producers"
                 >
-                  Request Demo{' '}
-                  <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                  Voir la carte{' '}
+                  <span className="tracking-normal text-pink-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                     -&gt;
                   </span>
                 </Link>

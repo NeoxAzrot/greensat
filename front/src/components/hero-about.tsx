@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import HeroImage from '@/public/images/template/about-hero.jpg';
-import IntroImage from '@/public/images/template/about-intro.jpg';
+import HeroImage from '@/public/images/school.jpg';
+import IntroImage from '@/public/images/team.jpg';
 
 const HeroAbout = () => {
   return (
@@ -27,15 +27,13 @@ const HeroAbout = () => {
         <div className="pt-32 md:pt-40">
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-16">
-            <h1 className="h1 font-playfair-display text-slate-100">
-              We're designing a new way to do business
-            </h1>
+            <h1 className="h1 font-playfair-display text-slate-100">Notre équipe</h1>
           </div>
 
           {/* Hero image */}
           <div className="flex justify-center items-center" data-aos="fade-up" data-aos-delay="100">
             <Image
-              className="mx-auto"
+              className="mx-auto object-cover h-[32rem]"
               src={IntroImage}
               width={1024}
               height={576}

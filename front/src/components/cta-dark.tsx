@@ -17,20 +17,21 @@ const CtaDark = () => {
 
             <div className="relative">
               <h2 className="h2 font-playfair-display text-slate-100 mb-4">
-                Say goodbye to long queues, big updates, and{' '}
-                <span className="text-emerald-500">confusion</span>.
+                Tu connais un producteur qui n&apos;est pas sur la{' '}
+                <span className="text-pink-500">carte</span> ?
               </h2>
               <p className="text-xl text-slate-400 mb-8">
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum — semper quis lectus nulla at volutpat diam ut venenatis.
+                Si tu connais des producteurs locaux intéressés par le projet, partage-les avec nous
+                en envoyant un e-mail. Ensemble, soutenons l&apos;achat local et
+                l&apos;éco-responsabilité !
               </p>
               <div>
                 <Link
                   className="btn text-white bg-blue-600 hover:bg-blue-700 group"
-                  href="/request-demo"
+                  href="mailto:projet.carte.greensatable@gmail.com"
                 >
-                  Request Demo{' '}
-                  <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                  Envoyer un e-mail{' '}
+                  <span className="tracking-normal text-pink-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                     -&gt;
                   </span>
                 </Link>

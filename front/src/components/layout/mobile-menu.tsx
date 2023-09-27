@@ -115,7 +115,7 @@ const MobileMenu = () => {
                 className="flex font-medium text-blue-600 py-2 group"
                 onClick={() => setMobileNavOpen(false)}
               >
-                S'inscrire{' '}
+                S&apos;inscrire{' '}
                 <span className="tracking-normal text-blue-600 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                   -&gt;
                 </span>

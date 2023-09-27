@@ -31,7 +31,7 @@ const HeroHome = () => {
                 <div>
                   <Link
                     className="btn text-white bg-blue-600 hover:bg-blue-700 w-full group"
-                    href="/request-demo"
+                    href="/producers"
                   >
                     Voir la carte{' '}
                     <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
@@ -40,7 +40,10 @@ const HeroHome = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link className="btn text-white bg-slate-700 hover:bg-slate-800 w-full" href="#0">
+                  <Link
+                    className="btn text-white bg-slate-700 hover:bg-slate-800 w-full"
+                    href="/about"
+                  >
                     En savoir plus
                   </Link>
                 </div>

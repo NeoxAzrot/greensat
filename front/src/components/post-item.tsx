@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 import PostDate from '@/components/post-date';
 
+// TODO: Change type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PostItem = ({ ...props }: any) => {
   return (
     <article className="h-full flex flex-col space-y-5" data-aos="fade-up">

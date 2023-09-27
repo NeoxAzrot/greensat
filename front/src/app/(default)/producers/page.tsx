@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { Metadata } from 'next/types';
 
 import Tags from '@/components/blog-tags';
-import CtaBox from '@/components/cta-box';
 import Hero from '@/components/hero-blog';
 import Map from '@/components/map';
 import PostDate from '@/components/post-date';
@@ -59,6 +58,7 @@ const Producers = () => {
       <section>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <Map allPosts={allPosts} />
+
           <div className="py-8 md:py-16">
             <article className="max-w-sm mx-auto space-y-5 md:max-w-none md:flex md:items-center md:space-y-0 md:space-x-8 lg:space-x-16">
               {/* Image */}
@@ -135,7 +135,9 @@ const Producers = () => {
           <div className="py-8 md:py-16 space-y-16">
             {/* Latest */}
             <div>
-              <h2 className="h3 font-playfair-display text-center md:text-left mb-8">Latest</h2>
+              <h2 className="h3 font-playfair-display text-center md:text-left mb-8">
+                Les nouveautés
+              </h2>
 
               {/* Articles container */}
               <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
@@ -147,7 +149,9 @@ const Producers = () => {
 
             {/* Popular */}
             <div>
-              <h2 className="h3 font-playfair-display text-center md:text-left mb-8">Popular</h2>
+              <h2 className="h3 font-playfair-display text-center md:text-left mb-8">
+                Les plus populaires
+              </h2>
 
               {/* Articles container */}
               <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
@@ -157,12 +161,10 @@ const Producers = () => {
               </div>
             </div>
 
-            <CtaBox />
-
             {/* Product & News */}
             <div>
               <h2 className="h3 font-playfair-display text-center md:text-left mb-8">
-                Product &amp; News
+                Les marchés
               </h2>
 
               {/* Articles container */}
@@ -174,14 +176,14 @@ const Producers = () => {
             </div>
 
             {/* See All Articles */}
-            <div className="text-center">
+            {/* <div className="text-center">
               <button className="btn text-white bg-blue-600 hover:bg-blue-700 group">
                 See All Articles{' '}
                 <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                   -&gt;
                 </span>
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

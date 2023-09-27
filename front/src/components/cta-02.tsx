@@ -15,15 +15,18 @@ const Cta02 = () => {
 
             <div className="relative">
               <h2 className="h2 font-playfair-display text-slate-800 mb-4">
-                Want to be part of the journey?
+                Besoin d&apos;aide ou de plus d&apos;infos ?
               </h2>
               <p className="text-xl text-slate-500 mb-8">
-                We are always open to talk to great people who want to help us shape the future of
-                work, and we have job openings all over the world.
+                N&apos;hésite pas à nous contacter si tu as des questions, besoin d&apos;assistance.
+                On est là pour toi !
               </p>
               <div>
-                <a className="btn text-white bg-blue-600 hover:bg-blue-700 group" href="#0">
-                  See Open Positions{' '}
+                <a
+                  className="btn text-white bg-blue-600 hover:bg-blue-700 group"
+                  href="mailto:projet.carte.greensatable@gmail.com"
+                >
+                  Envoyer un e-mail{' '}
                   <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                     -&gt;
                   </span>

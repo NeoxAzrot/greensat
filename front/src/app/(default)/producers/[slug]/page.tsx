@@ -4,8 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import Cta from '@/components/cta-dark';
 import Mdx from '@/components/mdx/mdx';
-import Newsletter from '@/components/newsletter';
 import PostDate from '@/components/post-date';
 import Separator from '@/components/separator';
 
@@ -22,7 +22,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata | undefined> {
-  const post = allPosts.find((post) => post.slug === params.slug);
+  const post = allPosts.find((p) => p.slug === params.slug);
 
   if (!post) return;
 
@@ -35,7 +35,7 @@ export async function generateMetadata({
 }
 
 export default async function SinglePost({ params }: { params: { slug: string } }) {
-  const post = allPosts.find((post) => post.slug === params.slug);
+  const post = allPosts.find((p) => p.slug === params.slug);
 
   if (!post) notFound();
 
@@ -63,7 +63,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
                       <span className="tracking-normal text-blue-600 group-hover:-translate-x-0.5 transition-transform duration-150 ease-in-out mr-1">
                         &lt;-
                       </span>{' '}
-                      Back to Blog
+                      Revenir à la carte
                     </Link>
                     <h1 className="h2 font-playfair-display text-slate-100 mb-6">{post.title}</h1>
                   </div>
@@ -179,7 +179,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
 
       <Separator />
 
-      <Newsletter />
+      <Cta />
     </>
   );
 }

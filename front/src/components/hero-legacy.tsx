@@ -1,4 +1,8 @@
-const HeroBlog = () => {
+interface Props {
+  title: string;
+}
+
+const HeroLegacy = ({ title }: Props) => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -11,10 +15,7 @@ const HeroBlog = () => {
         <div className="pt-32 pb-12 md:pt-40 md:pb-20">
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="h1 font-playfair-display text-slate-100 mb-4">Les producteurs</h1>
-            <p className="text-xl text-slate-400 mb-8">
-              Tu souhaites faire tes courses localement et facilement ? Tu es au bon endroit !
-            </p>
+            <h1 className="h1 font-playfair-display text-slate-100 mb-8">{title}</h1>
           </div>
         </div>
       </div>
@@ -22,4 +23,4 @@ const HeroBlog = () => {
   );
 };
 
-export default HeroBlog;
+export default HeroLegacy;

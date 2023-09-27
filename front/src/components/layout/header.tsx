@@ -62,7 +62,7 @@ const Header = ({ mode = 'dark' }: HeaderProps) => {
                   href="/register"
                   className="font-medium text-blue-600 dark:text-slate-300 dark:hover:text-white px-3 lg:px-5 py-2 flex items-center transition duration-150 ease-in-out group"
                 >
-                  S'inscrire{' '}
+                  S&apos;inscrire{' '}
                   <span className="tracking-normal text-blue-600 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                     -&gt;
                   </span>

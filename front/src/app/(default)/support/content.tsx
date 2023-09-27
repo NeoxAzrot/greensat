@@ -262,7 +262,7 @@ const SupportContent = () => {
                     </h2>
                   </header>
                   <p className="text-slate-500 mb-4">
-                    Find the most commonly asked questions about Tidy's API
+                    Find the most commonly asked questions about Tidy&apos;s API
                   </p>
                   <footer className="flex items-center">
                     <div className="flex shrink-0 -space-x-3 -ml-0.5 mr-3">

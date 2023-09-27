@@ -6,7 +6,7 @@ const Clients02 = () => {
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
             <h2 className="h2 font-playfair-display text-slate-100">
-              We&apos;re fortunate to have incredible investors.
+              Merci à tous nos partenaires
             </h2>
           </div>
 

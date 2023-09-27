@@ -1,8 +1,8 @@
 import { Metadata } from 'next/types';
 
+import Cta from '@/components/cta-02';
+import Faqs from '@/components/faqs';
 import Hero from '@/components/hero-support';
-
-import Content from './content';
 
 export const metadata: Metadata = {
   title: "Besoin d'aide ? On est là pour toi",
@@ -36,7 +36,8 @@ const Support = () => {
   return (
     <>
       <Hero />
-      <Content />
+      <Faqs />
+      <Cta />
     </>
   );
 };

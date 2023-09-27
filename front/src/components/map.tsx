@@ -4,13 +4,15 @@ import { Post } from 'contentlayer/generated';
 import mapboxgl from 'mapbox-gl';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { createRef, useEffect, useRef, useState } from 'react';
+import { createRef, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import FarmIcon from '@/public/images/icons/farm-removebg.png';
 import MarketIcon from '@/public/images/icons/market-removebg.png';
 import StoreIcon from '@/public/images/icons/store-removebg.png';
 
+// TODO: Change type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Marker = ({ post }: any) => {
   const getIcon = () => {
     switch (post.businessType) {
@@ -41,9 +43,13 @@ const Marker = ({ post }: any) => {
 
 const Map = ({ allPosts }: { allPosts: Post[] }) => {
   const mapContainer = useRef(null);
-  const [lng, setLng] = useState(1.4947801);
-  const [lat, setLat] = useState(43.5277825);
-  const [zoom, setZoom] = useState(13);
+
+  const lng = 1.4947801;
+  const lat = 43.5277825;
+  const zoom = 13;
+  // const [lng, setLng] = useState(1.4947801);
+  // const [lat, setLat] = useState(43.5277825);
+  // const [zoom, setZoom] = useState(13);
 
   const router = useRouter();
 
@@ -53,6 +59,8 @@ const Map = ({ allPosts }: { allPosts: Post[] }) => {
     if (!mapContainer.current) return;
 
     const map = new mapboxgl.Map({
+      // TODO: Change type
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       container: mapContainer.current as any,
       style: 'mapbox://styles/mapbox/streets-v12',
       center: [lng, lat],
@@ -62,8 +70,12 @@ const Map = ({ allPosts }: { allPosts: Post[] }) => {
 
     allPosts.forEach((post) => {
       const ref = createRef();
+      // TODO: Change type
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (ref.current as HTMLElement) = document.createElement('div') as any;
 
+      // TODO: Change type
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       createRoot(ref.current as any).render(<Marker post={post} />);
 
       const popup = new mapboxgl.Popup({
@@ -116,6 +128,8 @@ const Map = ({ allPosts }: { allPosts: Post[] }) => {
 
       popup.setDOMContent(wrapper);
 
+      // TODO: Change type
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       new mapboxgl.Marker(ref.current as any)
         .setLngLat({ lat: post.lat, lng: post.lng })
         .setPopup(popup)
@@ -125,7 +139,7 @@ const Map = ({ allPosts }: { allPosts: Post[] }) => {
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     return () => map.remove();
-  }, []);
+  });
 
   return (
     <section className="relative">

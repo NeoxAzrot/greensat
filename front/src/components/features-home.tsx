@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-import FeaturesImage from '@/public/images/template/features-home-01.jpg';
+import SchoolImage from '@/public/images/school.jpg';
 
 const FeaturesHome = () => {
   const [tab, setTab] = useState<number>(1);
@@ -32,18 +32,20 @@ const FeaturesHome = () => {
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12">
             <h2 className="h2 font-playfair-display text-slate-800 mb-4">
-              Built exclusively for you
+              Actualités et événements
             </h2>
             <p className="text-xl text-slate-768">
-              Excepteur s474 occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum — semper quis lectus nulla at volutpat diam ut venenatis.
+              En plus de t’accompagner dans tes courses du quotidien, nous organisons des évènements
+              tout au long de l’année : visite de marché, marché à l’ENSAT, atelier sensibilisation
+              SSA en partenariat avec Caracole, visite de ferme en partenariat avec Avoice… reste
+              attentif pour ne rien louper !
             </p>
           </div>
 
           {/* Section content */}
           <div className="max-w-3xl mx-auto">
             {/* Tabs buttons */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pb-12">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pb-12">
               <button
                 className={`text-center transition-opacity ${
                   tab !== 1 && 'opacity-50 hover:opacity-75'
@@ -61,7 +63,7 @@ const FeaturesHome = () => {
                     </svg>
                   </div>
                   <div className="md:text-lg leading-tight font-semibold text-slate-800">
-                    Internal Feedback
+                    Marchés
                   </div>
                 </div>
               </button>
@@ -82,7 +84,7 @@ const FeaturesHome = () => {
                     </svg>
                   </div>
                   <div className="md:text-lg leading-tight font-semibold text-slate-800">
-                    Internal Feedback
+                    Fermes
                   </div>
                 </div>
               </button>
@@ -105,35 +107,7 @@ const FeaturesHome = () => {
                     </svg>
                   </div>
                   <div className="md:text-lg leading-tight font-semibold text-slate-800">
-                    Internal Feedback
-                  </div>
-                </div>
-              </button>
-              <button
-                className={`text-center transition-opacity ${
-                  tab !== 4 && 'opacity-50 hover:opacity-75'
-                }`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setTab(4);
-                }}
-              >
-                <div>
-                  <div className="inline-flex bg-white rounded-full shadow-md mb-3">
-                    <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M24 28h-4v4.9c0 1 .7 1.9 1.7 2.1 1.2.2 2.3-.8 2.3-2v-5z"
-                        fillOpacity=".64"
-                        fill="#5091EE"
-                      />
-                      <path
-                        d="M35 21h-8c-.6 0-1 .4-1 1v11c0 .7-.2 1.4-.6 2H33c1.7 0 3-1.3 3-3V22c0-.6-.4-1-1-1z"
-                        fill="#2174EA"
-                      />
-                    </svg>
-                  </div>
-                  <div className="md:text-lg leading-tight font-semibold text-slate-800">
-                    Internal Feedback
+                    Étudiants
                   </div>
                 </div>
               </button>
@@ -156,7 +130,7 @@ const FeaturesHome = () => {
                 >
                   <Image
                     className="mx-auto shadow-2xl"
-                    src={FeaturesImage}
+                    src={SchoolImage}
                     width={768}
                     height={474}
                     alt="Features home 01"
@@ -176,7 +150,7 @@ const FeaturesHome = () => {
                 >
                   <Image
                     className="mx-auto shadow-2xl"
-                    src={FeaturesImage}
+                    src={SchoolImage}
                     width={768}
                     height={474}
                     alt="Features home 02"
@@ -196,30 +170,10 @@ const FeaturesHome = () => {
                 >
                   <Image
                     className="mx-auto shadow-2xl"
-                    src={FeaturesImage}
+                    src={SchoolImage}
                     width={768}
                     height={474}
                     alt="Features home 03"
-                  />
-                </Transition>
-                {/* Item 4 */}
-                <Transition
-                  show={tab === 4}
-                  className="w-full"
-                  enter="transition ease-in-out duration-700 transform order-first"
-                  enterFrom="opacity-0 -translate-y-16"
-                  enterTo="opacity-100 translate-y-0"
-                  leave="transition ease-in-out duration-300 transform absolute"
-                  leaveFrom="opacity-100 translate-y-0"
-                  leaveTo="opacity-0 translate-y-16"
-                  beforeEnter={() => heightFix()}
-                >
-                  <Image
-                    className="mx-auto shadow-2xl"
-                    src={FeaturesImage}
-                    width={768}
-                    height={474}
-                    alt="Features home 04"
                   />
                 </Transition>
               </div>

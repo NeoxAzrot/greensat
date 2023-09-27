@@ -8,7 +8,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postbuild": "next-sitemap",
     "typecheck": "tsc --pretty --noEmit",
     "lint": "next lint && eslint . --ext .ts,.js,.tsx",
     "lint:fix": "next lint && eslint . --ext .ts,.js,.tsx --fix",

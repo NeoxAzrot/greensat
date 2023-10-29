@@ -9,6 +9,7 @@
     "^@/public/(.*)$",
     "^@/components/(.*)$",
     "^@/hooks/(.*)$",
+    "^@/services/(.*)$",
     "^@/styles/(.*)$",
     "^@/translations/(.*)$",
     "^@/types/(.*)$",

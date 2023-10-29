@@ -1,35 +1,539 @@
+import Link from 'next/link';
+
+import Separator from '@/components/separator';
+
 const PrivacyPolicyContent = () => {
   return (
-    <section>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="pb-12 md:pb-20">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-lg text-slate-500">
-              <h2 className="h3 font-playfair-display text-slate-800 mb-4">Our Story</h2>
-              <p className="mb-8">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque
-                fermentum. Neque sodales ut etiam sit amet how to manage. Malesuada proin libero
-                nunc consequat interdum varius. Quam pellentesque nec nam aliquam sem et tortor
-                consequat. Pellentesque adipiscing commodo elit at imperdiet. Semper auctor neque{' '}
-                <strong className="font-medium text-slate-800">
-                  vitae tempus quam pellentesque
-                </strong>{' '}
-                nec. Amet dictum sit amet justo donec enim diam. Varius sit amet mattis vulputate
-                enim nulla aliquet porttitor. Odio pellentesque diam volutpat commodo sed. Elit sed
-                vulputate mi sit amet mauris commodo quis imperdiet.
-              </p>
-              <p className="mb-8">
-                Temper auctor neque vitae tempus quam pellentesque nec. Amet dictum sit amet justo
-                donec enim diam. Varius sit amet mattis vulputate enim nulla aliquet porttitor. Odio
-                pellentesque diam volutpat commodo sed. Elit sed vulputate mi sit amet mauris
-                commodo quis imperdiet.
-              </p>
-              <p className="mb-8">The Tidy Team</p>
-              <svg className="fill-slate-800" width="90" height="32" viewBox="0 0 90 32">
-                <path d="M1.68 20.913c.603 0 .708-.368.708-.84 0-.21-.026-.421-.026-.631 0-.342.052-.5.13-.92.84-4.466 2.362-8.197 4.593-11.98a.374.374 0 0 0 .052-.158c0-.079-.052-.184-.183-.315 1.102-.21 2.44-.394 3.91-.394.288 0 .367.105.839.289.394.158.341.341.551.341.42 0 .63-.236.787-.289.184-.052.341-.262.341-.788 0-.315-1.47-1.313-2.414-1.313-2.702 0-5.143.84-7.662.84-1.581 0-1.762-.153-1.962-.18l-.058-.004c-.184 0-.578.29-.578.92l.001.366c.002.315.012.355.052.396.262.263.918.42 1.47.42.655 0 1.548-.105 1.915-.131.131 0 .157.026.157.105C2.414 10.509 1.155 14.45.131 18.68.08 18.943 0 19.626 0 19.783c0 .184.21.552.341.63.42.237.945.5 1.338.5ZM15.037 4.966c.578 0 1.207-.71 1.68-1.288.105-.131.13-.315.13-.473 0-.262-.052-.578-.314-.867-.184-.21-.682-.341-1.102-.341-.551 0-1.023.131-1.286.446-.236.29-.34.736-.34 1.104 0 .289.052.63.183.893.131.237.525.526 1.05.526Zm-4.54 15.894c1.182 0 2.153-.761 2.704-1.26l1.075-.999c.263-.263.42-.42.42-.71 0-.104 0-.236-.157-.367-.158-.132-.446-.184-.656-.184-.42 0-.604.131-1.233.578-1.05.736-1.339.893-1.916.893-.446 0-.472-.604-.472-.84 0-.395.183-1.393.63-2.575a74.808 74.808 0 0 1 1.548-3.731c.603-1.287 1.679-1.944 1.679-3.337 0-.236-.079-.315-.21-.42-.184-.158-.525-.21-.787-.21-.499 0-1.05.158-1.312.71-.971 2.022-1.732 3.914-2.545 5.832-.158.368-.263.814-.446 1.313-.315.894-.42 1.472-.42 2.128 0 .368.026.736.13 1.104.29.972 1.182 2.075 1.969 2.075Zm12.1.71c.656 0 .578-.184.945-.552.079-.079.105-.105.105-.184 0-.21-.21-.525-.21-1.471 0-.946.42-2.864 1.994-7.278l.42-1.156c.866-2.39 2.86-5.044 4.382-7.487.289-.447.368-.788.604-1.13.34-.5.55-.84.55-1.445 0-.447-.944-.867-1.285-.867-.341 0-.446.105-.604.315-2.256 2.97-3.384 6.306-6.113 9.274-.027.027-.08.027-.21.027-.315-.21-.892-.342-1.234-.5a1.936 1.936 0 0 0-.734-.13c-.683 0-1.496.236-1.89.498-2.204 1.472-4.277 3.52-5.536 5.912-.63 1.208-.919 2.075-.919 2.81 0 .526.158 1 .446 1.498.105.184 1.339.815 1.864.815.21 0 .524-.026.787-.184 2.143-1.292 3.921-3.295 5.67-5.34l1.047-1.228c.158-.184.21-.237.263-.237.052 0 .052.027.052.053 0 .052-.604 1.156-.813 1.892-.394 1.392-.683 2.522-.683 3.888 0 .552.053 1.103.158 1.708.026.157.708.499.944.499Zm-7.557-2.995c-.13 0-.183-.342-.183-.605 0-.078.052-.262.078-.341 1.076-2.89 3.569-5.675 6.114-6.962.21-.105.394-.132.656-.132.42 0 .604.105.604.263 0 .447-.236.525-.551.946-1.706 2.286-3.648 4.65-5.904 6.41-.236.184-.394.184-.551.316-.105.078-.158.105-.263.105ZM28.48 32c.315 0 .499-.079.709-.105 1.39-.184 1.416-1.787 1.626-2.811.525-2.496 1.391-5.045 3.175-7.41.08-.104.158-.262.158-.656 0-.184-.315-.289-.472-.289-.08 0-.184.026-.237.026-.052 0-.105 0-.105-.052 0-.105.08-.315.315-1.051.184-.604 1.234-3.31 1.444-3.941.42-1.235.944-2.39 1.6-3.39l.499-.787c.288-.42.603-.867.603-1.34 0-.368-.052-.946-.918-.946-.42 0-.525-.184-.814-.184-.236 0-.603.578-.682.788-1.26 3.363-2.545 4.178-3.359 5.176-.42.525-.76.814-.97 1.05-.971 1.104-1.601 1.498-2.073 1.735-.21.105-.368.157-.578.157-.078 0-.13-.183-.13-.42 0-.263.078-.552.13-.84a5.62 5.62 0 0 1 .21-.841c.682-2.076.919-3.39 1.837-5.36.184-.394.236-.21.682-.998.21-.368.263-.657.263-1.104 0-.341-.42-.578-.683-.578-.262 0-.603-.131-.734-.131-.184 0-.761.236-.919.762-1.023 3.415-2.702 5.937-2.702 9.563 0 .42.026.473.157.63.577.71 1.39 1.051 2.493 1.051.262 0 1.968-1.103 2.886-2.023.21-.21.315-.289.368-.289.052 0 .078.053.078.106 0 .078-.026.262-.472 1.655-.101.307-.205.625-.308.946l-.153.481c-.561 1.764-1.072 3.482-1.113 3.853a37.867 37.867 0 0 0-2.257 4.493c-.367.867-.551 1.576-.551 2.076 0 .945.603.998.997.998Zm17.98-11.087c.604 0 .709-.368.709-.84l-.027-.631c0-.342.053-.5.132-.92.84-4.466 2.361-8.197 4.592-11.98.026-.053.052-.105.052-.158 0-.079-.052-.184-.184-.315 1.103-.21 2.44-.394 3.91-.394.289 0 .368.105.84.289.393.158.341.341.55.341.42 0 .63-.236.788-.289.184-.052.341-.262.341-.788 0-.315-1.47-1.313-2.414-1.313-2.703 0-5.143.84-7.662.84-1.732 0-1.784-.184-2.02-.184-.184 0-.578.29-.578.92v.262c.002.411.008.455.053.5.262.263.918.42 1.47.42.655 0 1.547-.105 1.915-.131.131 0 .157.026.157.105-1.89 3.862-3.149 7.803-4.172 12.033-.052.263-.131.946-.131 1.103 0 .184.21.552.341.63.42.237.945.5 1.338.5Zm10.368-.342c3.988-2.206 4.54-3.52 5.799-4.597.131-.105.131-.263.131-.368 0-.079.026-.105.026-.342 0-.262-.367-.525-.524-.525-.105 0-.237 0-.525.184-1.575.998-2.677 2.417-4.487 3.389-1.181.63-1.575.736-2.02.736-.263 0-.526-.053-.814-.21-.236-.132-.63-.684-.63-1.104 0-.079.026-.131.158-.21 2.23-1.235 4.277-3.52 6.087-5.57.368-.42.577-.71.84-1.235.315-.63.603-1.208.603-1.891 0-1.051-.55-1.524-.84-1.63-.524-.183-.891-.288-1.6-.288-1.286 0-2.362.709-2.808 1.182-1.994 2.128-3.778 4.44-4.513 7.12-.105.368-.131.63-.131.867 0 .499.131 1.497.315 2.023.288.867.787 1.524 1.312 1.813.183.105 1.102.525 1.68.735.419.158.681.184.996.184.341 0 .473 0 .945-.263Zm-2.86-5.333c-.026 0-.053-.026-.053-.131.578-2.339 2.414-4.493 4.12-6.017.262-.236.236-.157.525-.341.236-.158.393-.237.55-.237.158 0 .158.105.158.316 0 .472-.21.814-.472 1.208-.341.526-.236.604-.63 1.077-1.18 1.419-2.466 2.864-4.015 4.046-.078.053-.13.08-.183.08Zm15.3 5.622c.158 0 .342-.078.5-.105.445-.052.55-.315.55-.367 0-.053-.026-.106-.052-.158-.394-.604-.551-1.287-.551-1.97 0-.815.183-1.603.367-2.339.499-2.023 1.89-3.993 3.044-5.57a.551.551 0 0 0 .105-.289c0-.052 0-.078-.053-.157-.21-.316-.603-.342-.734-.342-.29 0-.525-.236-.63-.499-.053-.158-.263-.394-.394-.525-.472-.473-.997-.762-1.6-.762-.184 0-.394.026-.578.079a13.074 13.074 0 0 0-4.198 2.075c-.787.578-2.23 1.629-3.779 3.94-1.285 1.919-1.574 3.022-1.574 3.89 0 .998.446 1.444.577 1.55 1.234.998 1.548 1.182 1.837 1.182.105 0 .262-.053.42-.105.918-.316 1.758-.684 3.122-1.97l1.417-1.315c.289-.289.525-.472.63-.472.105 0 .105.026.105.13 0 .08-.105.526-.105 1.315 0 .735.105 1.497.446 2.259.158.342.735.525 1.129.525Zm-7.242-2.259c-.472 0-.577-.394-.577-.71 0-.761.866-2.311 1.968-3.651 1.496-1.813 3.437-3.258 5.904-4.572.341-.184.735-.262.813-.262.447 0 .604.341.604.525 0 .158-.052.315-.131.394a4.575 4.575 0 0 0-.761.998c-1.338 2.496-4.094 4.257-6.534 6.542-.472.447-1.076.736-1.286.736Zm26.007 2.916c.394 0 .63-.21.63-.42s-.21-.447-.368-.526c-.052-.026-.13-.078-.236-.236-.603-.893-.84-1.787-.84-2.627 0-1.314.552-2.654 1.837-4.808.341-.578.945-.63.945-1.13a.72.72 0 0 0-.105-.368c-.21-.394-.262-.446-.866-.525-.393-.053-.262-.21-.787-.21-.814 0-1.155.683-1.26.972-.97 2.68-3.516 4.15-5.326 6.253-.473.551-1.129.867-1.522.867-.131 0-.236-.29-.236-.42 0-.605.262-1.603 1.128-3.285.656-1.287 1.784-2.312 2.257-3.6.052-.157.078-.288.078-.393 0-.053 0-.08-.105-.184-.34-.342-.76-.526-1.207-.526-.393 0-.682.105-1.023.368-.289.21-.446.42-.551.683-1.155 2.89-3.542 5.86-6.376 7.278-.105.052-.21.105-.289.105-.105 0-.236-.158-.236-.29.813-3.1 2.519-6.042 4.434-8.722.263-.367.315-.788.315-.92 0-.288 0-.42-.131-.498a1.508 1.508 0 0 0-.813-.21c-.945 0-1.496.577-1.601.866-.394 1.051-.656 1.183-1.365 2.733-.214.478-.47.947-.736 1.416l-.323.563c-.812 1.41-1.617 2.844-1.617 4.51 0 .394.052.815.157 1.261.053.21.105.263.21.342.63.473 1.444.762 2.205.762.104 0 .262-.08.42-.158.892-.447 1.967-1.077 2.728-1.839.079-.079.132-.131.184-.131.079 0 .079.052.079.394 0 .394.13.762 1.233 1.287.394.184.866.29 1.338.29 2.073 0 3.202-2.024 4.54-3.022.105-.08.157-.105.21-.105.078 0 .105.078.105.157 0 .762.367 1.76.656 2.339.55 1.103.944 1.445 1.233 1.497.367.079.603.21.997.21Z" />
-              </svg>
-            </div>
+    <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-3xl mx-auto">
+        <div className="pt-8 mb-8">
+          <div className="prose text-lg text-slate-500 max-w-none prose-lg prose-p:leading-normal prose-headings:font-playfair-display prose-headings:text-slate-900 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium prose-strong:font-medium prose-strong:text-slate-900 prose-blockquote:pl-4 prose-blockquote:border-l-2 prose-blockquote:border-slate-900 prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-inherit before:prose-p:content-[''] after:prose-p:content-[''] prose-hr:my-8">
+            <h2>Définitions</h2>
+            <p>
+              <strong>Client :</strong> tout professionnel ou personne physique capable au sens des
+              articles 1123 et suivants du Code civil, ou personne morale, qui visite le Site objet
+              des présentes conditions générales.
+            </p>
+            <p>
+              <strong>Prestations et Services :</strong> <Link href="/">greensatable.fr</Link> met à
+              disposition des Clients :
+            </p>
+            <p>
+              <strong>Contenu :</strong> Ensemble des éléments constituants l’information présente
+              sur le Site, notamment textes – images – vidéos.
+            </p>
+            <p>
+              <strong>Informations clients :</strong> Ci après dénommé « Information (s) » qui
+              correspondent à l’ensemble des données personnelles susceptibles d’être détenues par{' '}
+              <Link href="/">greensatable.fr</Link> pour la gestion de votre compte, de la gestion
+              de la relation client et à des fins d’analyses et de statistiques.
+            </p>
+            <p>
+              <strong>Utilisateur :</strong> Internaute se connectant, utilisant le site susnommé.
+            </p>
+            <p>
+              <strong>Informations personnelles :</strong> « Les informations qui permettent, sous
+              quelque forme que ce soit, directement ou non, l&apos;identification des personnes
+              physiques auxquelles elles s&apos;appliquent » (article 4 de la loi n° 78-17 du 6
+              janvier 1978).
+            </p>
+            <p>
+              Les termes « données à caractère personnel », « personne concernée », « sous traitant
+               » et « données sensibles » ont le sens défini par le Règlement Général sur la
+              Protection des Données (RGPD : n° 2016-679).
+            </p>
+
+            <Separator />
+
+            <h2>1 / Présentation du site internet</h2>
+            <p>
+              En vertu de l&apos;article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance
+              dans l&apos;économie numérique, il est précisé aux utilisateurs du site internet{' '}
+              <Link href="/">greensatable.fr</Link> l&apos;identité des différents intervenants dans
+              le cadre de sa réalisation et de son suivi :
+            </p>
+            <p>
+              <strong>Propriétaire :</strong> Lise Michel - Avenue de l&apos;Agrobiopole, 31320
+              Auzeville-Tolosane
+              <br />
+              <strong>Responsable publication :</strong> Lise Michel - lisemariemichel@gmail.com
+              <br />
+              <strong>Webmaster :</strong>{' '}
+              <a href="https://samilafrance.com" target="_blank" rel="noreferrer">
+                Sami Lafrance
+              </a>{' '}
+              - contact@samilafrance.com
+              <br />
+              <strong>Hébergeur :</strong> ovh - 2 rue Kellermann 59100 Roubaix 1007
+              <br />
+              <strong>Délégué à la protection des données :</strong> Lise Michel -
+              lisemariemichel@gmail.com
+              <br />
+            </p>
+
+            <Separator />
+
+            <h2>2 / Conditions générales d’utilisation du site et des services proposés</h2>
+            <p>
+              Le Site constitue une œuvre de l’esprit protégée par les dispositions du Code de la
+              Propriété Intellectuelle et des Réglementations Internationales applicables. Le Client
+              ne peut en aucune manière réutiliser, céder ou exploiter pour son propre compte tout
+              ou partie des éléments ou travaux du Site.
+            </p>
+            <p>
+              L’utilisation du site <Link href="/">greensatable.fr</Link> implique l’acceptation
+              pleine et entière des conditions générales d’utilisation ci-après décrites. Ces
+              conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout
+              moment, les utilisateurs du site <Link href="/">greensatable.fr</Link> sont donc
+              invités à les consulter de manière régulière.
+            </p>
+            <p>
+              Ce site internet est normalement accessible à tout moment aux utilisateurs. Une
+              interruption pour raison de maintenance technique peut être toutefois décidée par{' '}
+              <Link href="/">greensatable.fr</Link>, qui s’efforcera alors de communiquer
+              préalablement aux utilisateurs les dates et heures de l’intervention. Le site web{' '}
+              <Link href="/">greensatable.fr</Link> est mis à jour régulièrement par{' '}
+              <Link href="/">greensatable.fr</Link> responsable. De la même façon, les mentions
+              légales peuvent être modifiées à tout moment : elles s’imposent néanmoins à
+              l’utilisateur qui est invité à s’y référer le plus souvent possible afin d’en prendre
+              connaissance.
+            </p>
+
+            <Separator />
+
+            <h2>3 / Description des services fournis</h2>
+            <p>
+              Le site internet <Link href="/">greensatable.fr</Link> a pour objet de fournir une
+              information concernant l’ensemble des activités de la société.{' '}
+              <Link href="/">greensatable.fr</Link> s’efforce de fournir sur le site{' '}
+              <Link href="/">greensatable.fr</Link> des informations aussi précises que possible.
+              Toutefois, il ne pourra être tenu responsable des oublis, des inexactitudes et des
+              carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers
+              partenaires qui lui fournissent ces informations.
+            </p>
+            <p>
+              Toutes les informations indiquées sur le site <Link href="/">greensatable.fr</Link>{' '}
+              sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les
+              renseignements figurant sur le site <Link href="/">greensatable.fr</Link> ne sont pas
+              exhaustifs. Ils sont donnés sous réserve de modifications ayant été apportées depuis
+              leur mise en ligne.
+            </p>
+
+            <Separator />
+
+            <h2>4 / Limitations contractuelles sur les données techniques</h2>
+            <p>
+              Le site utilise la technologie JavaScript. Le site Internet ne pourra être tenu
+              responsable de dommages matériels liés à l’utilisation du site. De plus, l’utilisateur
+              du site s’engage à accéder au site en utilisant un matériel récent, ne contenant pas
+              de virus et avec un navigateur de dernière génération mis-à-jour. Le site{' '}
+              <Link href="/">greensatable.fr</Link> est hébergé chez un prestataire sur le
+              territoire de l’Union Européenne conformément aux dispositions du Règlement Général
+              sur la Protection des Données (RGPD : n° 2016-679).
+            </p>
+            <p>
+              L’objectif est d’apporter une prestation qui assure le meilleur taux d’accessibilité.
+              L’hébergeur assure la continuité de son service 24 Heures sur 24, tous les jours de
+              l’année. Il se réserve néanmoins la possibilité d’interrompre le service d’hébergement
+              pour les durées les plus courtes possibles notamment à des fins de maintenance,
+              d’amélioration de ses infrastructures, de défaillance de ses infrastructures ou si les
+              Prestations et Services génèrent un trafic réputé anormal.
+            </p>
+            <p>
+              <Link href="/">greensatable.fr</Link> et l’hébergeur ne pourront être tenus
+              responsables en cas de dysfonctionnement du réseau Internet, des lignes téléphoniques
+              ou du matériel informatique et de téléphonie lié notamment à l’encombrement du réseau
+              empêchant l’accès au serveur.
+            </p>
+
+            <Separator />
+
+            <h2>5 / Propriété intellectuelle et contrefaçons</h2>
+            <p>
+              <Link href="/">greensatable.fr</Link> est propriétaire des droits de propriété
+              intellectuelle et détient les droits d’usage sur tous les éléments accessibles sur le
+              site internet, notamment les textes, images, graphismes, logos, vidéos, icônes et
+              sons. Toute reproduction, représentation, modification, publication, adaptation de
+              tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est
+              interdite, sauf autorisation écrite préalable de :{' '}
+              <Link href="/">greensatable.fr</Link>.
+            </p>
+            <p>
+              Toute exploitation non autorisée du site ou de l’un quelconque des éléments qu’il
+              contient sera considérée comme constitutive d’une contrefaçon et poursuivie
+              conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété
+              Intellectuelle.
+            </p>
+
+            <Separator />
+
+            <h2>6 / Limitations de responsabilité</h2>
+            <p>
+              <Link href="/">greensatable.fr</Link> agit en tant qu’éditeur du site.{' '}
+              <Link href="/">greensatable.fr</Link> est responsable de la qualité et de la véracité
+              du Contenu qu’il publie.
+            </p>
+            <p>
+              <Link href="/">greensatable.fr</Link> ne pourra être tenu responsable des dommages
+              directs et indirects causés au matériel de l’utilisateur, lors de l’accès au site
+              internet <Link href="/">greensatable.fr</Link>, et résultant soit de l’utilisation
+              d’un matériel ne répondant pas aux spécifications indiquées au point 4, soit de
+              l’apparition d’un bug ou d’une incompatibilité.
+            </p>
+            <p>
+              <Link href="/">greensatable.fr</Link> ne pourra également être tenu responsable des
+              dommages indirects (tels par exemple qu’une perte de marché ou perte d’une chance)
+              consécutifs à l’utilisation du site <Link href="/">greensatable.fr</Link>. Des espaces
+              interactifs (possibilité de poser des questions dans l’espace contact) sont à la
+              disposition des utilisateurs. <Link href="/">greensatable.fr</Link> se réserve le
+              droit de supprimer, sans mise en demeure préalable, tout contenu déposé dans cet
+              espace qui contreviendrait à la législation applicable en France, en particulier aux
+              dispositions relatives à la protection des données. Le cas échéant,{' '}
+              <Link href="/">greensatable.fr</Link> se réserve également la possibilité de mettre en
+              cause la responsabilité civile et/ou pénale de l’utilisateur, notamment en cas de
+              message à caractère raciste, injurieux, diffamant, ou pornographique, quel que soit le
+              support utilisé (texte, photographie, ...).
+            </p>
+
+            <Separator />
+
+            <h2>7 / Gestion des données personnelles</h2>
+            <p>
+              Le Client est informé des réglementations concernant la communication marketing, la
+              loi du 21 Juin 2014 pour la confiance dans l’Economie Numérique, la Loi Informatique
+              et Liberté du 06 Août 2004 ainsi que du Règlement Général sur la Protection des
+              Données (RGPD : n° 2016-679).
+            </p>
+
+            <h3>7 / 1. Responsables de la collecte des données personnelles</h3>
+            <p>
+              Pour les Données Personnelles collectées dans le cadre de la création du compte
+              personnel de l’Utilisateur et de sa navigation sur le Site, le responsable du
+              traitement des Données Personnelles est : Lise Michel.{' '}
+              <Link href="/">greensatable.fr</Link> est représenté par Lise Michel, son représentant
+              légal.
+            </p>
+            <p>
+              En tant que responsable du traitement des données qu’il collecte,{' '}
+              <Link href="/">greensatable.fr</Link> s’engage à respecter le cadre des dispositions
+              légales en vigueur. Il lui appartient notamment au Client d’établir les finalités de
+              ses traitements de données, de fournir à ses prospects et clients, à partir de la
+              collecte de leurs consentements, une information complète sur le traitement de leurs
+              données personnelles et de maintenir un registre des traitements conforme à la
+              réalité. Chaque fois que <Link href="/">greensatable.fr</Link> traite des Données
+              Personnelles, <Link href="/">greensatable.fr</Link> prend toutes les mesures
+              raisonnables pour s’assurer de l’exactitude et de la pertinence des Données
+              Personnelles au regard des finalités pour lesquelles{' '}
+              <Link href="/">greensatable.fr</Link> les traite.
+            </p>
+
+            <h3>7 / 2. Finalité des données collectées</h3>
+            <p>
+              <Link href="/">greensatable.fr</Link> est susceptible de traiter tout ou partie des
+              données :
+            </p>
+            <ul>
+              <li>
+                pour permettre la navigation sur le Site et la gestion et la traçabilité des
+                prestations et services commandés par l’utilisateur : données de connexion et
+                d’utilisation du Site, facturation, historique des commandes, etc.
+              </li>
+              <li>
+                pour prévenir et lutter contre la fraude informatique (spamming, hacking…) :
+                matériel informatique utilisé pour la navigation, l’adresse IP, le mot de passe
+                (hashé)
+              </li>
+              <li>
+                pour améliorer la navigation sur le Site : données de connexion et d’utilisation
+              </li>
+              <li>
+                pour mener des enquêtes de satisfaction facultatives sur{' '}
+                <Link href="/">greensatable.fr</Link> : adresse email
+              </li>
+              <li>
+                pour mener des campagnes de communication (sms, mail) : numéro de téléphone, adresse
+                email
+              </li>
+            </ul>
+            <p>
+              <Link href="/">greensatable.fr</Link> ne commercialise pas vos données personnelles
+              qui sont donc uniquement utilisées par nécessité ou à des fins statistiques et
+              d’analyses.
+            </p>
+
+            <h3>7 / 3. Droit d’accès, de rectification et d’opposition</h3>
+            <p>
+              Conformément à la réglementation européenne en vigueur, les Utilisateurs de{' '}
+              <Link href="/">greensatable.fr</Link> disposent des droits suivants :
+            </p>
+            <ul>
+              <li>
+                droit d&apos;accès (article 15 RGPD) et de rectification (article 16 RGPD), de mise
+                à jour, de complétude des données des Utilisateurs droit de verrouillage ou
+                d’effacement des données des Utilisateurs à caractère personnel (article 17 du
+                RGPD), lorsqu’elles sont inexactes, incomplètes, équivoques, périmées, ou dont la
+                collecte, l&apos;utilisation, la communication ou la conservation est interdite
+              </li>
+              <li>droit de retirer à tout moment un consentement (article 13-2c RGPD)</li>
+              <li>
+                droit à la limitation du traitement des données des Utilisateurs (article 18 RGPD)
+              </li>
+              <li>
+                droit d’opposition au traitement des données des Utilisateurs (article 21 RGPD)
+              </li>
+              <li>
+                droit à la portabilité des données que les Utilisateurs auront fournies, lorsque ces
+                données font l’objet de traitements automatisés fondés sur leur consentement ou sur
+                un contrat (article 20 RGPD)
+              </li>
+              <li>
+                droit de définir le sort des données des Utilisateurs après leur mort et de choisir
+                à qui <Link href="/">greensatable.fr</Link> devra communiquer (ou non) ses données à
+                un tiers qu’ils aura préalablement désigné
+              </li>
+            </ul>
+            <p>
+              Dès que <Link href="/">greensatable.fr</Link> a connaissance du décès d’un Utilisateur
+              et à défaut d’instructions de sa part, <Link href="/">greensatable.fr</Link> s’engage
+              à détruire ses données, sauf si leur conservation s’avère nécessaire à des fins
+              probatoires ou pour répondre à une obligation légale.
+            </p>
+            <p>
+              Si l’Utilisateur souhaite savoir comment <Link href="/">greensatable.fr</Link> utilise
+              ses Données Personnelles, demander à les rectifier ou s’oppose à leur traitement,
+              l’Utilisateur peut contacter <Link href="/">greensatable.fr</Link> par écrit à
+              l’adresse suivante :
+            </p>
+            <p>
+              Lise Michel – DPO, Lise Michel <br />
+              Avenue de l&apos;Agrobiopole, 31320 Auzeville-Tolosane.
+            </p>
+            <p>
+              Dans ce cas, l’Utilisateur doit indiquer les Données Personnelles qu’il souhaiterait
+              que <Link href="/">greensatable.fr</Link> corrige, mette à jour ou supprime, en
+              s’identifiant précisément avec une copie d’une pièce d’identité (carte d’identité ou
+              passeport).
+            </p>
+            <p>
+              Les demandes de suppression de Données Personnelles seront soumises aux obligations
+              qui sont imposées à <Link href="/">greensatable.fr</Link> par la loi, notamment en
+              matière de conservation ou d’archivage des documents. Enfin, les Utilisateurs de{' '}
+              <Link href="/">greensatable.fr</Link> peuvent déposer une réclamation auprès des
+              autorités de contrôle, et notamment de la CNIL (
+              <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noreferrer">
+                https://www.cnil.fr/fr/plaintes
+              </a>
+              ).
+            </p>
+
+            <h3>7 / 4. Non-communication des données personnelles</h3>
+            <p>
+              <Link href="/">greensatable.fr</Link> s’interdit de traiter, héberger ou transférer
+              les Informations collectées sur ses Clients vers un pays situé en dehors de l’Union
+              européenne ou reconnu comme « non adéquat » par la Commission européenne sans en
+              informer préalablement le client. Pour autant, <Link href="/">greensatable.fr</Link>{' '}
+              reste libre du choix de ses sous-traitants techniques et commerciaux à la condition
+              qu’il présentent les garanties suffisantes au regard des exigences du Règlement
+              Général sur la Protection des Données (RGPD : n° 2016-679).
+            </p>
+            <p>
+              <Link href="/">greensatable.fr</Link> s’engage à prendre toutes les précautions
+              nécessaires afin de préserver la sécurité des Informations et notamment qu’elles ne
+              soient pas communiquées à des personnes non autorisées. Cependant, si un incident
+              impactant l’intégrité ou la confidentialité des Informations du Client est portée à la
+              connaissance de <Link href="/">greensatable.fr</Link>, celle-ci devra dans les
+              meilleurs délais informer le Client et lui communiquer les mesures de corrections
+              prises. Par ailleurs <Link href="/">greensatable.fr</Link> ne collecte aucune «
+              données sensibles ».
+            </p>
+            <p>
+              Les Données Personnelles de l’Utilisateur peuvent être traitées par des filiales de{' '}
+              <Link href="/">greensatable.fr</Link> et des sous-traitants (prestataires de
+              services), exclusivement afin de réaliser les finalités de la présente politique.
+            </p>
+            <p>
+              Dans la limite de leurs attributions respectives et pour les finalités rappelées
+              ci-dessus, les principales personnes susceptibles d’avoir accès aux données des
+              Utilisateurs de <Link href="/">greensatable.fr</Link> sont principalement les agents
+              de notre service client.
+            </p>
+
+            <h3>7 / 5. Types de données collectées</h3>
+            <p>
+              Concernant les utilisateurs du Site <Link href="/">greensatable.fr</Link>, nous
+              collectons les données suivantes qui sont indispensables au fonctionnement du
+              service&nbsp;, et qui seront conservées pendant une période maximale de 12 mois mois
+              après la fin de la relation contractuelle : prénom, nom, numéro étudiant, email,
+              numéro de téléphone.
+            </p>
+
+            <Separator />
+
+            <h2>8 / Notification d’incident</h2>
+            <p>
+              Quels que soient les efforts fournis, aucune méthode de transmission sur Internet et
+              aucune méthode de stockage électronique n&apos;est complètement sûre. Nous ne pouvons
+              en conséquence pas garantir une sécurité absolue. Si nous prenions connaissance
+              d&apos;une brèche de la sécurité, nous avertirions les utilisateurs concernés afin
+              qu&apos;ils puissent prendre les mesures appropriées. Nos procédures de notification
+              d’incident tiennent compte de nos obligations légales, qu&apos;elles se situent au
+              niveau national ou européen. Nous nous engageons à informer pleinement nos clients de
+              toutes les questions relevant de la sécurité de leur compte et à leur fournir toutes
+              les informations nécessaires pour les aider à respecter leurs propres obligations
+              réglementaires en matière de reporting.
+            </p>
+            <p>
+              Aucune information personnelle de l&apos;utilisateur du site{' '}
+              <Link href="/">greensatable.fr</Link> n&apos;est publiée à l&apos;insu de
+              l&apos;utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque à
+              des tiers. Seule l&apos;hypothèse du rachat de <Link href="/">greensatable.fr</Link>{' '}
+              et de ses droits permettrait la transmission des dites informations à l&apos;éventuel
+              acquéreur qui serait à son tour tenu de la même obligation de conservation et de
+              modification des données vis à vis de l&apos;utilisateur du site{' '}
+              <Link href="/">greensatable.fr</Link>.
+            </p>
+
+            <h3>Sécurité</h3>
+            <p>
+              Pour assurer la sécurité et la confidentialité des Données Personnelles et des Données
+              Personnelles de Santé, <Link href="/">greensatable.fr</Link> utilise des réseaux
+              protégés par des dispositifs standards tels que par pare-feu, la pseudonymisation,
+              l’encryption et mot de passe.
+            </p>
+            <p>
+              Lors du traitement des Données Personnelles, <Link href="/">greensatable.fr</Link>{' '}
+              prend toutes les mesures raisonnables visant à les protéger contre toute perte,
+              utilisation détournée, accès non autorisé, divulgation, altération ou destruction.
+            </p>
+
+            <Separator />
+
+            <h2>9 / Liens hypertextes « cookies » et balises (« tags ») internet</h2>
+            <p>
+              Le site <Link href="/">greensatable.fr</Link> contient un certain nombre de liens
+              hypertextes vers d’autres sites, mis en place avec l’autorisation de{' '}
+              <Link href="/">greensatable.fr</Link>. Cependant,{' '}
+              <Link href="/">greensatable.fr</Link> n’a pas la possibilité de vérifier le contenu
+              des sites ainsi visités, et n’assumera en conséquence aucune responsabilité de ce
+              fait.
+            </p>
+            <p>
+              Sauf si vous décidez de désactiver les cookies, vous acceptez que le site puisse les
+              utiliser. Vous pouvez à tout moment désactiver ces cookies et ce gratuitement à partir
+              des possibilités de désactivation qui vous sont offertes et rappelées ci-après,
+              sachant que cela peut réduire ou empêcher l’accessibilité à tout ou partie des
+              Services proposés par le site.
+            </p>
+
+            <h3>9 / 1. « Cookies »</h3>
+            <p>
+              Un « cookie » est un petit fichier d’information envoyé sur le navigateur de
+              l’Utilisateur et enregistré au sein du terminal de l’Utilisateur (ex : ordinateur,
+              smartphone), (ci-après « Cookies »). Ce fichier comprend des informations telles que
+              le nom de domaine de l’Utilisateur, le fournisseur d’accès Internet de l’Utilisateur,
+              le système d’exploitation de l’Utilisateur, ainsi que la date et l’heure d’accès. Les
+              Cookies ne risquent en aucun cas d’endommager le terminal de l’Utilisateur.
+            </p>
+            <p>
+              <Link href="/">greensatable.fr</Link> est susceptible de traiter les informations de
+              l’Utilisateur concernant sa visite du Site, telles que les pages consultées, les
+              recherches effectuées. Ces informations permettent à{' '}
+              <Link href="/">greensatable.fr</Link> d’améliorer le contenu du Site, de la navigation
+              de l’Utilisateur.
+            </p>
+            <p>
+              Les Cookies facilitant la navigation et/ou la fourniture des services proposés par le
+              Site, l’Utilisateur peut configurer son navigateur pour qu’il lui permette de décider
+              s’il souhaite ou non les accepter de manière à ce que des Cookies soient enregistrés
+              dans le terminal ou, au contraire, qu’ils soient rejetés, soit systématiquement, soit
+              selon leur émetteur. L’Utilisateur peut également configurer son logiciel de
+              navigation de manière à ce que l’acceptation ou le refus des Cookies lui soient
+              proposés ponctuellement, avant qu’un Cookie soit susceptible d’être enregistré dans
+              son terminal. <Link href="/">greensatable.fr</Link> informe l’Utilisateur que, dans ce
+              cas, il se peut que les fonctionnalités de son logiciel de navigation ne soient pas
+              toutes disponibles.
+            </p>
+            <p>
+              Si l’Utilisateur refuse l’enregistrement de Cookies dans son terminal ou son
+              navigateur, ou si l’Utilisateur supprime ceux qui y sont enregistrés, l’Utilisateur
+              est informé que sa navigation et son expérience sur le Site peuvent être limitées.
+              Cela pourrait également être le cas lorsque <Link href="/">greensatable.fr</Link> ou
+              l’un de ses prestataires ne peut pas reconnaître, à des fins de compatibilité
+              technique, le type de navigateur utilisé par le terminal, les paramètres de langue et
+              d’affichage ou le pays depuis lequel le terminal semble connecté à Internet.
+            </p>
+            <p>
+              Le cas échéant, <Link href="/">greensatable.fr</Link> décline toute responsabilité
+              pour les conséquences liées au fonctionnement dégradé du Site et des services
+              éventuellement proposés par <Link href="/">greensatable.fr</Link>, résultant (i) du
+              refus de Cookies par l’Utilisateur (ii) de l’impossibilité pour{' '}
+              <Link href="/">greensatable.fr</Link> d’enregistrer ou de consulter les Cookies
+              nécessaires à leur fonctionnement du fait du choix de l’Utilisateur. Pour la gestion
+              des Cookies et des choix de l’Utilisateur, la configuration de chaque navigateur est
+              différente. Elle est décrite dans le menu d’aide du navigateur, qui permettra de
+              savoir de quelle manière l’Utilisateur peut modifier ses souhaits en matière de
+              Cookies.
+            </p>
+            <p>
+              À tout moment, l’Utilisateur peut faire le choix d’exprimer et de modifier ses
+              souhaits en matière de Cookies. <Link href="/">greensatable.fr</Link> pourra en outre
+              faire appel aux services de prestataires externes pour l’aider à recueillir et traiter
+              les informations décrites dans cette section.
+            </p>
+            <p>
+              Enfin, en cliquant sur les icônes dédiées aux réseaux sociaux Twitter, Facebook,
+              Linkedin et Google Plus figurant sur le Site de <Link href="/">greensatable.fr</Link>{' '}
+              ou dans son application mobile et si l’Utilisateur a accepté le dépôt de cookies en
+              poursuivant sa navigation sur le Site Internet ou l’application mobile de{' '}
+              <Link href="/">greensatable.fr</Link>, Twitter, Facebook, Linkedin et Google Plus
+              peuvent également déposer des cookies sur vos terminaux (ordinateur, tablette,
+              téléphone portable).
+            </p>
+            <p>
+              Ces types de cookies ne sont déposés sur vos terminaux qu’à condition que vous y
+              consentiez, en continuant votre navigation sur le Site Internet ou l’application
+              mobile de <Link href="/">greensatable.fr</Link>. À tout moment, l’Utilisateur peut
+              néanmoins revenir sur son consentement à ce que <Link href="/">greensatable.fr</Link>{' '}
+              dépose ce type de cookies.
+            </p>
+
+            <h3>9 / 2. Balises (« tags ») internet</h3>
+            <p>
+              <Link href="/">greensatable.fr</Link> peut employer occasionnellement des balises
+              Internet (également appelées « tags », ou balises d’action, GIF à un pixel, GIF
+              transparents, GIF invisibles et GIF un à un) et les déployer par l’intermédiaire d’un
+              partenaire spécialiste d’analyses Web susceptible de se trouver (et donc de stocker
+              les informations correspondantes, y compris l’adresse IP de l’Utilisateur) dans un
+              pays étranger.
+            </p>
+            <p>
+              Ces balises sont placées à la fois dans les publicités en ligne permettant aux
+              internautes d’accéder au Site, et sur les différentes pages de celui-ci.
+            </p>
+            <p>
+              Cette technologie permet à <Link href="/">greensatable.fr</Link> d’évaluer les
+              réponses des visiteurs face au Site et l’efficacité de ses actions (par exemple, le
+              nombre de fois où une page est ouverte et les informations consultées), ainsi que
+              l’utilisation de ce Site par l’Utilisateur.
+            </p>
+            <p>
+              Le prestataire externe pourra éventuellement recueillir des informations sur les
+              visiteurs du Site et d’autres sites Internet grâce à ces balises, constituer des
+              rapports sur l’activité du Site à l’attention de <Link href="/">greensatable.fr</Link>{' '}
+              , et fournir d’autres services relatifs à l’utilisation de celui-ci et d’Internet.
+            </p>
+
+            <Separator />
+
+            <h2>10 / Droit applicable et attribution de juridiction</h2>
+            <p>
+              Tout litige en relation avec l’utilisation du site{' '}
+              <Link href="/">greensatable.fr</Link> est soumis au droit français. En dehors des cas
+              où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux
+              tribunaux compétents de Toulouse.
+            </p>
+
+            <Separator />
           </div>
         </div>
       </div>

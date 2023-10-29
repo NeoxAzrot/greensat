@@ -7,6 +7,8 @@ import PageBG from '@/public/images/template/sign-in-bg.jpg';
 
 import Logo from '@/components/layout/logo';
 
+import Button from './button';
+
 export const metadata: Metadata = {
   title: 'Connecte-toi et rejoins la fête verte',
   description:
@@ -83,12 +85,7 @@ const Login = () => {
                   </div>
                 </div>
                 <div className="mt-6">
-                  <button className="btn-sm w-full text-sm text-white bg-blue-600 hover:bg-blue-700 group">
-                    Se connecter{' '}
-                    <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                      -&gt;
-                    </span>
-                  </button>
+                  <Button />
                 </div>
                 <div className="text-center mt-5">
                   <Link className="text-blue-600 hover:underline" href="/reset-password">
@@ -100,7 +97,7 @@ const Login = () => {
                     Vous n&apos;avez pas encore de compte ?{' '}
                     <Link
                       className="text-blue-600 hover:underline"
-                      href="/request-demo"
+                      href="/register"
                       aria-label="Request a demo"
                     >
                       S&apos;inscrire maintenant

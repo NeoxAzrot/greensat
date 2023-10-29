@@ -174,7 +174,7 @@ const Register = () => {
                     Vous avez déjà un compte ?{' '}
                     <Link
                       className="text-blue-600 hover:underline"
-                      href="/signin"
+                      href="/login"
                       aria-label="Sign in"
                     >
                       Se connecter

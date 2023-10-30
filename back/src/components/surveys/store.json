@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_surveys_stores",
+  "info": {
+    "displayName": "store",
+    "icon": "store",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "mainStoreValues": {
+      "type": "string"
+    },
+    "productOriginInterest": {
+      "type": "richtext"
+    },
+    "productOriginLabeling": {
+      "type": "richtext"
+    },
+    "wasteManagement": {
+      "type": "richtext"
+    },
+    "transparencyOnProducerCompensation": {
+      "type": "richtext"
+    },
+    "productLabelingChoice": {
+      "type": "richtext"
+    },
+    "additionalComment": {
+      "type": "richtext"
+    }
+  }
+}

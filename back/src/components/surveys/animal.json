@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_surveys_animals",
+  "info": {
+    "displayName": "animal",
+    "icon": "alien",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "mainProducerValues": {
+      "type": "string"
+    },
+    "rearingMode": {
+      "type": "richtext"
+    },
+    "feedSource": {
+      "type": "richtext"
+    },
+    "antibioticTreatment": {
+      "type": "richtext"
+    },
+    "welfareMeasures": {
+      "type": "richtext"
+    },
+    "agroecologicalPractices": {
+      "type": "richtext"
+    },
+    "effluentManagement": {
+      "type": "richtext"
+    },
+    "wasteManagementProduction": {
+      "type": "richtext"
+    },
+    "wasteManagementSales": {
+      "type": "richtext"
+    },
+    "resourceConsumptionManagement": {
+      "type": "richtext"
+    },
+    "carbonImpactMeasurement": {
+      "type": "richtext"
+    },
+    "associativeEngagement": {
+      "type": "richtext"
+    },
+    "jobSatisfaction": {
+      "type": "richtext"
+    },
+    "additionalComment": {
+      "type": "richtext"
+    }
+  }
+}

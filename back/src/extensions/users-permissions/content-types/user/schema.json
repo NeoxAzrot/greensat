@@ -84,6 +84,18 @@
     "phoneNumber": {
       "type": "string",
       "regex": "^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$"
+    },
+    "producersLikes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::producer.producer",
+      "mappedBy": "usersLikes"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "mappedBy": "users"
     }
   }
 }

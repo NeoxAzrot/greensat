@@ -362,6 +362,117 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiProducerProducer extends Schema.CollectionType {
+  collectionName: 'producers';
+  info: {
+    singularName: 'producer';
+    pluralName: 'producers';
+    displayName: 'Producer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    summary: Attribute.Text & Attribute.Required;
+    latitude: Attribute.Float & Attribute.Required;
+    longitude: Attribute.Float & Attribute.Required;
+    address: Attribute.String & Attribute.Required;
+    businessType: Attribute.Enumeration<['farm', 'market', 'store']> &
+      Attribute.Required;
+    products: Attribute.Relation<
+      'api::producer.producer',
+      'oneToMany',
+      'api::product.product'
+    >;
+    usersLikes: Attribute.Relation<
+      'api::producer.producer',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    survey: Attribute.DynamicZone<
+      [
+        'surveys.animal',
+        'surveys.store',
+        'surveys.transform',
+        'surveys.vegetable'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        max: 1;
+      }>;
+    slug: Attribute.UID<'api::producer.producer', 'title'> & Attribute.Required;
+    hours: Attribute.Text;
+    discount: Attribute.Text;
+    distance: Attribute.String;
+    labels: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::producer.producer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::producer.producer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    summary: Attribute.Text & Attribute.Required;
+    count: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<1>;
+    active: Attribute.Boolean & Attribute.DefaultTo<true>;
+    producer: Attribute.Relation<
+      'api::product.product',
+      'manyToOne',
+      'api::producer.producer'
+    >;
+    discount: Attribute.String & Attribute.Required;
+    users: Attribute.Relation<
+      'api::product.product',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -664,6 +775,16 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     slug: Attribute.UID & Attribute.Required;
     studentNumber: Attribute.BigInteger;
     phoneNumber: Attribute.String;
+    producersLikes: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::producer.producer'
+    >;
+    products: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::product.product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -691,6 +812,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::producer.producer': ApiProducerProducer;
+      'api::product.product': ApiProductProduct;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;

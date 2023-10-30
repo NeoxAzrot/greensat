@@ -1,0 +1,100 @@
+{
+  "kind": "collectionType",
+  "collectionName": "producers",
+  "info": {
+    "singularName": "producer",
+    "pluralName": "producers",
+    "displayName": "Producer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "summary": {
+      "type": "text",
+      "required": true
+    },
+    "latitude": {
+      "type": "float",
+      "required": true
+    },
+    "longitude": {
+      "type": "float",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "businessType": {
+      "type": "enumeration",
+      "enum": [
+        "farm",
+        "market",
+        "store"
+      ],
+      "required": true
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "producer"
+    },
+    "usersLikes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "producersLikes"
+    },
+    "survey": {
+      "type": "dynamiczone",
+      "components": [
+        "surveys.animal",
+        "surveys.store",
+        "surveys.transform",
+        "surveys.vegetable"
+      ],
+      "max": 1,
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "hours": {
+      "type": "text",
+      "required": false
+    },
+    "discount": {
+      "type": "text",
+      "required": false
+    },
+    "distance": {
+      "type": "string",
+      "required": false
+    },
+    "labels": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

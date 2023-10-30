@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
 };
 
-const TermsOfUSe = () => {
+const TermsOfUSe = async () => {
   return (
     <>
       <Hero title="Plan du site" />

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_surveys_transforms",
+  "info": {
+    "displayName": "transform",
+    "icon": "cog",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "mainProducerValues": {
+      "type": "string"
+    },
+    "rawMaterialQualityRequirements": {
+      "type": "richtext"
+    },
+    "rawMaterialOriginAndLabeling": {
+      "type": "richtext"
+    },
+    "resourceConsumptionManagement": {
+      "type": "richtext"
+    },
+    "wasteManagement": {
+      "type": "richtext"
+    },
+    "allergenLabeling": {
+      "type": "richtext"
+    },
+    "producerLabels": {
+      "type": "richtext"
+    },
+    "associativeEngagement": {
+      "type": "richtext"
+    },
+    "jobSatisfaction": {
+      "type": "richtext"
+    },
+    "additionalComment": {
+      "type": "richtext"
+    }
+  }
+}

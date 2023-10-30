@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_surveys_vegetables",
+  "info": {
+    "displayName": "vegetal",
+    "icon": "seed",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "mainProducerValues": {
+      "type": "string"
+    },
+    "cropOrganizationalOverview": {
+      "type": "richtext"
+    },
+    "agroecologicalPractices": {
+      "type": "richtext"
+    },
+    "greenhouseOrSoillessCultures": {
+      "type": "richtext"
+    },
+    "phytosanitaryTreatments": {
+      "type": "richtext"
+    },
+    "prophylacticMeasures": {
+      "type": "richtext"
+    },
+    "wasteManagementProduction": {
+      "type": "richtext"
+    },
+    "wasteManagementSales": {
+      "type": "richtext"
+    },
+    "energyConsumptionManagement": {
+      "type": "richtext"
+    },
+    "waterConsumptionManagement": {
+      "type": "richtext"
+    },
+    "carbonImpactMeasurement": {
+      "type": "richtext"
+    },
+    "associativeEngagement": {
+      "type": "richtext"
+    },
+    "seasonalWorkers": {
+      "type": "richtext"
+    },
+    "jobSatisfaction": {
+      "type": "richtext"
+    },
+    "additionalComment": {
+      "type": "richtext"
+    }
+  }
+}

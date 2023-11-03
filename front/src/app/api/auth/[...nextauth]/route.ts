@@ -12,6 +12,7 @@ const handler = NextAuth({
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async authorize(credentials, req) {
         /**
          * This function is used to define if the user is authenticated or not.
@@ -36,13 +37,16 @@ const handler = NextAuth({
       },
     }),
   ],
+  // TODO: Change any type
   callbacks: {
-    session: async ({ session, token }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    session: async ({ session, token }: any) => {
       session.id = token.id;
       session.jwt = token.jwt;
       return Promise.resolve(session);
     },
-    jwt: async ({ token, user }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    jwt: async ({ token, user }: any) => {
       const isSignIn = user ? true : false;
       if (isSignIn) {
         token.id = user.id;

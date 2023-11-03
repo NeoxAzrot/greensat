@@ -36,6 +36,7 @@ const TermsOfUSe = async () => {
   return (
     <>
       <Hero title="Plan du site" />
+      {/* @ts-expect-error Server Component */}
       <Content />
     </>
   );

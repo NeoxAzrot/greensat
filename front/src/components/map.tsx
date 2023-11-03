@@ -1,6 +1,5 @@
 'use client';
 
-import { Post } from 'contentlayer/generated';
 import mapboxgl from 'mapbox-gl';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -11,11 +10,13 @@ import FarmIcon from '@/public/images/icons/farm-removebg.png';
 import MarketIcon from '@/public/images/icons/market-removebg.png';
 import StoreIcon from '@/public/images/icons/store-removebg.png';
 
+import { Producer, Producers } from '@/types/producer';
+
 // TODO: Change type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Marker = ({ post }: any) => {
+const Marker = ({ producer }: { producer: Producer }) => {
   const getIcon = () => {
-    switch (post.businessType) {
+    switch (producer.attributes.businessType) {
       case 'farm':
         return FarmIcon;
       case 'market':
@@ -41,7 +42,7 @@ const Marker = ({ post }: any) => {
   );
 };
 
-const Map = ({ allPosts }: { allPosts: Post[] }) => {
+const Map = ({ producers }: { producers: Producers }) => {
   const mapContainer = useRef(null);
 
   const lng = 1.4947801;
@@ -68,7 +69,7 @@ const Map = ({ allPosts }: { allPosts: Post[] }) => {
       attributionControl: false,
     });
 
-    allPosts.forEach((post) => {
+    producers.forEach((producer) => {
       const ref = createRef();
       // TODO: Change type
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -76,7 +77,7 @@ const Map = ({ allPosts }: { allPosts: Post[] }) => {
 
       // TODO: Change type
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      createRoot(ref.current as any).render(<Marker post={post} />);
+      createRoot(ref.current as any).render(<Marker producer={producer} />);
 
       const popup = new mapboxgl.Popup({
         offset: 25,
@@ -88,7 +89,7 @@ const Map = ({ allPosts }: { allPosts: Post[] }) => {
       };
 
       const handleClick = () => {
-        router.push(`/producers/${post.slug}`);
+        router.push(`/producers/${producer.attributes.slug}`);
       };
 
       const wrapper = document.createElement('div');
@@ -101,17 +102,17 @@ const Map = ({ allPosts }: { allPosts: Post[] }) => {
       closeButton.innerHTML = '&times;';
 
       const image = document.createElement('img');
-      image.src = post.image;
-      image.alt = post.title;
+      image.src = producer.attributes.image.data.attributes.url;
+      image.alt = producer.attributes.title;
       image.className = 'w-full aspect-square object-cover my-2';
 
       const title = document.createElement('h4');
       title.className = 'text-xl font-medium mb-1 font-playfair-display';
-      title.innerHTML = post.title;
+      title.innerHTML = producer.attributes.title;
 
       const address = document.createElement('p');
       address.className = 'text-sm text-gray-500 mb-2 font-inter';
-      address.innerHTML = post.address;
+      address.innerHTML = producer.attributes.address;
 
       const button = document.createElement('button');
       button.onclick = handleClick;
@@ -131,7 +132,7 @@ const Map = ({ allPosts }: { allPosts: Post[] }) => {
       // TODO: Change type
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       new mapboxgl.Marker(ref.current as any)
-        .setLngLat({ lat: post.lat, lng: post.lng })
+        .setLngLat({ lat: producer.attributes.latitude, lng: producer.attributes.longitude })
         .setPopup(popup)
         .addTo(map);
     });

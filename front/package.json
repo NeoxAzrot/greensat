@@ -17,12 +17,10 @@
     "@headlessui/react": "^1.7.14",
     "aos": "^3.0.0-beta.6",
     "axios": "^1.5.1",
-    "contentlayer": "^0.3.2",
     "date-fns": "^2.30.0",
     "mapbox-gl": "^2.15.0",
     "next": "^13.5.1",
     "next-auth": "^4.23.2",
-    "next-contentlayer": "^0.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0"

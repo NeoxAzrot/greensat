@@ -1,43 +1,53 @@
-import { allPosts } from 'contentlayer/generated';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import Cta from '@/components/cta-dark';
-import Mdx from '@/components/mdx/mdx';
 import PostDate from '@/components/post-date';
 import Separator from '@/components/separator';
 
-export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post.slug,
+import { getAllProducers, getOneProducerBySlug } from '@/services/producer';
+
+export const generateStaticParams = async () => {
+  const producers = await getAllProducers({
+    pageSize: 100,
+  });
+
+  return producers.data.map((producer) => ({
+    slug: producer.attributes.slug,
   }));
-}
+};
 
 // TODO: Metadata like everywhere : https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 // Add a attribut in object to define the meta description and meta title (title of the post)
-export async function generateMetadata({
+export const generateMetadata = async ({
   params,
 }: {
   params: { slug: string };
-}): Promise<Metadata | undefined> {
-  const post = allPosts.find((p) => p.slug === params.slug);
+}): Promise<Metadata | undefined> => {
+  const producer = await getOneProducerBySlug({
+    slug: params.slug,
+  });
 
-  if (!post) return;
+  if (!producer) return;
 
-  const { title, summary: description } = post;
+  const { title, summary } = producer.data.attributes;
 
   return {
     title,
-    description,
+    description: summary,
   };
-}
+};
 
-export default async function SinglePost({ params }: { params: { slug: string } }) {
-  const post = allPosts.find((p) => p.slug === params.slug);
+const Producer = async ({ params }: { params: { slug: string } }) => {
+  const producer = await getOneProducerBySlug({
+    slug: params.slug,
+  });
 
-  if (!post) notFound();
+  if (!producer) notFound();
+
+  const data = producer.data.attributes;
 
   return (
     <>
@@ -65,7 +75,7 @@ export default async function SinglePost({ params }: { params: { slug: string } 
                       </span>{' '}
                       Revenir à la carte
                     </Link>
-                    <h1 className="h2 font-playfair-display text-slate-100 mb-6">{post.title}</h1>
+                    <h1 className="h2 font-playfair-display text-slate-100 mb-6">{data.title}</h1>
                   </div>
                   {/* Article meta */}
                   <div
@@ -77,10 +87,10 @@ export default async function SinglePost({ params }: { params: { slug: string } 
                       <a href="#0">
                         <Image
                           className="rounded-full shrink-0 mr-3"
-                          src={post.authorImg}
+                          src={data.image.data.attributes.url} // To change
                           width={32}
                           height={32}
-                          alt={post.author}
+                          alt="To change"
                         />
                       </a>
                       <div>
@@ -88,11 +98,11 @@ export default async function SinglePost({ params }: { params: { slug: string } 
                           className="font-medium text-slate-200 hover:text-slate-100 transition duration-150 ease-in-out"
                           href="#0"
                         >
-                          {post.author}
+                          To change
                         </a>
                         <span className="text-slate-600"> · </span>
                         <span className="text-slate-400">
-                          <PostDate dateString={post.publishedAt} />
+                          <PostDate dateString={data.publishedAt.toString()} />
                         </span>
                       </div>
                     </div>
@@ -150,15 +160,15 @@ export default async function SinglePost({ params }: { params: { slug: string } 
                 </div>
 
                 {/* Article image */}
-                {post.image && (
+                {data.image && (
                   <figure>
                     <Image
                       className="w-full"
-                      src={post.image}
+                      src={data.image.data.attributes.url}
                       width={768}
                       height={432}
                       priority
-                      alt={post.title}
+                      alt={data.title}
                     />
                   </figure>
                 )}
@@ -170,16 +180,24 @@ export default async function SinglePost({ params }: { params: { slug: string } 
         {/* Article content */}
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
           <div className="max-w-3xl mx-auto">
-            <div className="mb-8">
-              <Mdx code={post.body.code} />
-            </div>
+            <div className="mb-8">{/* <Mdx code={data.body.code} /> */}</div>
           </div>
         </div>
       </article>
+
+      {/* <Image
+        alt="News inner"
+        src={`/images/template/news-inner-image.jpg`}
+        width={1024}
+        height={576}
+        size="lg"
+      /> */}
 
       <Separator />
 
       <Cta />
     </>
   );
-}
+};
+
+export default Producer;

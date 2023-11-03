@@ -1,4 +1,3 @@
-import { allPosts } from 'contentlayer/generated';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next/types';
@@ -8,6 +7,8 @@ import Hero from '@/components/hero-blog';
 import Map from '@/components/map';
 import PostDate from '@/components/post-date';
 import PostItem from '@/components/post-item';
+
+import { getAllProducers } from '@/services/producer';
 
 export const metadata: Metadata = {
   title: 'Découvre les producteurs locaux',
@@ -37,17 +38,19 @@ export const metadata: Metadata = {
   },
 };
 
-const Producers = () => {
+const Producers = async () => {
   // Sort posts by date
-  allPosts.sort((a, b) => {
-    return new Date(a.publishedAt) > new Date(b.publishedAt) ? -1 : 1;
+  const producers = await getAllProducers({
+    pageSize: 100,
+    sort: 'title',
+    populate: '*',
   });
 
   // Slicing content for demo purposes
-  const featuredPost = allPosts[0];
-  const latestPosts = allPosts.slice(1, 4);
-  const popularPosts = allPosts.slice(4, 7);
-  const productPosts = allPosts.slice(7, 10);
+  const featuredPost = producers.data[0];
+  const latestPosts = producers.data.slice(1, 4);
+  const popularPosts = producers.data.slice(4, 7);
+  const productPosts = producers.data.slice(7, 10);
 
   return (
     <>
@@ -57,24 +60,24 @@ const Producers = () => {
       {/* Featured article */}
       <section>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <Map allPosts={allPosts} />
+          <Map producers={producers.data} />
 
           <div className="py-8 md:py-16">
             <article className="max-w-sm mx-auto space-y-5 md:max-w-none md:flex md:items-center md:space-y-0 md:space-x-8 lg:space-x-16">
               {/* Image */}
-              {featuredPost.image && (
+              {featuredPost.attributes.image && (
                 <Link
                   className="relative block group overflow-hidden md:w-1/2"
-                  href={`/producers/${featuredPost.slug}`}
+                  href={`/producers/${featuredPost.attributes.slug}`}
                   data-aos="fade-down"
                 >
                   <Image
                     className="w-full aspect-[16/9] md:aspect-[27/17] object-cover group-hover:scale-105 transition duration-700 ease-out"
-                    src={featuredPost.image}
+                    src={featuredPost.attributes.image.data.attributes.url}
                     width={540}
                     height={340}
                     priority
-                    alt={featuredPost.title}
+                    alt={featuredPost.attributes.title}
                   />
                   <div className="absolute top-6 right-6">
                     <svg className="w-8 h-8" viewBox="0 0 32 32">
@@ -93,21 +96,21 @@ const Producers = () => {
                   <h2 className="h4 md:text-4xl lg:text-5xl font-playfair-display mb-3">
                     <Link
                       className="text-slate-800 hover:underline hover:decoration-blue-100"
-                      href={`/producers/${featuredPost.slug}`}
+                      href={`/producers/${featuredPost.attributes.slug}`}
                     >
-                      {featuredPost.title}
+                      {featuredPost.attributes.title}
                     </Link>
                   </h2>
                 </header>
-                <p className="text-lg text-slate-500 grow">{featuredPost.summary}</p>
+                <p className="text-lg text-slate-500 grow">{featuredPost.attributes.summary}</p>
                 <footer className="flex items-center mt-4">
                   <a href="#0">
                     <Image
                       className="rounded-full shrink-0 mr-3"
-                      src={featuredPost.authorImg}
+                      src={featuredPost.attributes.image.data.attributes.url} // To change
                       width={32}
                       height={32}
-                      alt={featuredPost.author}
+                      alt="To change"
                     />
                   </a>
                   <div>
@@ -115,11 +118,11 @@ const Producers = () => {
                       className="font-medium text-slate-800 hover:text-blue-600 transition duration-150 ease-in-out"
                       href="#0"
                     >
-                      {featuredPost.author}
+                      To change
                     </a>
                     <span className="text-slate-300"> · </span>
                     <span className="text-slate-500">
-                      <PostDate dateString={featuredPost.publishedAt} />
+                      <PostDate dateString={featuredPost.attributes.publishedAt.toString()} />
                     </span>
                   </div>
                 </footer>

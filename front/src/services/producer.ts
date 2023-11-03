@@ -13,13 +13,19 @@ interface GetOneProducerBySlugProps {
   slug: string;
 }
 
-export const getAllProducers = async ({ page = 1, pageSize = 25, sort }: PaginationRequest) => {
+export const getAllProducers = async ({
+  page = 1,
+  pageSize = 25,
+  sort,
+  populate = false,
+}: PaginationRequest) => {
   const res: Response<Producers> = await axios
     .get(`${API_URL}/api/producers`, {
       params: {
         'pagination[pageSize]': pageSize,
         'pagination[page]': page,
         sort,
+        populate,
       },
     })
     .catch((error) => {
@@ -44,7 +50,7 @@ export const getOneProducerById = async ({ id }: GetOneProducerByIdProps) => {
 };
 
 export const getOneProducerBySlug = async ({ slug }: GetOneProducerBySlugProps) => {
-  const res: Response<Producers> = await axios
+  const res: Response<Producer> = await axios
     .get(`${API_URL}/api/producers/slug/${slug}`, {
       params: {
         populate: '*',

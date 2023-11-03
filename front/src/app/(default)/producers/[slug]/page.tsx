@@ -10,17 +10,13 @@ import Separator from '@/components/separator';
 import { getAllProducers, getOneProducerBySlug } from '@/services/producer';
 
 export const generateStaticParams = async () => {
-  const producers = await getAllProducers({
-    pageSize: 100,
-  });
+  const producers = await getAllProducers({});
 
   return producers.data.map((producer) => ({
     slug: producer.attributes.slug,
   }));
 };
 
-// TODO: Metadata like everywhere : https://nextjs.org/docs/app/api-reference/functions/generate-metadata
-// Add a attribut in object to define the meta description and meta title (title of the post)
 export const generateMetadata = async ({
   params,
 }: {
@@ -32,11 +28,31 @@ export const generateMetadata = async ({
 
   if (!producer) return;
 
-  const { title, summary } = producer.data.attributes;
+  const { title, summary: description, slug } = producer.data.attributes;
 
   return {
     title,
-    description: summary,
+    description,
+    alternates: {
+      canonical: `https://greensatable.fr/producers/${slug}`,
+      languages: {
+        fr: `https://greensatable.fr/producers/${slug}`,
+      },
+    },
+    openGraph: {
+      title,
+      url: `https://greensatable.fr/producers/${slug}`,
+      description,
+    },
+    twitter: {
+      title,
+      description,
+    },
+    appLinks: {
+      web: {
+        url: `https://greensatable.fr/producers/${slug}`,
+      },
+    },
   };
 };
 

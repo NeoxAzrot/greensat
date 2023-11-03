@@ -6,7 +6,6 @@ import { getAllProducers } from '@/services/producer';
 
 const PlanContent = async () => {
   const producers = await getAllProducers({
-    pageSize: 100,
     sort: 'title',
   });
 

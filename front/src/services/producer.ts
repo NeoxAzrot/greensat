@@ -14,8 +14,8 @@ interface GetOneProducerBySlugProps {
 }
 
 export const getAllProducers = async ({
-  page = 1,
-  pageSize = 25,
+  page,
+  pageSize,
   sort,
   populate = false,
 }: PaginationRequest) => {

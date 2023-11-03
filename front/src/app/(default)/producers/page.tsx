@@ -41,7 +41,6 @@ export const metadata: Metadata = {
 const Producers = async () => {
   // Sort posts by date
   const producers = await getAllProducers({
-    pageSize: 100,
     sort: 'title',
     populate: '*',
   });

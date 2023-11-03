@@ -10,16 +10,18 @@ export interface PaginationRequest extends GlobalRequest {
   pageSize?: number;
 }
 
+export interface PaginationResponse {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
 export interface Response<T> extends AxiosResponse {
   data: {
     data: T;
     meta: {
-      pagination?: {
-        page: number;
-        pageSize: number;
-        pageCount: number;
-        total: number;
-      };
+      pagination?: PaginationResponse;
     };
   };
 }

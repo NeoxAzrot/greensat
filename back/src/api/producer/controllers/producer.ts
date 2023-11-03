@@ -69,7 +69,7 @@ export default factories.createCoreController(
           };
         });
 
-        const newLabels = labels.map((label) => {
+        const newLabels = labels?.map((label) => {
           const { id, ...newLabel } = label;
 
           return {
@@ -100,7 +100,7 @@ export default factories.createCoreController(
                 data: newUsersLikes,
               },
               labels: {
-                data: newLabels,
+                data: newLabels || [],
               },
             },
           },

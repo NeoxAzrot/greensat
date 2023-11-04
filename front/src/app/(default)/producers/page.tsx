@@ -4,7 +4,6 @@ import { Metadata } from 'next/types';
 
 import Tags from '@/components/blog-tags';
 import Hero from '@/components/hero-blog';
-import Map from '@/components/map';
 import PostDate from '@/components/post-date';
 import PostItem from '@/components/post-item';
 
@@ -39,44 +38,60 @@ export const metadata: Metadata = {
 };
 
 const Producers = async () => {
-  // Sort posts by date
   const producers = await getAllProducers({
     sort: 'title',
     populate: '*',
   });
 
-  // Slicing content for demo purposes
-  const featuredPost = producers.data[0];
-  const latestPosts = producers.data.slice(1, 4);
-  const popularPosts = producers.data.slice(4, 7);
-  const productPosts = producers.data.slice(7, 10);
+  // TODO: Change it with a single where you can chose the featured one
+  const featuredProducer = producers.data[0];
+
+  const latestProducers = await getAllProducers({
+    sort: 'publishedAt:desc',
+    populate: '*',
+    pageSize: 3,
+  });
+
+  // TODO: Make it works
+  const popularProducers = await getAllProducers({
+    sort: 'usersLikes',
+    populate: '*',
+    pageSize: 3,
+  });
+
+  const marketProducers = await getAllProducers({
+    sort: 'publishedAt',
+    filters: {
+      '[businessType][$eq]': 'market',
+    },
+    populate: '*',
+    pageSize: 3,
+  });
 
   return (
     <>
       <Hero />
-      <Tags />
+      <Tags producers={producers.data} />
 
       {/* Featured article */}
       <section>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <Map producers={producers.data} />
-
           <div className="py-8 md:py-16">
             <article className="max-w-sm mx-auto space-y-5 md:max-w-none md:flex md:items-center md:space-y-0 md:space-x-8 lg:space-x-16">
               {/* Image */}
-              {featuredPost.attributes.image && (
+              {featuredProducer.attributes.image && (
                 <Link
                   className="relative block group overflow-hidden md:w-1/2"
-                  href={`/producers/${featuredPost.attributes.slug}`}
+                  href={`/producers/${featuredProducer.attributes.slug}`}
                   data-aos="fade-down"
                 >
                   <Image
                     className="w-full aspect-[16/9] md:aspect-[27/17] object-cover group-hover:scale-105 transition duration-700 ease-out"
-                    src={featuredPost.attributes.image.data.attributes.url}
+                    src={featuredProducer.attributes.image.data.attributes.url}
                     width={540}
                     height={340}
                     priority
-                    alt={featuredPost.attributes.title}
+                    alt={featuredProducer.attributes.title}
                   />
                   <div className="absolute top-6 right-6">
                     <svg className="w-8 h-8" viewBox="0 0 32 32">
@@ -95,35 +110,17 @@ const Producers = async () => {
                   <h2 className="h4 md:text-4xl lg:text-5xl font-playfair-display mb-3">
                     <Link
                       className="text-slate-800 hover:underline hover:decoration-blue-100"
-                      href={`/producers/${featuredPost.attributes.slug}`}
+                      href={`/producers/${featuredProducer.attributes.slug}`}
                     >
-                      {featuredPost.attributes.title}
+                      {featuredProducer.attributes.title}
                     </Link>
                   </h2>
                 </header>
-                <p className="text-lg text-slate-500 grow">{featuredPost.attributes.summary}</p>
+                <p className="text-lg text-slate-500 grow">{featuredProducer.attributes.summary}</p>
                 <footer className="flex items-center mt-4">
-                  <a href="#0">
-                    <Image
-                      className="rounded-full shrink-0 mr-3"
-                      src={featuredPost.attributes.image.data.attributes.url} // To change
-                      width={32}
-                      height={32}
-                      alt="To change"
-                    />
-                  </a>
-                  <div>
-                    <a
-                      className="font-medium text-slate-800 hover:text-blue-600 transition duration-150 ease-in-out"
-                      href="#0"
-                    >
-                      To change
-                    </a>
-                    <span className="text-slate-300"> · </span>
-                    <span className="text-slate-500">
-                      <PostDate dateString={featuredPost.attributes.publishedAt.toString()} />
-                    </span>
-                  </div>
+                  <span className="text-slate-500">
+                    <PostDate dateString={featuredProducer.attributes.publishedAt.toString()} />
+                  </span>
                 </footer>
               </div>
             </article>
@@ -143,8 +140,8 @@ const Producers = async () => {
 
               {/* Articles container */}
               <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
-                {latestPosts.map((post, postIndex) => (
-                  <PostItem key={postIndex} {...post} />
+                {latestProducers?.data.map((producer) => (
+                  <PostItem key={producer.id} {...producer} />
                 ))}
               </div>
             </div>
@@ -157,8 +154,8 @@ const Producers = async () => {
 
               {/* Articles container */}
               <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
-                {popularPosts.map((post, postIndex) => (
-                  <PostItem key={postIndex} {...post} />
+                {popularProducers?.data.map((producer) => (
+                  <PostItem key={producer.id} {...producer} />
                 ))}
               </div>
             </div>
@@ -171,21 +168,21 @@ const Producers = async () => {
 
               {/* Articles container */}
               <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
-                {productPosts.map((post, postIndex) => (
-                  <PostItem key={postIndex} {...post} />
+                {marketProducers?.data.map((producer) => (
+                  <PostItem key={producer.id} {...producer} />
                 ))}
               </div>
             </div>
 
             {/* See All Articles */}
-            {/* <div className="text-center">
+            <div className="text-center">
               <button className="btn text-white bg-blue-600 hover:bg-blue-700 group">
-                See All Articles{' '}
-                <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                Voir tous les producteurs{' '}
+                <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                   -&gt;
                 </span>
               </button>
-            </div> */}
+            </div>
           </div>
         </div>
       </section>

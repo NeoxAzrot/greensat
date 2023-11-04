@@ -29,7 +29,7 @@ const Cta = () => {
                   href="/producers"
                 >
                   Voir la carte{' '}
-                  <span className="tracking-normal text-pink-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                  <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                     -&gt;
                   </span>
                 </Link>

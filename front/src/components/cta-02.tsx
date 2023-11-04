@@ -27,7 +27,7 @@ const Cta02 = () => {
                   href="mailto:projet.carte.greensatable@gmail.com"
                 >
                   Envoyer un e-mail{' '}
-                  <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                  <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                     -&gt;
                   </span>
                 </a>

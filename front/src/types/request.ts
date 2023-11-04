@@ -3,6 +3,9 @@ import { AxiosResponse } from 'axios';
 export interface GlobalRequest {
   sort?: string;
   populate?: string | boolean;
+  filters?: {
+    [key: string]: string;
+  };
 }
 
 export interface PaginationRequest extends GlobalRequest {

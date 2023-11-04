@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import PostDate from '@/components/post-date';
@@ -32,27 +31,9 @@ const PostItem = ({ ...props }: Producer) => {
         </header>
         <p className="text-lg text-slate-500 grow">{props.attributes.summary}</p>
         <footer className="flex items-center mt-4">
-          <a href="#0">
-            <Image
-              className="rounded-full shrink-0 mr-3"
-              src={props.attributes.image.data.attributes.url} // To change
-              width={32}
-              height={32}
-              alt="To change"
-            />
-          </a>
-          <div>
-            <a
-              className="font-medium text-slate-800 hover:text-blue-600 transition duration-150 ease-in-out"
-              href="#0"
-            >
-              To change
-            </a>
-            <span className="text-slate-300"> · </span>
-            <span className="text-slate-500">
-              <PostDate dateString={props.attributes.publishedAt.toString()} />
-            </span>
-          </div>
+          <span className="text-slate-500">
+            <PostDate dateString={props.attributes.publishedAt.toString()} />
+          </span>
         </footer>
       </div>
     </article>

@@ -100,30 +100,13 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
                   >
                     {/* Author meta */}
                     <div className="flex items-center justify-center">
-                      <a href="#0">
-                        <Image
-                          className="rounded-full shrink-0 mr-3"
-                          src={data.image.data.attributes.url} // To change
-                          width={32}
-                          height={32}
-                          alt="To change"
-                        />
-                      </a>
-                      <div>
-                        <a
-                          className="font-medium text-slate-200 hover:text-slate-100 transition duration-150 ease-in-out"
-                          href="#0"
-                        >
-                          To change
-                        </a>
-                        <span className="text-slate-600"> · </span>
-                        <span className="text-slate-400">
-                          <PostDate dateString={data.publishedAt.toString()} />
-                        </span>
-                      </div>
+                      <span className="text-slate-400">
+                        <PostDate dateString={data.publishedAt.toString()} />
+                      </span>
                     </div>
                     {/* Social links */}
-                    <div className="flex justify-center mt-4 md:mt-0">
+                    {/* TODO: Add number of likes for the month */}
+                    {/* <div className="flex justify-center mt-4 md:mt-0">
                       <ul className="flex space-x-5 mb-4 md:order-1 md:ml-4 md:mb-0">
                         <li>
                           <a
@@ -171,7 +154,7 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
                           </a>
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -193,6 +176,9 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
           </div>
         </header>
 
+        {/* TODO: Add producer information with hours, adress, etc. */}
+        {/* TODO: Add product free */}
+
         {/* Article content */}
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
           <div className="max-w-3xl mx-auto">
@@ -200,14 +186,6 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </article>
-
-      {/* <Image
-        alt="News inner"
-        src={`/images/template/news-inner-image.jpg`}
-        width={1024}
-        height={576}
-        size="lg"
-      /> */}
 
       <Separator />
 

@@ -32,7 +32,8 @@ const PlanContent = async () => {
                 <Link href="/support">Support</Link>
               </li>
 
-              <li>
+              {/* TODO: Remove comments */}
+              {/* <li>
                 <Link href="/account">Mon compte</Link>
               </li>
 
@@ -42,7 +43,7 @@ const PlanContent = async () => {
 
               <li>
                 <Link href="/register">S&apos;inscrire</Link>
-              </li>
+              </li> */}
 
               <li>
                 <Link href="/terms-of-use">Mentions légales</Link>

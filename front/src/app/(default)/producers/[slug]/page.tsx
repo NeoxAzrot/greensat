@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import Cta from '@/components/cta-dark';
+import MapAndText from '@/components/map-and-text';
 import Mdx from '@/components/mdx/mdx';
 import PostDate from '@/components/post-date';
 import Separator from '@/components/separator';
@@ -702,9 +703,22 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
           </div>
         </header>
 
-        {/* TODO: Add producer information with hours, adress, etc. */}
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 mb-14">
+          <div className="max-w-3xl mx-auto">
+            {data.summary && (
+              <p className="text-lg text-slate-500 border-l-2 border-slate-800 pl-4 mb-8">
+                {data.summary}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <MapAndText producer={producer.data} />
+
+        {/* TODO: Add labels and sol violette */}
+
         {/* TODO: Add product free */}
-        <Separator />
+        {/* TODO: Add producer discount information */}
 
         {/* Article content */}
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6">

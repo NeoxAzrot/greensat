@@ -36,6 +36,9 @@ const Footer = () => {
           {/* 2nd block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2"></div>
 
+          {/* TODO: Remove this fake column */}
+          <div className="sm:col-span-6 md:col-span-3 lg:col-span-2"></div>
+
           {/* 3rd block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
             <h6 className="text-sm text-slate-800 font-semibold mb-2">Pages</h6>
@@ -68,7 +71,8 @@ const Footer = () => {
           </div>
 
           {/* 4th block */}
-          <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
+          {/* TODO: Remove comments */}
+          {/* <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
             <h6 className="text-sm text-slate-800 font-semibold mb-2">Ressources</h6>
             <ul className="text-sm font-medium space-y-2">
               <li>
@@ -96,7 +100,7 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* 5th block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">

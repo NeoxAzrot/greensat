@@ -18,7 +18,19 @@ export const getAllProducers = async ({
   pageSize,
   sort,
   populate = false,
+  filters,
 }: PaginationRequest) => {
+  const newFilters = Object.entries(filters || {}).reduce(
+    (acc, [key, value]) => {
+      if (value) {
+        acc[`filters${key}`] = value;
+      }
+
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
+
   const res: Response<Producers> = await axios
     .get(`${API_URL}/api/producers`, {
       params: {
@@ -26,6 +38,7 @@ export const getAllProducers = async ({
         'pagination[page]': page,
         sort,
         populate,
+        ...newFilters,
       },
     })
     .catch((error) => {

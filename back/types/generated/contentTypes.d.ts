@@ -405,10 +405,11 @@ export interface ApiProducerProducer extends Schema.CollectionType {
         max: 1;
       }>;
     slug: Attribute.UID<'api::producer.producer', 'title'> & Attribute.Required;
-    hours: Attribute.Text;
-    discount: Attribute.Text;
-    distance: Attribute.String;
+    hours: Attribute.RichText;
+    discount: Attribute.RichText;
+    distance: Attribute.Text;
     labels: Attribute.Media;
+    violetGround: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -12,6 +12,12 @@ import StoreIcon from '@/public/images/icons/store-removebg.png';
 
 import { Producer, Producers } from '@/types/producer';
 
+interface MapProps {
+  producers: Producers;
+  height?: string;
+  width?: string;
+}
+
 // TODO: Change type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Marker = ({ producer }: { producer: Producer }) => {
@@ -42,7 +48,7 @@ const Marker = ({ producer }: { producer: Producer }) => {
   );
 };
 
-const Map = ({ producers }: { producers: Producers }) => {
+const Map = ({ producers, height, width }: MapProps) => {
   const mapContainer = useRef(null);
 
   const lng = 1.4947801;
@@ -147,7 +153,8 @@ const Map = ({ producers }: { producers: Producers }) => {
       <div
         ref={mapContainer}
         style={{
-          height: '700px',
+          height,
+          width,
         }}
       />
     </section>

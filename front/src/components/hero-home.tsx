@@ -1,10 +1,14 @@
 import Link from 'next/link';
 
-import VideoThumb from '@/public/images/template/hero-image-01.jpg';
+import { Producers } from '@/types/producer';
 
-import ModalVideo01 from '@/components/modal-video-01';
+import Map from './map';
 
-const HeroHome = () => {
+interface HeroHomeProps {
+  producers: Producers;
+}
+
+const HeroHome = ({ producers }: HeroHomeProps) => {
   return (
     <section className="relative">
       {/* Dark background */}
@@ -53,15 +57,25 @@ const HeroHome = () => {
             </div>
 
             {/* Hero image */}
-            <ModalVideo01
-              thumb={VideoThumb}
-              thumbWidth={540}
-              thumbHeight={405}
-              thumbAlt="Modal video thumbnail"
-              video="/videos/video.mp4"
-              videoWidth={1920}
-              videoHeight={1080}
-            />
+            <div className="shrink-0" data-aos="fade-left">
+              <div className="flex justify-center items-center">
+                <div className="relative">
+                  <div
+                    className="absolute inset-0 pointer-events-none border-2 border-slate-700 mt-3 ml-3 translate-x-4 translate-y-4 -z-10"
+                    aria-hidden="true"
+                  ></div>
+                  <Map producers={producers} height="405px" width="540px" />
+                  {/* <div
+                    ref={mapContainer}
+                    className="mx-auto md:max-w-none"
+                    style={{
+                      height: '405px',
+                      width: '540px',
+                    }}
+                  /> */}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

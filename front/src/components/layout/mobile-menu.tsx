@@ -97,7 +97,7 @@ const MobileMenu = () => {
                 className="flex font-medium text-slate-800 hover:text-blue-600 py-2"
                 onClick={() => setMobileNavOpen(false)}
               >
-                Support
+                Des questions ?
               </Link>
             </li>
             {/* TODO: Remove comments */}

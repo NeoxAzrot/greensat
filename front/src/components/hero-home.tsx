@@ -23,9 +23,11 @@ const HeroHome = () => {
                 Bienvenue sur la Greensa’table !
               </h1>
               <p className="text-xl text-slate-400 mb-8">
-                Parfois, manger localement coûte plus cher. Grâce à greensatable, tu auras accès à
-                des réductions et produits gratuits auprès des commerçant.es et producteur.trices
-                proches de l’ENSAT.
+                Parfois, manger localement c&apos;est compliqué. Bonne nouvelle, grace à
+                Greensa’table, tu pourras trouver facilement les producteurs.trices et
+                commerçant.e.s qui t&apos;entourent. En plus d&apos;avoir accès à une description de
+                leurs pratiques socio-environnementales, tu auras des réductions et produits
+                gratuits !
               </p>
               <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
                 <div>

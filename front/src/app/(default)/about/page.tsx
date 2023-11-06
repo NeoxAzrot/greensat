@@ -1,6 +1,7 @@
 import { Metadata } from 'next/types';
 
 import Clients from '@/components/clients-02';
+import ClientsExplanation from '@/components/clients-explanation';
 import Cta from '@/components/cta';
 import Hero from '@/components/hero-about';
 import TeamMembers from '@/components/team-members';
@@ -42,6 +43,7 @@ const About = () => {
       <Content />
       <TeamMembers />
       <Clients />
+      <ClientsExplanation />
       <Cta />
     </>
   );

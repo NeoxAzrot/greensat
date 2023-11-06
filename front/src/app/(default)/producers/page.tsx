@@ -53,11 +53,11 @@ const Producers = async () => {
   });
 
   // TODO: Make it works
-  const popularProducers = await getAllProducers({
-    sort: 'usersLikes',
-    populate: '*',
-    pageSize: 3,
-  });
+  // const popularProducers = await getAllProducers({
+  //   sort: 'usersLikes',
+  //   populate: '*',
+  //   pageSize: 3,
+  // });
 
   const marketProducers = await getAllProducers({
     sort: 'publishedAt',
@@ -147,18 +147,19 @@ const Producers = async () => {
             </div>
 
             {/* Popular */}
-            <div>
+            {/* TODO: Remove comment */}
+            {/* <div>
               <h2 className="h3 font-playfair-display text-center md:text-left mb-8">
                 Les plus populaires
-              </h2>
+              </h2> */}
 
-              {/* Articles container */}
-              <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
+            {/* Articles container */}
+            {/* <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
                 {popularProducers?.data.map((producer) => (
                   <PostItem key={producer.id} {...producer} />
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Product & News */}
             <div>
@@ -175,6 +176,7 @@ const Producers = async () => {
             </div>
 
             {/* See All Articles */}
+            {/* TODO: Make it works */}
             <div className="text-center">
               <button className="btn text-white bg-blue-600 hover:bg-blue-700 group">
                 Voir tous les producteurs{' '}

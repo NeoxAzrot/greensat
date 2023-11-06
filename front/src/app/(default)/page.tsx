@@ -6,6 +6,8 @@ import FeaturesBlocks from '@/components/features-blocks';
 import Features from '@/components/features-home';
 import Hero from '@/components/hero-home';
 
+import { getAllProducers } from '@/services/producer';
+
 export const metadata: Metadata = {
   title: "Manger local près de l'ENSAT",
   description:
@@ -34,10 +36,15 @@ export const metadata: Metadata = {
   },
 };
 
-const Home = () => {
+const Home = async () => {
+  const producers = await getAllProducers({
+    sort: 'title',
+    populate: '*',
+  });
+
   return (
     <>
-      <Hero />
+      <Hero producers={producers.data} />
       <FeaturesBlocks />
       <Features />
       <Clients />

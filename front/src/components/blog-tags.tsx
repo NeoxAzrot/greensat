@@ -90,7 +90,7 @@ const BlogTags = ({ producers }: { producers: Producers }) => {
           </div>
         </div>
 
-        <Map producers={filteredProducers} />
+        <Map producers={filteredProducers} height="700px" />
       </div>
     </section>
   );

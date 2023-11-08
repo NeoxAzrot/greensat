@@ -1,11 +1,14 @@
 import Image from 'next/image';
 
-import TeamMemberImage01 from '@/public/images/template/team-member-01.jpg';
-import TeamMemberImage02 from '@/public/images/template/team-member-02.jpg';
-import TeamMemberImage03 from '@/public/images/template/team-member-03.jpg';
-import TeamMemberImage04 from '@/public/images/template/team-member-04.jpg';
-import TeamMemberImage05 from '@/public/images/template/team-member-05.jpg';
-import TeamMemberImage06 from '@/public/images/template/team-member-06.jpg';
+import AlexImage from '@/public/images/team/alex.webp';
+import AliceImage from '@/public/images/team/alice.webp';
+import AmbreImage from '@/public/images/team/ambre.webp';
+import CamilleImage from '@/public/images/team/camille.webp';
+import ClemenceImage from '@/public/images/team/clemence.webp';
+import LiseImage from '@/public/images/team/lise.webp';
+import MaeImage from '@/public/images/team/mae.webp';
+import PaulImage from '@/public/images/team/paul.webp';
+import SamuelImage from '@/public/images/team/samuel.webp';
 
 const TeamMembers = () => {
   return (
@@ -21,15 +24,15 @@ const TeamMembers = () => {
 
           {/* Team members */}
           <div
-            className="relative max-w-sm mx-auto grid gap-y-12 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-20 items-start sm:max-w-xl lg:max-w-none"
+            className="relative max-w-sm mx-auto grid gap-y-12 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-y-20 items-start sm:max-w-xl lg:max-w-none"
             data-aos-id-team
           >
             {/* 1st member */}
             <div className="text-center" data-aos="fade-up" data-aos-anchor="[data-aos-id-team]">
               <div className="inline-flex mb-4">
                 <Image
-                  className="rounded-full"
-                  src={TeamMemberImage01}
+                  className="rounded-full grayscale"
+                  src={LiseImage}
                   width={120}
                   height={120}
                   alt="Member 01"
@@ -50,8 +53,8 @@ const TeamMembers = () => {
             >
               <div className="inline-flex mb-4">
                 <Image
-                  className="rounded-full"
-                  src={TeamMemberImage02}
+                  className="rounded-full grayscale"
+                  src={MaeImage}
                   width={120}
                   height={120}
                   alt="Member 02"
@@ -70,14 +73,14 @@ const TeamMembers = () => {
             >
               <div className="inline-flex mb-4">
                 <Image
-                  className="rounded-full"
-                  src={TeamMemberImage03}
+                  className="rounded-full grayscale"
+                  src={ClemenceImage}
                   width={120}
                   height={120}
                   alt="Member 03"
                 />
               </div>
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Clémence et Ambre</h4>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Clémence</h4>
               <div className="font-medium text-blue-600">Responsable communication et réseau</div>
             </div>
 
@@ -86,12 +89,32 @@ const TeamMembers = () => {
               className="text-center"
               data-aos="fade-up"
               data-aos-anchor="[data-aos-id-team]"
+              data-aos-delay={200}
+            >
+              <div className="inline-flex mb-4">
+                <Image
+                  className="rounded-full grayscale"
+                  src={AmbreImage}
+                  width={120}
+                  height={120}
+                  alt="Member 03"
+                />
+              </div>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Ambre</h4>
+              <div className="font-medium text-blue-600">Responsable communication et réseau</div>
+            </div>
+
+            {/* 5th member */}
+            <div
+              className="text-center"
+              data-aos="fade-up"
+              data-aos-anchor="[data-aos-id-team]"
               data-aos-delay={300}
             >
               <div className="inline-flex mb-4">
                 <Image
-                  className="rounded-full"
-                  src={TeamMemberImage04}
+                  className="rounded-full grayscale"
+                  src={AliceImage}
                   width={120}
                   height={120}
                   alt="Member 04"
@@ -101,7 +124,7 @@ const TeamMembers = () => {
               <div className="font-medium text-blue-600">Responsable évènement</div>
             </div>
 
-            {/* 5th member */}
+            {/* 6th member */}
             <div
               className="text-center"
               data-aos="fade-up"
@@ -110,20 +133,42 @@ const TeamMembers = () => {
             >
               <div className="inline-flex mb-4">
                 <Image
-                  className="rounded-full"
-                  src={TeamMemberImage05}
+                  className="rounded-full grayscale"
+                  src={CamilleImage}
                   width={120}
                   height={120}
                   alt="Member 05"
                 />
               </div>
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Camille et Alex</h4>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Camille</h4>
               <div className="font-medium text-blue-600">
                 Responsables partenaires et producteurs
               </div>
             </div>
 
-            {/* 6th member */}
+            {/* 7th member */}
+            <div
+              className="text-center"
+              data-aos="fade-up"
+              data-aos-anchor="[data-aos-id-team]"
+              data-aos-delay={400}
+            >
+              <div className="inline-flex mb-4">
+                <Image
+                  className="rounded-full grayscale"
+                  src={AlexImage}
+                  width={120}
+                  height={120}
+                  alt="Member 05"
+                />
+              </div>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Alex</h4>
+              <div className="font-medium text-blue-600">
+                Responsables partenaires et producteurs
+              </div>
+            </div>
+
+            {/* 8th member */}
             <div
               className="text-center"
               data-aos="fade-up"
@@ -132,20 +177,62 @@ const TeamMembers = () => {
             >
               <div className="inline-flex mb-4">
                 <Image
-                  className="rounded-full"
-                  src={TeamMemberImage06}
+                  className="rounded-full grayscale"
+                  src={SamuelImage}
                   width={120}
                   height={120}
                   alt="Member 06"
                 />
               </div>
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">
-                Samuel, Paul et Margot
-              </h4>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Samuel</h4>
               <div className="font-medium text-blue-600">
                 Acteurs couteaux-suisses et petites mains
               </div>
             </div>
+
+            {/* 9th member */}
+            <div
+              className="text-center"
+              data-aos="fade-up"
+              data-aos-anchor="[data-aos-id-team]"
+              data-aos-delay={500}
+            >
+              <div className="inline-flex mb-4">
+                <Image
+                  className="rounded-full grayscale"
+                  src={PaulImage}
+                  width={120}
+                  height={120}
+                  alt="Member 06"
+                />
+              </div>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Paul</h4>
+              <div className="font-medium text-blue-600">
+                Acteurs couteaux-suisses et petites mains
+              </div>
+            </div>
+
+            {/* 10th member */}
+            {/* <div
+              className="text-center"
+              data-aos="fade-up"
+              data-aos-anchor="[data-aos-id-team]"
+              data-aos-delay={500}
+            >
+              <div className="inline-flex mb-4">
+                <Image
+                  className="rounded-full grayscale"
+                  src={MargotImage}
+                  width={120}
+                  height={120}
+                  alt="Member 06"
+                />
+              </div>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Margot</h4>
+              <div className="font-medium text-blue-600">
+                Acteurs couteaux-suisses et petites mains
+              </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@ const TermsOfUseContent = () => {
             <h2>Nous contacter</h2>
             <p>
               {/* Par téléphone : +33 6 75 75 78 66 <br /> */}
-              Par email : projet.carte.greensatable@gmail.com <br />
+              Par email : contact@greensatable.fr <br />
               Par courrier : Avenue de l&apos;Agrobiopole - 31320 Auzeville-Tolosane
             </p>
 

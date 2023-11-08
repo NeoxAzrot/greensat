@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import LogoImage from '@/public/images/favicon/apple-touch-icon-180x180.png';
+import LogoImage from '@/public/images/favicon/logo.webp';
 
 const Logo = () => {
   return (

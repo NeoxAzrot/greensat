@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation';
 import { createRef, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import FarmIcon from '@/public/images/icons/farm-removebg.png';
-import MarketIcon from '@/public/images/icons/market-removebg.png';
-import StoreIcon from '@/public/images/icons/store-removebg.png';
+import FarmIcon from '@/public/images/icons/farm.png';
+import MarketIcon from '@/public/images/icons/market.png';
+import StoreIcon from '@/public/images/icons/store.png';
 
 import { Producer, Producers } from '@/types/producer';
 

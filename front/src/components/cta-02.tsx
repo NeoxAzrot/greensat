@@ -24,7 +24,7 @@ const Cta02 = () => {
               <div>
                 <a
                   className="btn text-white bg-blue-600 hover:bg-blue-700 group"
-                  href="mailto:projet.carte.greensatable@gmail.com"
+                  href="mailto:contact@greensatable.fr"
                 >
                   Envoyer un e-mail{' '}
                   <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">

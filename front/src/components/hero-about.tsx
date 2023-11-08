@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import HeroImage from '@/public/images/school.jpg';
-import IntroImage from '@/public/images/team.jpg';
+import HeroImage from '@/public/images/school.webp';
+import IntroImage from '@/public/images/team.webp';
 
 const HeroAbout = () => {
   return (

@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-import SchoolImage from '@/public/images/school.jpg';
+import SchoolImage from '@/public/images/school.webp';
 
 const FeaturesHome = () => {
   const [tab, setTab] = useState<number>(1);

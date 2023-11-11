@@ -7,7 +7,7 @@ const Cta = () => {
         <div className="py-12 md:py-20">
           <div className="relative max-w-3xl mx-auto text-center">
             <div
-              className="absolute right-0 -mt-4 -mr-1 fill-slate-300 hidden lg:block"
+              className="absolute -right-8 -mt-4 -mr-1 fill-slate-300 hidden lg:block"
               aria-hidden="true"
             >
               <svg className="fill-slate-300" width="56" height="43">
@@ -21,7 +21,7 @@ const Cta = () => {
               </h2>
               <p className="text-xl text-slate-500 mb-8">
                 Trouve les producteurs éco-friendly sur notre carte interactive. Explore et soutiens
-                les acteurs locaux !
+                les acteurs locaux !
               </p>
               <div>
                 <Link

@@ -27,11 +27,19 @@ const ClientsExplanation = () => {
                 <span>Sol Violette</span>
               </h3>
               <p className="mb-8">
-                C&apos;est l&apos;association de la monnaie locale du Sicoval. Associé avec eux pour
-                l&apos;appel à projet “Mieux manger pour tous” nous sommes amenés à organiser des
-                évènements ensemble, comme des marchés, ou à se retrouver autour de thématiques
-                communes comme l&apos;accès plus juste à l&apos;alimentation et la façon dont nous
-                souhaitons consommer demain.
+                C&apos;est l&apos;association de la monnaie locale du{' '}
+                <a
+                  href="https://www.sicoval.fr/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                >
+                  Sicoval
+                </a>
+                . Associé avec eux pour l&apos;appel à projet « Mieux manger pour tous » nous sommes
+                amenés à organiser des évènements ensemble, comme des marchés, ou à se retrouver
+                autour de thématiques communes comme l&apos;accès plus juste à l&apos;alimentation
+                et la façon dont nous souhaitons consommer demain.
               </p>
               <h3 className="flex h4 font-playfair-display text-slate-800 mb-4 lg:-ml-10">
                 <div className="mr-5 mt-2">
@@ -48,10 +56,36 @@ const ClientsExplanation = () => {
                 prendre part à la vie de cette association et notamment d&apos;accéder aux marchés
                 qu&apos;elle organise. Nous envisageons aussi de faire des commandes groupées de
                 temps à autre sur certains produits comme l&apos;huile, les amandes, le riz pour les
-                redistribuer aux étudiants de l&apos;Ensat à moindre coût. Nous espérons pouvoir
-                faire de même avec Castacroute et Castadale qui sont les extension de Caracole à
-                Ramonville. Ils ont par ailleurs une caisse de SSA qui est en train de s&apos;ouvrir
-                avec laquelle nous pouvons créer des évènements de sensibilisation.
+                redistribuer aux étudiants de l&apos;ENSAT à moindre coût. Nous espérons pouvoir
+                faire de même avec{' '}
+                <a
+                  href="https://www.castacroute.fr/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                >
+                  Castacroute
+                </a>{' '}
+                et{' '}
+                <a
+                  href="https://solalim.civam-occitanie.fr/nw-23/presentation.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                >
+                  Castadale
+                </a>{' '}
+                qui sont les extension de Caracole à Ramonville. Ils ont par ailleurs une caisse de{' '}
+                <a
+                  href="https://securite-sociale-alimentation.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                >
+                  SSA
+                </a>{' '}
+                qui est en train de s&apos;ouvrir avec laquelle nous pouvons créer des évènements de
+                sensibilisation.
               </p>
               <h3 className="flex h4 font-playfair-display text-slate-800 mb-4 lg:-ml-10">
                 <div className="mr-5 mt-2">

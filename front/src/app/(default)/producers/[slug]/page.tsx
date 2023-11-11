@@ -66,7 +66,7 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
       {survey.mainProducerValues && (
         <>
           <h3>
-            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
+            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
           </h3>
           <p>{survey.mainProducerValues}</p>
 
@@ -85,7 +85,7 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
           {survey.rearingMode && (
             <>
               <h3>
-                Quel est le mode d&apos;élevage des animaux ? (Hors sol, accès plein air, intensif,
+                Quel est le mode d&apos;élevage des animaux ? (Hors sol, accès plein air, intensif,
                 extensif, ...)
               </h3>
               <Mdx code={survey.rearingMode} />
@@ -94,14 +94,14 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
 
           {survey.feedSource && (
             <>
-              <h3>D&apos;où viennent les aliments donnés aux animaux ?</h3>
+              <h3>D&apos;où viennent les aliments donnés aux animaux ?</h3>
               <Mdx code={survey.feedSource} />
             </>
           )}
 
           {survey.antibioticTreatment && (
             <>
-              <h3>Les animaux sont-ils traités avec des antibiotiques ?</h3>
+              <h3>Les animaux sont-ils traités avec des antibiotiques ?</h3>
               <Mdx code={survey.antibioticTreatment} />
             </>
           )}
@@ -109,7 +109,7 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
           {survey.welfareMeasures && (
             <>
               <h3>
-                Des choses sont-elles mises en place pour le bien-être animal ? Si oui, lesquelles ?
+                Des choses sont-elles mises en place pour le bien-être animal ? Si oui, lesquelles ?
               </h3>
               <Mdx code={survey.welfareMeasures} />
             </>
@@ -118,7 +118,7 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
           {survey.agroecologicalPractices && (
             <>
               <h3>
-                Des pratiques agroécologiques sont-elles mises en place ? Si oui, lesquelles ?
+                Des pratiques agroécologiques sont-elles mises en place ? Si oui, lesquelles ?
               </h3>
               <Mdx code={survey.agroecologicalPractices} />
             </>
@@ -138,7 +138,7 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
 
           {survey.effluentManagement && (
             <>
-              <h3>Comment sont gérés les effluents ?</h3>
+              <h3>Comment sont gérés les effluents ?</h3>
               <Mdx code={survey.effluentManagement} />
             </>
           )}
@@ -147,7 +147,7 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
             <>
               <h3>
                 Le producteur porte-t-il une attention particulière à la gestion de ses déchets lors
-                de la production ? Si oui, qu&apos;est ce qui est mis en place ?
+                de la production ? Si oui, qu&apos;est ce qui est mis en place ?
               </h3>
               <Mdx code={survey.wasteManagementProduction} />
             </>
@@ -157,7 +157,7 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
             <>
               <h3>
                 Le producteur porte-t-il une attention particulière à la gestion de ses déchets lors
-                de la vente ? Si oui, qu&apos;est ce qui est mis en place ?
+                de la vente ? Si oui, qu&apos;est ce qui est mis en place ?
               </h3>
               <Mdx code={survey.wasteManagementSales} />
             </>
@@ -167,7 +167,7 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
             <>
               <h3>
                 Le producteur fait-il attention à réguler sa consommation en eau et en énergie (gaz,
-                électricité, ...) ? Si oui, qu&apos;est ce qui est mis en place ?
+                électricité, ...) ? Si oui, qu&apos;est ce qui est mis en place ?
               </h3>
               <Mdx code={survey.resourceConsumptionManagement} />
             </>
@@ -177,7 +177,7 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
             <>
               <h3>
                 Le producteur est-il capable de mesurer l&apos;impact carbone de son exploitation,
-                de ses produits ? Si oui, quelle est-elle ?
+                de ses produits ? Si oui, quelle est-elle ?
               </h3>
               <Mdx code={survey.carbonImpactMeasurement} />
             </>
@@ -193,21 +193,21 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
 
           {survey.associativeEngagement && (
             <>
-              <h3>Le producteur est-il engagé dans des démarches associatives ?</h3>
+              <h3>Le producteur est-il engagé dans des démarches associatives ?</h3>
               <Mdx code={survey.associativeEngagement} />
             </>
           )}
 
           {survey.jobSatisfaction && (
             <>
-              <h3>Le producteur et ses employés/associés sont-ils heureux dans leur travail ?</h3>
+              <h3>Le producteur et ses employés/associés sont-ils heureux dans leur travail ?</h3>
               <Mdx code={survey.jobSatisfaction} />
             </>
           )}
 
           {survey.additionalComment && (
             <>
-              <h3>Un commentaire en plus ?</h3>
+              <h3>Un commentaire en plus ?</h3>
               <Mdx code={survey.additionalComment} />
             </>
           )}
@@ -223,7 +223,7 @@ const StoreSurveyRender = (survey: StoreSurvey) => {
       {survey.mainStoreValues && (
         <>
           <h3>
-            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
+            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
           </h3>
           <p>{survey.mainStoreValues}</p>
 
@@ -242,14 +242,14 @@ const StoreSurveyRender = (survey: StoreSurvey) => {
 
           {survey.productOriginInterest && (
             <>
-              <h3>Quel intérêt le commerçant accorde à la provenance des produits ?</h3>
+              <h3>Quel intérêt le commerçant accorde à la provenance des produits ?</h3>
               <Mdx code={survey.productOriginInterest} />
             </>
           )}
 
           {survey.productOriginLabeling && (
             <>
-              <h3>La provenance des produits est-elle toujours indiquée ?</h3>
+              <h3>La provenance des produits est-elle toujours indiquée ?</h3>
               <Mdx code={survey.productOriginLabeling} />
             </>
           )}
@@ -257,8 +257,8 @@ const StoreSurveyRender = (survey: StoreSurvey) => {
           {survey.wasteManagement && (
             <>
               <h3>
-                Comment se passe la gestion des déchets ? Quels dispositifs sont ou vont être mis en
-                place ?
+                Comment se passe la gestion des déchets ? Quels dispositifs sont ou vont être mis en
+                place ?
               </h3>
               <Mdx code={survey.wasteManagement} />
             </>
@@ -268,7 +268,7 @@ const StoreSurveyRender = (survey: StoreSurvey) => {
             <>
               <h3>
                 Le commerçant est-il prêt à être transparent sur la rémunération des producteurs qui
-                fournissent le magasin ? Sur la manière dont sont fixés les prix des produits ?
+                fournissent le magasin ? Sur la manière dont sont fixés les prix des produits ?
               </h3>
               <Mdx code={survey.transparencyOnProducerCompensation} />
             </>
@@ -278,7 +278,7 @@ const StoreSurveyRender = (survey: StoreSurvey) => {
             <>
               <h3>
                 Le magasin commercialise des produits avec des labels. Pourquoi ce choix et quels
-                sont ces labels ? Si ce n&apos;est pas le cas, pourquoi ?
+                sont ces labels ? Si ce n&apos;est pas le cas, pourquoi ?
               </h3>
               <Mdx code={survey.productLabelingChoice} />
             </>
@@ -286,7 +286,7 @@ const StoreSurveyRender = (survey: StoreSurvey) => {
 
           {survey.additionalComment && (
             <>
-              <h3>Un commentaire en plus ?</h3>
+              <h3>Un commentaire en plus ?</h3>
               <Mdx code={survey.additionalComment} />
             </>
           )}
@@ -302,7 +302,7 @@ const TransformSurveyRender = (survey: TransformSurvey) => {
       {survey.mainProducerValues && (
         <>
           <h3>
-            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
+            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
           </h3>
           <p>{survey.mainProducerValues}</p>
 
@@ -321,7 +321,7 @@ const TransformSurveyRender = (survey: TransformSurvey) => {
             <>
               <h3>
                 Quelles sont les exigences du producteur sur la qualité des matières premières
-                utilisées ?
+                utilisées ?
               </h3>
               <Mdx code={survey.rawMaterialQualityRequirements} />
             </>
@@ -330,8 +330,8 @@ const TransformSurveyRender = (survey: TransformSurvey) => {
           {survey.rawMaterialOriginAndLabeling && (
             <>
               <h3>
-                D&apos;où proviennent les matières premières ? La provenance et les fournisseurs
-                sont-ils indiqués sur les produits ?
+                D&apos;où proviennent les matières premières ? La provenance et les fournisseurs
+                sont-ils indiqués sur les produits ?
               </h3>
               <Mdx code={survey.rawMaterialOriginAndLabeling} />
             </>
@@ -341,7 +341,7 @@ const TransformSurveyRender = (survey: TransformSurvey) => {
             <>
               <h3>
                 Le producteur fait-il attention à réguler sa consommation en eau et en énergie (gaz,
-                électricité, ...) ? Si oui, qu&apos;est ce qui est mis en place ?
+                électricité, ...) ? Si oui, qu&apos;est ce qui est mis en place ?
               </h3>
               <Mdx code={survey.resourceConsumptionManagement} />
             </>
@@ -351,7 +351,7 @@ const TransformSurveyRender = (survey: TransformSurvey) => {
             <>
               <h3>
                 Le producteur porte-t-il une attention particulière à la gestion de ses déchets lors
-                de la production/vente ? Si oui, qu&apos;est ce qui est mis en place ?
+                de la production/vente ? Si oui, qu&apos;est ce qui est mis en place ?
               </h3>
               <Mdx code={survey.wasteManagement} />
             </>
@@ -371,35 +371,35 @@ const TransformSurveyRender = (survey: TransformSurvey) => {
 
           {survey.allergenLabeling && (
             <>
-              <h3>Les allergènes des produits sont-ils systématiquement renseignés ?</h3>
+              <h3>Les allergènes des produits sont-ils systématiquement renseignés ?</h3>
               <Mdx code={survey.allergenLabeling} />
             </>
           )}
 
           {survey.producerLabels && (
             <>
-              <h3>Le producteur possède-t-il des labels/appellations ? Si oui, le(s)quel(s) ?</h3>
+              <h3>Le producteur possède-t-il des labels/appellations ? Si oui, le(s)quel(s) ?</h3>
               <Mdx code={survey.producerLabels} />
             </>
           )}
 
           {survey.associativeEngagement && (
             <>
-              <h3>Le producteur est-il engagé dans des démarches associatives ?</h3>
+              <h3>Le producteur est-il engagé dans des démarches associatives ?</h3>
               <Mdx code={survey.associativeEngagement} />
             </>
           )}
 
           {survey.jobSatisfaction && (
             <>
-              <h3>Le producteur et ses employés/associés sont-ils heureux dans leur travail ?</h3>
+              <h3>Le producteur et ses employés/associés sont-ils heureux dans leur travail ?</h3>
               <Mdx code={survey.jobSatisfaction} />
             </>
           )}
 
           {survey.additionalComment && (
             <>
-              <h3>Un commentaire en plus ?</h3>
+              <h3>Un commentaire en plus ?</h3>
               <Mdx code={survey.additionalComment} />
             </>
           )}
@@ -415,7 +415,7 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
       {survey.mainProducerValues && (
         <>
           <h3>
-            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
+            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
           </h3>
           <p>{survey.mainProducerValues}</p>
 
@@ -433,7 +433,7 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
 
           {survey.cropOrganizationalOverview && (
             <>
-              <h3>En quelques mots, comment s&apos;organise la culture ?</h3>
+              <h3>En quelques mots, comment s&apos;organise la culture ?</h3>
               <Mdx code={survey.cropOrganizationalOverview} />
             </>
           )}
@@ -441,7 +441,7 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
           {survey.agroecologicalPractices && (
             <>
               <h3>
-                Des pratiques agroécologiques sont-elles mises en place ? Si oui, lesquelles ?
+                Des pratiques agroécologiques sont-elles mises en place ? Si oui, lesquelles ?
               </h3>
               <Mdx code={survey.agroecologicalPractices} />
             </>
@@ -451,8 +451,8 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
             <>
               <h3>
                 Des cultures hors sol ou dans des serres chauffées sont-elles présentes sur
-                l&apos;exploitation ? Si oui, comment s&apos;organisent-elles et dans quel but
-                sont-elles mises en place ?
+                l&apos;exploitation ? Si oui, comment s&apos;organisent-elles et dans quel but
+                sont-elles mises en place ?
               </h3>
               <Mdx code={survey.greenhouseOrSoillessCultures} />
             </>
@@ -461,8 +461,8 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
           {survey.phytosanitaryTreatments && (
             <>
               <h3>
-                Le producteur fait-il des traitements phytosanitaires ? Si oui, est-il d&apos;accord
-                pour les transmettre ?
+                Le producteur fait-il des traitements phytosanitaires ? Si oui, est-il d&apos;accord
+                pour les transmettre ?
               </h3>
               <Mdx code={survey.phytosanitaryTreatments} />
             </>
@@ -471,7 +471,7 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
           {survey.prophylacticMeasures && (
             <>
               <h3>
-                Le producteur met-il en place des mesures prophylactiques ? Si oui, lesquelles ?
+                Le producteur met-il en place des mesures prophylactiques ? Si oui, lesquelles ?
               </h3>
               <Mdx code={survey.prophylacticMeasures} />
             </>
@@ -493,7 +493,7 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
             <>
               <h3>
                 Le producteur porte-t-il une attention particulière à la gestion de ses déchets lors
-                de la production ? Si oui, qu&apos;est ce qui est mis en place ?
+                de la production ? Si oui, qu&apos;est ce qui est mis en place ?
               </h3>
               <Mdx code={survey.wasteManagementProduction} />
             </>
@@ -503,7 +503,7 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
             <>
               <h3>
                 Le producteur porte-t-il une attention particulière à la gestion de ses déchets lors
-                de la vente ? Si oui, qu&apos;est ce qui est mis en place ?
+                de la vente ? Si oui, qu&apos;est ce qui est mis en place ?
               </h3>
               <Mdx code={survey.wasteManagementSales} />
             </>
@@ -513,7 +513,7 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
             <>
               <h3>
                 Le producteur fait-il attention à réguler sa consommation en énergie (gaz,
-                électricité, ...) ? Si oui, qu&apos;est ce qui est mis en place ?
+                électricité, ...) ? Si oui, qu&apos;est ce qui est mis en place ?
               </h3>
               <Mdx code={survey.energyConsumptionManagement} />
             </>
@@ -521,7 +521,7 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
 
           {survey.waterConsumptionManagement && (
             <>
-              <h3>Comment est gérée la consommation d&apos;eau sur l&apos;exploitation ?</h3>
+              <h3>Comment est gérée la consommation d&apos;eau sur l&apos;exploitation ?</h3>
               <Mdx code={survey.waterConsumptionManagement} />
             </>
           )}
@@ -530,7 +530,7 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
             <>
               <h3>
                 Le producteur est-il capable de mesurer l&apos;impact carbone de son exploitation,
-                de ses produits ? Si oui, quelle est-elle ?
+                de ses produits ? Si oui, quelle est-elle ?
               </h3>
               <Mdx code={survey.carbonImpactMeasurement} />
             </>
@@ -549,28 +549,28 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
 
           {survey.associativeEngagement && (
             <>
-              <h3>Le producteur est-il engagé dans des démarches associatives ?</h3>
+              <h3>Le producteur est-il engagé dans des démarches associatives ?</h3>
               <Mdx code={survey.associativeEngagement} />
             </>
           )}
 
           {survey.seasonalWorkers && (
             <>
-              <h3>Y a-t-il des travailleurs saisonniers sur l&apos;exploitation ?</h3>
+              <h3>Y a-t-il des travailleurs saisonniers sur l&apos;exploitation ?</h3>
               <Mdx code={survey.seasonalWorkers} />
             </>
           )}
 
           {survey.jobSatisfaction && (
             <>
-              <h3>Le producteur et ses employés/associés sont-ils heureux dans leur travail ?</h3>
+              <h3>Le producteur et ses employés/associés sont-ils heureux dans leur travail ?</h3>
               <Mdx code={survey.jobSatisfaction} />
             </>
           )}
 
           {survey.additionalComment && (
             <>
-              <h3>Un commentaire en plus ?</h3>
+              <h3>Un commentaire en plus ?</h3>
               <Mdx code={survey.additionalComment} />
             </>
           )}

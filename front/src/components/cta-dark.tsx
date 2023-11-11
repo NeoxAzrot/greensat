@@ -7,7 +7,7 @@ const CtaDark = () => {
         <div className="py-12 md:py-20">
           <div className="relative max-w-3xl mx-auto text-center">
             <div
-              className="absolute right-0 -mt-4 -mr-1 fill-slate-300 hidden lg:block"
+              className="absolute -right-10 -top-2 -mt-4 -mr-1 fill-slate-300 hidden lg:block"
               aria-hidden="true"
             >
               <svg className="fill-slate-300" width="56" height="43">
@@ -18,12 +18,12 @@ const CtaDark = () => {
             <div className="relative">
               <h2 className="h2 font-playfair-display text-slate-100 mb-4">
                 Tu connais un producteur qui n&apos;est pas sur la{' '}
-                <span className="text-pink-500">carte</span> ?
+                <span className="text-pink-500">carte</span> ?
               </h2>
               <p className="text-xl text-slate-400 mb-8">
                 Si tu connais des producteurs locaux intéressés par le projet, partage-les avec nous
                 en envoyant un e-mail. Ensemble, soutenons l&apos;achat local et
-                l&apos;éco-responsabilité !
+                l&apos;éco-responsabilité !
               </p>
               <div>
                 <Link

@@ -110,7 +110,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  manifest: 'manifest.json',
+  manifest: 'manifest.webmanifest',
   openGraph: {
     title: {
       template: 'Greensa’table | %s',

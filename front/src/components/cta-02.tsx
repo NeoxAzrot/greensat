@@ -5,7 +5,7 @@ const Cta02 = () => {
         <div className="py-12 md:py-20">
           <div className="relative max-w-3xl mx-auto text-center">
             <div
-              className="absolute right-0 -mt-4 -mr-1 fill-slate-300 hidden lg:block"
+              className="absolute -right-4 -top-2 -mt-4 -mr-1 fill-slate-300 hidden lg:block"
               aria-hidden="true"
             >
               <svg className="fill-slate-300" width="56" height="43">

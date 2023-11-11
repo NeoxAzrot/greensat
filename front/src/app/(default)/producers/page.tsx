@@ -9,6 +9,8 @@ import PostItem from '@/components/post-item';
 
 import { getAllProducers } from '@/services/producer';
 
+import AllContent from './all-content';
+
 export const metadata: Metadata = {
   title: 'Découvre les producteurs locaux',
   description:
@@ -176,15 +178,7 @@ const Producers = async () => {
             </div>
 
             {/* See All Articles */}
-            {/* TODO: Make it works */}
-            <div className="text-center">
-              <button className="btn text-white bg-blue-600 hover:bg-blue-700 group">
-                Voir tous les producteurs{' '}
-                <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                  -&gt;
-                </span>
-              </button>
-            </div>
+            <AllContent producers={producers.data} />
           </div>
         </div>
       </section>

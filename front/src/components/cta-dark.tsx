@@ -18,12 +18,12 @@ const CtaDark = () => {
             <div className="relative">
               <h2 className="h2 font-playfair-display text-slate-100 mb-4">
                 Tu connais un producteur qui n&apos;est pas sur la{' '}
-                <span className="text-pink-500">carte</span> ?
+                <span className="text-pink-500">carte</span> ?
               </h2>
               <p className="text-xl text-slate-400 mb-8">
                 Si tu connais des producteurs locaux intéressés par le projet, partage-les avec nous
                 en envoyant un e-mail. Ensemble, soutenons l&apos;achat local et
-                l&apos;éco-responsabilité !
+                l&apos;éco-responsabilité !
               </p>
               <div>
                 <Link

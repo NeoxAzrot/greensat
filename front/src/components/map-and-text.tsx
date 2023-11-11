@@ -42,6 +42,7 @@ const Marker = ({ producer }: { producer: Producer }) => {
   );
 };
 
+// TODO: Call component Map instead of add it again there
 const MapAndText = ({ producer }: { producer: Producer }) => {
   const mapContainer = useRef(null);
 

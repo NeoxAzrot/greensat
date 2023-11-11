@@ -142,7 +142,9 @@ const Footer = () => {
               <a
                 className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out"
                 href="https://www.instagram.com/greens_a_table"
+                target="_blank"
                 aria-label="Instagram"
+                rel="noreferrer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

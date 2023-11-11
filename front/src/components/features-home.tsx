@@ -38,9 +38,34 @@ const FeaturesHome = () => {
             </h2>
             <p className="text-xl text-slate-768">
               En plus de t’accompagner dans tes courses du quotidien, nous organisons des évènements
-              tout au long de l’année : visite de marché, marché à l’ENSAT, atelier sensibilisation
-              SSA en partenariat avec Caracole, visite de ferme en partenariat avec Avoice… reste
-              attentif pour ne rien louper !
+              tout au long de l’année : visite de marché, marché à l’ENSAT, atelier sensibilisation{' '}
+              <a
+                href="https://securite-sociale-alimentation.org/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out"
+              >
+                SSA
+              </a>{' '}
+              en partenariat avec{' '}
+              <a
+                href="https://caracole.io/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out"
+              >
+                Caracole
+              </a>
+              , visite de ferme en partenariat avec{' '}
+              <a
+                href="https://avoiceproject.wixsite.com/avoiceproject"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out"
+              >
+                Avoice
+              </a>
+              , ... reste attentif pour ne rien louper !
             </p>
           </div>
 

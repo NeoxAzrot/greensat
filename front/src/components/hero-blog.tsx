@@ -13,7 +13,7 @@ const HeroBlog = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="h1 font-playfair-display text-slate-100 mb-4">Les producteurs</h1>
             <p className="text-xl text-slate-400 mb-8">
-              Tu souhaites faire tes courses localement et facilement ? Tu es au bon endroit !
+              Tu souhaites faire tes courses localement et facilement ? Tu es au bon endroit !
             </p>
           </div>
         </div>

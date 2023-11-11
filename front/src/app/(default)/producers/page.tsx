@@ -45,7 +45,7 @@ const Producers = async () => {
     populate: '*',
   });
 
-  // TODO: Change it with a single where you can chose the featured one
+  // TODO: Chose one randomly
   const featuredProducer = producers.data[0];
 
   const latestProducers = await getAllProducers({

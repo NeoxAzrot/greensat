@@ -21,7 +21,7 @@ const Cta = () => {
               </h2>
               <p className="text-xl text-slate-500 mb-8">
                 Trouve les producteurs éco-friendly sur notre carte interactive. Explore et soutiens
-                les acteurs locaux !
+                les acteurs locaux !
               </p>
               <div>
                 <Link

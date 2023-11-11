@@ -15,11 +15,11 @@ const Cta02 = () => {
 
             <div className="relative">
               <h2 className="h2 font-playfair-display text-slate-800 mb-4">
-                Besoin d&apos;aide ou de plus d&apos;infos ?
+                Besoin d&apos;aide ou de plus d&apos;infos ?
               </h2>
               <p className="text-xl text-slate-500 mb-8">
                 N&apos;hésite pas à nous contacter si tu as des questions, besoin d&apos;assistance.
-                On est là pour toi !
+                On est là pour toi !
               </p>
               <div>
                 <a

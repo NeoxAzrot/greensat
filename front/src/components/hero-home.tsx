@@ -24,14 +24,14 @@ const HeroHome = ({ producers }: HeroHomeProps) => {
             {/* Content */}
             <div className="text-center md:text-left md:min-w-[30rem]" data-aos="fade-right">
               <h1 className="h1 font-playfair-display text-slate-100 mb-4">
-                Bienvenue sur la Greensa’table !
+                Bienvenue sur la Greensa’table !
               </h1>
               <p className="text-xl text-slate-400 mb-8">
                 Parfois, manger localement c&apos;est compliqué. Bonne nouvelle, grace à
                 Greensa’table, tu pourras trouver facilement les producteurs.trices et
                 commerçant.e.s qui t&apos;entourent. En plus d&apos;avoir accès à une description de
                 leurs pratiques socio-environnementales, tu auras des réductions et produits
-                gratuits !
+                gratuits !
               </p>
               <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
                 <div>
@@ -65,14 +65,6 @@ const HeroHome = ({ producers }: HeroHomeProps) => {
                     aria-hidden="true"
                   ></div>
                   <Map producers={producers} height="405px" width="540px" />
-                  {/* <div
-                    ref={mapContainer}
-                    className="mx-auto md:max-w-none"
-                    style={{
-                      height: '405px',
-                      width: '540px',
-                    }}
-                  /> */}
                 </div>
               </div>
             </div>

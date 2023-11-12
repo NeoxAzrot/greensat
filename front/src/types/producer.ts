@@ -14,6 +14,7 @@ interface SimpleProps {
   hours?: string;
   discount?: string;
   distance?: string;
+  useVioletGround: 'yes' | 'no' | 'wouldLike';
 }
 
 interface Props extends SimpleProps {

@@ -590,6 +590,21 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
   const data = producer.data.attributes;
   const survey = data.survey[0];
 
+  const getUseVioletGroundText = () => {
+    switch (data.useVioletGround) {
+      case 'yes':
+        return 'Le producteur utilise le Sol Violette comme monnaie locale.';
+      case 'no':
+        return 'Le producteur n’utilise pas le Sol Violette et n’est pas intéressé pour utiliser cette monnaie locale.';
+      case 'wouldLike':
+        return 'Le producteur n’utilise pas encore le sol violette, mais est intéressé pour potentiellement adhérer à cette monnaie locale dans le futur.';
+      default:
+        return '';
+    }
+  };
+
+  const useVioletGroundText = getUseVioletGroundText();
+
   // const likes = data.usersLikes.data.length;
 
   return (

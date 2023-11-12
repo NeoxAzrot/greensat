@@ -409,7 +409,8 @@ export interface ApiProducerProducer extends Schema.CollectionType {
     discount: Attribute.RichText;
     distance: Attribute.Text;
     labels: Attribute.Media;
-    violetGround: Attribute.Text;
+    useVioletGround: Attribute.Enumeration<['yes', 'no', 'wouldLike']> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

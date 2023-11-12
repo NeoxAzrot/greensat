@@ -9,6 +9,8 @@ import PostItem from '@/components/post-item';
 
 import { getAllProducers } from '@/services/producer';
 
+import { getRandomInt } from '@/utils/random';
+
 import AllContent from './all-content';
 
 export const metadata: Metadata = {
@@ -45,8 +47,13 @@ const Producers = async () => {
     populate: '*',
   });
 
-  // TODO: Chose one randomly
-  const featuredProducer = producers.data[0];
+  const featuredProducer =
+    producers.data[
+      getRandomInt({
+        min: 0,
+        max: producers.data.length - 1,
+      })
+    ];
 
   const latestProducers = await getAllProducers({
     sort: 'publishedAt:desc',

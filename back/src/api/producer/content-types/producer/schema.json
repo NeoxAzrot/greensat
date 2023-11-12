@@ -20,7 +20,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "summary": {
       "type": "text",
@@ -40,7 +42,11 @@
     },
     "businessType": {
       "type": "enumeration",
-      "enum": ["farm", "market", "store"],
+      "enum": [
+        "farm",
+        "market",
+        "store"
+      ],
       "required": true
     },
     "products": {
@@ -87,10 +93,18 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
-    "violetGround": {
-      "type": "text"
+    "useVioletGround": {
+      "type": "enumeration",
+      "enum": [
+        "yes",
+        "no",
+        "wouldLike"
+      ],
+      "required": true
     }
   }
 }

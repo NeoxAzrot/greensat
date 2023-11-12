@@ -7,6 +7,7 @@ import Cta from '@/components/cta-dark';
 import MapAndText from '@/components/map-and-text';
 import Mdx from '@/components/mdx/mdx';
 import PostDate from '@/components/post-date';
+import PostItem from '@/components/post-item';
 import Separator from '@/components/separator';
 
 import { getAllProducers, getOneProducerBySlug } from '@/services/producer';
@@ -581,6 +582,16 @@ const VegetalSurveyRender = (survey: VegetalSurvey) => {
 };
 
 const Producer = async ({ params }: { params: { slug: string } }) => {
+  const producers = await getAllProducers({
+    sort: 'title',
+    populate: '*',
+    filters: {
+      '[slug][$ne]': params.slug,
+    },
+  });
+
+  const relatedProducers = producers.data.sort(() => Math.random() - Math.random()).slice(0, 3);
+
   const producer = await getOneProducerBySlug({
     slug: params.slug,
   });
@@ -747,6 +758,21 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </article>
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="my-12 md:my-20 border-t border-slate-200" />
+
+        <h2 className="h3 font-playfair-display text-center md:text-left mb-8">
+          Découvrez d&apos;autres producteurs
+        </h2>
+
+        {/* Articles container */}
+        <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
+          {relatedProducers.map((relatedProcuder) => (
+            <PostItem key={relatedProcuder.id} {...relatedProcuder} />
+          ))}
+        </div>
+      </div>
 
       <Separator />
 

@@ -48,8 +48,7 @@ const Header = ({ mode = 'dark' }: HeaderProps) => {
             </ul>
 
             {/* Desktop sign in links */}
-            {/* TODO: Remove comments */}
-            {/* <ul className="flex grow justify-end flex-wrap items-center">
+            <ul className="flex grow justify-end flex-wrap items-center">
               <li>
                 <Link
                   href="/login"
@@ -69,7 +68,7 @@ const Header = ({ mode = 'dark' }: HeaderProps) => {
                   </span>
                 </Link>
               </li>
-            </ul> */}
+            </ul>
           </nav>
 
           <MobileMenu />

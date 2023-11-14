@@ -4,7 +4,7 @@ interface GlobalSurvey {
 
 export interface AnimalSurvey extends GlobalSurvey {
   __component: 'surveys.animal';
-  mainProducerValues?: string;
+  mainProducerValues: string;
   rearingMode?: string;
   feedSource?: string;
   antibioticTreatment?: string;
@@ -22,7 +22,7 @@ export interface AnimalSurvey extends GlobalSurvey {
 
 export interface StoreSurvey extends GlobalSurvey {
   __component: 'surveys.store';
-  mainStoreValues?: string;
+  mainProducerValues: string;
   productOriginInterest?: string;
   productOriginLabeling?: string;
   wasteManagement?: string;
@@ -33,7 +33,7 @@ export interface StoreSurvey extends GlobalSurvey {
 
 export interface TransformSurvey extends GlobalSurvey {
   __component: 'surveys.transform';
-  mainProducerValues?: string;
+  mainProducerValues: string;
   rawMaterialQualityRequirements?: string;
   rawMaterialOriginAndLabeling?: string;
   resourceConsumptionManagement?: string;
@@ -47,7 +47,7 @@ export interface TransformSurvey extends GlobalSurvey {
 
 export interface VegetalSurvey extends GlobalSurvey {
   __component: 'surveys.vegetable';
-  mainProducerValues?: string;
+  mainProducerValues: string;
   cropOrganizationalOverview?: string;
   agroecologicalPractices?: string;
   greenhouseOrSoillessCultures?: string;

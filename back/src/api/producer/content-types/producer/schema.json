@@ -20,9 +20,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "summary": {
       "type": "text",
@@ -42,11 +40,7 @@
     },
     "businessType": {
       "type": "enumeration",
-      "enum": [
-        "farm",
-        "market",
-        "store"
-      ],
+      "enum": ["farm", "market", "store"],
       "required": true
     },
     "products": {
@@ -78,7 +72,7 @@
       "required": true
     },
     "hours": {
-      "type": "richtext",
+      "type": "text",
       "required": false
     },
     "discount": {
@@ -93,17 +87,11 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "useVioletGround": {
       "type": "enumeration",
-      "enum": [
-        "yes",
-        "no",
-        "wouldLike"
-      ],
+      "enum": ["yes", "no", "wouldLike"],
       "required": true
     }
   }

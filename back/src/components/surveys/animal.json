@@ -8,7 +8,8 @@
   "options": {},
   "attributes": {
     "mainProducerValues": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "rearingMode": {
       "type": "richtext"

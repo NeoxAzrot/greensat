@@ -7,8 +7,9 @@
   },
   "options": {},
   "attributes": {
-    "mainStoreValues": {
-      "type": "string"
+    "mainProducerValues": {
+      "type": "string",
+      "required": true
     },
     "productOriginInterest": {
       "type": "richtext"

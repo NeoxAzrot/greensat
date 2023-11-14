@@ -8,7 +8,7 @@ export interface SurveysAnimal extends Schema.Component {
     description: '';
   };
   attributes: {
-    mainProducerValues: Attribute.String;
+    mainProducerValues: Attribute.String & Attribute.Required;
     rearingMode: Attribute.RichText;
     feedSource: Attribute.RichText;
     antibioticTreatment: Attribute.RichText;
@@ -33,7 +33,7 @@ export interface SurveysStore extends Schema.Component {
     description: '';
   };
   attributes: {
-    mainStoreValues: Attribute.String;
+    mainProducerValues: Attribute.String & Attribute.Required;
     productOriginInterest: Attribute.RichText;
     productOriginLabeling: Attribute.RichText;
     wasteManagement: Attribute.RichText;
@@ -51,7 +51,7 @@ export interface SurveysTransform extends Schema.Component {
     description: '';
   };
   attributes: {
-    mainProducerValues: Attribute.String;
+    mainProducerValues: Attribute.String & Attribute.Required;
     rawMaterialQualityRequirements: Attribute.RichText;
     rawMaterialOriginAndLabeling: Attribute.RichText;
     resourceConsumptionManagement: Attribute.RichText;
@@ -72,7 +72,7 @@ export interface SurveysVegetable extends Schema.Component {
     description: '';
   };
   attributes: {
-    mainProducerValues: Attribute.String;
+    mainProducerValues: Attribute.String & Attribute.Required;
     cropOrganizationalOverview: Attribute.RichText;
     agroecologicalPractices: Attribute.RichText;
     greenhouseOrSoillessCultures: Attribute.RichText;

@@ -10,6 +10,7 @@ import PostDate from '@/components/post-date';
 import PostItem from '@/components/post-item';
 import Separator from '@/components/separator';
 
+// import Testimonials from '@/components/testimonials';
 import { getAllProducers, getOneProducerBySlug } from '@/services/producer';
 
 import { AnimalSurvey, StoreSurvey, TransformSurvey, VegetalSurvey } from '@/types/surveys';
@@ -64,17 +65,6 @@ export const generateMetadata = async ({
 const AnimalSurveyRender = (survey: AnimalSurvey) => {
   return (
     <>
-      {survey.mainProducerValues && (
-        <>
-          <h3>
-            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
-          </h3>
-          <p>{survey.mainProducerValues}</p>
-
-          <Separator />
-        </>
-      )}
-
       {(survey.rearingMode ||
         survey.feedSource ||
         survey.antibioticTreatment ||
@@ -221,17 +211,6 @@ const AnimalSurveyRender = (survey: AnimalSurvey) => {
 const StoreSurveyRender = (survey: StoreSurvey) => {
   return (
     <>
-      {survey.mainStoreValues && (
-        <>
-          <h3>
-            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
-          </h3>
-          <p>{survey.mainStoreValues}</p>
-
-          <Separator />
-        </>
-      )}
-
       {(survey.productOriginInterest ||
         survey.productOriginLabeling ||
         survey.wasteManagement ||
@@ -300,17 +279,6 @@ const StoreSurveyRender = (survey: StoreSurvey) => {
 const TransformSurveyRender = (survey: TransformSurvey) => {
   return (
     <>
-      {survey.mainProducerValues && (
-        <>
-          <h3>
-            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
-          </h3>
-          <p>{survey.mainProducerValues}</p>
-
-          <Separator />
-        </>
-      )}
-
       {(survey.rawMaterialQualityRequirements ||
         survey.rawMaterialOriginAndLabeling ||
         survey.resourceConsumptionManagement ||
@@ -413,17 +381,6 @@ const TransformSurveyRender = (survey: TransformSurvey) => {
 const VegetalSurveyRender = (survey: VegetalSurvey) => {
   return (
     <>
-      {survey.mainProducerValues && (
-        <>
-          <h3>
-            En trois mots : quelles sont les valeurs/idées principales portées par le producteur ?
-          </h3>
-          <p>{survey.mainProducerValues}</p>
-
-          <Separator />
-        </>
-      )}
-
       {(survey.cropOrganizationalOverview ||
         survey.agroecologicalPractices ||
         survey.greenhouseOrSoillessCultures ||
@@ -601,21 +558,6 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
   const data = producer.data.attributes;
   const survey = data.survey[0];
 
-  const getUseVioletGroundText = () => {
-    switch (data.useVioletGround) {
-      case 'yes':
-        return 'Le producteur utilise le Sol Violette comme monnaie locale.';
-      case 'no':
-        return 'Le producteur n’utilise pas le Sol Violette et n’est pas intéressé pour utiliser cette monnaie locale.';
-      case 'wouldLike':
-        return 'Le producteur n’utilise pas encore le sol violette, mais est intéressé pour potentiellement adhérer à cette monnaie locale dans le futur.';
-      default:
-        return '';
-    }
-  };
-
-  const useVioletGroundText = getUseVioletGroundText();
-
   // const likes = data.usersLikes.data.length;
 
   return (
@@ -736,15 +678,23 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
                 {data.summary}
               </p>
             )}
+
+            <div className="prose text-lg text-slate-500 max-w-none prose-lg prose-p:leading-normal prose-headings:font-playfair-display prose-headings:text-slate-900 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium prose-strong:font-medium prose-strong:text-slate-900 prose-blockquote:pl-4 prose-blockquote:border-l-2 prose-blockquote:border-slate-900 prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-inherit before:prose-p:content-[''] after:prose-p:content-[''] prose-hr:my-8">
+              <h3>
+                En trois mots : quelles sont les valeurs/idées principales portées par le
+                producteur ?
+              </h3>
+              <p>{data.survey[0].mainProducerValues}</p>
+            </div>
           </div>
         </div>
 
         <MapAndText producer={producer.data} />
 
-        {/* TODO: Add labels and sol violette */}
-
         {/* TODO: Add product free */}
         {/* TODO: Add producer discount information */}
+
+        {/* <Testimonials /> */}
 
         {/* Article content */}
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6">

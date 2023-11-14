@@ -139,6 +139,21 @@ const MapAndText = ({ producer }: { producer: Producer }) => {
     return () => map.remove();
   });
 
+  const getUseVioletGroundText = () => {
+    switch (producer.attributes.useVioletGround) {
+      case 'yes':
+        return 'Le producteur utilise le Sol Violette comme monnaie locale.';
+      case 'no':
+        return 'Le producteur n’utilise pas le Sol Violette et n’est pas intéressé pour utiliser cette monnaie locale.';
+      case 'wouldLike':
+        return 'Le producteur n’utilise pas encore le Sol Violette, mais est intéressé pour potentiellement adhérer à cette monnaie locale dans le futur.';
+      default:
+        return '';
+    }
+  };
+
+  const useVioletGroundText = getUseVioletGroundText();
+
   return (
     <section>
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
@@ -179,12 +194,30 @@ const MapAndText = ({ producer }: { producer: Producer }) => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <div className="flex items-center mt-4">
+                    <div className="flex items-center mt-2">
                       <span className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out">
                         {producer.attributes.address}
                       </span>
                     </div>
                   </a>
+                )}
+                {producer.attributes.useVioletGround && (
+                  <p className="text-slate-400 mt-6">{useVioletGroundText}</p>
+                )}
+                {producer.attributes.labels.data.length > 0 && (
+                  <div className="flex items-center mt-2">
+                    {producer.attributes.labels.data.map((label) => (
+                      <div className="w-8 h-8 relative mr-3 shrink-0" key={label.id}>
+                        <Image
+                          className="rounded-full"
+                          src={label.attributes.url}
+                          alt={label.attributes.alternativeText || label.attributes.name}
+                          layout="fill"
+                          objectFit="cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
 

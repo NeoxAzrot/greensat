@@ -22,7 +22,7 @@ export interface AnimalSurvey extends GlobalSurvey {
 
 export interface StoreSurvey extends GlobalSurvey {
   __component: 'surveys.store';
-  mainStoreValues?: string;
+  mainProducerValues?: string;
   productOriginInterest?: string;
   productOriginLabeling?: string;
   wasteManagement?: string;

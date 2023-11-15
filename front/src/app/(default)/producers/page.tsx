@@ -9,6 +9,9 @@ import PostItem from '@/components/post-item';
 
 import { getAllProducers } from '@/services/producer';
 
+import { getRandomInt } from '@/utils/random';
+import { truncateWithEllipses } from '@/utils/string';
+
 import AllContent from './all-content';
 
 export const metadata: Metadata = {
@@ -45,8 +48,13 @@ const Producers = async () => {
     populate: '*',
   });
 
-  // TODO: Chose one randomly
-  const featuredProducer = producers.data[0];
+  const featuredProducer =
+    producers.data[
+      getRandomInt({
+        min: 0,
+        max: producers.data.length - 1,
+      })
+    ];
 
   const latestProducers = await getAllProducers({
     sort: 'publishedAt:desc',
@@ -68,6 +76,11 @@ const Producers = async () => {
     },
     populate: '*',
     pageSize: 3,
+  });
+
+  const featuredSummary = truncateWithEllipses({
+    content: featuredProducer.attributes.summary,
+    maxLength: 200,
   });
 
   return (
@@ -118,7 +131,7 @@ const Producers = async () => {
                     </Link>
                   </h2>
                 </header>
-                <p className="text-lg text-slate-500 grow">{featuredProducer.attributes.summary}</p>
+                <p className="text-lg text-slate-500 grow">{featuredSummary}</p>
                 <footer className="flex items-center mt-4">
                   <span className="text-slate-500">
                     <PostDate dateString={featuredProducer.attributes.publishedAt.toString()} />

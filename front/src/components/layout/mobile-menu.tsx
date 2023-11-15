@@ -100,8 +100,7 @@ const MobileMenu = () => {
                 Des questions ?
               </Link>
             </li>
-            {/* TODO: Remove comments */}
-            {/* <li>
+            <li>
               <Link
                 href="/login"
                 className="flex font-medium w-full text-slate-800 hover:text-blue-600 py-2"
@@ -121,7 +120,7 @@ const MobileMenu = () => {
                   -&gt;
                 </span>
               </Link>
-            </li> */}
+            </li>
           </ul>
         </Transition>
       </div>

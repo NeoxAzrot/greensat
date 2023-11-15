@@ -7,7 +7,7 @@
   },
   "options": {},
   "attributes": {
-    "mainStoreValues": {
+    "mainProducerValues": {
       "type": "string"
     },
     "productOriginInterest": {

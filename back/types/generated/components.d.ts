@@ -33,7 +33,7 @@ export interface SurveysStore extends Schema.Component {
     description: '';
   };
   attributes: {
-    mainStoreValues: Attribute.String;
+    mainProducerValues: Attribute.String;
     productOriginInterest: Attribute.RichText;
     productOriginLabeling: Attribute.RichText;
     wasteManagement: Attribute.RichText;

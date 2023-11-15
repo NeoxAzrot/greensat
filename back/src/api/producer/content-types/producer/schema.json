@@ -20,7 +20,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "summary": {
       "type": "text",
@@ -40,7 +42,11 @@
     },
     "businessType": {
       "type": "enumeration",
-      "enum": ["farm", "market", "store"],
+      "enum": [
+        "farm",
+        "market",
+        "store"
+      ],
       "required": true
     },
     "products": {
@@ -72,7 +78,7 @@
       "required": true
     },
     "hours": {
-      "type": "richtext",
+      "type": "text",
       "required": false
     },
     "discount": {
@@ -87,10 +93,32 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
-    "violetGround": {
-      "type": "text"
+    "useVioletGround": {
+      "type": "enumeration",
+      "enum": [
+        "yes",
+        "no",
+        "wouldLike"
+      ],
+      "required": true
+    },
+    "pictos": {
+      "type": "customField",
+      "options": [
+        "Bien être animal:animalWelfare",
+        "Pâturage/élevage en plein air:freeRangeFarming",
+        "Producteur transformateur:transformingProducer",
+        "Réduction des déchets:wasteReduction",
+        "Pratiques agroécologiques:agroecologicalPractices",
+        "Engagement solidaire ou social:communityEngagement",
+        "Approvisionnement local:localSourcing",
+        "Transparence et partage:transparencyAndSharing"
+      ],
+      "customField": "plugin::multi-select.multi-select"
     }
   }
 }

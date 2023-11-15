@@ -4,16 +4,18 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import Cta from '@/components/cta-dark';
+import Tooltip from '@/components/layout/tooltip';
 import MapAndText from '@/components/map-and-text';
 import Mdx from '@/components/mdx/mdx';
 import PostDate from '@/components/post-date';
 import PostItem from '@/components/post-item';
 import Separator from '@/components/separator';
 
-// import Testimonials from '@/components/testimonials';
 import { getAllProducers, getOneProducerBySlug } from '@/services/producer';
 
 import { AnimalSurvey, StoreSurvey, TransformSurvey, VegetalSurvey } from '@/types/surveys';
+
+import { getPictosImages } from '@/utils/producer';
 
 export const generateStaticParams = async () => {
   const producers = await getAllProducers({});
@@ -558,7 +560,11 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
   const data = producer.data.attributes;
   const survey = data.survey[0];
 
-  // const likes = data.usersLikes.data.length;
+  const likes = data.usersLikes.data.length;
+
+  const pictos = getPictosImages({
+    pictos: data.pictos || [],
+  });
 
   return (
     <>
@@ -600,56 +606,16 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
                       </span>
                     </div>
                     {/* Social links */}
-                    {/* TODO: Add number of likes for the month */}
-                    {/* <div className="flex justify-center mt-4 md:mt-0">
-                      <ul className="flex space-x-5 mb-4 md:order-1 md:ml-4 md:mb-0">
-                        <li>
-                          <a
-                            className="text-blue-600 hover:text-blue-500 transition duration-150 ease-in-out"
-                            href="#0"
-                            aria-label="Twitter"
-                          >
-                            <svg
-                              className="w-5 h-5 fill-current"
-                              viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M20 10.025C20 4.491 15.52 0 10 0S0 4.491 0 10.025c0 4.852 3.44 8.892 8 9.825v-6.817H6v-3.008h2V7.52a3.508 3.508 0 0 1 3.5-3.509H14v3.008h-2c-.55 0-1 .45-1 1.002v2.005h3v3.008h-3V20c5.05-.501 9-4.772 9-9.975Z" />
-                            </svg>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="text-blue-600 hover:text-blue-500 transition duration-150 ease-in-out"
-                            href="#0"
-                            aria-label="Twitter"
-                          >
-                            <svg
-                              className="w-5 h-5 fill-current"
-                              viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M20 3.897c-.75.33-1.5.577-2.333.66A4.4 4.4 0 0 0 19.5 2.33c-.833.495-1.667.825-2.583.99a4.053 4.053 0 0 0-3-1.32c-2.25 0-4.084 1.814-4.084 4.041 0 .33 0 .66.084.907-3.5-.164-6.5-1.814-8.5-4.288C1 3.32.833 3.98.833 4.722c0 1.402.75 2.639 1.834 3.381-.667 0-1.334-.165-1.834-.495v.083c0 1.98 1.417 3.629 3.25 3.958-.333.083-.666.165-1.083.165-.25 0-.5 0-.75-.082.5 1.65 2 2.804 3.833 2.804C4.667 15.608 2.917 16.268 1 16.268c-.333 0-.667 0-1-.082C1.833 17.34 4 18 6.25 18c7.583 0 11.667-6.186 11.667-11.546v-.495c.833-.578 1.5-1.32 2.083-2.062Z" />
-                            </svg>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="text-blue-600 hover:text-blue-500 transition duration-150 ease-in-out"
-                            href="#0"
-                            aria-label="Twitter"
-                          >
-                            <svg
-                              className="w-5 h-5 fill-current"
-                              viewBox="0 0 20 20"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M10 0C4.5 0 0 4.5 0 10c0 4.25 2.667 7.833 6.333 9.333-.083-.75-.166-2 0-2.833.167-.75 1.167-5 1.167-5s-.25-.667-.25-1.5c0-1.417.833-2.417 1.833-2.417.834 0 1.25.667 1.25 1.417 0 .833-.583 2.167-.833 3.333-.25 1 .5 1.834 1.5 1.834 1.75 0 3.167-1.834 3.167-4.584 0-2.416-1.75-4.083-4.167-4.083-2.833 0-4.5 2.167-4.5 4.333 0 .834.333 1.75.75 2.25.083.084.083.167.083.25-.083.334-.25 1-.25 1.167-.083.167-.166.25-.333.167-1.25-.584-2-2.417-2-3.834 0-3.166 2.333-6.083 6.583-6.083 3.5 0 6.167 2.5 6.167 5.75 0 3.417-2.167 6.25-5.167 6.25-1 0-2-.5-2.333-1.167 0 0-.5 1.917-.583 2.417-.25.833-.834 1.917-1.25 2.583C8 19.833 9 20 10 20c5.5 0 10-4.5 10-10S15.5 0 10 0Z" />
-                            </svg>
-                          </a>
-                        </li>
-                      </ul>
-                    </div> */}
+                    <div className="flex justify-center mt-4 md:mt-0 font-semibold text-blue-600 hover:text-blue-500 transition duration-150 ease-in-out cursor-pointer">
+                      <p className="mr-2 select-none">{likes}</p>
+                      <svg
+                        className="w-5 h-5 fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                      >
+                        <path d="M313.4 32.9c26 5.2 42.9 30.5 37.7 56.5l-2.3 11.4c-5.3 26.7-15.1 52.1-28.8 75.2H464c26.5 0 48 21.5 48 48c0 18.5-10.5 34.6-25.9 42.6C497 275.4 504 288.9 504 304c0 23.4-16.8 42.9-38.9 47.1c4.4 7.3 6.9 15.8 6.9 24.9c0 21.3-13.9 39.4-33.1 45.6c.7 3.3 1.1 6.8 1.1 10.4c0 26.5-21.5 48-48 48H294.5c-19 0-37.5-5.6-53.3-16.1l-38.5-25.7C176 420.4 160 390.4 160 358.3V320 272 247.1c0-29.2 13.3-56.7 36-75l7.4-5.9c26.5-21.2 44.6-51 51.2-84.2l2.3-11.4c5.2-26 30.5-42.9 56.5-37.7zM32 192H96c17.7 0 32 14.3 32 32V448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32z" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
@@ -674,18 +640,38 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 mb-14">
           <div className="max-w-3xl mx-auto">
             {data.summary && (
-              <p className="text-lg text-slate-500 border-l-2 border-slate-800 pl-4 mb-8">
+              <p className="text-lg text-slate-500 border-l-2 border-slate-800 pl-4 mb-6">
                 {data.summary}
               </p>
             )}
 
-            <div className="prose text-lg text-slate-500 max-w-none prose-lg prose-p:leading-normal prose-headings:font-playfair-display prose-headings:text-slate-900 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium prose-strong:font-medium prose-strong:text-slate-900 prose-blockquote:pl-4 prose-blockquote:border-l-2 prose-blockquote:border-slate-900 prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-inherit before:prose-p:content-[''] after:prose-p:content-[''] prose-hr:my-8">
-              <h3>
-                En trois mots : quelles sont les valeurs/idées principales portées par le
-                producteur ?
-              </h3>
-              <p>{data.survey[0].mainProducerValues}</p>
-            </div>
+            {pictos.length > 0 && (
+              <div className="flex items-center mb-8">
+                {pictos.map((picto, index) => (
+                  <div className="mr-3 shrink-0" key={`picto-${index}`}>
+                    <Tooltip content={picto.caption}>
+                      <Image
+                        className="rounded-full"
+                        src={picto.image.src}
+                        alt={picto.caption}
+                        width="48"
+                        height="48"
+                      />
+                    </Tooltip>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {data.survey[0]?.mainProducerValues && (
+              <div className="prose text-lg text-slate-500 max-w-none prose-lg prose-p:leading-normal prose-headings:font-playfair-display prose-headings:text-slate-900 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium prose-strong:font-medium prose-strong:text-slate-900 prose-blockquote:pl-4 prose-blockquote:border-l-2 prose-blockquote:border-slate-900 prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-inherit before:prose-p:content-[''] after:prose-p:content-[''] prose-hr:my-8">
+                <h3>
+                  En trois mots : quelles sont les valeurs/idées principales portées par le
+                  producteur ?
+                </h3>
+                <p>{data.survey[0].mainProducerValues}</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -693,7 +679,6 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
 
         {/* TODO: Add product free */}
         {/* TODO: Add producer discount information */}
-
         {/* <Testimonials /> */}
 
         {/* Article content */}
@@ -713,7 +698,7 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
         <div className="my-12 md:my-20 border-t border-slate-200" />
 
         <h2 className="h3 font-playfair-display text-center md:text-left mb-8">
-          Découvrez d&apos;autres producteurs
+          Découvre d&apos;autres producteurs
         </h2>
 
         {/* Articles container */}

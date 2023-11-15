@@ -411,6 +411,20 @@ export interface ApiProducerProducer extends Schema.CollectionType {
     labels: Attribute.Media;
     useVioletGround: Attribute.Enumeration<['yes', 'no', 'wouldLike']> &
       Attribute.Required;
+    pictos: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'Bien \u00EAtre animal:animalWelfare',
+          'P\u00E2turage/\u00E9levage en plein air:freeRangeFarming',
+          'Producteur transformateur:transformingProducer',
+          'R\u00E9duction des d\u00E9chets:wasteReduction',
+          'Pratiques agro\u00E9cologiques:agroecologicalPractices',
+          'Engagement solidaire ou social:communityEngagement',
+          'Approvisionnement local:localSourcing',
+          'Transparence et partage:transparencyAndSharing'
+        ]
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

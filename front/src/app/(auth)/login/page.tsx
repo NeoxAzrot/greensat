@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next/types';
 
+import PageBG from '@/public/images/login.webp';
 import CustomerAvatar from '@/public/images/template/customer-avatar-05.jpg';
-import PageBG from '@/public/images/template/sign-in-bg.jpg';
 
 import Logo from '@/components/layout/logo';
 

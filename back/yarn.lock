@@ -1508,7 +1508,7 @@
     "@strapi/utils" "4.14.4"
     "fs-extra" "10.0.0"
 
-"@strapi/strapi@^4.3.4", "@strapi/strapi@4.14.4":
+"@strapi/strapi@^4.3.4", "@strapi/strapi@^4.4.0", "@strapi/strapi@4.14.4":
   "integrity" "sha512-XCg/DV4GpmYEz0IJJhR/YqcQLYB++EiYSUy5H40Ta2oKruCrfibFWxoNJt/LWuVqYu2YYZFJI8peQd+mXXRdxQ=="
   "resolved" "https://registry.npmjs.org/@strapi/strapi/-/strapi-4.14.4.tgz"
   "version" "4.14.4"
@@ -8296,6 +8296,11 @@
   "integrity" "sha512-f9aPhy8fYBuMN+sNfakZV18U39PbalgjXG3lLB9WkaYTxijru61wb57V9wxxNthXM5Sd88ETBWi29qLAsHO52Q=="
   "resolved" "https://registry.npmjs.org/std-env/-/std-env-3.4.3.tgz"
   "version" "3.4.3"
+
+"strapi-plugin-multi-select@^1.2.2":
+  "integrity" "sha512-D10hSUzFn7TU3fwH7SUn4/2dsL/JtSgyLLz7S8ozBQbK+GPjOJU264h6lpGppURkxwdXbihJvGzutZlM0DzFVQ=="
+  "resolved" "https://registry.npmjs.org/strapi-plugin-multi-select/-/strapi-plugin-multi-select-1.2.2.tgz"
+  "version" "1.2.2"
 
 "stream-chain@^2.2.5", "stream-chain@2.2.5":
   "integrity" "sha512-1TJmBx6aSWqZ4tx7aTpBDXK0/e2hhcNSTV8+CbFJtDjbb+I1mZ8lHit0Grw9GRT+6JbIrrDd8esncgBi8aBXGA=="

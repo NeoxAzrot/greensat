@@ -5,11 +5,11 @@ import { ReactNode, useState } from 'react';
 
 interface TooltipProps {
   children: ReactNode;
-  className?: string;
   position?: 'top' | 'right' | 'bottom' | 'left';
+  content: string;
 }
 
-const Tooltip = ({ children, className = '', position = 'top' }: TooltipProps) => {
+const Tooltip = ({ children, position = 'top', content }: TooltipProps) => {
   const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
 
   const positionOuterClasses = () => {
@@ -40,27 +40,26 @@ const Tooltip = ({ children, className = '', position = 'top' }: TooltipProps) =
 
   return (
     <div
-      className={`relative ${className}`}
+      className="relative"
       onMouseEnter={() => setTooltipOpen(true)}
       onMouseLeave={() => setTooltipOpen(false)}
       onFocus={() => setTooltipOpen(true)}
       onBlur={() => setTooltipOpen(false)}
     >
-      <button
+      <div
         className="block"
         aria-haspopup="true"
         aria-expanded={tooltipOpen}
         onClick={(e) => e.preventDefault()}
       >
-        <svg className="w-4 h-4 fill-current text-slate-400 shrink-0" viewBox="0 0 16 16">
-          <path d="M8 0c4.4 0 8 3.6 8 8s-3.6 8-8 8-8-3.6-8-8 3.6-8 8-8Zm0 14c3.3 0 6-2.7 6-6s-2.7-6-6-6-6 2.7-6 6 2.7 6 6 6ZM7 7h2v5H7V7Zm1-1a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-        </svg>
-      </button>
+        {children}
+      </div>
+
       <div className={`z-10 absolute ${positionOuterClasses()}`}>
         <Transition
           show={tooltipOpen}
           as="div"
-          className={`min-w-[12rem] bg-slate-800 p-2 rounded overflow-hidden ${positionInnerClasses()}`}
+          className={`min-w-[12rem] bg-slate-800 p-2 rounded overflow-hidden text-xs text-slate-100 text-center ${positionInnerClasses()}`}
           enter="transition ease-out duration-200 transform"
           enterFrom="opacity-0 -translate-y-2"
           enterTo="opacity-100 translate-y-0"
@@ -68,7 +67,7 @@ const Tooltip = ({ children, className = '', position = 'top' }: TooltipProps) =
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          {children}
+          {content}
         </Transition>
       </div>
     </div>

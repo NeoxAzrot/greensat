@@ -10,6 +10,7 @@ import PostItem from '@/components/post-item';
 import { getAllProducers } from '@/services/producer';
 
 import { getRandomInt } from '@/utils/random';
+import { truncateWithEllipses } from '@/utils/string';
 
 import AllContent from './all-content';
 
@@ -77,6 +78,11 @@ const Producers = async () => {
     pageSize: 3,
   });
 
+  const featuredSummary = truncateWithEllipses({
+    content: featuredProducer.attributes.summary,
+    maxLength: 200,
+  });
+
   return (
     <>
       <Hero />
@@ -125,7 +131,7 @@ const Producers = async () => {
                     </Link>
                   </h2>
                 </header>
-                <p className="text-lg text-slate-500 grow">{featuredProducer.attributes.summary}</p>
+                <p className="text-lg text-slate-500 grow">{featuredSummary}</p>
                 <footer className="flex items-center mt-4">
                   <span className="text-slate-500">
                     <PostDate dateString={featuredProducer.attributes.publishedAt.toString()} />

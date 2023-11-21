@@ -1,9 +1,9 @@
 import { Metadata } from 'next/types';
 
-import Clients from '@/components/clients-02';
-import ClientsExplanation from '@/components/clients-explanation';
-import Cta from '@/components/cta';
-import Hero from '@/components/hero-about';
+import CtaMap from '@/components/cta-map';
+import HeroImage from '@/components/hero-image';
+import Partners from '@/components/partners';
+import PartnersExplanation from '@/components/partners-explanation';
 import TeamMembers from '@/components/team-members';
 
 import Content from './content';
@@ -39,12 +39,12 @@ export const metadata: Metadata = {
 const About = () => {
   return (
     <>
-      <Hero />
+      <HeroImage />
       <Content />
       <TeamMembers />
-      <Clients />
-      <ClientsExplanation />
-      <Cta />
+      <Partners />
+      <PartnersExplanation />
+      <CtaMap />
     </>
   );
 };

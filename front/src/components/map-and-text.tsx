@@ -51,7 +51,7 @@ const MapAndText = ({ producer }: { producer: Producer }) => {
                   <p className="text-slate-800">Informations</p>
                 </h2>
                 {producer.attributes.hours && (
-                  <p className="text-lg text-slate-500 border-l-2 border-slate-800 pl-4 mb-8">
+                  <p className="text-lg text-slate-500 border-l-2 border-slate-800 pl-4 mb-8 whitespace-pre-wrap">
                     {producer.attributes.hours}
                   </p>
                 )}
@@ -90,6 +90,7 @@ const MapAndText = ({ producer }: { producer: Producer }) => {
                           alt={label.attributes.alternativeText || label.attributes.name}
                           layout="fill"
                           objectFit="cover"
+                          loading="lazy"
                         />
                       </div>
                     ))}

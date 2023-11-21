@@ -35,6 +35,7 @@ const TeamMembers = () => {
                   src={LiseImage}
                   width={120}
                   height={120}
+                  loading="lazy"
                   alt="Member 01"
                 />
               </div>
@@ -57,6 +58,7 @@ const TeamMembers = () => {
                   src={MaeImage}
                   width={120}
                   height={120}
+                  loading="lazy"
                   alt="Member 02"
                 />
               </div>
@@ -77,6 +79,7 @@ const TeamMembers = () => {
                   src={ClemenceImage}
                   width={120}
                   height={120}
+                  loading="lazy"
                   alt="Member 03"
                 />
               </div>
@@ -97,6 +100,7 @@ const TeamMembers = () => {
                   src={AmbreImage}
                   width={120}
                   height={120}
+                  loading="lazy"
                   alt="Member 03"
                 />
               </div>
@@ -117,6 +121,7 @@ const TeamMembers = () => {
                   src={AliceImage}
                   width={120}
                   height={120}
+                  loading="lazy"
                   alt="Member 04"
                 />
               </div>
@@ -137,6 +142,7 @@ const TeamMembers = () => {
                   src={CamilleImage}
                   width={120}
                   height={120}
+                  loading="lazy"
                   alt="Member 05"
                 />
               </div>
@@ -159,6 +165,7 @@ const TeamMembers = () => {
                   src={AlexandreImage}
                   width={120}
                   height={120}
+                  loading="lazy"
                   alt="Member 05"
                 />
               </div>
@@ -181,6 +188,7 @@ const TeamMembers = () => {
                   src={SamuelImage}
                   width={120}
                   height={120}
+                  loading="lazy"
                   alt="Member 06"
                 />
               </div>
@@ -203,6 +211,7 @@ const TeamMembers = () => {
                   src={PaulImage}
                   width={120}
                   height={120}
+                  loading="lazy"
                   alt="Member 06"
                 />
               </div>
@@ -211,28 +220,6 @@ const TeamMembers = () => {
                 Acteurs couteaux-suisses et petites mains
               </div>
             </div>
-
-            {/* 10th member */}
-            {/* <div
-              className="text-center"
-              data-aos="fade-up"
-              data-aos-anchor="[data-aos-id-team]"
-              data-aos-delay={500}
-            >
-              <div className="inline-flex mb-4">
-                <Image
-                  className="rounded-full grayscale"
-                  src={MargotImage}
-                  width={120}
-                  height={120}
-                  alt="Member 06"
-                />
-              </div>
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Margot</h4>
-              <div className="font-medium text-blue-600">
-                Acteurs couteaux-suisses et petites mains
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

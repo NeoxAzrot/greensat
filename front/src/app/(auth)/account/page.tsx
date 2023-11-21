@@ -122,7 +122,7 @@ const Account = () => {
             src={PageBG}
             width={760}
             height={900}
-            priority
+            loading="lazy"
             alt="Background"
           />
         </div>
@@ -151,6 +151,7 @@ const Account = () => {
                     src={CustomerAvatar}
                     width={32}
                     height={32}
+                    loading="lazy"
                     alt="Customer Avatar 05"
                   />
                 </a>

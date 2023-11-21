@@ -3,13 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import Cta from '@/components/cta-dark';
+import CtaRecommendation from '@/components/cta-recommendation';
+import Date from '@/components/date';
 import Tooltip from '@/components/layout/tooltip';
 import MapAndText from '@/components/map-and-text';
-import PostDate from '@/components/post-date';
-import PostItem from '@/components/post-item';
+import Mdx from '@/components/mdx';
+import ProducerItem from '@/components/producer';
+import Products from '@/components/products';
 import Separator from '@/components/separator';
-import Testimonials from '@/components/testimonials';
 
 import { getAllProducers, getOneProducerBySlug } from '@/services/producer';
 import { getAllProducts } from '@/services/product';
@@ -141,7 +142,7 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
                     {/* Author meta */}
                     <div className="flex items-center justify-center">
                       <span className="text-slate-400">
-                        <PostDate dateString={data.publishedAt.toString()} />
+                        <Date dateString={data.publishedAt.toString()} />
                       </span>
                     </div>
                     {/* Social links */}
@@ -166,7 +167,7 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
                       src={data.image.data.attributes.url}
                       width={768}
                       height={432}
-                      priority
+                      loading="lazy"
                       alt={data.title}
                     />
                   </figure>
@@ -195,6 +196,7 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
                         alt={picto.caption}
                         width="72"
                         height="72"
+                        loading="lazy"
                       />
                     </Tooltip>
                   </div>
@@ -219,10 +221,8 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
         {data.discount && (
           <>
             <div className="relative max-w-6xl mx-auto px-4 sm:px-6 mb-14">
-              <div className="max-w-3xl mx-auto">
-                <p className="text-lg text-slate-500 border-l-2 border-slate-800 pl-4 mb-6">
-                  {data.discount}
-                </p>
+              <div className="max-w-3xl mx-auto border-l-2 border-slate-800 pl-4 mb-6">
+                <Mdx code={data.discount} />
               </div>
             </div>
 
@@ -230,7 +230,7 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
           </>
         )}
 
-        {products.data.length > 0 && <Testimonials products={products.data} />}
+        {products.data.length > 0 && <Products products={products.data} />}
 
         {/* Article content */}
         {survey && (
@@ -257,14 +257,14 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
         {/* Articles container */}
         <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
           {relatedProducers.map((relatedProcuder) => (
-            <PostItem key={relatedProcuder.id} {...relatedProcuder} />
+            <ProducerItem key={relatedProcuder.id} {...relatedProcuder} />
           ))}
         </div>
       </div>
 
       <Separator />
 
-      <Cta />
+      <CtaRecommendation />
     </>
   );
 };

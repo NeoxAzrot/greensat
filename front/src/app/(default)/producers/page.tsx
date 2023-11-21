@@ -2,10 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next/types';
 
-import Tags from '@/components/blog-tags';
-import Hero from '@/components/hero-blog';
-import PostDate from '@/components/post-date';
-import PostItem from '@/components/post-item';
+import Date from '@/components/date';
+import Hero from '@/components/hero';
+import Producer from '@/components/producer';
+import Tags from '@/components/tags';
 
 import { getAllProducers, getPopularProducers } from '@/services/producer';
 
@@ -84,7 +84,10 @@ const Producers = async () => {
 
   return (
     <>
-      <Hero />
+      <Hero
+        title="Les producteurs"
+        description="Tu souhaites faire tes courses localement et facilement ? Tu es au bon endroit !"
+      />
       <Tags producers={producers.data} />
 
       {/* Featured article */}
@@ -104,7 +107,7 @@ const Producers = async () => {
                     src={featuredProducer.attributes.image.data.attributes.url}
                     width={540}
                     height={340}
-                    priority
+                    loading="lazy"
                     alt={featuredProducer.attributes.title}
                   />
                   {featuredProducerProducts.length > 0 && (
@@ -141,7 +144,7 @@ const Producers = async () => {
                 <p className="text-lg text-slate-500 grow">{featuredSummary}</p>
                 <footer className="flex items-center mt-4">
                   <span className="text-slate-500">
-                    <PostDate dateString={featuredProducer.attributes.publishedAt.toString()} />
+                    <Date dateString={featuredProducer.attributes.publishedAt.toString()} />
                   </span>
                 </footer>
               </div>
@@ -163,7 +166,7 @@ const Producers = async () => {
               {/* Articles container */}
               <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
                 {latestProducers?.data.map((producer) => (
-                  <PostItem key={producer.id} {...producer} />
+                  <Producer key={producer.id} {...producer} />
                 ))}
               </div>
             </div>
@@ -178,7 +181,7 @@ const Producers = async () => {
                 {/* Articles container */}
                 <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
                   {popularProducers?.data.map((producer) => (
-                    <PostItem key={producer.id} {...producer} />
+                    <Producer key={producer.id} {...producer} />
                   ))}
                 </div>
               </div>
@@ -193,7 +196,7 @@ const Producers = async () => {
               {/* Articles container */}
               <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
                 {marketProducers?.data.map((producer) => (
-                  <PostItem key={producer.id} {...producer} />
+                  <Producer key={producer.id} {...producer} />
                 ))}
               </div>
             </div>

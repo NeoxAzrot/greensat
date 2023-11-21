@@ -23,7 +23,7 @@ const Footer = () => {
                   src={LogoImage}
                   width={40}
                   height={40}
-                  priority
+                  loading="lazy"
                   alt="About intro"
                 />
               </Link>

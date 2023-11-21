@@ -96,7 +96,7 @@ const ResetPassword = () => {
             src={PageBg}
             width={760}
             height={900}
-            priority
+            loading="lazy"
             alt="Background"
           />
         </div>

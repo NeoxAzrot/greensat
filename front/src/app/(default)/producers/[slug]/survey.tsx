@@ -1,4 +1,4 @@
-import Mdx from '@/components/mdx/mdx';
+import Mdx from '@/components/mdx';
 import Separator from '@/components/separator';
 
 import { AnimalSurvey, StoreSurvey, TransformSurvey, VegetalSurvey } from '@/types/surveys';

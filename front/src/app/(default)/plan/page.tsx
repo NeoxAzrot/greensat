@@ -1,6 +1,6 @@
 import { Metadata } from 'next/types';
 
-import Hero from '@/components/hero-legacy';
+import Hero from '@/components/hero';
 
 import Content from './content';
 

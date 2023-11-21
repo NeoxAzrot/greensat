@@ -50,6 +50,7 @@ const Marker = ({ producer }: MarkerProps) => {
       src={icon}
       width={36}
       height={36}
+      loading="lazy"
       alt={producer.attributes.title}
     />
   );

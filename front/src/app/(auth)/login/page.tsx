@@ -118,7 +118,7 @@ const Login = () => {
             src={PageBG}
             width={760}
             height={900}
-            priority
+            loading="lazy"
             alt="Background"
           />
         </div>

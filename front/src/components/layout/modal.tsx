@@ -14,7 +14,7 @@ interface ModalProps {
 const Modal = ({ children, id, ariaLabel, show, handleClose }: ModalProps) => {
   const modalContent = useRef<HTMLDivElement>(null);
 
-  // close the modal on click outside
+  // Close the modal on click outside
   useEffect(() => {
     const clickHandler = ({ target }: { target: EventTarget | null }): void => {
       if (!show || modalContent.current?.contains(target as Node)) return;
@@ -24,7 +24,7 @@ const Modal = ({ children, id, ariaLabel, show, handleClose }: ModalProps) => {
     return () => document.removeEventListener('click', clickHandler);
   }, [show, handleClose, modalContent]);
 
-  // close the modal if the esc key is pressed
+  // Close the modal if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }: { keyCode: number }) => {
       if (keyCode !== 27) return;
@@ -37,7 +37,6 @@ const Modal = ({ children, id, ariaLabel, show, handleClose }: ModalProps) => {
 
   return (
     <>
-      {/* Modal backdrop */}
       <Transition
         show={show}
         enter="transition ease-out duration-200"
@@ -50,7 +49,6 @@ const Modal = ({ children, id, ariaLabel, show, handleClose }: ModalProps) => {
         aria-hidden="true"
       />
 
-      {/* Modal dialog */}
       <Transition
         show={show}
         enter="transition ease-out duration-200"

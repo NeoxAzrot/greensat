@@ -1,8 +1,13 @@
 import { format, parseISO } from 'date-fns';
 import fr from 'date-fns/locale/fr';
 
-const Date = ({ dateString }: { dateString: string }) => {
+interface DateProps {
+  dateString: string;
+}
+
+const Date = ({ dateString }: DateProps) => {
   const date = parseISO(dateString);
+
   return (
     <time dateTime={dateString}>
       {format(date, 'd MMMM, yyyy', {

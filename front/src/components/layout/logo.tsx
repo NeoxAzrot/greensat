@@ -5,14 +5,14 @@ import LogoImage from '@/public/images/favicon/logo.webp';
 
 const Logo = () => {
   return (
-    <Link href="/" className="inline-flex" aria-label="Greensa’table">
+    <Link href="/" className="inline-flex" aria-label="Accueil">
       <Image
         className="object-cover"
         src={LogoImage}
         width={40}
         height={40}
         loading="lazy"
-        alt="About intro"
+        alt="Greensa’table logo"
       />
     </Link>
   );

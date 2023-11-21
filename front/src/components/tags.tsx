@@ -11,7 +11,11 @@ interface FilterProps {
   type?: Survey['__component'];
 }
 
-const Tags = ({ producers }: { producers: Producers }) => {
+interface TagsProps {
+  producers: Producers;
+}
+
+const Tags = ({ producers }: TagsProps) => {
   const [filters, setFilters] = useState<FilterProps>({
     type: undefined,
   });
@@ -62,6 +66,7 @@ const Tags = ({ producers }: { producers: Producers }) => {
                   Produits animaux
                 </button>
               </li>
+
               <li className="mx-5 my-2">
                 <button
                   className={getButtonClasses('surveys.vegetable')}
@@ -70,6 +75,7 @@ const Tags = ({ producers }: { producers: Producers }) => {
                   Produits végétaux
                 </button>
               </li>
+
               <li className="mx-5 my-2">
                 <button
                   className={getButtonClasses('surveys.transform')}
@@ -78,6 +84,7 @@ const Tags = ({ producers }: { producers: Producers }) => {
                   Produits transformés
                 </button>
               </li>
+
               <li className="mx-5 my-2">
                 <button
                   className={getButtonClasses('surveys.store')}
@@ -98,7 +105,7 @@ const Tags = ({ producers }: { producers: Producers }) => {
             <div
               className="absolute inset-0 pointer-events-none border-2 border-slate-200 translate-x-4 translate-y-4 -z-10"
               aria-hidden="true"
-            ></div>
+            />
 
             <Map producers={filteredProducers} />
           </div>

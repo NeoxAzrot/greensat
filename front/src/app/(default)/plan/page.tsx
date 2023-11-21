@@ -2,6 +2,8 @@ import { Metadata } from 'next/types';
 
 import Hero from '@/components/hero';
 
+import { getAllProducers } from '@/services/producer';
+
 import Content from './content';
 
 export const metadata: Metadata = {
@@ -33,11 +35,14 @@ export const metadata: Metadata = {
 };
 
 const TermsOfUSe = async () => {
+  const producers = await getAllProducers({
+    sort: 'title',
+  });
+
   return (
     <>
       <Hero title="Plan du site" />
-      {/* @ts-expect-error Server Component */}
-      <Content />
+      <Content producers={producers.data} />
     </>
   );
 };

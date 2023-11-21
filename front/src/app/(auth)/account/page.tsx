@@ -7,6 +7,7 @@ import PageBG from '@/public/images/template/sign-in-bg.jpg';
 
 import Logo from '@/components/layout/logo';
 
+// TODO: Review this page when it's done with aria, useless comment, etc.
 export const metadata: Metadata = {
   title: 'Ton espace personnel',
   description:

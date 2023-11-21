@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 const CtaRecommendation = () => {
   return (
     <section className="bg-slate-900">
@@ -20,21 +18,24 @@ const CtaRecommendation = () => {
                 Tu connais un producteur qui n&apos;est pas sur la{' '}
                 <span className="text-pink-500">carte</span> ?
               </h2>
+
               <p className="text-xl text-slate-400 mb-8">
                 Si tu connais des producteurs locaux intéressés par le projet, partage-les avec nous
                 en envoyant un e-mail. Ensemble, soutenons l&apos;achat local et
                 l&apos;éco-responsabilité !
               </p>
+
               <div>
-                <Link
+                <a
                   className="btn text-white bg-blue-600 hover:bg-blue-700 group"
                   href="mailto:contact@greensatable.fr?subject=Proposition de producteur"
+                  aria-label="Envoyer un e-mail à contact@greensatable.fr"
                 >
                   Envoyer un e-mail{' '}
                   <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                     -&gt;
                   </span>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

@@ -17,14 +17,17 @@ const CtaSupport = () => {
               <h2 className="h2 font-playfair-display text-slate-800 mb-4">
                 Besoin d&apos;aide ou de plus d&apos;infos ?
               </h2>
+
               <p className="text-xl text-slate-500 mb-8">
                 N&apos;hésite pas à nous contacter si tu as des questions, besoin d&apos;assistance.
                 On est là pour toi !
               </p>
+
               <div>
                 <a
                   className="btn text-white bg-blue-600 hover:bg-blue-700 group"
                   href="mailto:contact@greensatable.fr"
+                  aria-label="Envoyer un e-mail à contact@greensatable.fr"
                 >
                   Envoyer un e-mail{' '}
                   <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">

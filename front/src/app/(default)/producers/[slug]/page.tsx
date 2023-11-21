@@ -24,6 +24,18 @@ import {
   VegetalSurveyRender,
 } from './survey';
 
+interface MetadataProps {
+  params: {
+    slug: string;
+  };
+}
+
+interface ProducerProps {
+  params: {
+    slug: string;
+  };
+}
+
 export const generateStaticParams = async () => {
   const producers = await getAllProducers({});
 
@@ -34,9 +46,7 @@ export const generateStaticParams = async () => {
 
 export const generateMetadata = async ({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata | undefined> => {
+}: MetadataProps): Promise<Metadata | undefined> => {
   const producer = await getOneProducerBySlug({
     slug: params.slug,
   });
@@ -71,7 +81,7 @@ export const generateMetadata = async ({
   };
 };
 
-const Producer = async ({ params }: { params: { slug: string } }) => {
+const Producer = async ({ params }: ProducerProps) => {
   const producers = await getAllProducers({
     sort: 'title',
     populate: '*',
@@ -110,44 +120,44 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
     <>
       <article>
         <header className="relative">
-          {/* Dark background */}
           <div
             className="absolute inset-0 bg-slate-900 pointer-events-none -z-10 mb-36 lg:mb-0 lg:h-[48rem] [clip-path:polygon(0_0,_5760px_0,_5760px_calc(100%_-_352px),_0_100%)]"
             aria-hidden="true"
-          ></div>
+          />
 
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div className="pt-32 md:pt-40 pb-8">
               <div className="max-w-3xl mx-auto">
                 <div className="mb-8">
-                  {/* Title and excerpt */}
                   <div className="text-center md:text-left">
                     <Link
                       className="inline-flex font-semibold text-blue-600 hover:text-blue-500 transition duration-150 ease-in-out group mb-2"
                       href="/producers"
                       data-aos="fade-down"
+                      aria-label="Revenir à la carte"
                     >
                       <span className="tracking-normal text-blue-600 group-hover:-translate-x-0.5 transition-transform duration-150 ease-in-out mr-1">
                         &lt;-
                       </span>{' '}
                       Revenir à la carte
                     </Link>
+
                     <h1 className="h2 font-playfair-display text-slate-100 mb-6">{data.title}</h1>
                   </div>
-                  {/* Article meta */}
+
                   <div
                     className="md:flex md:items-center md:justify-between mt-3"
                     data-aos="fade-up"
                   >
-                    {/* Author meta */}
                     <div className="flex items-center justify-center">
                       <span className="text-slate-400">
                         <Date dateString={data.publishedAt.toString()} />
                       </span>
                     </div>
-                    {/* Social links */}
+
                     <div className="flex justify-center mt-4 md:mt-0 font-semibold text-blue-600 hover:text-blue-500 transition duration-150 ease-in-out cursor-pointer">
                       <p className="mr-2 select-none">{likes}</p>
+
                       <svg
                         className="w-5 h-5 fill-current"
                         xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +169,6 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
                   </div>
                 </div>
 
-                {/* Article image */}
                 {data.image && (
                   <figure>
                     <Image
@@ -210,6 +219,7 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
                   En trois mots : quelles sont les valeurs/idées principales portées par le
                   producteur ?
                 </h3>
+
                 <p>{data.survey[0].mainProducerValues}</p>
               </div>
             )}
@@ -232,15 +242,14 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
 
         {products.data.length > 0 && <Products products={products.data} />}
 
-        {/* Article content */}
         {survey && (
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div className="max-w-3xl mx-auto">
               <div className="prose text-lg text-slate-500 max-w-none prose-lg prose-p:leading-normal prose-headings:font-playfair-display prose-headings:text-slate-900 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium prose-strong:font-medium prose-strong:text-slate-900 prose-blockquote:pl-4 prose-blockquote:border-l-2 prose-blockquote:border-slate-900 prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-inherit before:prose-p:content-[''] after:prose-p:content-[''] prose-hr:my-8">
-                {survey?.__component === 'surveys.animal' && AnimalSurveyRender(survey)}
-                {survey?.__component === 'surveys.store' && StoreSurveyRender(survey)}
-                {survey?.__component === 'surveys.transform' && TransformSurveyRender(survey)}
-                {survey?.__component === 'surveys.vegetable' && VegetalSurveyRender(survey)}
+                {survey?.__component === 'surveys.animal' && AnimalSurveyRender({ survey })}
+                {survey?.__component === 'surveys.store' && StoreSurveyRender({ survey })}
+                {survey?.__component === 'surveys.transform' && TransformSurveyRender({ survey })}
+                {survey?.__component === 'surveys.vegetable' && VegetalSurveyRender({ survey })}
               </div>
             </div>
           </div>
@@ -254,7 +263,6 @@ const Producer = async ({ params }: { params: { slug: string } }) => {
           Découvre d&apos;autres producteurs
         </h2>
 
-        {/* Articles container */}
         <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
           {relatedProducers.map((relatedProcuder) => (
             <ProducerItem key={relatedProcuder.id} {...relatedProcuder} />

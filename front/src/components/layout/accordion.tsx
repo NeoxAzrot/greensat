@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
 
 interface AccordionProps {
   children: ReactNode;
@@ -18,17 +18,20 @@ const Accordion = ({ children, tag = 'li', title, active = false }: AccordionPro
     setAccordionOpen(active);
   }, [accordion, active]);
 
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setAccordionOpen(!accordionOpen);
+  };
+
   return (
     <Component>
       <button
         className="h4 font-playfair-display flex items-center justify-between w-full text-left py-5"
-        onClick={(e) => {
-          e.preventDefault();
-          setAccordionOpen(!accordionOpen);
-        }}
+        onClick={handleClick}
         aria-expanded={accordionOpen}
       >
         <span>{title}</span>
+
         <svg
           className={`w-4 h-4 fill-current text-blue-600 shrink-0 ml-8 ${
             accordionOpen && 'rotate-180'
@@ -38,6 +41,7 @@ const Accordion = ({ children, tag = 'li', title, active = false }: AccordionPro
           <path d="m3 5 5 6 5-6z" />
         </svg>
       </button>
+
       <div
         ref={accordion}
         className="text-slate-500 overflow-hidden transition-all duration-300 ease-in-out"

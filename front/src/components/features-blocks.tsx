@@ -3,23 +3,20 @@ const FeaturesBlocks = () => {
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="py-12 md:py-20">
-          {/* Items */}
           <div
             className="relative max-w-sm mx-auto grid gap-16 md:grid-cols-2 lg:grid-cols-2 lg:gap-y-20 items-start md:max-w-2xl lg:max-w-none"
             data-aos-id-blocks
           >
-            {/* Lines decoration */}
             <div
               className="absolute inset-0 -my-8 md:-my-12 pointer-events-none hidden md:flex"
               aria-hidden="true"
             >
-              <div className="h-full w-full border-l last:border-r odd:hidden lg:odd:block border-slate-100"></div>
-              <div className="h-full w-full border-l last:border-r odd:hidden lg:odd:block border-slate-100"></div>
-              <div className="h-full w-full border-l last:border-r odd:hidden lg:odd:block border-slate-100"></div>
-              <div className="h-full w-full border-l last:border-r odd:hidden lg:odd:block border-slate-100"></div>
+              <div className="h-full w-full border-l last:border-r odd:hidden lg:odd:block border-slate-100" />
+              <div className="h-full w-full border-l last:border-r odd:hidden lg:odd:block border-slate-100" />
+              <div className="h-full w-full border-l last:border-r odd:hidden lg:odd:block border-slate-100" />
+              <div className="h-full w-full border-l last:border-r odd:hidden lg:odd:block border-slate-100" />
             </div>
 
-            {/* 1st item */}
             <div className="relative" data-aos="fade-up" data-aos-anchor="[data-aos-id-blocks]">
               <svg
                 className="w-16 h-16 mb-4"
@@ -91,13 +88,14 @@ const FeaturesBlocks = () => {
                 <use fill="#000" filter="url(#fb4-d)" xlinkHref="#fb4-e" />
                 <use fillOpacity=".64" fill="#E2EEFF" xlinkHref="#fb4-e" />
               </svg>
+
               <h3 className="h4 font-playfair-display mb-2">Locale</h3>
+
               <p className="text-lg text-slate-500">
                 Au moins 90% des produits auxquels tu as accès viennent du Sud de la France.
               </p>
             </div>
 
-            {/* 2nd item */}
             <div
               className="relative"
               data-aos="fade-up"
@@ -171,14 +169,15 @@ const FeaturesBlocks = () => {
                 <use fill="#000" filter="url(#fb3-c)" xlinkHref="#fb3-d" />
                 <use fill="url(#fb3-e)" xlinkHref="#fb3-d" />
               </svg>
+
               <h3 className="h4 font-playfair-display mb-2">Juste</h3>
+
               <p className="text-lg text-slate-500">
                 Nous soutenons les petits producteurs et accompagnons des étudiants dans leur
                 alimentation du quotidien.
               </p>
             </div>
 
-            {/* 3rd item */}
             <div
               className="relative"
               data-aos="fade-up"
@@ -252,14 +251,15 @@ const FeaturesBlocks = () => {
                 <use fill="#000" filter="url(#fb5-c)" xlinkHref="#fb5-d" />
                 <use fill="url(#fb5-e)" xlinkHref="#fb5-d" />
               </svg>
+
               <h3 className="h4 font-playfair-display mb-2">Durable</h3>
+
               <p className="text-lg text-slate-500">
                 Les producteurs sont sélectionnés sur leurs pratiques socio-environnementales, afin
                 que nous avancions tous vers une consommation pérenne.
               </p>
             </div>
 
-            {/* 4th item */}
             <div
               className="relative"
               data-aos="fade-up"
@@ -333,7 +333,9 @@ const FeaturesBlocks = () => {
                 <use fill="#000" filter="url(#fb6-d)" xlinkHref="#fb6-e" />
                 <use fillOpacity=".64" fill="#E2EEFF" xlinkHref="#fb6-e" />
               </svg>
+
               <h3 className="h4 font-playfair-display mb-2">Humaine</h3>
+
               <p className="text-lg text-slate-500">
                 Nous t’encourageons à aller rencontrer les producteurs et créer du lien avec eux,
                 afin de découvrir leur quotidien et leur fonctionnement.

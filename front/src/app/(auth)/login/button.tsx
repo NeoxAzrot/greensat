@@ -7,7 +7,7 @@ const Button = () => {
     const result = await signIn('credentials', {
       redirect: false,
       email: 'sami.lepays+test@gmail.com',
-      password: 'davidpiano31',
+      password: 'azertyuiop',
     });
 
     console.log(result);
@@ -15,7 +15,7 @@ const Button = () => {
 
   return (
     <button
-      className="btn-sm w-full text-sm text-white bg-blue-600 hover:bg-blue-700 group"
+      className="btn-sm w-full text-sm text-white bg-blue-600 hover:bg-blue-700 group mt-6"
       onClick={onSubmit}
     >
       Se connecter{' '}

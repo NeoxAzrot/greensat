@@ -19,14 +19,17 @@ const CtaMap = () => {
               <h2 className="h2 font-playfair-display text-slate-800 mb-4">
                 Découvre la <span className="text-pink-500">carte</span> des producteurs locaux
               </h2>
+
               <p className="text-xl text-slate-500 mb-8">
                 Trouve les producteurs éco-friendly sur notre carte interactive. Explore et soutiens
                 les acteurs locaux !
               </p>
+
               <div>
                 <Link
                   className="btn text-white bg-blue-600 hover:bg-blue-700 group"
                   href="/producers"
+                  aria-label="Les producteurs"
                 >
                   Voir la carte{' '}
                   <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">

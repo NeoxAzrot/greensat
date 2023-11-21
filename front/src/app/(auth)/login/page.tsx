@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next/types';
 
-import PageBG from '@/public/images/login.webp';
+import LoginImage from '@/public/images/login.webp';
 
 import Logo from '@/components/layout/logo';
 
@@ -39,12 +39,10 @@ export const metadata: Metadata = {
 const Login = () => {
   return (
     <>
-      {/* Content */}
       <div className="w-full md:w-1/2">
         <div className="min-h-screen h-full flex flex-col justify-center">
           <div className="px-5 sm:px-6 py-8">
             <div className="w-full max-w-md mx-auto">
-              {/* Site branding */}
               <div className="mb-6">
                 <Logo />
               </div>
@@ -53,51 +51,56 @@ const Login = () => {
                 Se connecter à Greensa’table
               </h1>
 
-              {/* Form */}
               <form>
                 <div className="space-y-4">
                   <div>
-                    <label
-                      className="block text-sm font-medium mb-1"
-                      htmlFor="emailOrStudentNumber"
-                    >
+                    <label className="block text-sm font-medium mb-1" htmlFor="email">
                       Email ou numéro étudiant <span className="text-rose-500">*</span>
                     </label>
+
                     <input
-                      id="emailOrStudentNumber"
+                      id="email"
                       className="form-input py-2 w-full"
                       type="email"
+                      autoComplete="email"
                       required
                     />
                   </div>
+
                   <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="password">
                       Mot de passe <span className="text-rose-500">*</span>
                     </label>
+
                     <input
                       id="password"
                       className="form-input py-2 w-full"
                       type="password"
-                      autoComplete="on"
+                      autoComplete="password"
                       required
                     />
                   </div>
                 </div>
-                <div className="mt-6">
-                  <Button />
-                </div>
+
+                <Button />
+
                 <div className="text-center mt-5">
-                  <Link className="text-blue-600 hover:underline" href="/reset-password">
+                  <Link
+                    className="text-blue-600 hover:underline"
+                    href="/reset-password"
+                    aria-label="Mot de passe oublié ?"
+                  >
                     Mot de passe oublié ?
                   </Link>
                 </div>
+
                 <div className="text-center mt-5">
                   <span className="text-sm text-slate-500">
                     Vous n&apos;avez pas encore de compte ?{' '}
                     <Link
                       className="text-blue-600 hover:underline"
                       href="/register"
-                      aria-label="Request a demo"
+                      aria-label="Créer un compte"
                     >
                       S&apos;inscrire maintenant
                     </Link>
@@ -109,17 +112,15 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right side */}
       <div className="relative hidden md:block md:w-1/2 bg-slate-900" aria-hidden="true">
-        {/* Bg image */}
         <div className="absolute inset-0" data-aos="fade">
           <Image
             className="opacity-10 w-full h-full object-cover"
-            src={PageBG}
+            src={LoginImage}
             width={760}
             height={900}
             loading="lazy"
-            alt="Background"
+            alt="Plante dans une main"
           />
         </div>
       </div>

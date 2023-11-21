@@ -1,9 +1,9 @@
 'use client';
 
-import mapboxgl from 'mapbox-gl';
-import Image from 'next/image';
+import mapboxgl, { Map as MapType } from 'mapbox-gl';
+import Image, { StaticImageData } from 'next/image';
 import { useRouter } from 'next/navigation';
-import { createRef, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import FarmIcon from '@/public/images/icons/farm.webp';
@@ -14,14 +14,21 @@ import { Producer, Producers } from '@/types/producer';
 
 interface MapProps {
   producers: Producers;
-  height?: string;
-  width?: string;
+  longitude?: number;
+  latitude?: number;
+  customButton?: {
+    text?: string;
+    onClick?: () => void;
+  };
+  noImage?: boolean;
 }
 
-// TODO: Change type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Marker = ({ producer }: { producer: Producer }) => {
-  const getIcon = () => {
+interface MarkerProps {
+  producer: Producer;
+}
+
+const Marker = ({ producer }: MarkerProps) => {
+  const getIcon = (): StaticImageData => {
     switch (producer.attributes.businessType) {
       case 'farm':
         return FarmIcon;
@@ -43,20 +50,18 @@ const Marker = ({ producer }: { producer: Producer }) => {
       src={icon}
       width={36}
       height={36}
-      alt="News 03"
+      alt={producer.attributes.title}
     />
   );
 };
 
-const Map = ({ producers, height, width }: MapProps) => {
-  const mapContainer = useRef(null);
+const Map = ({ producers, longitude, latitude, customButton, noImage }: MapProps) => {
+  const mapContainer = useRef<HTMLDivElement>(null);
+  const map = useRef<MapType | null>(null);
 
-  const lng = 1.4947801;
-  const lat = 43.5277825;
+  const lng = longitude || 1.4947801;
+  const lat = latitude || 43.5277825;
   const zoom = 13;
-  // const [lng, setLng] = useState(1.4947801);
-  // const [lat, setLat] = useState(43.5277825);
-  // const [zoom, setZoom] = useState(13);
 
   const router = useRouter();
 
@@ -65,10 +70,8 @@ const Map = ({ producers, height, width }: MapProps) => {
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    const map = new mapboxgl.Map({
-      // TODO: Change type
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      container: mapContainer.current as any,
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
       center: [lng, lat],
       zoom: zoom,
@@ -76,14 +79,9 @@ const Map = ({ producers, height, width }: MapProps) => {
     });
 
     producers.forEach((producer) => {
-      const ref = createRef();
-      // TODO: Change type
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (ref.current as HTMLElement) = document.createElement('div') as any;
+      const markerElement = document.createElement('div');
 
-      // TODO: Change type
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      createRoot(ref.current as any).render(<Marker producer={producer} />);
+      createRoot(markerElement).render(<Marker producer={producer} />);
 
       const popup = new mapboxgl.Popup({
         offset: 25,
@@ -103,14 +101,9 @@ const Map = ({ producers, height, width }: MapProps) => {
 
       const closeButton = document.createElement('button');
       closeButton.className =
-        'absolute top-0 right-0 w-4 h-4 font-inter font-medium text-slate-500 text-sm';
+        'absolute top-0 right-0 w-4 h-4 font-inter font-medium text-slate-500 text-sm outline-none';
       closeButton.onclick = handleClose;
       closeButton.innerHTML = '&times;';
-
-      const image = document.createElement('img');
-      image.src = producer.attributes.image.data.attributes.url;
-      image.alt = producer.attributes.title;
-      image.className = 'w-full aspect-square object-cover my-2';
 
       const title = document.createElement('h4');
       title.className = 'text-xl font-medium mb-1 font-playfair-display';
@@ -121,42 +114,104 @@ const Map = ({ producers, height, width }: MapProps) => {
       address.innerHTML = producer.attributes.address;
 
       const button = document.createElement('button');
-      button.onclick = handleClick;
+      button.onclick = customButton?.onClick || handleClick;
       button.className =
         'font-inter font-medium flex items-center group text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out';
-      button.innerHTML =
-        'Découvrir le producteur <span class="tracking-normal group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>';
+      button.innerHTML = `${
+        customButton?.text || 'Découvrir le producteur'
+      } <span class="tracking-normal group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>`;
 
       wrapper.appendChild(closeButton);
-      wrapper.appendChild(image);
+
+      if (!noImage) {
+        const imageContainer = document.createElement('div');
+        imageContainer.className =
+          'relative block group overflow-hidden my-2 w-full cursor-pointer';
+        imageContainer.onclick = customButton?.onClick || handleClick;
+
+        const image = document.createElement('img');
+        image.src = producer.attributes.image.data.attributes.url;
+        image.alt = producer.attributes.title;
+        image.className =
+          'w-full aspect-square object-cover group-hover:scale-105 transition duration-700 ease-out';
+
+        imageContainer.appendChild(image);
+
+        const featuredProducerProducts = producer.attributes.products.data.filter(
+          (product) => product.attributes.active && product.attributes.count > 0,
+        );
+
+        if (featuredProducerProducts.length > 0) {
+          const featuredProducerProductsContainer = document.createElement('div');
+          featuredProducerProductsContainer.className = 'absolute top-4 right-4';
+
+          const svgNS = 'http://www.w3.org/2000/svg';
+
+          const featuredProducerProductsIcon = document.createElementNS(svgNS, 'svg');
+          featuredProducerProductsIcon.setAttribute('class', 'w-8 h-8');
+          featuredProducerProductsIcon.setAttribute('viewBox', '0 0 512 512');
+
+          const featuredProducerProductsIconCircle = document.createElementNS(svgNS, 'circle');
+          featuredProducerProductsIconCircle.setAttribute('class', 'fill-slate-900');
+          featuredProducerProductsIconCircle.setAttribute('fill-opacity', '0.48');
+          featuredProducerProductsIconCircle.setAttribute('cx', '256');
+          featuredProducerProductsIconCircle.setAttribute('cy', '256');
+          featuredProducerProductsIconCircle.setAttribute('r', '256');
+
+          const featuredProducerProductsIconPath = document.createElementNS(svgNS, 'path');
+          featuredProducerProductsIconPath.setAttribute('class', 'fill-yellow-500');
+          featuredProducerProductsIconPath.setAttribute(
+            'd',
+            'm231.07,185.86l13.05,22.2h-27.49c-8.29,0-15-6.71-15-15s6.71-15,15-15h.82c5.59,0,10.8,2.96,13.61,7.8Zm-47.44,7.2c0,5.4,1.31,10.5,3.6,15h-15.6c-6.64,0-12,5.36-12,12v24c0,6.64,5.36,12,12,12h168c6.64,0,12-5.36,12-12v-24c0-6.64-5.36-12-12-12h-15.6c2.29-4.5,3.6-9.6,3.6-15,0-18.22-14.77-33-33-33h-.83c-11.96,0-23.06,6.34-29.14,16.65l-9.04,15.41-9.04-15.38c-6.07-10.35-17.17-16.69-29.14-16.69h-.82c-18.22,0-33,14.78-33,33Zm126,0c0,8.29-6.71,15-15,15h-27.49l13.05-22.2c2.85-4.84,8.02-7.8,13.61-7.8h.83c8.29,0,15,6.71,15,15Zm-138,75v66c0,9.94,8.06,18,18,18h54v-84h-72Zm96,84h54c9.94,0,18-8.06,18-18v-66h-72v84Z',
+          );
+
+          featuredProducerProductsIcon.appendChild(featuredProducerProductsIconCircle);
+          featuredProducerProductsIcon.appendChild(featuredProducerProductsIconPath);
+          featuredProducerProductsContainer.appendChild(featuredProducerProductsIcon);
+
+          imageContainer.appendChild(featuredProducerProductsContainer);
+        }
+
+        wrapper.appendChild(imageContainer);
+      }
+
       wrapper.appendChild(title);
       wrapper.appendChild(address);
       wrapper.appendChild(button);
 
       popup.setDOMContent(wrapper);
 
-      // TODO: Change type
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      new mapboxgl.Marker(ref.current as any)
+      new mapboxgl.Marker(markerElement)
         .setLngLat({ lat: producer.attributes.latitude, lng: producer.attributes.longitude })
         .setPopup(popup)
-        .addTo(map);
+        .addTo(map.current as MapType);
     });
 
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-    return () => map.remove();
-  });
+    return () => map.current?.remove();
+  }, [customButton?.onClick, customButton?.text, lat, lng, noImage, producers, router]);
+
+  useEffect(() => {
+    const resizeMap = () => map.current?.resize();
+
+    const observer = new ResizeObserver(resizeMap);
+    const currentMapContainer = mapContainer.current;
+
+    if (currentMapContainer) {
+      observer.observe(currentMapContainer);
+    }
+
+    return () => {
+      if (currentMapContainer) {
+        observer.unobserve(currentMapContainer);
+      }
+    };
+  }, []);
 
   return (
-    <section className="relative">
-      <div
-        ref={mapContainer}
-        style={{
-          height,
-          width,
-        }}
-      />
+    <section className="relative h-full w-full">
+      <div ref={mapContainer} className="h-full w-full" />
     </section>
   );
 };

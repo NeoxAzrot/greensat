@@ -35,7 +35,6 @@ export default factories.createCoreController(
           image,
           products,
           usersLikes,
-          // survey,
           labels,
           ...newProducer
         } = producer;
@@ -107,6 +106,129 @@ export default factories.createCoreController(
           meta: {},
         };
       } catch (err) {
+        ctx.status = 500;
+        ctx.body = {
+          data: null,
+          error: {
+            status: 500,
+            name: "InternalServerError",
+            message: "Internal server error",
+            details: {},
+          },
+        };
+      }
+    },
+    findPopular: async (ctx) => {
+      try {
+        const producers = await strapi
+          .service("api::producer.producer")
+          .findPopular();
+
+        if (!producers || producers.length === 0) {
+          ctx.status = 404;
+          ctx.body = {
+            data: null,
+            error: {
+              status: 404,
+              name: "NotFoundError",
+              message: "Not found",
+              details: {},
+            },
+          };
+          return;
+        }
+
+        const newProducers = producers.map((producer) => {
+          // To delete properties from the object
+          const {
+            id,
+            createdBy,
+            updatedBy,
+            image,
+            products,
+            usersLikes,
+            labels,
+            ...newProducer
+          } = producer;
+          const { id: imageId, ...newImage } = image;
+
+          const newProducts = products.map((product) => {
+            const { id, ...newProduct } = product;
+
+            return {
+              id: product.id,
+              attributes: {
+                ...newProduct,
+              },
+            };
+          });
+
+          const newUsersLikes = usersLikes.map((usersLike) => {
+            const {
+              id,
+              password,
+              resetPasswordToken,
+              confirmationToken,
+              ...newUsersLike
+            } = usersLike;
+
+            return {
+              id: usersLike.id,
+              attributes: {
+                ...newUsersLike,
+              },
+            };
+          });
+
+          const newLabels = labels?.map((label) => {
+            const { id, ...newLabel } = label;
+
+            return {
+              id: label.id,
+              attributes: {
+                ...newLabel,
+              },
+            };
+          });
+
+          return {
+            id: producer.id,
+            attributes: {
+              ...newProducer,
+              image: {
+                data: {
+                  id: producer.image.id,
+                  attributes: {
+                    ...newImage,
+                  },
+                },
+              },
+              products: {
+                data: newProducts,
+              },
+              usersLikes: {
+                data: newUsersLikes,
+              },
+              labels: {
+                data: newLabels || [],
+              },
+            },
+          };
+        });
+
+        ctx.body = {
+          data: newProducers,
+          meta: {
+            pagination: {
+              page: 1,
+              pageSize: producers.length,
+              pageCount: 1,
+              total: producers.length,
+            },
+          },
+        };
+      } catch (err) {
+        console.log(err);
         ctx.status = 500;
         ctx.body = {
           data: null,

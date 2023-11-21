@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { cache } from 'react';
 
 import { Producer, Producers } from '@/types/producer';
 import { PaginationRequest, Response } from '@/types/request';
@@ -13,32 +14,42 @@ interface GetOneProducerBySlugProps {
   slug: string;
 }
 
-export const getAllProducers = async ({
-  page,
-  pageSize,
-  sort,
-  populate = false,
-  filters,
-}: PaginationRequest) => {
-  const newFilters = Object.entries(filters || {}).reduce(
-    (acc, [key, value]) => {
-      if (value) {
-        acc[`filters${key}`] = value;
-      }
+export const getAllProducers = cache(
+  async ({ page, pageSize, sort, populate = false, filters }: PaginationRequest) => {
+    const newFilters = Object.entries(filters || {}).reduce(
+      (acc, [key, value]) => {
+        if (value) {
+          acc[`filters${key}`] = value;
+        }
 
-      return acc;
-    },
-    {} as Record<string, string>,
-  );
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
 
+    const res: Response<Producers> = await axios
+      .get(`${API_URL}/api/producers`, {
+        params: {
+          'pagination[pageSize]': pageSize,
+          'pagination[page]': page,
+          sort,
+          populate,
+          ...newFilters,
+        },
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    return res.data;
+  },
+);
+
+export const getPopularProducers = cache(async () => {
   const res: Response<Producers> = await axios
-    .get(`${API_URL}/api/producers`, {
+    .get(`${API_URL}/api/producers/popular`, {
       params: {
-        'pagination[pageSize]': pageSize,
-        'pagination[page]': page,
-        sort,
-        populate,
-        ...newFilters,
+        populate: '*',
       },
     })
     .catch((error) => {
@@ -46,9 +57,9 @@ export const getAllProducers = async ({
     });
 
   return res.data;
-};
+});
 
-export const getOneProducerById = async ({ id }: GetOneProducerByIdProps) => {
+export const getOneProducerById = cache(async ({ id }: GetOneProducerByIdProps) => {
   const res: Response<Producer> = await axios
     .get(`${API_URL}/api/producers/${id}`, {
       params: {
@@ -60,9 +71,9 @@ export const getOneProducerById = async ({ id }: GetOneProducerByIdProps) => {
     });
 
   return res.data;
-};
+});
 
-export const getOneProducerBySlug = async ({ slug }: GetOneProducerBySlugProps) => {
+export const getOneProducerBySlug = cache(async ({ slug }: GetOneProducerBySlugProps) => {
   const res: Response<Producer> = await axios
     .get(`${API_URL}/api/producers/slug/${slug}`, {
       params: {
@@ -74,4 +85,4 @@ export const getOneProducerBySlug = async ({ slug }: GetOneProducerBySlugProps) 
     });
 
   return res.data;
-};
+});

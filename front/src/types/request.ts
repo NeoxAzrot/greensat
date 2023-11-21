@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 export interface GlobalRequest {
-  sort?: string;
+  sort?: string | string[];
   populate?: string | boolean;
   filters?: {
     [key: string]: string;

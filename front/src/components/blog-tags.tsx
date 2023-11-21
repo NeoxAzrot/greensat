@@ -90,7 +90,19 @@ const BlogTags = ({ producers }: { producers: Producers }) => {
           </div>
         </div>
 
-        <Map producers={filteredProducers} height="700px" />
+        <div
+          className="flex justify-center items-center mx-auto w-full h-[405px] md:h-[576px]"
+          data-aos="fade-left"
+        >
+          <div className="relative w-full h-full">
+            <div
+              className="absolute inset-0 pointer-events-none border-2 border-slate-200 translate-x-4 translate-y-4 -z-10"
+              aria-hidden="true"
+            ></div>
+
+            <Map producers={filteredProducers} />
+          </div>
+        </div>
       </div>
     </section>
   );

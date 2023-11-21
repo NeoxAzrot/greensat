@@ -58,13 +58,13 @@ const HeroHome = ({ producers }: HeroHomeProps) => {
 
             {/* Hero image */}
             <div className="shrink-0" data-aos="fade-left">
-              <div className="flex justify-center items-center">
-                <div className="relative">
+              <div className="flex justify-center items-center mx-auto w-[540px] max-w-full h-[405px]">
+                <div className="relative w-full h-full">
                   <div
                     className="absolute inset-0 pointer-events-none border-2 border-slate-700 mt-3 ml-3 translate-x-4 translate-y-4 -z-10"
                     aria-hidden="true"
                   ></div>
-                  <Map producers={producers} height="405px" width="540px" />
+                  <Map producers={producers} />
                 </div>
               </div>
             </div>

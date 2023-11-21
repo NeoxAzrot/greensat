@@ -1,143 +1,20 @@
 'use client';
 
-import mapboxgl from 'mapbox-gl';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { createRef, useEffect, useRef } from 'react';
-import { createRoot } from 'react-dom/client';
-
-import FarmIcon from '@/public/images/icons/farm.webp';
-import MarketIcon from '@/public/images/icons/market.webp';
-import StoreIcon from '@/public/images/icons/store.webp';
 
 import { Producer } from '@/types/producer';
 
-// TODO: Change type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Marker = ({ producer }: { producer: Producer }) => {
-  const getIcon = () => {
-    switch (producer.attributes.businessType) {
-      case 'farm':
-        return FarmIcon;
-      case 'market':
-        return MarketIcon;
-      case 'store':
-        return StoreIcon;
+import Map from './map';
 
-      default:
-        return StoreIcon;
-    }
-  };
-
-  const icon = getIcon();
-
-  return (
-    <Image
-      className="w-full aspect-square object-cover"
-      src={icon}
-      width={36}
-      height={36}
-      alt="News 03"
-    />
-  );
-};
-
-// TODO: Call component Map instead of add it again there
 const MapAndText = ({ producer }: { producer: Producer }) => {
-  const mapContainer = useRef(null);
-
-  const lng = producer.attributes.longitude;
-  const lat = producer.attributes.latitude;
-  const zoom = 13;
-
   const router = useRouter();
 
-  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN as string;
-
-  useEffect(() => {
-    if (!mapContainer.current) return;
-
-    const map = new mapboxgl.Map({
-      // TODO: Change type
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      container: mapContainer.current as any,
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [lng, lat],
-      zoom: zoom,
-      attributionControl: false,
-    });
-
-    const ref = createRef();
-    // TODO: Change type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (ref.current as HTMLElement) = document.createElement('div') as any;
-
-    // TODO: Change type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    createRoot(ref.current as any).render(<Marker producer={producer} />);
-
-    const popup = new mapboxgl.Popup({
-      offset: 25,
-      closeButton: false,
-    });
-
-    const handleClose = () => {
-      popup.remove();
-    };
-
-    const handleClick = () => {
-      router.push(
-        `https://google.com/maps/?q=${producer.attributes.latitude},${producer.attributes.longitude}`,
-      );
-    };
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'flex flex-col';
-
-    const closeButton = document.createElement('button');
-    closeButton.className =
-      'absolute top-0 right-0 w-4 h-4 font-inter font-medium text-slate-500 text-sm';
-    closeButton.onclick = handleClose;
-    closeButton.innerHTML = '&times;';
-
-    const image = document.createElement('img');
-    image.src = producer.attributes.image.data.attributes.url;
-    image.alt = producer.attributes.title;
-    image.className = 'w-full aspect-square object-cover my-2';
-
-    const title = document.createElement('h4');
-    title.className = 'text-xl font-medium mb-1 font-playfair-display';
-    title.innerHTML = producer.attributes.title;
-
-    const address = document.createElement('p');
-    address.className = 'text-sm text-gray-500 mb-2 font-inter';
-    address.innerHTML = producer.attributes.address;
-
-    const button = document.createElement('button');
-    button.onclick = handleClick;
-    button.className =
-      'font-inter font-medium flex items-center group text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out';
-    button.innerHTML =
-      'S\'y rendre <span class="tracking-normal group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>';
-
-    wrapper.appendChild(closeButton);
-    wrapper.appendChild(title);
-    wrapper.appendChild(address);
-    wrapper.appendChild(button);
-
-    popup.setDOMContent(wrapper);
-
-    // TODO: Change type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    new mapboxgl.Marker(ref.current as any)
-      .setLngLat({ lat: producer.attributes.latitude, lng: producer.attributes.longitude })
-      .setPopup(popup)
-      .addTo(map);
-
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-    return () => map.remove();
-  });
+  const handleClick = () => {
+    router.push(
+      `https://google.com/maps/?q=${producer.attributes.latitude},${producer.attributes.longitude}`,
+    );
+  };
 
   const getUseVioletGroundText = () => {
     switch (producer.attributes.useVioletGround) {
@@ -209,7 +86,6 @@ const MapAndText = ({ producer }: { producer: Producer }) => {
                     {producer.attributes.labels.data.map((label) => (
                       <div className="w-8 h-8 relative mr-3 shrink-0" key={label.id}>
                         <Image
-                          className="rounded-full"
                           src={label.attributes.url}
                           alt={label.attributes.alternativeText || label.attributes.name}
                           layout="fill"
@@ -222,20 +98,24 @@ const MapAndText = ({ producer }: { producer: Producer }) => {
               </div>
 
               {/* Image */}
-              <div className="flex justify-center items-center" data-aos="fade-right">
-                <div className="relative">
-                  <div
-                    className="absolute inset-0 pointer-events-none border-2 border-slate-200 -translate-x-4 -translate-y-4 -z-10"
-                    aria-hidden="true"
-                  ></div>
-                  <div
-                    ref={mapContainer}
-                    className="mx-auto md:max-w-none"
-                    style={{
-                      height: '405px',
-                      width: '540px',
-                    }}
-                  />
+              <div className="shrink-0" data-aos="fade-right">
+                <div className="flex justify-center items-center mx-auto w-[540px] max-w-full h-[405px]">
+                  <div className="relative w-full h-full">
+                    <div
+                      className="absolute inset-0 pointer-events-none border-2 border-slate-200 -translate-x-4 -translate-y-4 -z-10"
+                      aria-hidden="true"
+                    ></div>
+                    <Map
+                      producers={[producer]}
+                      longitude={producer.attributes.longitude}
+                      latitude={producer.attributes.latitude}
+                      customButton={{
+                        onClick: handleClick,
+                        text: "S'y rendre",
+                      }}
+                      noImage
+                    />
+                  </div>
                 </div>
               </div>
             </div>

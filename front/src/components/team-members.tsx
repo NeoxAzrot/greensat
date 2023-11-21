@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import AlexImage from '@/public/images/team/alex.webp';
+import AlexandreImage from '@/public/images/team/alexandre.webp';
 import AliceImage from '@/public/images/team/alice.webp';
 import AmbreImage from '@/public/images/team/ambre.webp';
 import CamilleImage from '@/public/images/team/camille.webp';
@@ -156,13 +156,13 @@ const TeamMembers = () => {
               <div className="inline-flex mb-4">
                 <Image
                   className="rounded-full grayscale"
-                  src={AlexImage}
+                  src={AlexandreImage}
                   width={120}
                   height={120}
                   alt="Member 05"
                 />
               </div>
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Alex</h4>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Alexandre</h4>
               <div className="font-medium text-blue-600">
                 Responsables partenaires et producteurs
               </div>

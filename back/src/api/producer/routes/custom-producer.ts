@@ -8,5 +8,13 @@ export default {
         auth: false,
       },
     },
+    {
+      method: "GET",
+      path: "/producers/popular",
+      handler: "producer.findPopular",
+      config: {
+        auth: false,
+      },
+    },
   ],
 };

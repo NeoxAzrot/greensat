@@ -171,6 +171,8 @@ export const metadata: Metadata = {
   category: 'Alimentation',
 };
 
+export const revalidate = 10;
+
 interface RootLayoutProps {
   children: ReactNode;
 }

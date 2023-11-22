@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { signIn } from '@/services/auth';
+import { login } from '@/services/auth';
 
 const handler = NextAuth({
   // Configure one or more authentication providers
@@ -25,7 +25,7 @@ const handler = NextAuth({
          * We can expect it contains two properties: `email` and `password`
          */
         try {
-          const { user, jwt } = await signIn({
+          const { user, jwt } = await login({
             email: credentials.email,
             password: credentials.password,
           });

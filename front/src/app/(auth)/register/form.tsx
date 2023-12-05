@@ -104,6 +104,7 @@ const Form = () => {
         setSuccess(true);
       }
     } catch (error) {
+      console.log('Error registering', error);
       setGlobalError("Une erreur est survenue lors de l'inscription.");
     }
   };

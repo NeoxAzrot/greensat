@@ -1,10 +1,13 @@
 'use client';
 
 import { Transition } from '@headlessui/react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const MobileMenu = () => {
+  const { status } = useSession();
+
   const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
 
   const trigger = useRef<HTMLButtonElement>(null);
@@ -113,30 +116,48 @@ const MobileMenu = () => {
               </Link>
             </li>
 
-            <li>
-              <Link
-                href="/login"
-                className="flex font-medium w-full text-slate-800 hover:text-blue-600 py-2"
-                onClick={handleClose}
-                aria-label="Se connecter"
-              >
-                Se connecter
-              </Link>
-            </li>
+            {status === 'authenticated' ? (
+              <li>
+                <Link
+                  href="/account"
+                  className="flex font-medium text-blue-600 py-2 group"
+                  onClick={handleClose}
+                  aria-label="Mon compte"
+                >
+                  Mon compte{' '}
+                  <span className="tracking-normal text-blue-600 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                    -&gt;
+                  </span>
+                </Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    href="/login"
+                    className="flex font-medium w-full text-slate-800 hover:text-blue-600 py-2"
+                    onClick={handleClose}
+                    aria-label="Se connecter"
+                  >
+                    Se connecter
+                  </Link>
+                </li>
 
-            <li>
-              <Link
-                href="/register"
-                className="flex font-medium text-blue-600 py-2 group"
-                onClick={handleClose}
-                aria-label="Créer un compte"
-              >
-                S&apos;inscrire{' '}
-                <span className="tracking-normal text-blue-600 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                  -&gt;
-                </span>
-              </Link>
-            </li>
+                <li>
+                  <Link
+                    href="/register"
+                    className="flex font-medium text-blue-600 py-2 group"
+                    onClick={handleClose}
+                    aria-label="Créer un compte"
+                  >
+                    S&apos;inscrire{' '}
+                    <span className="tracking-normal text-blue-600 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                      -&gt;
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </Transition>
       </div>

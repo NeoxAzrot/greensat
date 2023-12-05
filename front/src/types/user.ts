@@ -30,6 +30,7 @@ interface Props extends SimpleProps {
 }
 
 export interface SimpleUser extends GlobalSimpleUserRelationProps {}
+export interface SimpleAuthUser extends SimpleProps {}
 export interface User extends Props {}
 
 export interface Users extends Array<Props> {}

@@ -92,10 +92,10 @@ const MapAndText = ({ producer }: MapAndTextProps) => {
                     {producer.attributes.labels.data.map((label) => (
                       <div className="w-8 h-8 relative mr-3 shrink-0" key={label.id}>
                         <Image
+                          className="object-cover"
                           src={label.attributes.url}
                           alt={label.attributes.alternativeText || label.attributes.name}
-                          layout="fill"
-                          objectFit="cover"
+                          fill
                           loading="lazy"
                         />
                       </div>

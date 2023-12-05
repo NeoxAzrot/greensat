@@ -32,3 +32,16 @@ export interface Response<T> extends AxiosResponse {
 export interface ResponseUser<T> extends AxiosResponse {
   data: T;
 }
+
+export interface ResponseRegister<T> extends AxiosResponse {
+  data: {
+    user: T;
+  };
+}
+
+export interface ResponseLogin<T> extends AxiosResponse {
+  data: {
+    jwt: string;
+    user: T;
+  };
+}

@@ -10,7 +10,6 @@ module.exports = {
     extend: {
       colors: {
         slate: {
-          // 900: '#00344C',
           900: '#101D2D',
         },
         blue: {

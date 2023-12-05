@@ -1,41 +1,41 @@
 import Image from 'next/image';
 import { Metadata } from 'next/types';
 
-import ResetPasswordImage from '@/public/images/reset-password.webp';
+import ForgotPasswordImage from '@/public/images/forgot-password.webp';
 
 import Logo from '@/components/layout/logo';
 
 import Form from './form';
 
 export const metadata: Metadata = {
-  title: 'Prêt à choisir un nouveau mot de passe ?',
+  title: "Oups, t'as perdu ton code ?",
   description:
-    "Voilà l'occasion rêvée de donner un coup de jeune à ton mot de passe ! Invente quelque chose de pétillant, d'unique, et surtout, ultra-sécurisé.",
+    "Pas de panique ! Réinitialise ton mot de passe en deux temps trois mouvements. Tu vas retrouver l'accès en un clin d'œil.",
   alternates: {
-    canonical: 'https://greensatable.fr/reset-password',
+    canonical: 'https://greensatable.fr/forgot-password',
     languages: {
-      fr: 'https://greensatable.fr/reset-password',
+      fr: 'https://greensatable.fr/forgot-password',
     },
   },
   openGraph: {
-    title: 'Prêt à choisir un nouveau mot de passe ?',
-    url: 'https://greensatable.fr/reset-password',
+    title: "Oups, t'as perdu ton code ?",
+    url: 'https://greensatable.fr/forgot-password',
     description:
-      "Voilà l'occasion rêvée de donner un coup de jeune à ton mot de passe ! Invente quelque chose de pétillant, d'unique, et surtout, ultra-sécurisé.",
+      "Pas de panique ! Réinitialise ton mot de passe en deux temps trois mouvements. Tu vas retrouver l'accès en un clin d'œil.",
   },
   twitter: {
-    title: 'Prêt à choisir un nouveau mot de passe ?',
+    title: "Oups, t'as perdu ton code ?",
     description:
-      "Voilà l'occasion rêvée de donner un coup de jeune à ton mot de passe ! Invente quelque chose de pétillant, d'unique, et surtout, ultra-sécurisé.",
+      "Pas de panique ! Réinitialise ton mot de passe en deux temps trois mouvements. Tu vas retrouver l'accès en un clin d'œil.",
   },
   appLinks: {
     web: {
-      url: 'https://greensatable.fr/reset-password',
+      url: 'https://greensatable.fr/forgot-password',
     },
   },
 };
 
-const ResetPassword = () => {
+const ForgotPassword = () => {
   return (
     <>
       <div className="w-full md:w-1/2">
@@ -47,7 +47,7 @@ const ResetPassword = () => {
               </div>
 
               <h1 className="h2 font-playfair-display text-slate-800 mb-12">
-                Réinitialiser mon mot de passe
+                Mot de passe oublié ?
               </h1>
 
               <Form />
@@ -60,11 +60,11 @@ const ResetPassword = () => {
         <div className="absolute inset-0" data-aos="fade">
           <Image
             className="opacity-10 w-full h-full object-cover"
-            src={ResetPasswordImage}
+            src={ForgotPasswordImage}
             width={760}
             height={900}
             loading="lazy"
-            alt="Éolienne avec de la nature"
+            alt="Plante en symétrie naturelle"
           />
         </div>
       </div>
@@ -72,4 +72,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ForgotPassword;

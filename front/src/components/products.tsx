@@ -67,10 +67,9 @@ const Testimonials = ({ products }: { products: Products }) => {
                       <div className="relative mr-5">
                         <div className="w-12 h-12 shrink-0">
                           <Image
-                            className="rounded-full"
+                            className="rounded-full object-cover"
                             src={product.attributes.image.data.attributes.url}
-                            layout="fill"
-                            objectFit="cover"
+                            fill
                             loading="lazy"
                             alt={
                               product.attributes.image.data.attributes.alternativeText ||

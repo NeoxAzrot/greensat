@@ -28,7 +28,7 @@ export const getAllProducers = cache(
     );
 
     const res: Response<Producers> = await axios
-      .get(`${API_URL}/api/producers`, {
+      .get(`${API_URL}/producers`, {
         params: {
           'pagination[pageSize]': pageSize,
           'pagination[page]': page,
@@ -47,7 +47,7 @@ export const getAllProducers = cache(
 
 export const getPopularProducers = cache(async () => {
   const res: Response<Producers> = await axios
-    .get(`${API_URL}/api/producers/popular`, {
+    .get(`${API_URL}/producers/popular`, {
       params: {
         populate: '*',
       },
@@ -61,7 +61,7 @@ export const getPopularProducers = cache(async () => {
 
 export const getOneProducerById = cache(async ({ id }: GetOneProducerByIdProps) => {
   const res: Response<Producer> = await axios
-    .get(`${API_URL}/api/producers/${id}`, {
+    .get(`${API_URL}/producers/${id}`, {
       params: {
         populate: '*',
       },
@@ -75,7 +75,7 @@ export const getOneProducerById = cache(async ({ id }: GetOneProducerByIdProps) 
 
 export const getOneProducerBySlug = cache(async ({ slug }: GetOneProducerBySlugProps) => {
   const res: Response<Producer> = await axios
-    .get(`${API_URL}/api/producers/slug/${slug}`, {
+    .get(`${API_URL}/producers/slug/${slug}`, {
       params: {
         populate: '*',
       },

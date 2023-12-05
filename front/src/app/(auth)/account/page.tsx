@@ -1,12 +1,13 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { Metadata } from 'next/types';
 
 import LoginImage from '@/public/images/login.webp';
 
 import Logo from '@/components/layout/logo';
 
-// TODO: Review this page when it's done with aria, useless comment, etc.
+import Form from './form';
+
+// TODO: Review this page when it's done with aria, useless comment, etc. + ajouter un encadrer quand le compte doit être confirmé ou quand il est bloqué
 export const metadata: Metadata = {
   title: 'Ton espace personnel',
   description:
@@ -49,65 +50,10 @@ const Account = () => {
               </div>
 
               <h1 className="h2 font-playfair-display text-slate-800 mb-12">
-                Se connecter à Greensa’table
+                Ton espace personnel
               </h1>
 
-              {/* Form */}
-              <form>
-                <div className="space-y-4">
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-1"
-                      htmlFor="emailOrStudentNumber"
-                    >
-                      Email ou numéro étudiant <span className="text-rose-500">*</span>
-                    </label>
-                    <input
-                      id="emailOrStudentNumber"
-                      className="form-input py-2 w-full"
-                      type="email"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="password">
-                      Mot de passe <span className="text-rose-500">*</span>
-                    </label>
-                    <input
-                      id="password"
-                      className="form-input py-2 w-full"
-                      type="password"
-                      autoComplete="on"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <button className="btn-sm w-full text-sm text-white bg-blue-600 hover:bg-blue-700 group">
-                    Se connecter{' '}
-                    <span className="tracking-normal text-blue-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                      -&gt;
-                    </span>
-                  </button>
-                </div>
-                <div className="text-center mt-5">
-                  <Link className="text-blue-600 hover:underline" href="/reset-password">
-                    Mot de passe oublié ?
-                  </Link>
-                </div>
-                <div className="text-center mt-5">
-                  <span className="text-sm text-slate-500">
-                    Vous n&apos;avez pas encore de compte ?{' '}
-                    <Link
-                      className="text-blue-600 hover:underline"
-                      href="/request-demo"
-                      aria-label="Request a demo"
-                    >
-                      S&apos;inscrire maintenant
-                    </Link>
-                  </span>
-                </div>
-              </form>
+              <Form />
             </div>
           </div>
         </div>

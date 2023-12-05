@@ -1,60 +1,65 @@
-import NextAuth from 'next-auth';
+import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { login } from '@/services/auth';
 
-const handler = NextAuth({
-  // Configure one or more authentication providers
+import { SimpleAuthUser } from '@/types/user';
+
+interface JwtUserProps extends SimpleAuthUser {
+  jwt: string;
+}
+
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
-      name: 'Sign in with Email',
+      name: 'Credentials',
       credentials: {
-        email: { label: 'Email', type: 'text' },
+        email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      async authorize(credentials, req) {
-        /**
-         * This function is used to define if the user is authenticated or not.
-         * If authenticated, the function should return an object contains the user data.
-         * If not, the function should return `null`.
-         */
-        if (credentials == null) return null;
-        /**
-         * credentials is defined in the config above.
-         * We can expect it contains two properties: `email` and `password`
-         */
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      async authorize(credentials): Promise<any> {
+        if (!credentials) return null;
+
         try {
-          const { user, jwt } = await login({
+          const result = await login({
             email: credentials.email,
             password: credentials.password,
           });
-          return { ...user, jwt };
+
+          return { ...result.user, jwt: result.jwt };
         } catch (error) {
-          // Sign In Fail
           return null;
         }
       },
     }),
   ],
-  // TODO: Change any type
+  session: {
+    strategy: 'jwt',
+    maxAge: 7 * 24 * 60 * 60, // 7 days
+  },
   callbacks: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    session: async ({ session, token }: any) => {
-      session.id = token.id;
-      session.jwt = token.jwt;
-      return Promise.resolve(session);
+    session: async ({ session, token }) => {
+      const user = {
+        ...session.user,
+        jwt: token.jwt,
+      };
+
+      return {
+        ...session,
+        user,
+      };
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    jwt: async ({ token, user }: any) => {
-      const isSignIn = user ? true : false;
-      if (isSignIn) {
-        token.id = user.id;
-        token.jwt = user.jwt;
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.jwt = (user as unknown as JwtUserProps).jwt;
       }
-      return Promise.resolve(token);
+
+      return token;
     },
   },
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

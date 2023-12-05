@@ -1,43 +1,18 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useSession } from 'next-auth/react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { signIn, useSession } from 'next-auth/react';
+import { notFound, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { register as registerNewUser } from '@/services/auth';
+import { resetPassword } from '@/services/auth';
 
-import { FormRegister } from '@/types/form';
-
-import { userAlreadyExists } from '@/utils/user';
+import { FormResetPassword } from '@/types/form';
 
 const schema = yup
   .object({
-    firstname: yup.string().required('Le prénom est obligatoire.'),
-    lastname: yup.string().required('Le nom est obligatoire.'),
-    studentNumber: yup
-      .string()
-      .matches(/^(\d{10}[A-Z]{1}|\d{9}[A-Z]{2})$/, {
-        message:
-          'Le numéro étudiant doit être composé de 10 chiffres et 1 lettre ou 9 chiffres et 2 lettres.',
-        excludeEmptyString: true,
-      })
-      .optional(),
-    email: yup
-      .string()
-      .required("L'email est obligatoire.")
-      .email("L'email doit être une adresse email valide.")
-      .matches(/@etu\.toulouse-inp\.fr$/, "L'email doit se terminer par @etu.toulouse-inp.fr"),
-    phoneNumber: yup
-      .string()
-      .required('Le numéro de téléphone est obligatoire.')
-      .matches(
-        /^(\+33\s?|0)(6|7)\s?(\d{2}\s?){4}$/,
-        'Le numéro de téléphone doit être un numéro valide.',
-      ),
     password: yup
       .string()
       .required('Le mot de passe est obligatoire.')
@@ -50,7 +25,6 @@ const schema = yup
       .string()
       .required('La confirmation du mot de passe est obligatoire.')
       .oneOf([yup.ref('password')], 'Les mots de passe doivent correspondre.'),
-    termsAccepted: yup.bool().oneOf([true], 'Vous devez accepter les termes et conditions.'),
   })
   .required();
 
@@ -58,16 +32,19 @@ const Form = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
   const [globalError, setGlobalError] = useState<string>('');
-  const [success, setSuccess] = useState<boolean>(false);
 
   const { status } = useSession();
   const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const code = searchParams.get('code');
+
+  if (!code) notFound();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -80,31 +57,29 @@ const Form = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const onSubmit = async (data: FormRegister) => {
+  const onSubmit = async (data: Omit<FormResetPassword, 'code'>) => {
     setGlobalError('');
-    setSuccess(false);
 
     try {
-      const user = await userAlreadyExists({
-        email: data.email,
+      const result = await resetPassword({
+        code,
+        password: data.password,
+        passwordConfirmation: data.passwordConfirmation,
       });
 
-      if (user.exist) {
-        setError('email', {
-          type: 'manual',
-          message: 'Cet email est déjà utilisé.',
+      if (result.user) {
+        await signIn('credentials', {
+          redirect: false,
+          email: result.user.email,
+          password: data.password,
         });
 
-        return;
-      }
-
-      const result = await registerNewUser(data);
-
-      if (result.user) {
-        setSuccess(true);
+        router.push('/');
+      } else {
+        setGlobalError('Une erreur est survenue lors du changement de votre mot de passe.');
       }
     } catch (error) {
-      setGlobalError("Une erreur est survenue lors de l'inscription.");
+      setGlobalError('Une erreur est survenue lors du changement de votre mot de passe.');
     }
   };
 
@@ -117,96 +92,6 @@ const Form = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="space-y-4">
-        <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-          <div className="sm:w-1/2">
-            <label className="block text-sm font-medium mb-1" htmlFor="firstname">
-              Prénom <span className="text-rose-500">*</span>
-            </label>
-
-            <input
-              id="firstname"
-              className="form-input py-2 w-full"
-              type="text"
-              autoComplete="given-name"
-              {...register('firstname')}
-            />
-
-            {errors.firstname && (
-              <p className="text-sm text-red-500 mt-1">{errors.firstname.message}</p>
-            )}
-          </div>
-
-          <div className="sm:w-1/2">
-            <label className="block text-sm font-medium mb-1" htmlFor="lastname">
-              Nom <span className="text-rose-500">*</span>
-            </label>
-
-            <input
-              id="lastname"
-              className="form-input py-2 w-full"
-              type="text"
-              autoComplete="family-name"
-              {...register('lastname')}
-            />
-
-            {errors.lastname && (
-              <p className="text-sm text-red-500 mt-1">{errors.lastname.message}</p>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1" htmlFor="studentNumber">
-            Numéro étudiant
-          </label>
-
-          <input
-            id="studentNumber"
-            className="form-input py-2 w-full"
-            type="text"
-            autoComplete="student-number"
-            {...register('studentNumber')}
-          />
-
-          {errors.studentNumber && (
-            <p className="text-sm text-red-500 mt-1">{errors.studentNumber.message}</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1" htmlFor="email">
-            Email <span className="text-rose-500">*</span>
-          </label>
-
-          <input
-            id="email"
-            className="form-input py-2 w-full"
-            type="email"
-            autoComplete="email"
-            {...register('email')}
-          />
-
-          {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1" htmlFor="phoneNumber">
-            Numéro de téléphone <span className="text-rose-500">*</span>
-          </label>
-
-          <input
-            id="phoneNumber"
-            className="form-input py-2 w-full"
-            type="tel"
-            autoComplete="tel"
-            {...register('phoneNumber')}
-          />
-
-          {errors.phoneNumber && (
-            <p className="text-sm text-red-500 mt-1">{errors.phoneNumber.message}</p>
-          )}
-        </div>
-
         <div>
           <label className="block text-sm font-medium mb-1" htmlFor="password">
             Mot de passe <span className="text-rose-500">*</span>
@@ -294,60 +179,13 @@ const Form = () => {
 
       <div className="mt-6">
         <button className="btn-sm w-full text-sm text-white bg-blue-600 hover:bg-blue-700 group">
-          Rejoindre Greensa’table{' '}
+          Réinitialiser mon mot de passe{' '}
           <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
             -&gt;
           </span>
         </button>
 
         {globalError && <p className="text-sm text-red-500 mt-1">{globalError}</p>}
-
-        {success && (
-          <p className="text-sm text-emerald-500 mt-1">
-            Un email de confirmation vous a été envoyé.
-          </p>
-        )}
-      </div>
-
-      <div className="mt-5">
-        <label className="flex items-start">
-          <input type="checkbox" className="form-checkbox mt-0.5" {...register('termsAccepted')} />
-
-          <div className="flex flex-col ml-3">
-            <span className="text-sm text-slate-500">
-              En cliquant sur Rejoindre Greensa’table, vous acceptez nos{' '}
-              <Link
-                className="text-blue-600 hover:underline"
-                href="terms-of-use"
-                aria-label="Conditions d'utilisation"
-              >
-                Conditions d&apos;utilisation
-              </Link>{' '}
-              et notre{' '}
-              <Link
-                className="text-blue-600 hover:underline"
-                href="privacy-policy"
-                aria-label="Politique de confidentialité"
-              >
-                Politique de confidentialité
-              </Link>
-              .
-            </span>
-
-            {errors.termsAccepted && (
-              <p className="text-sm text-red-500 mt-1">{errors.termsAccepted.message}</p>
-            )}
-          </div>
-        </label>
-      </div>
-
-      <div className="text-center mt-5">
-        <span className="text-sm text-slate-500">
-          Vous avez déjà un compte ?{' '}
-          <Link className="text-blue-600 hover:underline" href="/login" aria-label="Se connecter">
-            Se connecter
-          </Link>
-        </span>
       </div>
     </form>
   );

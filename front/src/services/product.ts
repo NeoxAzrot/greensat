@@ -24,7 +24,7 @@ export const getAllProducts = cache(
     );
 
     const res: Response<Products> = await axios
-      .get(`${API_URL}/api/products`, {
+      .get(`${API_URL}/products`, {
         params: {
           'pagination[pageSize]': pageSize,
           'pagination[page]': page,
@@ -43,7 +43,7 @@ export const getAllProducts = cache(
 
 export const getOneProductById = cache(async ({ id }: GetOneProductByIdProps) => {
   const res: Response<Product> = await axios
-    .get(`${API_URL}/api/products/${id}`, {
+    .get(`${API_URL}/products/${id}`, {
       params: {
         populate: '*',
       },

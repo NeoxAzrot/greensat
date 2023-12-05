@@ -2,13 +2,19 @@ import axios from 'axios';
 import { cache } from 'react';
 
 import { PaginationRequest, ResponseUser } from '@/types/request';
-import { User, Users } from '@/types/user';
+import { UpdateUser, User, Users } from '@/types/user';
 
 import { API_URL } from '@/utils/constants';
 
 interface GetUserProps {
   token: string;
   populate?: string | boolean;
+}
+
+interface UpdateUserProps {
+  token: string;
+  id: number;
+  data: Partial<UpdateUser>;
 }
 
 export const getUser = cache(async ({ token, populate = false }: GetUserProps) => {
@@ -58,3 +64,21 @@ export const getAllUsers = cache(
     return res.data;
   },
 );
+
+export const updateUser = cache(async ({ token, id, data }: UpdateUserProps) => {
+  const res: ResponseUser<User> = await axios
+    .put(
+      `${API_URL}/users/${id}`,
+      { data },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+    .catch((error) => {
+      return error;
+    });
+
+  return res.data;
+});

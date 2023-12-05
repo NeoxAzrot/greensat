@@ -28,33 +28,31 @@ const Likes = ({ producer }: LikesProps) => {
 
   const handleClick = async () => {
     if (status === 'unauthenticated') {
-      router.push('/login', {
-        query: {
-          callbackUrl: pathname,
-        },
-      });
+      router.push(`/login?callbackUrl=${pathname}`);
 
       return;
     }
 
-    let newUsersLikes;
+    if (user) {
+      let newUsersLikes;
 
-    if (usersLikes.includes(user.id)) {
-      newUsersLikes = usersLikes.filter((userLike) => userLike !== user.id);
-    } else {
-      newUsersLikes = [...usersLikes, user.id];
-    }
+      if (usersLikes.includes(user.id)) {
+        newUsersLikes = usersLikes.filter((userLike) => userLike !== user.id);
+      } else {
+        newUsersLikes = [...usersLikes, user.id];
+      }
 
-    const result = await updateProducer({
-      token: user.jwt,
-      id: producer.id,
-      data: {
-        usersLikes: newUsersLikes,
-      },
-    });
+      const result = await updateProducer({
+        token: user.jwt,
+        id: producer.id,
+        data: {
+          usersLikes: newUsersLikes,
+        },
+      });
 
-    if (result) {
-      setUsersLikes(newUsersLikes);
+      if (result) {
+        setUsersLikes(newUsersLikes);
+      }
     }
   };
 
@@ -75,7 +73,7 @@ const Likes = ({ producer }: LikesProps) => {
         </svg>
       </div>
 
-      {usersLikes.includes(user.id) && (
+      {user && usersLikes.includes(user.id) && (
         <p className="text-sm text-slate-600">Tu as déjà aimé ce producteur</p>
       )}
     </div>

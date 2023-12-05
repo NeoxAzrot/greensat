@@ -113,7 +113,7 @@ const Form = () => {
           <input
             id="email"
             className="form-input py-2 w-full"
-            type="email"
+            type="text"
             autoComplete="email"
             {...register('email')}
           />

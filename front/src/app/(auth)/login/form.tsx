@@ -107,9 +107,9 @@ const Form = () => {
 
   useEffect(() => {
     if (status === 'authenticated') {
-      router.push('/');
+      router.push(callbackUrl || '/');
     }
-  }, [status, router]);
+  }, [status, router, callbackUrl]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -122,7 +122,7 @@ const Form = () => {
           <input
             id="email"
             className="form-input py-2 w-full"
-            type="email"
+            type="text"
             autoComplete="email"
             {...register('email')}
           />

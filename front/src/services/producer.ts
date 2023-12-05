@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { cache } from 'react';
 
-import { Producer, Producers } from '@/types/producer';
+import { Producer, Producers, UpdateProducer } from '@/types/producer';
 import { PaginationRequest, Response } from '@/types/request';
 
 import { API_URL } from '@/utils/constants';
@@ -12,6 +12,12 @@ interface GetOneProducerByIdProps {
 
 interface GetOneProducerBySlugProps {
   slug: string;
+}
+
+interface UpdateProducerProps {
+  token: string;
+  id: number;
+  data: Partial<UpdateProducer>;
 }
 
 export const getAllProducers = cache(
@@ -80,6 +86,24 @@ export const getOneProducerBySlug = cache(async ({ slug }: GetOneProducerBySlugP
         populate: '*',
       },
     })
+    .catch((error) => {
+      return error;
+    });
+
+  return res.data;
+});
+
+export const updateProducer = cache(async ({ token, id, data }: UpdateProducerProps) => {
+  const res: Response<Producer> = await axios
+    .put(
+      `${API_URL}/producers/${id}`,
+      { data },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
     .catch((error) => {
       return error;
     });

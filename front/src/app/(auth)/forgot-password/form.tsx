@@ -3,7 +3,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -31,6 +31,9 @@ const Form = () => {
   const { status } = useSession();
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const email = searchParams.get('email');
+
   const {
     register,
     handleSubmit,
@@ -38,6 +41,9 @@ const Form = () => {
     setError,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      email: email || '',
+    },
   });
 
   const onSubmit = async (data: FormForgotPassword) => {

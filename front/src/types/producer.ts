@@ -40,7 +40,16 @@ interface Props extends SimpleProps {
   labels: ImageArray;
 }
 
+interface UpdateProps extends SimpleProps {
+  image?: Image;
+  products?: number[];
+  usersLikes?: number[];
+  survey?: Survey[];
+  labels?: ImageArray;
+}
+
 export interface SimpleProducer extends Global<SimpleProps> {}
 export interface Producer extends Global<Props> {}
+export interface UpdateProducer extends UpdateProps {}
 
 export interface Producers extends GlobalArray<Props> {}

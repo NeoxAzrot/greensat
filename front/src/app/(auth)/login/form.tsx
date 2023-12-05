@@ -3,7 +3,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -30,14 +30,20 @@ const Form = () => {
   const { status } = useSession();
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl');
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
+    watch,
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const email = watch('email');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -93,7 +99,7 @@ const Form = () => {
         return;
       }
 
-      router.push('/login');
+      router.push(callbackUrl || '/');
     } catch (error) {
       setGlobalError('Une erreur est survenue lors de la connexion.');
     }
@@ -181,7 +187,7 @@ const Form = () => {
       <div className="text-center mt-5">
         <Link
           className="text-blue-600 hover:underline"
-          href="/forgot-password"
+          href={`/forgot-password?email=${encodeURIComponent(email)}`}
           aria-label="Mot de passe oublié ?"
         >
           Mot de passe oublié ?

@@ -5,7 +5,7 @@ import { login } from '@/services/auth';
 
 import { SimpleAuthUser } from '@/types/user';
 
-interface JwtUserProps extends SimpleAuthUser {
+export interface JwtUserProps extends SimpleAuthUser {
   jwt: string;
 }
 
@@ -43,6 +43,7 @@ export const authOptions: AuthOptions = {
       const user = {
         ...session.user,
         jwt: token.jwt,
+        id: token.userId,
       };
 
       return {
@@ -53,6 +54,7 @@ export const authOptions: AuthOptions = {
     jwt: async ({ token, user }) => {
       if (user) {
         token.jwt = (user as unknown as JwtUserProps).jwt;
+        token.userId = (user as unknown as JwtUserProps).id;
       }
 
       return token;

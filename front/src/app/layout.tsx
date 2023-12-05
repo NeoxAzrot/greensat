@@ -7,7 +7,8 @@ import { ReactNode } from 'react';
 
 import '@/styles/style.css';
 
-import { authOptions } from './api/auth/[...nextauth]/route';
+import { authOptions } from '@/utils/auth';
+
 import NextAuthProvider from './contexts/next-auth-provider';
 
 const inter = Inter({

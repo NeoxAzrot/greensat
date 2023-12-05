@@ -1,13 +1,19 @@
 import axios from 'axios';
 import { cache } from 'react';
 
-import { Product, Products } from '@/types/product';
+import { Product, Products, UpdateProduct } from '@/types/product';
 import { PaginationRequest, Response } from '@/types/request';
 
 import { API_URL } from '@/utils/constants';
 
 interface GetOneProductByIdProps {
   id: number;
+}
+
+interface UpdateProductProps {
+  token: string;
+  id: number;
+  data: Partial<UpdateProduct>;
 }
 
 export const getAllProducts = cache(
@@ -24,7 +30,7 @@ export const getAllProducts = cache(
     );
 
     const res: Response<Products> = await axios
-      .get(`${API_URL}/api/products`, {
+      .get(`${API_URL}/products`, {
         params: {
           'pagination[pageSize]': pageSize,
           'pagination[page]': page,
@@ -43,11 +49,29 @@ export const getAllProducts = cache(
 
 export const getOneProductById = cache(async ({ id }: GetOneProductByIdProps) => {
   const res: Response<Product> = await axios
-    .get(`${API_URL}/api/products/${id}`, {
+    .get(`${API_URL}/products/${id}`, {
       params: {
         populate: '*',
       },
     })
+    .catch((error) => {
+      return error;
+    });
+
+  return res.data;
+});
+
+export const updateProduct = cache(async ({ token, id, data }: UpdateProductProps) => {
+  const res: Response<Product> = await axios
+    .put(
+      `${API_URL}/products/${id}`,
+      { data },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
     .catch((error) => {
       return error;
     });

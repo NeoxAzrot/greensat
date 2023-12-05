@@ -2,12 +2,16 @@
 
 import { useState } from 'react';
 
-import PostItem from '@/components/post-item';
+import Producer from '@/components/producer';
 import Separator from '@/components/separator';
 
 import { Producers } from '@/types/producer';
 
-const AllContent = ({ producers }: { producers: Producers }) => {
+interface AllContentProps {
+  producers: Producers;
+}
+
+const AllContent = ({ producers }: AllContentProps) => {
   const [showAll, setShowAll] = useState<boolean>(false);
 
   const handleShowAllClicks = () => {
@@ -36,10 +40,9 @@ const AllContent = ({ producers }: { producers: Producers }) => {
             Tous les producteurs
           </h2>
 
-          {/* Articles container */}
           <div className="max-w-sm mx-auto md:max-w-none grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
             {producers.map((producer) => (
-              <PostItem key={producer.id} {...producer} />
+              <Producer key={producer.id} {...producer} />
             ))}
           </div>
         </>

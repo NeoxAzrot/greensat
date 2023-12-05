@@ -1,10 +1,15 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { getServerSession } from 'next-auth';
 import { Inter, Playfair_Display } from 'next/font/google';
 import Script from 'next/script';
-import { Metadata } from 'next/types';
+import { Metadata, Viewport } from 'next/types';
 import { ReactNode } from 'react';
 
 import '@/styles/style.css';
+
+import { authOptions } from '@/utils/auth';
+
+import NextAuthProvider from './contexts/next-auth-provider';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -17,6 +22,13 @@ const playfair = Playfair_Display({
   variable: '--font-playfair-display',
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  colorScheme: 'normal',
+  initialScale: 1,
+  width: 'device-width',
+  themeColor: '#0097b2',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://greensatable.fr/'),
@@ -47,12 +59,6 @@ export const metadata: Metadata = {
     'Étudiant',
   ],
   referrer: 'origin',
-  themeColor: '#0097b2',
-  colorScheme: 'normal',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
   creator: 'Sami Lafrance',
   publisher: 'Vercel',
   robots: {
@@ -177,12 +183,15 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-const RootLayout = ({ children }: RootLayoutProps) => {
+const RootLayout = async ({ children }: RootLayoutProps) => {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="fr">
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
       />
+
       <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -196,7 +205,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       <body
         className={`${inter.variable} ${playfair.variable} font-inter antialiased bg-white text-slate-800 tracking-tight`}
       >
-        {children}
+        <NextAuthProvider session={session}>{children}</NextAuthProvider>
       </body>
     </html>
   );

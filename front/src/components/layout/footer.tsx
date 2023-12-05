@@ -7,59 +7,61 @@ const Footer = () => {
   return (
     <footer>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Top area: Blocks */}
         <div className="grid sm:grid-cols-12 gap-8 py-8 md:py-12">
-          {/* 1st block */}
           <div className="sm:col-span-12 lg:col-span-4 lg:max-w-xs">
             <div className="mb-2">
-              {/* Logo */}
               <Link
                 href="/"
                 className="inline-flex text-blue-600 transition duration-150 ease-in-out"
-                aria-label="Cruip"
+                aria-label="Accueil"
               >
                 <Image
                   className="mx-auto object-cover"
                   src={LogoImage}
                   width={40}
                   height={40}
-                  priority
-                  alt="About intro"
+                  loading="lazy"
+                  alt="Greensa’table logo"
                 />
               </Link>
             </div>
+
             <div className="text-lg font-bold text-slate-800">
               La meilleure façon de manger local.
             </div>
           </div>
 
-          {/* 2nd block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2"></div>
 
-          {/* 3rd block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
             <h6 className="text-sm text-slate-800 font-semibold mb-2">Pages</h6>
+
             <ul className="text-sm font-medium space-y-2">
               <li>
                 <Link
                   href="/about"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                  aria-label="À propos"
                 >
                   À propos
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="/producers"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                  aria-label="Les producteurs"
                 >
                   Les producteurs
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="/support"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                  aria-label="Support"
                 >
                   Support
                 </Link>
@@ -67,30 +69,35 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* 4th block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
             <h6 className="text-sm text-slate-800 font-semibold mb-2">Ressources</h6>
+
             <ul className="text-sm font-medium space-y-2">
               <li>
                 <Link
                   href="/account"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                  aria-label="Mon compte"
                 >
                   Mon compte
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="/login"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                  aria-label="Se connecter"
                 >
                   Se connecter
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="/register"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                  aria-label="Créer un compte"
                 >
                   S&apos;inscrire
                 </Link>
@@ -98,30 +105,35 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* 5th block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
             <h6 className="text-sm text-slate-800 font-semibold mb-2">Légal</h6>
+
             <ul className="text-sm font-medium space-y-2">
               <li>
                 <Link
                   href="/terms-of-use"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                  aria-label="Mentions légales"
                 >
                   Mentions légales
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="/privacy-policy"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                  aria-label="Politique de confidentialité"
                 >
                   Politique de confidentialité
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="/plan"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
+                  aria-label="Plan du site"
                 >
                   Plan du site
                 </Link>
@@ -130,9 +142,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom area */}
         <div className="md:flex md:items-center md:justify-between py-6 md:py-8 border-t border-slate-200">
-          {/* Social links */}
           <ul className="flex space-x-6 mb-4 md:order-1 md:ml-4 md:mb-0">
             <li>
               <a
@@ -154,7 +164,6 @@ const Footer = () => {
             </li>
           </ul>
 
-          {/* Copyrights note */}
           <div className="text-sm text-slate-500 mr-4">
             © Greensa&apos;table. Tous droits réservés.
           </div>

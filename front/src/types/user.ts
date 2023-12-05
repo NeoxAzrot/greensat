@@ -29,7 +29,14 @@ interface Props extends SimpleProps {
   products: SimpleProduct[];
 }
 
+interface UpdateProps extends SimpleProps {
+  producersLikes?: number[];
+  products?: number[];
+}
+
 export interface SimpleUser extends GlobalSimpleUserRelationProps {}
+export interface SimpleAuthUser extends SimpleProps {}
 export interface User extends Props {}
+export interface UpdateUser extends UpdateProps {}
 
 export interface Users extends Array<Props> {}

@@ -18,19 +18,26 @@ const TermsOfUseContent = () => {
             <Separator />
 
             <h2>Édition du site</h2>
+
             <p>
-              Le présent site, accessible à l’URL <Link href="/">greensatable.fr</Link> (le
-              « Site »), est édité par :
+              Le présent site, accessible à l’URL{' '}
+              <Link href="/" aria-label="Accueil">
+                greensatable.fr
+              </Link>{' '}
+              (le « Site »), est édité par :
             </p>
+
             <p>
               Greensat, dont le siège social est situé à Avenue de l&apos;Agrobiopole - 31320
               Auzeville-Tolosane, représenté(e) par Solveig Bakhuys dûment habilité(e).
             </p>
+
             <p>Le numéro individuel TVA de l’éditeur est : FR88899940191.</p>
 
             <Separator />
 
             <h2>Hébergement</h2>
+
             <p>
               Le Site est hébergé par la société OVH SAS, situé 2 rue Kellermann - BP 80157 - 59053
               Roubaix Cedex 1, (contact téléphonique ou email : 1007).
@@ -39,13 +46,14 @@ const TermsOfUseContent = () => {
             <Separator />
 
             <h2>Directeur de publication</h2>
+
             <p>Le Directeur de la publication du Site est Lise Michel.</p>
 
             <Separator />
 
             <h2>Nous contacter</h2>
+
             <p>
-              {/* Par téléphone : +33 6 75 75 78 66 <br /> */}
               Par email : contact@greensatable.fr <br />
               Par courrier : Avenue de l&apos;Agrobiopole - 31320 Auzeville-Tolosane
             </p>
@@ -53,6 +61,7 @@ const TermsOfUseContent = () => {
             <Separator />
 
             <h2>Données personnelles</h2>
+
             <p>
               Le traitement de vos données à caractère personnel est régi par notre Charte du
               respect de la vie privée, disponible depuis la section « Charte de Protection des

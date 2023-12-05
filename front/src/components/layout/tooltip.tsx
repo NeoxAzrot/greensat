@@ -38,13 +38,21 @@ const Tooltip = ({ children, position = 'top', content }: TooltipProps) => {
     }
   };
 
+  const handleOpen = () => {
+    setTooltipOpen(true);
+  };
+
+  const handleClose = () => {
+    setTooltipOpen(false);
+  };
+
   return (
     <div
       className="relative"
-      onMouseEnter={() => setTooltipOpen(true)}
-      onMouseLeave={() => setTooltipOpen(false)}
-      onFocus={() => setTooltipOpen(true)}
-      onBlur={() => setTooltipOpen(false)}
+      onMouseEnter={handleOpen}
+      onMouseLeave={handleClose}
+      onFocus={handleOpen}
+      onBlur={handleClose}
     >
       <div
         className="block"

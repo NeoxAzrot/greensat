@@ -1,16 +1,19 @@
 'use client';
 
 import { Transition } from '@headlessui/react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 const MobileMenu = () => {
+  const { status } = useSession();
+
   const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
 
   const trigger = useRef<HTMLButtonElement>(null);
   const mobileNav = useRef<HTMLDivElement>(null);
 
-  // close the mobile menu on click outside
+  // Close the mobile menu on click outside
   useEffect(() => {
     const clickHandler = ({ target }: { target: EventTarget | null }): void => {
       if (!mobileNav.current || !trigger.current) return;
@@ -26,7 +29,7 @@ const MobileMenu = () => {
     return () => document.removeEventListener('click', clickHandler);
   });
 
-  // close the mobile menu if the esc key is pressed
+  // Close the mobile menu if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }: { keyCode: number }): void => {
       if (!mobileNavOpen || keyCode !== 27) return;
@@ -36,17 +39,25 @@ const MobileMenu = () => {
     return () => document.removeEventListener('keydown', keyHandler);
   });
 
+  const handleClose = () => {
+    setMobileNavOpen(false);
+  };
+
+  const toggleMobileNav = () => {
+    setMobileNavOpen(!mobileNavOpen);
+  };
+
   return (
     <div className="flex md:hidden">
-      {/* Hamburger button */}
       <button
         ref={trigger}
         className={`hamburger ${mobileNavOpen && 'active'}`}
         aria-controls="mobile-nav"
         aria-expanded={mobileNavOpen}
-        onClick={() => setMobileNavOpen(!mobileNavOpen)}
+        onClick={toggleMobileNav}
       >
         <span className="sr-only">Menu</span>
+
         <svg
           className="w-6 h-6 fill-current text-slate-900 dark:text-slate-100"
           viewBox="0 0 24 24"
@@ -58,7 +69,6 @@ const MobileMenu = () => {
         </svg>
       </button>
 
-      {/*Mobile navigation */}
       <div ref={mobileNav}>
         <Transition
           show={mobileNavOpen}
@@ -77,50 +87,77 @@ const MobileMenu = () => {
               <Link
                 href="/about"
                 className="flex font-medium text-slate-800 hover:text-blue-600 py-2"
-                onClick={() => setMobileNavOpen(false)}
+                onClick={handleClose}
+                aria-label="À propos"
               >
                 À propos
               </Link>
             </li>
+
             <li>
               <Link
                 href="/producers"
                 className="flex font-medium text-slate-800 hover:text-blue-600 py-2"
-                onClick={() => setMobileNavOpen(false)}
+                onClick={handleClose}
+                aria-label="Les producteurs"
               >
                 Les producteurs
               </Link>
             </li>
+
             <li className="pb-2 mb-2 border-b border-gray-200">
               <Link
                 href="/support"
                 className="flex font-medium text-slate-800 hover:text-blue-600 py-2"
-                onClick={() => setMobileNavOpen(false)}
+                onClick={handleClose}
+                aria-label="Support"
               >
                 Des questions ?
               </Link>
             </li>
-            <li>
-              <Link
-                href="/login"
-                className="flex font-medium w-full text-slate-800 hover:text-blue-600 py-2"
-                onClick={() => setMobileNavOpen(false)}
-              >
-                Se connecter
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/register"
-                className="flex font-medium text-blue-600 py-2 group"
-                onClick={() => setMobileNavOpen(false)}
-              >
-                S&apos;inscrire{' '}
-                <span className="tracking-normal text-blue-600 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                  -&gt;
-                </span>
-              </Link>
-            </li>
+
+            {status === 'authenticated' ? (
+              <li>
+                <Link
+                  href="/account"
+                  className="flex font-medium text-blue-600 py-2 group"
+                  onClick={handleClose}
+                  aria-label="Mon compte"
+                >
+                  Mon compte{' '}
+                  <span className="tracking-normal text-blue-600 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                    -&gt;
+                  </span>
+                </Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    href="/login"
+                    className="flex font-medium w-full text-slate-800 hover:text-blue-600 py-2"
+                    onClick={handleClose}
+                    aria-label="Se connecter"
+                  >
+                    Se connecter
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/register"
+                    className="flex font-medium text-blue-600 py-2 group"
+                    onClick={handleClose}
+                    aria-label="Créer un compte"
+                  >
+                    S&apos;inscrire{' '}
+                    <span className="tracking-normal text-blue-600 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
+                      -&gt;
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </Transition>
       </div>

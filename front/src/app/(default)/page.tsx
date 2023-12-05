@@ -1,10 +1,10 @@
 import { Metadata } from 'next/types';
 
-import Clients from '@/components/clients-02';
-import Cta from '@/components/cta';
+import CtaMap from '@/components/cta-map';
 import FeaturesBlocks from '@/components/features-blocks';
-import Features from '@/components/features-home';
+import FeaturesSlider from '@/components/features-slider';
 import Hero from '@/components/hero-home';
+import Partners from '@/components/partners';
 
 import { getAllProducers } from '@/services/producer';
 
@@ -46,9 +46,9 @@ const Home = async () => {
     <>
       <Hero producers={producers.data} />
       <FeaturesBlocks />
-      <Features />
-      <Clients />
-      <Cta />
+      <FeaturesSlider />
+      <Partners />
+      <CtaMap />
     </>
   );
 };

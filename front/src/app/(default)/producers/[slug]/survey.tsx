@@ -1,9 +1,25 @@
-import Mdx from '@/components/mdx/mdx';
+import Mdx from '@/components/mdx';
 import Separator from '@/components/separator';
 
 import { AnimalSurvey, StoreSurvey, TransformSurvey, VegetalSurvey } from '@/types/surveys';
 
-export const AnimalSurveyRender = (survey: AnimalSurvey) => {
+interface AnimalSurveyProps {
+  survey: AnimalSurvey;
+}
+
+interface StoreSurveyProps {
+  survey: StoreSurvey;
+}
+
+interface TransformSurveyProps {
+  survey: TransformSurvey;
+}
+
+interface VegetalSurveyProps {
+  survey: VegetalSurvey;
+}
+
+export const AnimalSurveyRender = ({ survey }: AnimalSurveyProps) => {
   return (
     <>
       {(survey.rearingMode ||
@@ -149,7 +165,7 @@ export const AnimalSurveyRender = (survey: AnimalSurvey) => {
   );
 };
 
-export const StoreSurveyRender = (survey: StoreSurvey) => {
+export const StoreSurveyRender = ({ survey }: StoreSurveyProps) => {
   return (
     <>
       {(survey.productOriginInterest ||
@@ -217,7 +233,7 @@ export const StoreSurveyRender = (survey: StoreSurvey) => {
   );
 };
 
-export const TransformSurveyRender = (survey: TransformSurvey) => {
+export const TransformSurveyRender = ({ survey }: TransformSurveyProps) => {
   return (
     <>
       {(survey.rawMaterialQualityRequirements ||
@@ -319,7 +335,7 @@ export const TransformSurveyRender = (survey: TransformSurvey) => {
   );
 };
 
-export const VegetalSurveyRender = (survey: VegetalSurvey) => {
+export const VegetalSurveyRender = ({ survey }: VegetalSurveyProps) => {
   return (
     <>
       {(survey.cropOrganizationalOverview ||

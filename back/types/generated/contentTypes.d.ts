@@ -788,9 +788,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     firstname: Attribute.String & Attribute.Required;
     lastname: Attribute.String & Attribute.Required;
-    slug: Attribute.UID & Attribute.Required;
-    studentNumber: Attribute.BigInteger;
-    phoneNumber: Attribute.String;
+    phoneNumber: Attribute.String & Attribute.Required;
     producersLikes: Attribute.Relation<
       'plugin::users-permissions.user',
       'manyToMany',
@@ -801,6 +799,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::product.product'
     >;
+    studentNumber: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

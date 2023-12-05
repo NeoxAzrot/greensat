@@ -1,14 +1,76 @@
 import axios from 'axios';
+import { cache } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+import { FormForgotPassword, FormLogin, FormRegister, FormResetPassword } from '@/types/form';
+import { ResponseLogin, ResponseRegister, ResponseUser } from '@/types/request';
+import { SimpleAuthUser } from '@/types/user';
 
 import { API_URL } from '@/utils/constants';
 
-// TODO: Change any type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const signIn = async ({ email, password }: any) => {
-  const res = await axios.post(`${API_URL}/api/auth/local`, {
-    identifier: email,
-    password,
-  });
+interface ForgotPasswordResponse {
+  ok: boolean;
+}
+
+export const login = cache(async ({ email, password }: FormLogin) => {
+  const res: ResponseLogin<SimpleAuthUser> = await axios
+    .post(`${API_URL}/auth/local`, {
+      identifier: email,
+      password,
+    })
+    .catch((error) => {
+      return error;
+    });
 
   return res.data;
-};
+});
+
+export const register = cache(
+  async ({ firstname, lastname, studentNumber, email, phoneNumber, password }: FormRegister) => {
+    const userUUID = uuidv4();
+
+    const res: ResponseRegister<SimpleAuthUser> = await axios
+      .post(`${API_URL}/auth/local/register`, {
+        username: userUUID,
+        firstname,
+        lastname,
+        studentNumber,
+        email,
+        phoneNumber,
+        password,
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    return res.data;
+  },
+);
+
+export const forgotPassword = cache(async ({ email }: FormForgotPassword) => {
+  const res: ResponseUser<ForgotPasswordResponse> = await axios
+    .post(`${API_URL}/auth/forgot-password`, {
+      email,
+    })
+    .catch((error) => {
+      return error;
+    });
+
+  return res.data;
+});
+
+export const resetPassword = cache(
+  async ({ code, password, passwordConfirmation }: FormResetPassword) => {
+    const res: ResponseRegister<SimpleAuthUser> = await axios
+      .post(`${API_URL}/auth/reset-password`, {
+        code,
+        password,
+        passwordConfirmation,
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    return res.data;
+  },
+);

@@ -73,17 +73,10 @@
       "type": "string",
       "required": true
     },
-    "slug": {
-      "type": "uid",
-      "required": true
-    },
-    "studentNumber": {
-      "type": "biginteger",
-      "required": false
-    },
     "phoneNumber": {
       "type": "string",
-      "regex": "^(?:(?:\\+|00)33|0)\\s*[1-9](?:[\\s.-]*\\d{2}){4}$"
+      "regex": "^(\\+33\\s?|0)(6|7)\\s?(\\d{2}\\s?){4}$",
+      "required": true
     },
     "producersLikes": {
       "type": "relation",
@@ -96,6 +89,10 @@
       "relation": "manyToMany",
       "target": "api::product.product",
       "mappedBy": "users"
+    },
+    "studentNumber": {
+      "type": "string",
+      "regex": "^(\\d{10}[A-Z]{1}|\\d{9}[A-Z]{2})$"
     }
   }
 }

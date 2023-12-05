@@ -228,7 +228,6 @@ export default factories.createCoreController(
           },
         };
       } catch (err) {
-        console.log(err);
         ctx.status = 500;
         ctx.body = {
           data: null,

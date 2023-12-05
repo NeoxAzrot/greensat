@@ -18,9 +18,7 @@ export default [
   {
     name: "strapi::cors",
     config: {
-      enabled: true,
-      headers: "*",
-      origin: ["https://greensatable.fr"],
+      enabled: false,
     },
   },
   "strapi::logger",

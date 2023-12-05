@@ -14,14 +14,15 @@ export default [
       },
     },
   },
+  "strapi::poweredBy",
   {
     name: "strapi::cors",
     config: {
       enabled: true,
+      headers: "*",
       origin: ["https://greensatable.fr"],
     },
   },
-  "strapi::poweredBy",
   "strapi::logger",
   "strapi::query",
   "strapi::body",

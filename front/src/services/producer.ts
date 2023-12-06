@@ -1,10 +1,9 @@
-import axios from 'axios';
 import { cache } from 'react';
 
 import { Producer, Producers, UpdateProducer } from '@/types/producer';
 import { PaginationRequest, Response } from '@/types/request';
 
-import { API_URL } from '@/utils/constants';
+import { axiosInstance, setAuthToken } from '@/utils/request';
 
 interface GetOneProducerByIdProps {
   id: number;
@@ -33,8 +32,8 @@ export const getAllProducers = cache(
       {} as Record<string, string>,
     );
 
-    const res: Response<Producers> = await axios
-      .get(`${API_URL}/producers`, {
+    const res: Response<Producers> = await axiosInstance
+      .get('/producers', {
         params: {
           'pagination[pageSize]': pageSize,
           'pagination[page]': page,
@@ -52,8 +51,8 @@ export const getAllProducers = cache(
 );
 
 export const getPopularProducers = cache(async () => {
-  const res: Response<Producers> = await axios
-    .get(`${API_URL}/producers/popular`, {
+  const res: Response<Producers> = await axiosInstance
+    .get('/producers/popular', {
       params: {
         populate: '*',
       },
@@ -66,8 +65,8 @@ export const getPopularProducers = cache(async () => {
 });
 
 export const getOneProducerById = cache(async ({ id }: GetOneProducerByIdProps) => {
-  const res: Response<Producer> = await axios
-    .get(`${API_URL}/producers/${id}`, {
+  const res: Response<Producer> = await axiosInstance
+    .get(`/producers/${id}`, {
       params: {
         populate: '*',
       },
@@ -80,8 +79,8 @@ export const getOneProducerById = cache(async ({ id }: GetOneProducerByIdProps) 
 });
 
 export const getOneProducerBySlug = cache(async ({ slug }: GetOneProducerBySlugProps) => {
-  const res: Response<Producer> = await axios
-    .get(`${API_URL}/producers/slug/${slug}`, {
+  const res: Response<Producer> = await axiosInstance
+    .get(`/producers/slug/${slug}`, {
       params: {
         populate: '*',
       },
@@ -94,16 +93,10 @@ export const getOneProducerBySlug = cache(async ({ slug }: GetOneProducerBySlugP
 });
 
 export const updateProducer = cache(async ({ token, id, data }: UpdateProducerProps) => {
-  const res: Response<Producer> = await axios
-    .put(
-      `${API_URL}/producers/${id}`,
-      { data },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    )
+  setAuthToken({ token });
+
+  const res: Response<Producer> = await axiosInstance
+    .put(`/producers/${id}`, { data })
     .catch((error) => {
       return error;
     });

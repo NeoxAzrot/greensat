@@ -19,7 +19,7 @@ export default [
     name: "strapi::cors",
     config: {
       enabled: true,
-      headers: "*",
+      headers: ["Content-Type", "Authorization", "Origin", "Accept"],
       origin: [
         "http://localhost:3000",
         "greensatable.fr",
@@ -35,8 +35,8 @@ export default [
         "http://www.api.greensatable.fr",
         "https://www.api.greensatable.fr",
       ],
-      // headers: ["Content-Type", "Authorization", "Origin", "Accept"],
-      // keepHeaderOnError: true,
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+      keepHeaderOnError: true,
     },
   },
   "strapi::poweredBy",

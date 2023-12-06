@@ -12,7 +12,7 @@ import { register as registerNewUser } from '@/services/auth';
 
 import { FormRegister } from '@/types/form';
 
-import { userAlreadyExists } from '@/utils/user';
+// import { userAlreadyExists } from '@/utils/user';
 
 const schema = yup
   .object({
@@ -67,7 +67,7 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
+    // setError,
   } = useForm({
     resolver: yupResolver(schema),
   });

@@ -56,9 +56,6 @@ export const getAllUsers = cache(
           populate,
           ...newFilters,
         },
-        headers: {
-          Origin: 'https://greensatable.fr',
-        },
       })
       .catch((error) => {
         return error;

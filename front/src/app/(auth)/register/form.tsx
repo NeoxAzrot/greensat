@@ -85,18 +85,18 @@ const Form = () => {
     setSuccess(false);
 
     try {
-      const user = await userAlreadyExists({
-        email: data.email,
-      });
+      // const user = await userAlreadyExists({
+      //   email: data.email,
+      // });
 
-      if (user.exist) {
-        setError('email', {
-          type: 'manual',
-          message: 'Cet email est déjà utilisé.',
-        });
+      // if (user.exist) {
+      //   setError('email', {
+      //     type: 'manual',
+      //     message: 'Cet email est déjà utilisé.',
+      //   });
 
-        return;
-      }
+      //   return;
+      // }
 
       const result = await registerNewUser(data);
 

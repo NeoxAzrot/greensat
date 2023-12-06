@@ -12,7 +12,7 @@ import { register as registerNewUser } from '@/services/auth';
 
 import { FormRegister } from '@/types/form';
 
-import { userAlreadyExists } from '@/utils/user';
+// import { userAlreadyExists } from '@/utils/user';
 
 const schema = yup
   .object({
@@ -67,7 +67,7 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
+    // setError,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -85,18 +85,18 @@ const Form = () => {
     setSuccess(false);
 
     try {
-      const user = await userAlreadyExists({
-        email: data.email,
-      });
+      // const user = await userAlreadyExists({
+      //   email: data.email,
+      // });
 
-      if (user.exist) {
-        setError('email', {
-          type: 'manual',
-          message: 'Cet email est déjà utilisé.',
-        });
+      // if (user.exist) {
+      //   setError('email', {
+      //     type: 'manual',
+      //     message: 'Cet email est déjà utilisé.',
+      //   });
 
-        return;
-      }
+      //   return;
+      // }
 
       const result = await registerNewUser(data);
 

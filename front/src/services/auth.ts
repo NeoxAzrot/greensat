@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { cache } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -6,15 +5,15 @@ import { FormForgotPassword, FormLogin, FormRegister, FormResetPassword } from '
 import { ResponseLogin, ResponseRegister, ResponseUser } from '@/types/request';
 import { SimpleAuthUser } from '@/types/user';
 
-import { API_URL } from '@/utils/constants';
+import { axiosInstance } from '@/utils/request';
 
 interface ForgotPasswordResponse {
   ok: boolean;
 }
 
 export const login = cache(async ({ email, password }: FormLogin) => {
-  const res: ResponseLogin<SimpleAuthUser> = await axios
-    .post(`${API_URL}/auth/local`, {
+  const res: ResponseLogin<SimpleAuthUser> = await axiosInstance
+    .post('/auth/local', {
       identifier: email,
       password,
     })
@@ -29,8 +28,8 @@ export const register = cache(
   async ({ firstname, lastname, studentNumber, email, phoneNumber, password }: FormRegister) => {
     const userUUID = uuidv4();
 
-    const res: ResponseRegister<SimpleAuthUser> = await axios
-      .post(`${API_URL}/auth/local/register`, {
+    const res: ResponseRegister<SimpleAuthUser> = await axiosInstance
+      .post('/auth/local/register', {
         username: userUUID,
         firstname,
         lastname,
@@ -48,8 +47,8 @@ export const register = cache(
 );
 
 export const forgotPassword = cache(async ({ email }: FormForgotPassword) => {
-  const res: ResponseUser<ForgotPasswordResponse> = await axios
-    .post(`${API_URL}/auth/forgot-password`, {
+  const res: ResponseUser<ForgotPasswordResponse> = await axiosInstance
+    .post('/auth/forgot-password', {
       email,
     })
     .catch((error) => {
@@ -61,8 +60,8 @@ export const forgotPassword = cache(async ({ email }: FormForgotPassword) => {
 
 export const resetPassword = cache(
   async ({ code, password, passwordConfirmation }: FormResetPassword) => {
-    const res: ResponseRegister<SimpleAuthUser> = await axios
-      .post(`${API_URL}/auth/reset-password`, {
+    const res: ResponseRegister<SimpleAuthUser> = await axiosInstance
+      .post('/auth/reset-password', {
         code,
         password,
         passwordConfirmation,

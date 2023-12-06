@@ -61,6 +61,52 @@ export const getAllUsers = cache(
         return error;
       });
 
+    const test: ResponseUser<Users> = await axios
+      .get('https://api.greensatable.fr/api/users', {
+        params: {
+          'pagination[pageSize]': pageSize,
+          'pagination[page]': page,
+          sort,
+          populate,
+          ...newFilters,
+        },
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    const test2: ResponseUser<Users> = await axios
+      .get('https://www.api.greensatable.fr/api/users', {
+        params: {
+          'pagination[pageSize]': pageSize,
+          'pagination[page]': page,
+          sort,
+          populate,
+          ...newFilters,
+        },
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    const test3: ResponseUser<Users> = await axios
+      .get('https://greensatable-api.onrender.com/api/users', {
+        params: {
+          'pagination[pageSize]': pageSize,
+          'pagination[page]': page,
+          sort,
+          populate,
+          ...newFilters,
+        },
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    console.log('test', test);
+    console.log('test2', test2);
+    console.log('test3', test3);
+
     return res.data;
   },
 );

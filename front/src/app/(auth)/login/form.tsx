@@ -187,7 +187,7 @@ const Form = () => {
       <div className="text-center mt-5">
         <Link
           className="text-blue-600 hover:underline"
-          href={`/forgot-password?email=${encodeURIComponent(email)}`}
+          href={`/forgot-password${email ? `?email=${encodeURIComponent(email)}` : ''}`}
           aria-label="Mot de passe oublié ?"
         >
           Mot de passe oublié ?

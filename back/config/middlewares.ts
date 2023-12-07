@@ -24,7 +24,6 @@ export default ({ env }) => {
     {
       name: "strapi::cors",
       config: {
-        enabled: true,
         headers: "*",
         origin: corsOrigin,
       },

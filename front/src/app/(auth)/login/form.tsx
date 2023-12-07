@@ -17,8 +17,8 @@ const schema = yup
     email: yup
       .string()
       .required("L'email est obligatoire.")
-      .email("L'email doit être une adresse email valide.")
-      .matches(/@etu\.toulouse-inp\.fr$/, "L'email doit se terminer par @etu.toulouse-inp.fr"),
+      .email("L'email doit être une adresse email valide."),
+    // .matches(/@etu\.toulouse-inp\.fr$/, "L'email doit se terminer par @etu.toulouse-inp.fr"),
     password: yup.string().required('Le mot de passe est obligatoire.'),
   })
   .required();
@@ -187,7 +187,7 @@ const Form = () => {
       <div className="text-center mt-5">
         <Link
           className="text-blue-600 hover:underline"
-          href={`/forgot-password?email=${encodeURIComponent(email)}`}
+          href={`/forgot-password${email ? `?email=${encodeURIComponent(email)}` : ''}`}
           aria-label="Mot de passe oublié ?"
         >
           Mot de passe oublié ?

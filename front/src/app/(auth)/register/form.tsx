@@ -29,8 +29,8 @@ const schema = yup
     email: yup
       .string()
       .required("L'email est obligatoire.")
-      .email("L'email doit être une adresse email valide."),
-    // .matches(/@etu\.toulouse-inp\.fr$/, "L'email doit se terminer par @etu.toulouse-inp.fr"),
+      .email("L'email doit être une adresse email valide.")
+      .matches(/@etu\.toulouse-inp\.fr$/, "L'email doit se terminer par @etu.toulouse-inp.fr"),
     phoneNumber: yup
       .string()
       .required('Le numéro de téléphone est obligatoire.')

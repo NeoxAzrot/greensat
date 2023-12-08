@@ -30,6 +30,7 @@ export interface FormUpdateAccount {
   studentNumber?: string;
   email: string;
   phoneNumber: string;
-  password?: string | null;
-  passwordConfirmation?: string | null;
+  currentPassword?: string | null;
+  newPassword?: string | null;
+  newPasswordConfirmation?: string | null;
 }

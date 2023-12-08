@@ -1,7 +1,7 @@
 import { cache } from 'react';
 
-import { PaginationRequest, ResponseUser } from '@/types/request';
-import { UpdateUser, User, Users } from '@/types/user';
+import { PaginationRequest, ResponseChangePassword, ResponseUser } from '@/types/request';
+import { SimpleAuthUser, UpdateUser, User, Users } from '@/types/user';
 
 import { axiosInstance, setAuthToken } from '@/utils/request';
 
@@ -14,6 +14,15 @@ interface UpdateUserProps {
   token: string;
   id: number;
   data: Partial<UpdateUser>;
+}
+
+interface ChangePasswordUserProps {
+  token: string;
+  data: {
+    currentPassword: string;
+    password: string;
+    passwordConfirmation: string;
+  };
 }
 
 export const getUser = cache(async ({ token, populate = false }: GetUserProps) => {
@@ -66,8 +75,18 @@ export const getAllUsers = cache(
 export const updateUser = cache(async ({ token, id, data }: UpdateUserProps) => {
   setAuthToken({ token });
 
-  const res: ResponseUser<User> = await axiosInstance
-    .put(`/users/${id}`, { data })
+  const res: ResponseUser<User> = await axiosInstance.put(`/users/${id}`, data).catch((error) => {
+    return error;
+  });
+
+  return res.data;
+});
+
+export const changePasswordUser = cache(async ({ token, data }: ChangePasswordUserProps) => {
+  setAuthToken({ token });
+
+  const res: ResponseChangePassword<SimpleAuthUser> = await axiosInstance
+    .post('/auth/change-password', data)
     .catch((error) => {
       return error;
     });

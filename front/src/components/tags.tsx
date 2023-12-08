@@ -98,7 +98,7 @@ const Tags = ({ producers }: TagsProps) => {
         </div>
 
         <div
-          className="flex justify-center items-center mx-auto w-full h-[405px] md:h-[576px]"
+          className="flex justify-center items-center mx-auto w-full h-[405px] md:h-[576px] mt-8 mb-4"
           data-aos="fade-left"
         >
           <div className="relative w-full h-full">

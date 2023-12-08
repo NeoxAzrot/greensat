@@ -45,3 +45,10 @@ export interface ResponseLogin<T> extends AxiosResponse {
     user: T;
   };
 }
+
+export interface ResponseChangePassword<T> extends AxiosResponse {
+  data: {
+    jwt: string;
+    user: T;
+  };
+}

@@ -74,6 +74,13 @@ const AccountProducts = ({ products }: AccountProductsProps) => {
                 </div>
               </article>
             ))}
+
+            {/* TODO: Revoir */}
+            {products.length === 0 && (
+              <div className="w-full flex items-center justify-center">
+                <p className="text-slate-500">Tu n&apos;as réservé aucun produit pour le moment.</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

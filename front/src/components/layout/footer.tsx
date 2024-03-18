@@ -63,7 +63,7 @@ const Footer = () => {
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
                   aria-label="Support"
                 >
-                  Support
+                  Des questions ?
                 </Link>
               </li>
             </ul>

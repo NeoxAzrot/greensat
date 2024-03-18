@@ -108,8 +108,18 @@ const Account = async () => {
     query: queryProducers,
   });
 
+  const queryUser = qs.stringify(
+    {
+      fields: ['firstname', 'lastname', 'studentNumber', 'email', 'phoneNumber'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
   const user = await getUser({
     token: userSession.jwt,
+    query: queryUser,
   });
 
   return (

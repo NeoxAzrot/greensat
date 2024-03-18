@@ -362,208 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiEventEvent extends Schema.CollectionType {
-  collectionName: 'events';
-  info: {
-    singularName: 'event';
-    pluralName: 'events';
-    displayName: 'Event';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::event.event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::event.event',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiProducerProducer extends Schema.CollectionType {
-  collectionName: 'producers';
-  info: {
-    singularName: 'producer';
-    pluralName: 'producers';
-    displayName: 'Producer';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    image: Attribute.Media & Attribute.Required;
-    summary: Attribute.Text & Attribute.Required;
-    latitude: Attribute.Float & Attribute.Required;
-    longitude: Attribute.Float & Attribute.Required;
-    address: Attribute.String & Attribute.Required;
-    businessType: Attribute.Enumeration<['farm', 'market', 'store']> &
-      Attribute.Required;
-    products: Attribute.Relation<
-      'api::producer.producer',
-      'oneToMany',
-      'api::product.product'
-    >;
-    usersLikes: Attribute.Relation<
-      'api::producer.producer',
-      'manyToMany',
-      'plugin::users-permissions.user'
-    >;
-    survey: Attribute.DynamicZone<
-      [
-        'surveys.animal',
-        'surveys.store',
-        'surveys.transform',
-        'surveys.vegetable'
-      ]
-    > &
-      Attribute.Required &
-      Attribute.SetMinMax<{
-        max: 1;
-      }>;
-    slug: Attribute.UID<'api::producer.producer', 'title'> & Attribute.Required;
-    hours: Attribute.Text;
-    discount: Attribute.RichText;
-    distance: Attribute.Text;
-    labels: Attribute.Media;
-    useVioletGround: Attribute.Enumeration<['yes', 'no', 'wouldLike']> &
-      Attribute.Required;
-    pictos: Attribute.JSON &
-      Attribute.CustomField<
-        'plugin::multi-select.multi-select',
-        [
-          'Bien \u00EAtre animal:animalWelfare',
-          'P\u00E2turage/\u00E9levage en plein air:freeRangeFarming',
-          'Producteur transformateur:transformingProducer',
-          'R\u00E9duction des d\u00E9chets:wasteReduction',
-          'Pratiques agro\u00E9cologiques:agroecologicalPractices',
-          'Engagement solidaire ou social:communityEngagement',
-          'Approvisionnement local:localSourcing',
-          'Transparence et partage:transparencyAndSharing'
-        ]
-      >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::producer.producer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::producer.producer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiProductProduct extends Schema.CollectionType {
-  collectionName: 'products';
-  info: {
-    singularName: 'product';
-    pluralName: 'products';
-    displayName: 'Product';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    image: Attribute.Media & Attribute.Required;
-    summary: Attribute.Text & Attribute.Required;
-    count: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<1>;
-    active: Attribute.Boolean & Attribute.DefaultTo<true>;
-    producer: Attribute.Relation<
-      'api::product.product',
-      'manyToOne',
-      'api::producer.producer'
-    >;
-    discount: Attribute.String & Attribute.Required;
-    reservations: Attribute.Relation<
-      'api::product.product',
-      'oneToMany',
-      'api::reservation.reservation'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiReservationReservation extends Schema.CollectionType {
-  collectionName: 'reservations';
-  info: {
-    singularName: 'reservation';
-    pluralName: 'reservations';
-    displayName: 'Reservation';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    confirmationDate: Attribute.DateTime;
-    confirmation: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
-    reservationDate: Attribute.DateTime & Attribute.Required;
-    product: Attribute.Relation<
-      'api::reservation.reservation',
-      'manyToOne',
-      'api::product.product'
-    >;
-    user: Attribute.Relation<
-      'api::reservation.reservation',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::reservation.reservation',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::reservation.reservation',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -892,6 +690,208 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiEventEvent extends Schema.CollectionType {
+  collectionName: 'events';
+  info: {
+    singularName: 'event';
+    pluralName: 'events';
+    displayName: 'Event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProducerProducer extends Schema.CollectionType {
+  collectionName: 'producers';
+  info: {
+    singularName: 'producer';
+    pluralName: 'producers';
+    displayName: 'Producer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    summary: Attribute.Text & Attribute.Required;
+    latitude: Attribute.Float & Attribute.Required;
+    longitude: Attribute.Float & Attribute.Required;
+    address: Attribute.String & Attribute.Required;
+    businessType: Attribute.Enumeration<['farm', 'market', 'store']> &
+      Attribute.Required;
+    products: Attribute.Relation<
+      'api::producer.producer',
+      'oneToMany',
+      'api::product.product'
+    >;
+    usersLikes: Attribute.Relation<
+      'api::producer.producer',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    survey: Attribute.DynamicZone<
+      [
+        'surveys.animal',
+        'surveys.store',
+        'surveys.transform',
+        'surveys.vegetable'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        max: 1;
+      }>;
+    slug: Attribute.UID<'api::producer.producer', 'title'> & Attribute.Required;
+    hours: Attribute.Text;
+    discount: Attribute.RichText;
+    distance: Attribute.Text;
+    labels: Attribute.Media;
+    useVioletGround: Attribute.Enumeration<['yes', 'no', 'wouldLike']> &
+      Attribute.Required;
+    pictos: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'Bien \u00EAtre animal:animalWelfare',
+          'P\u00E2turage/\u00E9levage en plein air:freeRangeFarming',
+          'Producteur transformateur:transformingProducer',
+          'R\u00E9duction des d\u00E9chets:wasteReduction',
+          'Pratiques agro\u00E9cologiques:agroecologicalPractices',
+          'Engagement solidaire ou social:communityEngagement',
+          'Approvisionnement local:localSourcing',
+          'Transparence et partage:transparencyAndSharing'
+        ]
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::producer.producer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::producer.producer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    summary: Attribute.Text & Attribute.Required;
+    count: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<1>;
+    active: Attribute.Boolean & Attribute.DefaultTo<true>;
+    producer: Attribute.Relation<
+      'api::product.product',
+      'manyToOne',
+      'api::producer.producer'
+    >;
+    discount: Attribute.String & Attribute.Required;
+    reservations: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::reservation.reservation'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReservationReservation extends Schema.CollectionType {
+  collectionName: 'reservations';
+  info: {
+    singularName: 'reservation';
+    pluralName: 'reservations';
+    displayName: 'Reservation';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    confirmationDate: Attribute.DateTime;
+    confirmation: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    reservationDate: Attribute.DateTime & Attribute.Required;
+    product: Attribute.Relation<
+      'api::reservation.reservation',
+      'manyToOne',
+      'api::product.product'
+    >;
+    user: Attribute.Relation<
+      'api::reservation.reservation',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reservation.reservation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reservation.reservation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -902,16 +902,16 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::event.event': ApiEventEvent;
-      'api::producer.producer': ApiProducerProducer;
-      'api::product.product': ApiProductProduct;
-      'api::reservation.reservation': ApiReservationReservation;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::event.event': ApiEventEvent;
+      'api::producer.producer': ApiProducerProducer;
+      'api::product.product': ApiProductProduct;
+      'api::reservation.reservation': ApiReservationReservation;
     }
   }
 }

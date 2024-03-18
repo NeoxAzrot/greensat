@@ -5,9 +5,8 @@ import { SimpleAuthUser, UpdateUser, User, Users } from '@/types/user';
 
 import { axiosInstance, setAuthToken } from '@/utils/request';
 
-interface GetUserProps {
+interface GetUserProps extends GlobalRequest {
   token: string;
-  populate?: string | boolean;
 }
 
 interface UpdateUserProps {
@@ -25,18 +24,12 @@ interface ChangePasswordUserProps {
   };
 }
 
-export const getUser = cache(async ({ token, populate = false }: GetUserProps) => {
+export const getUser = cache(async ({ token, query }: GetUserProps) => {
   setAuthToken({ token });
 
-  const res: ResponseUser<User> = await axiosInstance
-    .get(`/users/me`, {
-      params: {
-        populate,
-      },
-    })
-    .catch((error) => {
-      return error;
-    });
+  const res: ResponseUser<User> = await axiosInstance.get(`/users/me?${query}`).catch((error) => {
+    return error;
+  });
 
   return res.data;
 });

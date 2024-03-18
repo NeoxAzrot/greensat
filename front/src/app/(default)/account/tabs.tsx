@@ -1,8 +1,7 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 import { Producers } from '@/types/producer';
 import { Reservations } from '@/types/reservation';
@@ -21,9 +20,6 @@ interface AccountTabsProps {
 }
 
 const AccountTabs = ({ reservations, producers, user }: AccountTabsProps) => {
-  const { status } = useSession();
-  const router = useRouter();
-
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get('tab');
 
@@ -42,12 +38,6 @@ const AccountTabs = ({ reservations, producers, user }: AccountTabsProps) => {
   const handleClick = (newTab: TabProps) => {
     setTab(newTab);
   };
-
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login');
-    }
-  }, [status, router]);
 
   return (
     <section>

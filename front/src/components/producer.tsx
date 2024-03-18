@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 import PostDate from '@/components/date';
 
-import { Producer } from '@/types/producer';
+import { Producer as ProducerType } from '@/types/producer';
 
 import { truncateWithEllipses } from '@/utils/string';
 
-const Producer = ({ ...props }: Producer) => {
+const Producer = ({ ...props }: ProducerType) => {
   const summary = truncateWithEllipses({
     content: props.attributes.summary,
   });

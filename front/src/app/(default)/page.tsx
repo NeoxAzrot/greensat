@@ -1,4 +1,5 @@
 import { Metadata } from 'next/types';
+import qs from 'qs';
 
 import CtaMap from '@/components/cta-map';
 import FeaturesBlocks from '@/components/features-blocks';
@@ -37,9 +38,26 @@ export const metadata: Metadata = {
 };
 
 const Home = async () => {
+  const query = qs.stringify(
+    {
+      fields: ['slug', 'title', 'address', 'latitude', 'longitude', 'businessType'],
+      populate: {
+        products: {
+          fields: ['active', 'count'],
+        },
+        image: {
+          fields: ['url'],
+        },
+      },
+      sort: ['title'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
   const producers = await getAllProducers({
-    sort: 'title',
-    populate: '*',
+    query,
   });
 
   return (

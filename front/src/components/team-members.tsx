@@ -1,14 +1,9 @@
 import Image from 'next/image';
 
-import AlexandreImage from '@/public/images/team/alexandre.webp';
-import AliceImage from '@/public/images/team/alice.webp';
-import AmbreImage from '@/public/images/team/ambre.webp';
-import CamilleImage from '@/public/images/team/camille.webp';
-import ClemenceImage from '@/public/images/team/clemence.webp';
-import LiseImage from '@/public/images/team/lise.webp';
-import MaeImage from '@/public/images/team/mae.webp';
-import PaulImage from '@/public/images/team/paul.webp';
-import SamuelImage from '@/public/images/team/samuel.webp';
+import EmaImage from '@/public/images/team/ema.webp';
+import EveImage from '@/public/images/team/eve.webp';
+import GregoryImage from '@/public/images/team/gregory.webp';
+import JeanneImage from '@/public/images/team/jeanne.webp';
 
 const TeamMembers = () => {
   return (
@@ -29,19 +24,17 @@ const TeamMembers = () => {
               <div className="inline-flex mb-4">
                 <Image
                   className="rounded-full grayscale"
-                  src={LiseImage}
+                  src={EmaImage}
                   width={120}
                   height={120}
                   loading="lazy"
-                  alt="Lise"
+                  alt="Ema"
                 />
               </div>
 
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Lise</h4>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Ema</h4>
 
-              <div className="font-medium text-blue-600">
-                Capitaine d&apos;équipe et responsable site internet
-              </div>
+              <div className="font-medium text-blue-600">Responsable trésorerie et évènements</div>
             </div>
 
             <div
@@ -53,17 +46,19 @@ const TeamMembers = () => {
               <div className="inline-flex mb-4">
                 <Image
                   className="rounded-full grayscale"
-                  src={MaeImage}
+                  src={JeanneImage}
                   width={120}
                   height={120}
                   loading="lazy"
-                  alt="Maé"
+                  alt="Jeanne"
                 />
               </div>
 
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Maé</h4>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Jeanne</h4>
 
-              <div className="font-medium text-blue-600">Trésorière</div>
+              <div className="font-medium text-blue-600">
+                Responsable évènements et site internet
+              </div>
             </div>
 
             <div
@@ -75,17 +70,17 @@ const TeamMembers = () => {
               <div className="inline-flex mb-4">
                 <Image
                   className="rounded-full grayscale"
-                  src={ClemenceImage}
+                  src={EveImage}
                   width={120}
                   height={120}
                   loading="lazy"
-                  alt="Clémence"
+                  alt="Eve"
                 />
               </div>
 
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Clémence</h4>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Eve</h4>
 
-              <div className="font-medium text-blue-600">Responsable communication et réseau</div>
+              <div className="font-medium text-blue-600">Responsable communication et réseaux</div>
             </div>
 
             <div
@@ -97,134 +92,18 @@ const TeamMembers = () => {
               <div className="inline-flex mb-4">
                 <Image
                   className="rounded-full grayscale"
-                  src={AmbreImage}
+                  src={GregoryImage}
                   width={120}
                   height={120}
                   loading="lazy"
-                  alt="Ambre"
+                  alt="Grégory"
                 />
               </div>
 
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Ambre</h4>
-
-              <div className="font-medium text-blue-600">Responsable communication et réseau</div>
-            </div>
-
-            <div
-              className="text-center"
-              data-aos="fade-up"
-              data-aos-anchor="[data-aos-id-team]"
-              data-aos-delay={300}
-            >
-              <div className="inline-flex mb-4">
-                <Image
-                  className="rounded-full grayscale"
-                  src={AliceImage}
-                  width={120}
-                  height={120}
-                  loading="lazy"
-                  alt="Alice"
-                />
-              </div>
-
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Alice</h4>
-
-              <div className="font-medium text-blue-600">Responsable évènement</div>
-            </div>
-
-            <div
-              className="text-center"
-              data-aos="fade-up"
-              data-aos-anchor="[data-aos-id-team]"
-              data-aos-delay={400}
-            >
-              <div className="inline-flex mb-4">
-                <Image
-                  className="rounded-full grayscale"
-                  src={CamilleImage}
-                  width={120}
-                  height={120}
-                  loading="lazy"
-                  alt="Camille"
-                />
-              </div>
-
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Camille</h4>
+              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Grégory</h4>
 
               <div className="font-medium text-blue-600">
-                Responsables partenaires et producteurs
-              </div>
-            </div>
-
-            <div
-              className="text-center"
-              data-aos="fade-up"
-              data-aos-anchor="[data-aos-id-team]"
-              data-aos-delay={400}
-            >
-              <div className="inline-flex mb-4">
-                <Image
-                  className="rounded-full grayscale"
-                  src={AlexandreImage}
-                  width={120}
-                  height={120}
-                  loading="lazy"
-                  alt="Alexandre"
-                />
-              </div>
-
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Alexandre</h4>
-
-              <div className="font-medium text-blue-600">
-                Responsables partenaires et producteurs
-              </div>
-            </div>
-
-            <div
-              className="text-center"
-              data-aos="fade-up"
-              data-aos-anchor="[data-aos-id-team]"
-              data-aos-delay={500}
-            >
-              <div className="inline-flex mb-4">
-                <Image
-                  className="rounded-full grayscale"
-                  src={SamuelImage}
-                  width={120}
-                  height={120}
-                  loading="lazy"
-                  alt="Samuel"
-                />
-              </div>
-
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Samuel</h4>
-
-              <div className="font-medium text-blue-600">
-                Acteurs couteaux-suisses et petites mains
-              </div>
-            </div>
-
-            <div
-              className="text-center"
-              data-aos="fade-up"
-              data-aos-anchor="[data-aos-id-team]"
-              data-aos-delay={500}
-            >
-              <div className="inline-flex mb-4">
-                <Image
-                  className="rounded-full grayscale"
-                  src={PaulImage}
-                  width={120}
-                  height={120}
-                  loading="lazy"
-                  alt="Paul"
-                />
-              </div>
-
-              <h4 className="h4 font-playfair-display text-slate-800 mb-2">Paul</h4>
-
-              <div className="font-medium text-blue-600">
-                Acteurs couteaux-suisses et petites mains
+                Responsable producteurs et partenaires
               </div>
             </div>
           </div>

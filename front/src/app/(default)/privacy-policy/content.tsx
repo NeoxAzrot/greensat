@@ -74,7 +74,8 @@ const PrivacyPolicyContent = () => {
               <strong>Propriétaire :</strong> Lise Michel - Avenue de l&apos;Agrobiopole, 31320
               Auzeville-Tolosane
               <br />
-              <strong>Responsable publication :</strong> Lise Michel - lisemariemichel@gmail.com
+              <strong>Responsable publication :</strong> Jeanne Condom--Ouvry -
+              jeanne.condom@gmail.com
               <br />
               <strong>Webmaster :</strong>{' '}
               <a href="https://samilafrance.com" target="_blank" rel="noreferrer">
@@ -84,8 +85,8 @@ const PrivacyPolicyContent = () => {
               <br />
               <strong>Hébergeur :</strong> ovh - 2 rue Kellermann 59100 Roubaix 1007
               <br />
-              <strong>Délégué à la protection des données :</strong> Lise Michel -
-              lisemariemichel@gmail.com
+              <strong>Délégué à la protection des données :</strong> Jeanne Condom--Ouvry -
+              jeanne.condom@gmail.com
               <br />
             </p>
 
@@ -304,7 +305,7 @@ const PrivacyPolicyContent = () => {
             <p>
               Pour les Données Personnelles collectées dans le cadre de la création du compte
               personnel de l’Utilisateur et de sa navigation sur le Site, le responsable du
-              traitement des Données Personnelles est : Lise Michel.{' '}
+              traitement des Données Personnelles est : Jeanne Condom--Ouvry.{' '}
               <Link href="/" aria-label="Accueil">
                 greensatable.fr
               </Link>{' '}
@@ -456,7 +457,7 @@ const PrivacyPolicyContent = () => {
             </p>
 
             <p>
-              Lise Michel – DPO, Lise Michel <br />
+              Jeanne Condom--Ouvry – DPO, Jeanne Condom--Ouvry <br />
               Avenue de l&apos;Agrobiopole, 31320 Auzeville-Tolosane.
             </p>
 

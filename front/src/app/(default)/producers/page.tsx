@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next/types';
+import qs from 'qs';
 
 import Date from '@/components/date';
 import Hero from '@/components/hero';
@@ -43,9 +44,38 @@ export const metadata: Metadata = {
 };
 
 const Producers = async () => {
+  const query = qs.stringify(
+    {
+      fields: [
+        'slug',
+        'title',
+        'summary',
+        'publishedAt',
+        'address',
+        'latitude',
+        'longitude',
+        'businessType',
+      ],
+      populate: {
+        products: {
+          fields: ['active', 'count'],
+        },
+        image: {
+          fields: ['url'],
+        },
+        survey: {
+          fields: ['__component'],
+        },
+      },
+      sort: ['title'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
   const producers = await getAllProducers({
-    sort: 'title',
-    populate: '*',
+    query,
   });
 
   const featuredProducer =
@@ -60,21 +90,61 @@ const Producers = async () => {
     (product) => product.attributes.active && product.attributes.count > 0,
   );
 
+  const queryLatest = qs.stringify(
+    {
+      fields: ['slug', 'title', 'summary', 'publishedAt'],
+      populate: {
+        products: {
+          fields: ['active', 'count'],
+        },
+        image: {
+          fields: ['url'],
+        },
+      },
+      sort: ['publishedAt:desc'],
+      pagination: {
+        pageSize: 3,
+      },
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
   const latestProducers = await getAllProducers({
-    sort: 'publishedAt:desc',
-    populate: '*',
-    pageSize: 3,
+    query: queryLatest,
   });
 
   const popularProducers = await getPopularProducers();
 
-  const marketProducers = await getAllProducers({
-    sort: 'publishedAt',
-    filters: {
-      '[businessType][$eq]': 'market',
+  const queryMarket = qs.stringify(
+    {
+      fields: ['slug', 'title', 'summary', 'publishedAt'],
+      populate: {
+        products: {
+          fields: ['active', 'count'],
+        },
+        image: {
+          fields: ['url'],
+        },
+      },
+      sort: ['publishedAt'],
+      filters: {
+        businessType: {
+          $eq: 'market',
+        },
+      },
+      pagination: {
+        pageSize: 3,
+      },
     },
-    populate: '*',
-    pageSize: 3,
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const marketProducers = await getAllProducers({
+    query: queryMarket,
   });
 
   const featuredSummary = truncateWithEllipses({

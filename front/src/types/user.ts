@@ -1,6 +1,6 @@
 import { DateAttributes } from './global';
 import { SimpleProducer } from './producer';
-import { SimpleProduct } from './product';
+import { SimpleReservation } from './reservation';
 
 interface Global extends DateAttributes {
   id: number;
@@ -26,12 +26,12 @@ interface GlobalSimpleUserRelationProps {
 
 interface Props extends SimpleProps {
   producersLikes: SimpleProducer[];
-  products: SimpleProduct[];
+  reservations: SimpleReservation[];
 }
 
 interface UpdateProps extends SimpleProps {
   producersLikes?: number[];
-  products?: number[];
+  reservations?: number[];
 }
 
 export interface SimpleUser extends GlobalSimpleUserRelationProps {}

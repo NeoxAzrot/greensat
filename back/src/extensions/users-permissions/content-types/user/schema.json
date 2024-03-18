@@ -84,15 +84,15 @@
       "target": "api::producer.producer",
       "mappedBy": "usersLikes"
     },
-    "products": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product.product",
-      "mappedBy": "users"
-    },
     "studentNumber": {
       "type": "string",
       "regex": "^(\\d{10}[A-Z]{1}|\\d{9}[A-Z]{2})$"
+    },
+    "reservations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reservation.reservation",
+      "mappedBy": "user"
     }
   }
 }

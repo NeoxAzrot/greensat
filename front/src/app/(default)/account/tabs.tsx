@@ -4,27 +4,32 @@ import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { Products } from '@/types/product';
+import { Producers } from '@/types/producer';
+import { Reservations } from '@/types/reservation';
 import { User } from '@/types/user';
 
 import Form from './form';
-import AccountProducts from './products';
+import AccountProducers from './producers';
+import AccountReservations from './reservations';
 
-type TabProps = 'parameters' | 'products';
+type TabProps = 'parameters' | 'reservations' | 'producers';
 
 interface AccountTabsProps {
-  products: Products;
+  reservations: Reservations;
+  producers: Producers;
   user: User;
 }
 
-const AccountTabs = ({ products, user }: AccountTabsProps) => {
+const AccountTabs = ({ reservations, producers, user }: AccountTabsProps) => {
   const { status } = useSession();
   const router = useRouter();
 
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get('tab');
 
-  const [tab, setTab] = useState<TabProps>(defaultTab === 'products' ? 'products' : 'parameters');
+  const [tab, setTab] = useState<TabProps>(
+    defaultTab === 'reservations' ? 'reservations' : 'parameters',
+  );
 
   const getButtonClasses = (newTab: TabProps) => {
     if (tab === newTab) {
@@ -61,10 +66,19 @@ const AccountTabs = ({ products, user }: AccountTabsProps) => {
 
               <li className="mx-5 my-2">
                 <button
-                  className={getButtonClasses('products')}
-                  onClick={() => handleClick('products')}
+                  className={getButtonClasses('reservations')}
+                  onClick={() => handleClick('reservations')}
                 >
-                  Les produits
+                  Mes réservations
+                </button>
+              </li>
+
+              <li className="mx-5 my-2">
+                <button
+                  className={getButtonClasses('producers')}
+                  onClick={() => handleClick('producers')}
+                >
+                  Mes producteurs préférés
                 </button>
               </li>
             </ul>
@@ -73,7 +87,8 @@ const AccountTabs = ({ products, user }: AccountTabsProps) => {
 
         <div className="py-8">
           {tab === 'parameters' && <Form user={user} />}
-          {tab === 'products' && <AccountProducts products={products} />}
+          {tab === 'reservations' && <AccountReservations reservations={reservations} />}
+          {tab === 'producers' && <AccountProducers producers={producers} />}
         </div>
       </div>
     </section>

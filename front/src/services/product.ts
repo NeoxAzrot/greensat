@@ -1,11 +1,11 @@
 import { cache } from 'react';
 
 import { Product, Products, UpdateProduct } from '@/types/product';
-import { PaginationRequest, Response } from '@/types/request';
+import { GlobalRequest, Response } from '@/types/request';
 
 import { axiosInstance, setAuthToken } from '@/utils/request';
 
-interface GetOneProductByIdProps {
+interface GetOneProductByIdProps extends GlobalRequest {
   id: number;
 }
 
@@ -15,44 +15,17 @@ interface UpdateProductProps {
   data: Partial<UpdateProduct>;
 }
 
-export const getAllProducts = cache(
-  async ({ page, pageSize, sort, populate = false, filters }: PaginationRequest) => {
-    const newFilters = Object.entries(filters || {}).reduce(
-      (acc, [key, value]) => {
-        if (value) {
-          acc[`filters${key}`] = value;
-        }
+export const getAllProducts = cache(async ({ query }: GlobalRequest) => {
+  const res: Response<Products> = await axiosInstance.get(`/products?${query}`).catch((error) => {
+    return error;
+  });
 
-        return acc;
-      },
-      {} as Record<string, string>,
-    );
+  return res.data;
+});
 
-    const res: Response<Products> = await axiosInstance
-      .get('/products', {
-        params: {
-          'pagination[pageSize]': pageSize,
-          'pagination[page]': page,
-          sort,
-          populate,
-          ...newFilters,
-        },
-      })
-      .catch((error) => {
-        return error;
-      });
-
-    return res.data;
-  },
-);
-
-export const getOneProductById = cache(async ({ id }: GetOneProductByIdProps) => {
+export const getOneProductById = cache(async ({ id, query }: GetOneProductByIdProps) => {
   const res: Response<Product> = await axiosInstance
-    .get(`/products/${id}`, {
-      params: {
-        populate: '*',
-      },
-    })
+    .get(`/products/${id}?${query}`)
     .catch((error) => {
       return error;
     });

@@ -1,10 +1,12 @@
 import { getServerSession } from 'next-auth';
 import { Metadata } from 'next/types';
+import qs from 'qs';
 
 import CtaSupport from '@/components/cta-support';
 import Hero from '@/components/hero';
 
-import { getAllProducts } from '@/services/product';
+import { getAllProducers } from '@/services/producer';
+import { getAllReservations } from '@/services/reservation';
 import { getUser } from '@/services/user';
 
 import { JwtUserProps, authOptions } from '@/utils/auth';
@@ -44,13 +46,66 @@ const Account = async () => {
 
   const userSession = session?.user as unknown as JwtUserProps;
 
-  const products = await getAllProducts({
-    sort: ['createdAt'],
-    populate: '*',
-    filters: {
-      '[users][id][$in]': userSession.id.toString(),
-      '[active][$eq]': 'true',
+  const queryReservations = qs.stringify(
+    {
+      populate: {
+        product: {
+          fields: ['title', 'summary'],
+          populate: {
+            image: {
+              fields: ['url', 'alternativeText'],
+            },
+            producer: {
+              fields: ['slug', 'title'],
+            },
+          },
+        },
+      },
+      sort: ['reservationDate', 'confirmationDate'],
+      filters: {
+        user: {
+          id: {
+            $eq: userSession.id,
+          },
+        },
+      },
     },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const reservations = await getAllReservations({
+    query: queryReservations,
+  });
+
+  const queryProducers = qs.stringify(
+    {
+      fields: ['slug', 'title', 'summary', 'publishedAt'],
+      populate: {
+        products: {
+          fields: ['active', 'count'],
+        },
+        image: {
+          fields: ['url'],
+        },
+      },
+      sort: ['title'],
+      filters: {
+        usersLikes: {
+          id: {
+            $eq: userSession.id,
+          },
+        },
+      },
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const producers = await getAllProducers({
+    query: queryProducers,
   });
 
   const user = await getUser({
@@ -64,7 +119,7 @@ const Account = async () => {
         description="Gère ton compte, tes produits gratuits, et explore les avantages éco-responsables."
       />
 
-      <Tabs products={products.data} user={user} />
+      <Tabs reservations={reservations.data} producers={producers.data} user={user} />
 
       <CtaSupport />
     </>

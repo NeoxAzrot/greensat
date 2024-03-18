@@ -3,19 +3,27 @@
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import qs from 'qs';
 import { useState } from 'react';
 
 import { getOneProductById, updateProduct } from '@/services/product';
+import { createReservation, getAllReservations } from '@/services/reservation';
 
-import { Product, Products } from '@/types/product';
+import { Product, Products as ProductsType } from '@/types/product';
+import { Reservations } from '@/types/reservation';
 
 import { JwtUserProps } from '@/utils/auth';
+
+interface ProductsProps {
+  products: ProductsType;
+  reservations: Reservations;
+}
 
 interface HandleClickProps {
   id: number;
 }
 
-const Products = ({ products }: { products: Products }) => {
+const Products = ({ products, reservations }: ProductsProps) => {
   const [errorMessages, setErrorMessages] = useState<{ [key: number]: string }>({});
 
   const { data: session, status } = useSession();
@@ -25,12 +33,12 @@ const Products = ({ products }: { products: Products }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const organizeProducts = (newProducts: Products): Products => {
+  const organizeProducts = (newProducts: ProductsType): ProductsType => {
     const productsWithCount = newProducts.filter((product) => product.attributes.count > 0);
     const productsWithZeroCount = newProducts.filter((product) => product.attributes.count === 0);
 
-    const organizedProducts: Products = [];
-    let currentLine: Products = [];
+    const organizedProducts: ProductsType = [];
+    let currentLine: ProductsType = [];
 
     productsWithCount.forEach((product) => {
       currentLine.push(product);
@@ -40,7 +48,7 @@ const Products = ({ products }: { products: Products }) => {
       }
     });
 
-    while (currentLine.length > 0 && currentLine.length < 3 && productsWithZeroCount.length > 0) {
+    while (currentLine.length >= 0 && currentLine.length < 3 && productsWithZeroCount.length > 0) {
       currentLine.push(productsWithZeroCount.shift() as Product);
     }
 
@@ -60,8 +68,18 @@ const Products = ({ products }: { products: Products }) => {
       return;
     }
 
+    const query = qs.stringify(
+      {
+        fields: ['count', 'active'],
+      },
+      {
+        encodeValuesOnly: true,
+      },
+    );
+
     const product = await getOneProductById({
       id,
+      query,
     });
 
     if (product.data.attributes.count <= 0 || !product.data.attributes.active) {
@@ -71,25 +89,65 @@ const Products = ({ products }: { products: Products }) => {
     }
 
     if (user) {
-      const users = product.data.attributes.users.data.map((u) => u.id);
+      const queryReservations = qs.stringify(
+        {
+          filters: {
+            $and: [
+              {
+                product: {
+                  id: {
+                    $eq: id,
+                  },
+                },
+              },
+              {
+                user: {
+                  id: {
+                    $eq: user.id,
+                  },
+                },
+              },
+            ],
+          },
+        },
+        {
+          encodeValuesOnly: true,
+        },
+      );
 
-      if (users.includes(user.id)) {
+      const reservationsCheck = await getAllReservations({
+        query: queryReservations,
+      });
+
+      if (reservationsCheck.data.length > 0) {
         setErrorMessages({ ...errorMessages, [id]: 'Tu as déjà réservé ce produit' });
 
         return;
       }
 
-      const result = await updateProduct({
+      const result = await createReservation({
         token: user.jwt,
-        id: product.data.id,
         data: {
-          count: product.data.attributes.count - 1,
-          users: [...users, user.id],
+          confirmationDate: null,
+          reservationDate: new Date(),
+          confirmation: false,
+          product: product.data.id,
+          user: user.id,
         },
       });
 
       if (result) {
-        router.push('/account?tab=products');
+        const resultProduct = await updateProduct({
+          token: user.jwt,
+          id: product.data.id,
+          data: {
+            count: product.data.attributes.count - 1,
+          },
+        });
+
+        if (resultProduct) {
+          router.push('/account?tab=reservations');
+        }
       }
     }
   };
@@ -109,8 +167,11 @@ const Products = ({ products }: { products: Products }) => {
             data-aos-id-products
           >
             {organizedProducts.map((product) => {
-              const users = product.attributes.users.data.map((u) => u.id);
-              const alreadyBooked = users.includes(user.id);
+              const reservation = reservations.find(
+                (r) => r.attributes.product.data.id === product.id,
+              );
+
+              const alreadyBooked = user ? reservation?.attributes.user.data.id === user.id : false;
 
               return (
                 <article

@@ -14,13 +14,14 @@ import { FormForgotPassword } from '@/types/form';
 
 import { userAlreadyExists } from '@/utils/user';
 
+// TODO: @NeoxAzrot
 const schema = yup
   .object({
     email: yup
       .string()
       .required("L'email est obligatoire.")
-      .email("L'email doit être une adresse email valide.")
-      .matches(/@etu\.toulouse-inp\.fr$/, "L'email doit se terminer par @etu.toulouse-inp.fr"),
+      .email("L'email doit être une adresse email valide."),
+    // .matches(/@etu\.toulouse-inp\.fr$/, "L'email doit se terminer par @etu.toulouse-inp.fr"),
   })
   .required();
 

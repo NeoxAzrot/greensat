@@ -1,3 +1,5 @@
+import qs from 'qs';
+
 import { getAllUsers } from '@/services/user';
 
 interface UserAlreadyExistsProps {
@@ -5,10 +7,22 @@ interface UserAlreadyExistsProps {
 }
 
 export const userAlreadyExists = async ({ email }: UserAlreadyExistsProps) => {
-  const users = await getAllUsers({
-    filters: {
-      '[email][$eq]': email,
+  const query = qs.stringify(
+    {
+      fields: ['confirmed', 'blocked', 'email'],
+      filters: {
+        email: {
+          $eq: email,
+        },
+      },
     },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const users = await getAllUsers({
+    query,
   });
 
   return {

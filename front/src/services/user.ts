@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-import { PaginationRequest, ResponseChangePassword, ResponseUser } from '@/types/request';
+import { GlobalRequest, ResponseChangePassword, ResponseUser } from '@/types/request';
 import { SimpleAuthUser, UpdateUser, User, Users } from '@/types/user';
 
 import { axiosInstance, setAuthToken } from '@/utils/request';
@@ -41,36 +41,13 @@ export const getUser = cache(async ({ token, populate = false }: GetUserProps) =
   return res.data;
 });
 
-export const getAllUsers = cache(
-  async ({ page, pageSize, sort, populate = false, filters }: PaginationRequest) => {
-    const newFilters = Object.entries(filters || {}).reduce(
-      (acc, [key, value]) => {
-        if (value) {
-          acc[`filters${key}`] = value;
-        }
+export const getAllUsers = cache(async ({ query }: GlobalRequest) => {
+  const res: ResponseUser<Users> = await axiosInstance.get(`/users?${query}`).catch((error) => {
+    return error;
+  });
 
-        return acc;
-      },
-      {} as Record<string, string>,
-    );
-
-    const res: ResponseUser<Users> = await axiosInstance
-      .get('/users', {
-        params: {
-          'pagination[pageSize]': pageSize,
-          'pagination[page]': page,
-          sort,
-          populate,
-          ...newFilters,
-        },
-      })
-      .catch((error) => {
-        return error;
-      });
-
-    return res.data;
-  },
-);
+  return res.data;
+});
 
 export const updateUser = cache(async ({ token, id, data }: UpdateUserProps) => {
   setAuthToken({ token });

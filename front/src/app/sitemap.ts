@@ -1,10 +1,21 @@
 import { MetadataRoute } from 'next';
+import qs from 'qs';
 
 import { getAllProducers } from '@/services/producer';
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+  const query = qs.stringify(
+    {
+      fields: ['slug', 'updatedAt'],
+      sort: ['title'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
   const producers = await getAllProducers({
-    sort: 'title',
+    query,
   });
 
   const producersSitemap: MetadataRoute.Sitemap = producers.data.map((producer) => ({

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import qs from 'qs';
 
 import CtaRecommendation from '@/components/cta-recommendation';
 import Date from '@/components/date';
@@ -14,6 +15,7 @@ import Separator from '@/components/separator';
 
 import { getAllProducers, getOneProducerBySlug } from '@/services/producer';
 import { getAllProducts } from '@/services/product';
+import { getAllReservations } from '@/services/reservation';
 
 import { getPictosImages } from '@/utils/producer';
 
@@ -38,7 +40,17 @@ interface ProducerProps {
 }
 
 export const generateStaticParams = async () => {
-  const producers = await getAllProducers({});
+  const query = qs.stringify(
+    {
+      fields: ['slug'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+  const producers = await getAllProducers({
+    query,
+  });
 
   return producers.data.map((producer) => ({
     slug: producer.attributes.slug,
@@ -83,21 +95,89 @@ export const generateMetadata = async ({
 };
 
 const Producer = async ({ params }: ProducerProps) => {
-  const producers = await getAllProducers({
-    sort: 'title',
-    populate: '*',
-    filters: {
-      '[slug][$ne]': params.slug,
+  const queryProducers = qs.stringify(
+    {
+      fields: ['slug', 'title', 'summary', 'publishedAt'],
+      populate: {
+        products: {
+          fields: ['active', 'count'],
+        },
+        image: {
+          fields: ['url'],
+        },
+      },
+      sort: ['title'],
+      filters: {
+        slug: {
+          $ne: params.slug,
+        },
+      },
     },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const producers = await getAllProducers({
+    query: queryProducers,
   });
 
-  const products = await getAllProducts({
-    sort: ['count:desc', 'createdAt'],
-    populate: '*',
-    filters: {
-      '[producer][slug][$eq]': params.slug,
-      '[active][$eq]': 'true',
+  const queryProducts = qs.stringify(
+    {
+      fields: ['count', 'active', 'title', 'summary'],
+      populate: {
+        image: {
+          fields: ['url', 'alternativeText'],
+        },
+      },
+      sort: ['count:desc', 'createdAt'],
+      filters: {
+        producer: {
+          slug: {
+            $eq: params.slug,
+          },
+        },
+        active: {
+          $eq: true,
+        },
+      },
     },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const products = await getAllProducts({
+    query: queryProducts,
+  });
+
+  const productsIds = products.data.map((product) => product.id);
+
+  const queryReservations = qs.stringify(
+    {
+      populate: {
+        product: {
+          fields: ['id'],
+        },
+        user: {
+          fields: ['id'],
+        },
+      },
+      filters: {
+        product: {
+          id: {
+            $in: productsIds,
+          },
+        },
+      },
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const reservations = await getAllReservations({
+    query: queryReservations,
   });
 
   const relatedProducers = producers.data.sort(() => Math.random() - Math.random()).slice(0, 3);
@@ -229,7 +309,9 @@ const Producer = async ({ params }: ProducerProps) => {
           </>
         )}
 
-        {products.data.length > 0 && <Products products={products.data} />}
+        {products.data.length > 0 && (
+          <Products products={products.data} reservations={reservations.data} />
+        )}
 
         {survey && (
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6">

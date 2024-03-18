@@ -1,16 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 export interface GlobalRequest {
-  sort?: string | string[];
-  populate?: string | boolean;
-  filters?: {
-    [key: string]: string;
-  };
-}
-
-export interface PaginationRequest extends GlobalRequest {
-  page?: number;
-  pageSize?: number;
+  query?: string;
 }
 
 export interface PaginationResponse {

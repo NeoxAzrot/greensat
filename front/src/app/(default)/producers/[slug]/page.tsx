@@ -48,6 +48,7 @@ export const generateStaticParams = async () => {
       encodeValuesOnly: true,
     },
   );
+
   const producers = await getAllProducers({
     query,
   });

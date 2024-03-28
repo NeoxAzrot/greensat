@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { register as registerNewUser } from '@/services/auth';
+import { register as registerNewUser } from '@/actions/auth';
 
 import { FormRegister } from '@/types/form';
 

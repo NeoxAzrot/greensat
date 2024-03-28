@@ -7,7 +7,7 @@ import FeaturesSlider from '@/components/features-slider';
 import Hero from '@/components/hero-home';
 import Partners from '@/components/partners';
 
-import { getAllProducers } from '@/services/producer';
+import { getAllProducers } from '@/queries/producer';
 
 export const metadata: Metadata = {
   title: "Manger local près de l'ENSAT",

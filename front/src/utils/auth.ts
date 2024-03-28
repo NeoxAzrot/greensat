@@ -1,7 +1,7 @@
 import { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { login } from '@/services/auth';
+import { login } from '@/actions/auth';
 
 import { SimpleAuthUser } from '@/types/user';
 
@@ -26,6 +26,10 @@ export const authOptions: AuthOptions = {
             email: credentials.email,
             password: credentials.password,
           });
+
+          if (!result.user && !result.jwt) {
+            return null;
+          }
 
           return { ...result.user, jwt: result.jwt };
         } catch (error) {

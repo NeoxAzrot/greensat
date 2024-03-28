@@ -7,9 +7,10 @@
   "semi": true,
   "importOrder": [
     "^@/public/(.*)$",
+    "^@/actions/(.*)$",
     "^@/components/(.*)$",
     "^@/hooks/(.*)$",
-    "^@/services/(.*)$",
+    "^@/queries/(.*)$",
     "^@/styles/(.*)$",
     "^@/translations/(.*)$",
     "^@/types/(.*)$",

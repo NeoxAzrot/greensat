@@ -6,8 +6,11 @@ import { usePathname, useRouter } from 'next/navigation';
 import qs from 'qs';
 import { useState } from 'react';
 
-import { getOneProductById, updateProduct } from '@/services/product';
-import { createReservation, getAllReservations } from '@/services/reservation';
+import { updateProduct } from '@/actions/product';
+import { createReservation } from '@/actions/reservation';
+
+import { getOneProductById } from '@/queries/product';
+import { getAllReservations } from '@/queries/reservation';
 
 import { Product, Products as ProductsType } from '@/types/product';
 import { Reservations } from '@/types/reservation';
@@ -92,22 +95,16 @@ const Products = ({ products, reservations }: ProductsProps) => {
       const queryReservations = qs.stringify(
         {
           filters: {
-            $and: [
-              {
-                product: {
-                  id: {
-                    $eq: id,
-                  },
-                },
+            product: {
+              id: {
+                $eq: id,
               },
-              {
-                user: {
-                  id: {
-                    $eq: user.id,
-                  },
-                },
+            },
+            user: {
+              id: {
+                $eq: user.id,
               },
-            ],
+            },
           },
         },
         {
@@ -128,9 +125,11 @@ const Products = ({ products, reservations }: ProductsProps) => {
       const result = await createReservation({
         token: user.jwt,
         data: {
+          confirmed: false,
+          canceled: false,
           confirmationDate: null,
+          cancelationDate: null,
           reservationDate: new Date(),
-          confirmation: false,
           product: product.data.id,
           user: user.id,
         },
@@ -166,15 +165,17 @@ const Products = ({ products, reservations }: ProductsProps) => {
           >
             {organizedProducts.map((product) => {
               const reservation = reservations.find(
-                (r) => r.attributes.product.data.id === product.id,
+                (r) =>
+                  r.attributes.product.data.id === product.id &&
+                  r.attributes.user.data.id === user?.id,
               );
 
-              const alreadyBooked = user ? reservation?.attributes.user.data.id === user.id : false;
+              const alreadyBooked = reservation ? true : false;
 
               return (
                 <article
                   key={product.id}
-                  className="h-full bg-white p-6 shadow-xl"
+                  className="h-full bg-white p-6 shadow-xl relative"
                   data-aos="fade-up"
                   data-aos-anchor="[data-aos-id-products]"
                 >
@@ -183,6 +184,24 @@ const Products = ({ products, reservations }: ProductsProps) => {
                   ${product.attributes.count === 0 && 'opacity-30'}`}
                   >
                     <header>
+                      {product.attributes.count > 0 ? (
+                        <>
+                          {alreadyBooked && (
+                            <div className="absolute top-0 right-0 mr-6 -mt-4">
+                              <div className="inline-flex text-sm font-semibold py-1 px-3 text-emerald-700 bg-emerald-200 rounded-full">
+                                Tu as déjà réservé ce produit
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <div className="absolute top-0 right-0 mr-6 -mt-4">
+                          <div className="inline-flex text-sm font-semibold py-1 px-3 text-rose-700 bg-rose-200 rounded-full">
+                            Ce produit n&apos;est plus disponible
+                          </div>
+                        </div>
+                      )}
+
                       <div className="flex items-center mb-4">
                         <div className="relative mr-5">
                           <div className="w-12 h-12 shrink-0">
@@ -241,30 +260,10 @@ const Products = ({ products, reservations }: ProductsProps) => {
                         {errorMessages[product.id] ? (
                           <span className="text-rose-500 mt-2">{errorMessages[product.id]}</span>
                         ) : (
-                          <>
-                            {product.attributes.count > 0 ? (
-                              <>
-                                <span className="text-slate-500">
-                                  {product.attributes.count} restant
-                                  {product.attributes.count > 1 ? 's' : ''}
-                                </span>
-
-                                {alreadyBooked && (
-                                  <>
-                                    <span className="text-slate-300"> · </span>
-
-                                    <span className="text-emerald-500">
-                                      Tu as déjà réservé ce produit
-                                    </span>
-                                  </>
-                                )}
-                              </>
-                            ) : (
-                              <span className="text-rose-500">
-                                Ce produit n&apos;est plus disponible
-                              </span>
-                            )}
-                          </>
+                          <span className="text-slate-500">
+                            {product.attributes.count} produit{product.attributes.count > 1 && 's'}{' '}
+                            disponible{product.attributes.count > 1 && 's'}
+                          </span>
                         )}
                       </div>
                     </footer>

@@ -3,8 +3,10 @@ import { Product } from './product';
 import { SimpleUser } from './user';
 
 interface SimpleProps {
+  confirmed: boolean;
+  canceled: boolean;
   confirmationDate: Date | null;
-  confirmation: boolean;
+  cancelationDate: Date | null;
   reservationDate: Date;
 }
 
@@ -18,7 +20,7 @@ interface Props extends SimpleProps {
 }
 
 interface UpdateProps extends SimpleProps {
-  product?: number;
+  product?: number | null;
   user?: number;
 }
 

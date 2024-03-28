@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { changePasswordUser, updateUser } from '@/services/user';
+import { changePasswordUser, updateUser } from '@/actions/user';
 
 import { FormUpdateAccount } from '@/types/form';
 import { User } from '@/types/user';
@@ -35,8 +35,8 @@ const schema = yup
       email: yup
         .string()
         .required("L'email est obligatoire.")
-        .email("L'email doit être une adresse email valide."),
-      // .matches(/@etu\.toulouse-inp\.fr$/, "L'email doit se terminer par @etu.toulouse-inp.fr"),
+        .email("L'email doit être une adresse email valide.")
+        .matches(/@etu\.toulouse-inp\.fr$/, "L'email doit se terminer par @etu.toulouse-inp.fr"),
       phoneNumber: yup
         .string()
         .required('Le numéro de téléphone est obligatoire.')
@@ -172,7 +172,7 @@ const Form = ({ user }: FormProps) => {
           },
         });
 
-        if (!result) {
+        if (!result.user && !result.jwt) {
           setError('currentPassword', {
             type: 'manual',
             message: 'Le mot de passe actuel est incorrect.',

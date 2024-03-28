@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { resetPassword } from '@/services/auth';
+import { resetPassword } from '@/actions/auth';
 
 import { FormResetPassword } from '@/types/form';
 

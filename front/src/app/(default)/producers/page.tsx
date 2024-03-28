@@ -8,7 +8,7 @@ import Hero from '@/components/hero';
 import Producer from '@/components/producer';
 import Tags from '@/components/tags';
 
-import { getAllProducers, getPopularProducers } from '@/services/producer';
+import { getAllProducers, getPopularProducers } from '@/queries/producer';
 
 import { getRandomInt } from '@/utils/random';
 import { truncateWithEllipses } from '@/utils/string';

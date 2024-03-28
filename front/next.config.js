@@ -10,6 +10,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/account',
+        destination: '/account/settings',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

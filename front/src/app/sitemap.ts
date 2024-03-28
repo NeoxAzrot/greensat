@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import qs from 'qs';
 
-import { getAllProducers } from '@/services/producer';
+import { getAllProducers } from '@/queries/producer';
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const query = qs.stringify(

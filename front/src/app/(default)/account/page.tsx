@@ -5,9 +5,9 @@ import qs from 'qs';
 import CtaSupport from '@/components/cta-support';
 import Hero from '@/components/hero';
 
-import { getAllProducers } from '@/services/producer';
-import { getAllReservations } from '@/services/reservation';
-import { getUser } from '@/services/user';
+import { getAllProducers } from '@/queries/producer';
+import { getAllReservations } from '@/queries/reservation';
+import { getUser } from '@/queries/user';
 
 import { JwtUserProps, authOptions } from '@/utils/auth';
 
@@ -46,27 +46,42 @@ const Account = async () => {
 
   const userSession = session?.user as unknown as JwtUserProps;
 
-  const queryReservations = qs.stringify(
-    {
-      populate: {
-        product: {
-          fields: ['title', 'summary'],
-          populate: {
-            image: {
-              fields: ['url', 'alternativeText'],
-            },
-            producer: {
-              fields: ['slug', 'title'],
-            },
+  const defaultQueryReservations = {
+    fields: ['confirmed', 'canceled', 'confirmationDate', 'cancelationDate', 'reservationDate'],
+    populate: {
+      product: {
+        fields: ['title', 'summary', 'count'],
+        populate: {
+          image: {
+            fields: ['url', 'alternativeText'],
+          },
+          producer: {
+            fields: ['slug', 'title'],
           },
         },
       },
-      sort: ['reservationDate', 'confirmationDate'],
+    },
+    filters: {
+      user: {
+        id: {
+          $eq: userSession.id,
+        },
+      },
+    },
+  };
+
+  const queryPendingReservations = qs.stringify(
+    {
+      fields: defaultQueryReservations.fields,
+      populate: defaultQueryReservations.populate,
+      sort: ['reservationDate'],
       filters: {
-        user: {
-          id: {
-            $eq: userSession.id,
-          },
+        ...defaultQueryReservations.filters,
+        confirmed: {
+          $eq: false,
+        },
+        canceled: {
+          $eq: false,
         },
       },
     },
@@ -75,8 +90,53 @@ const Account = async () => {
     },
   );
 
-  const reservations = await getAllReservations({
-    query: queryReservations,
+  const queryConfirmedReservations = qs.stringify(
+    {
+      fields: defaultQueryReservations.fields,
+      populate: defaultQueryReservations.populate,
+      sort: ['confirmationDate'],
+      filters: {
+        ...defaultQueryReservations.filters,
+        confirmed: {
+          $eq: true,
+        },
+        canceled: {
+          $eq: false,
+        },
+      },
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const queryCanceledReservations = qs.stringify(
+    {
+      fields: defaultQueryReservations.fields,
+      populate: defaultQueryReservations.populate,
+      sort: ['cancelationDate'],
+      filters: {
+        ...defaultQueryReservations.filters,
+        canceled: {
+          $eq: true,
+        },
+      },
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const pendingReservations = await getAllReservations({
+    query: queryPendingReservations,
+  });
+
+  const confirmedReservations = await getAllReservations({
+    query: queryConfirmedReservations,
+  });
+
+  const canceledReservations = await getAllReservations({
+    query: queryCanceledReservations,
   });
 
   const queryProducers = qs.stringify(
@@ -129,7 +189,13 @@ const Account = async () => {
         description="Gère ton compte, tes produits gratuits, et explore les avantages éco-responsables."
       />
 
-      <Tabs reservations={reservations.data} producers={producers.data} user={user} />
+      <Tabs
+        pendingReservations={pendingReservations.data}
+        confirmedReservations={confirmedReservations.data}
+        canceledReservations={canceledReservations.data}
+        producers={producers.data}
+        user={user}
+      />
 
       <CtaSupport />
     </>

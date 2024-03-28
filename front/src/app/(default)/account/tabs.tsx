@@ -14,12 +14,20 @@ import AccountReservations from './reservations';
 type TabProps = 'parameters' | 'reservations' | 'producers';
 
 interface AccountTabsProps {
-  reservations: Reservations;
+  pendingReservations: Reservations;
+  confirmedReservations: Reservations;
+  canceledReservations: Reservations;
   producers: Producers;
   user: User;
 }
 
-const AccountTabs = ({ reservations, producers, user }: AccountTabsProps) => {
+const AccountTabs = ({
+  pendingReservations,
+  confirmedReservations,
+  canceledReservations,
+  producers,
+  user,
+}: AccountTabsProps) => {
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get('tab');
 
@@ -77,7 +85,13 @@ const AccountTabs = ({ reservations, producers, user }: AccountTabsProps) => {
 
         <div className="py-8">
           {tab === 'parameters' && <Form user={user} />}
-          {tab === 'reservations' && <AccountReservations reservations={reservations} />}
+          {tab === 'reservations' && (
+            <AccountReservations
+              pendingReservations={pendingReservations}
+              confirmedReservations={confirmedReservations}
+              canceledReservations={canceledReservations}
+            />
+          )}
           {tab === 'producers' && <AccountProducers producers={producers} />}
         </div>
       </div>

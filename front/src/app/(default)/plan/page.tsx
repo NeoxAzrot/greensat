@@ -3,7 +3,7 @@ import qs from 'qs';
 
 import Hero from '@/components/hero';
 
-import { getAllProducers } from '@/services/producer';
+import { getAllProducers } from '@/queries/producer';
 
 import Content from './content';
 

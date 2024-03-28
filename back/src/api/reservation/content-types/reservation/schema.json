@@ -15,7 +15,7 @@
     "confirmationDate": {
       "type": "datetime"
     },
-    "confirmation": {
+    "confirmed": {
       "type": "boolean",
       "default": false,
       "required": true
@@ -35,6 +35,15 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "reservations"
+    },
+    "canceled": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "cancelationDate": {
+      "type": "datetime",
+      "required": false
     }
   }
 }

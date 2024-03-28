@@ -1,6 +1,6 @@
 import qs from 'qs';
 
-import { getAllUsers } from '@/services/user';
+import { getAllUsers } from '@/queries/user';
 
 interface UserAlreadyExistsProps {
   email: string;

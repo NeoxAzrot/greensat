@@ -13,9 +13,9 @@ import ProducerItem from '@/components/producer';
 import Products from '@/components/products';
 import Separator from '@/components/separator';
 
-import { getAllProducers, getOneProducerBySlug } from '@/services/producer';
-import { getAllProducts } from '@/services/product';
-import { getAllReservations } from '@/services/reservation';
+import { getAllProducers, getOneProducerBySlug } from '@/queries/producer';
+import { getAllProducts } from '@/queries/product';
+import { getAllReservations } from '@/queries/reservation';
 
 import { getPictosImages } from '@/utils/producer';
 

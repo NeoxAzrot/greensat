@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios';
-
 export interface GlobalRequest {
   query?: string;
 }
@@ -11,35 +9,17 @@ export interface PaginationResponse {
   total: number;
 }
 
-export interface Response<T> extends AxiosResponse {
-  data: {
-    data: T;
-    meta: {
-      pagination?: PaginationResponse;
-    };
-  };
-}
-
-export interface ResponseUser<T> extends AxiosResponse {
+export interface Response<T> {
   data: T;
-}
-
-export interface ResponseRegister<T> extends AxiosResponse {
-  data: {
-    user: T;
+  meta: {
+    pagination?: PaginationResponse;
   };
 }
 
-export interface ResponseLogin<T> extends AxiosResponse {
-  data: {
-    jwt: string;
-    user: T;
-  };
+export interface ResponseUser<T> {
+  user: T;
 }
 
-export interface ResponseChangePassword<T> extends AxiosResponse {
-  data: {
-    jwt: string;
-    user: T;
-  };
+export interface ResponseUserJwt<T> extends ResponseUser<T> {
+  jwt: string;
 }

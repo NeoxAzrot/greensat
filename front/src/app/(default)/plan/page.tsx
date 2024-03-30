@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
 };
 
-const TermsOfUSe = async () => {
+const Plan = async () => {
   const query = qs.stringify(
     {
       fields: ['slug', 'title'],
@@ -58,4 +58,4 @@ const TermsOfUSe = async () => {
   );
 };
 
-export default TermsOfUSe;
+export default Plan;

@@ -145,7 +145,7 @@ const Products = ({ products, reservations }: ProductsProps) => {
         });
 
         if (resultProduct) {
-          router.push('/account?tab=reservations');
+          router.push('/account/reservations');
         }
       }
     }

@@ -42,8 +42,20 @@ const PlanContent = ({ producers }: PlanContentProps) => {
               </li>
 
               <li>
-                <Link href="/account" aria-label="Mon compte">
+                <Link href="/account/settings" aria-label="Mon compte">
                   Mon compte
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/account/reservations" aria-label="Mes réservations">
+                  Mes réservations
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/account/likes" aria-label="Mes producteurs préférés">
+                  Mes producteurs préférés
                 </Link>
               </li>
 

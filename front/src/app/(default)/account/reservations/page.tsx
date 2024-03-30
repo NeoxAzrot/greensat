@@ -1,19 +1,16 @@
-import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Metadata } from 'next/types';
+import qs from 'qs';
 
-import { updateProduct } from '@/actions/product';
-import { updateReservation } from '@/actions/reservation';
+import { getAllReservations } from '@/queries/reservation';
 
-import { Reservation, Reservations } from '@/types/reservation';
+import { Reservations } from '@/types/reservation';
 
-import { JwtUserProps } from '@/utils/auth';
+import { JwtUserProps, authOptions } from '@/utils/auth';
 
-interface AccountReservationsProps {
-  pendingReservations: Reservations;
-  confirmedReservations: Reservations;
-  canceledReservations: Reservations;
-}
+import AccountReservationsButton from './button';
 
 interface ReservationListProps {
   reservations: Reservations;
@@ -21,44 +18,131 @@ interface ReservationListProps {
   status: 'confirmed' | 'canceled' | 'pending';
 }
 
-const AccountReservations = ({
-  pendingReservations,
-  confirmedReservations,
-  canceledReservations,
-}: AccountReservationsProps) => {
-  const { data: session } = useSession();
+export const metadata: Metadata = {
+  title: 'Tes réservations en un clic',
+  description:
+    "Accède à l'historique complet de tes réservations, confirme celles à venir ou annule-les si nécessaire, tout cela depuis un seul et même endroit pour une expérience simplifiée.",
+  alternates: {
+    canonical: 'https://greensatable.fr/account/reservations',
+    languages: {
+      fr: 'https://greensatable.fr/account/reservations',
+    },
+  },
+  openGraph: {
+    title: 'Tes réservations en un clic',
+    url: 'https://greensatable.fr/account/reservations',
+    description:
+      "Accède à l'historique complet de tes réservations, confirme celles à venir ou annule-les si nécessaire, tout cela depuis un seul et même endroit pour une expérience simplifiée.",
+  },
+  twitter: {
+    title: 'Tes réservations en un clic',
+    description:
+      "Accède à l'historique complet de tes réservations, confirme celles à venir ou annule-les si nécessaire, tout cela depuis un seul et même endroit pour une expérience simplifiée.",
+  },
+  appLinks: {
+    web: {
+      url: 'https://greensatable.fr/account/reservations',
+    },
+  },
+};
+
+const AccountReservations = async () => {
+  const session = await getServerSession(authOptions);
 
   const user = session?.user as unknown as JwtUserProps;
 
-  const handleConfirmReservation = async (reservation: Reservation) => {
-    await updateReservation({
-      token: user.jwt,
-      id: reservation.id,
-      data: {
-        confirmed: true,
-        confirmationDate: new Date(),
+  const defaultQueryReservations = {
+    fields: ['confirmed', 'canceled', 'confirmationDate', 'cancelationDate', 'reservationDate'],
+    populate: {
+      product: {
+        fields: ['title', 'summary', 'count'],
+        populate: {
+          image: {
+            fields: ['url', 'alternativeText'],
+          },
+          producer: {
+            fields: ['slug', 'title'],
+          },
+        },
       },
-    });
+    },
+    filters: {
+      user: {
+        id: {
+          $eq: user.id,
+        },
+      },
+    },
   };
 
-  const handleCancelReservation = async (reservation: Reservation) => {
-    await updateReservation({
-      token: user.jwt,
-      id: reservation.id,
-      data: {
-        canceled: true,
-        cancelationDate: new Date(),
+  const queryPendingReservations = qs.stringify(
+    {
+      fields: defaultQueryReservations.fields,
+      populate: defaultQueryReservations.populate,
+      sort: ['reservationDate'],
+      filters: {
+        ...defaultQueryReservations.filters,
+        confirmed: {
+          $eq: false,
+        },
+        canceled: {
+          $eq: false,
+        },
       },
-    });
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
 
-    await updateProduct({
-      token: user.jwt,
-      id: reservation.attributes.product.data.id,
-      data: {
-        count: reservation.attributes.product.data.attributes.count + 1,
+  const queryConfirmedReservations = qs.stringify(
+    {
+      fields: defaultQueryReservations.fields,
+      populate: defaultQueryReservations.populate,
+      sort: ['confirmationDate'],
+      filters: {
+        ...defaultQueryReservations.filters,
+        confirmed: {
+          $eq: true,
+        },
+        canceled: {
+          $eq: false,
+        },
       },
-    });
-  };
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const queryCanceledReservations = qs.stringify(
+    {
+      fields: defaultQueryReservations.fields,
+      populate: defaultQueryReservations.populate,
+      sort: ['cancelationDate'],
+      filters: {
+        ...defaultQueryReservations.filters,
+        canceled: {
+          $eq: true,
+        },
+      },
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const pendingReservations = await getAllReservations({
+    query: queryPendingReservations,
+  });
+
+  const confirmedReservations = await getAllReservations({
+    query: queryConfirmedReservations,
+  });
+
+  const canceledReservations = await getAllReservations({
+    query: queryCanceledReservations,
+  });
 
   const renderReservationList = ({
     reservations: reservationsList,
@@ -142,29 +226,7 @@ const AccountReservations = ({
 
                   <footer>
                     {status === 'pending' && (
-                      <>
-                        <div className="p-3 rounded bg-slate-50">
-                          <button
-                            className="btn-sm text-white bg-blue-600 hover:bg-blue-700 w-full group"
-                            onClick={() => handleConfirmReservation(reservation)}
-                          >
-                            Confirmer{' '}
-                            <span className="tracking-normal text-white-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                              -&gt;
-                            </span>
-                          </button>
-                        </div>
-
-                        <div className="text-sm text-center font-medium mt-2">
-                          <button
-                            className="text-rose-600 hover:underline"
-                            onClick={() => handleCancelReservation(reservation)}
-                            aria-label="Annuler la réservation"
-                          >
-                            Annuler la réservation
-                          </button>
-                        </div>
-                      </>
+                      <AccountReservationsButton reservation={reservation} user={user} />
                     )}
 
                     <div className="text-xs font-medium mt-2">
@@ -222,26 +284,26 @@ const AccountReservations = ({
           </div>
 
           {renderReservationList({
-            reservations: pendingReservations,
+            reservations: pendingReservations.data,
             title: 'En attente',
             status: 'pending',
           })}
 
           {renderReservationList({
-            reservations: confirmedReservations,
+            reservations: confirmedReservations.data,
             title: 'Confirmés',
             status: 'confirmed',
           })}
 
           {renderReservationList({
-            reservations: canceledReservations,
+            reservations: canceledReservations.data,
             title: 'Annulés',
             status: 'canceled',
           })}
 
-          {pendingReservations.length === 0 &&
-            confirmedReservations.length === 0 &&
-            canceledReservations.length === 0 && (
+          {pendingReservations.data.length === 0 &&
+            confirmedReservations.data.length === 0 &&
+            canceledReservations.data.length === 0 && (
               <div className="w-full flex items-center justify-center">
                 <p className="text-slate-500">Tu n&apos;as réservé aucun produit pour le moment.</p>
               </div>

@@ -13,7 +13,7 @@ const withMigration: MiddlewareFactory = (next: NextMiddleware) => {
       return NextResponse.redirect(new URL('/', request.url));
     }
 
-    if (!token && request.nextUrl.pathname === '/account') {
+    if (!token && request.nextUrl.pathname.startsWith('/account')) {
       return NextResponse.redirect(new URL('/login', request.url));
     }
 

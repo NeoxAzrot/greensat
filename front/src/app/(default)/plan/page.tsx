@@ -1,8 +1,9 @@
 import { Metadata } from 'next/types';
+import qs from 'qs';
 
 import Hero from '@/components/hero';
 
-import { getAllProducers } from '@/services/producer';
+import { getAllProducers } from '@/queries/producer';
 
 import Content from './content';
 
@@ -34,9 +35,19 @@ export const metadata: Metadata = {
   },
 };
 
-const TermsOfUSe = async () => {
+const Plan = async () => {
+  const query = qs.stringify(
+    {
+      fields: ['slug', 'title'],
+      sort: ['title'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
   const producers = await getAllProducers({
-    sort: 'title',
+    query,
   });
 
   return (
@@ -47,4 +58,4 @@ const TermsOfUSe = async () => {
   );
 };
 
-export default TermsOfUSe;
+export default Plan;

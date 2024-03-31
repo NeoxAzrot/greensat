@@ -362,6 +362,36 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiEventEvent extends Schema.CollectionType {
+  collectionName: 'events';
+  info: {
+    singularName: 'event';
+    pluralName: 'events';
+    displayName: 'Event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProducerProducer extends Schema.CollectionType {
   collectionName: 'producers';
   info: {
@@ -466,10 +496,10 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::producer.producer'
     >;
     discount: Attribute.String & Attribute.Required;
-    users: Attribute.Relation<
+    reservations: Attribute.Relation<
       'api::product.product',
-      'manyToMany',
-      'plugin::users-permissions.user'
+      'oneToMany',
+      'api::reservation.reservation'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -482,6 +512,55 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReservationReservation extends Schema.CollectionType {
+  collectionName: 'reservations';
+  info: {
+    singularName: 'reservation';
+    pluralName: 'reservations';
+    displayName: 'Reservation';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    confirmationDate: Attribute.DateTime;
+    confirmed: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    reservationDate: Attribute.DateTime & Attribute.Required;
+    product: Attribute.Relation<
+      'api::reservation.reservation',
+      'manyToOne',
+      'api::product.product'
+    >;
+    user: Attribute.Relation<
+      'api::reservation.reservation',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    canceled: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    cancelationDate: Attribute.DateTime;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reservation.reservation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reservation.reservation',
       'oneToOne',
       'admin::user'
     > &
@@ -794,12 +873,12 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::producer.producer'
     >;
-    products: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToMany',
-      'api::product.product'
-    >;
     studentNumber: Attribute.String;
+    reservations: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::reservation.reservation'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -827,8 +906,10 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::event.event': ApiEventEvent;
       'api::producer.producer': ApiProducerProducer;
       'api::product.product': ApiProductProduct;
+      'api::reservation.reservation': ApiReservationReservation;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;

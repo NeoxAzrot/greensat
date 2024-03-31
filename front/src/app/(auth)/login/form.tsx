@@ -1,16 +1,14 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { FormLogin } from '@/types/form';
-
-import { userAlreadyExists } from '@/utils/user';
 
 const schema = yup
   .object({
@@ -27,7 +25,6 @@ const Form = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [globalError, setGlobalError] = useState<string>('');
 
-  const { status } = useSession();
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -53,37 +50,6 @@ const Form = () => {
     setGlobalError('');
 
     try {
-      const user = await userAlreadyExists({
-        email: data.email,
-      });
-
-      if (!user.exist) {
-        setError('email', {
-          type: 'manual',
-          message: "Aucun compte n'est associé à cet email.",
-        });
-
-        return;
-      } else {
-        if (!user.data.confirmed) {
-          setError('email', {
-            type: 'manual',
-            message: "Ce compte n'a pas été confirmé. Veuillez vérifier vos emails.",
-          });
-
-          return;
-        }
-
-        if (user.data.blocked) {
-          setError('email', {
-            type: 'manual',
-            message: "Ce compte a été bloqué. Veuillez contacter l'administrateur.",
-          });
-
-          return;
-        }
-      }
-
       const result = await signIn('credentials', {
         redirect: false,
         email: data.email,
@@ -93,7 +59,7 @@ const Form = () => {
       if (!result?.ok) {
         setError('password', {
           type: 'manual',
-          message: 'Le mot de passe est incorrect.',
+          message: "L'email ou le mot de passe est incorrect.",
         });
 
         return;
@@ -104,12 +70,6 @@ const Form = () => {
       setGlobalError('Une erreur est survenue lors de la connexion.');
     }
   };
-
-  useEffect(() => {
-    if (status === 'authenticated') {
-      router.push(callbackUrl || '/');
-    }
-  }, [status, router, callbackUrl]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

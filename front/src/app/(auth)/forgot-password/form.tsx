@@ -1,18 +1,15 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { forgotPassword } from '@/services/auth';
+import { forgotPassword } from '@/actions/auth';
 
 import { FormForgotPassword } from '@/types/form';
-
-import { userAlreadyExists } from '@/utils/user';
 
 const schema = yup
   .object({
@@ -28,9 +25,6 @@ const Form = () => {
   const [globalError, setGlobalError] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
 
-  const { status } = useSession();
-  const router = useRouter();
-
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
 
@@ -38,7 +32,6 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -51,37 +44,6 @@ const Form = () => {
     setSuccess(false);
 
     try {
-      const user = await userAlreadyExists({
-        email: data.email,
-      });
-
-      if (!user.exist) {
-        setError('email', {
-          type: 'manual',
-          message: "Aucun compte n'est associé à cet email.",
-        });
-
-        return;
-      } else {
-        if (!user.data.confirmed) {
-          setError('email', {
-            type: 'manual',
-            message: "Ce compte n'a pas été confirmé. Veuillez vérifier vos emails.",
-          });
-
-          return;
-        }
-
-        if (user.data.blocked) {
-          setError('email', {
-            type: 'manual',
-            message: "Ce compte a été bloqué. Veuillez contacter l'administrateur.",
-          });
-
-          return;
-        }
-      }
-
       const result = await forgotPassword({
         email: data.email,
       });
@@ -95,12 +57,6 @@ const Form = () => {
       );
     }
   };
-
-  useEffect(() => {
-    if (status === 'authenticated') {
-      router.push('/');
-    }
-  }, [status, router]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -134,7 +90,8 @@ const Form = () => {
 
         {success && (
           <p className="text-sm text-emerald-500 mt-1">
-            Un email de réinitialisation de mot de passe vous a été envoyé.
+            Si votre email est associé à un compte, un lien de réinitialisation de mot de passe vous
+            a été envoyé.
           </p>
         )}
       </div>

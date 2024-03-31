@@ -1,13 +1,13 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signIn, useSession } from 'next-auth/react';
-import { notFound, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { notFound, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { resetPassword } from '@/services/auth';
+import { resetPassword } from '@/actions/auth';
 
 import { FormResetPassword } from '@/types/form';
 
@@ -32,9 +32,6 @@ const Form = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
   const [globalError, setGlobalError] = useState<string>('');
-
-  const { status } = useSession();
-  const router = useRouter();
 
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
@@ -69,12 +66,11 @@ const Form = () => {
 
       if (result.user) {
         await signIn('credentials', {
-          redirect: false,
+          redirect: true,
+          callbackUrl: '/',
           email: result.user.email,
           password: data.password,
         });
-
-        router.push('/');
       } else {
         setGlobalError('Une erreur est survenue lors du changement de votre mot de passe.');
       }
@@ -82,12 +78,6 @@ const Form = () => {
       setGlobalError('Une erreur est survenue lors du changement de votre mot de passe.');
     }
   };
-
-  useEffect(() => {
-    if (status === 'authenticated') {
-      router.push('/');
-    }
-  }, [status, router]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

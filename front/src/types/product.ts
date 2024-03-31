@@ -1,6 +1,6 @@
 import { Global, GlobalArray, Image } from './global';
 import { SimpleProducer } from './producer';
-import { SimpleUser } from './user';
+import { SimpleReservation } from './reservation';
 
 interface SimpleProps {
   title: string;
@@ -15,15 +15,14 @@ interface Props extends SimpleProps {
   producer: {
     data: SimpleProducer;
   };
-  users: {
-    data: SimpleUser[];
+  reservation: {
+    data: SimpleReservation[];
   };
 }
 
 interface UpdateProps extends SimpleProps {
   image?: Image;
   producer?: number[];
-  users?: number[];
 }
 
 export interface SimpleProduct extends Global<SimpleProps> {}

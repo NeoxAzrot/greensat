@@ -2,9 +2,8 @@
 
 import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
 
-import { updateProducer } from '@/services/producer';
+import { updateProducer } from '@/actions/producer';
 
 import { Producer } from '@/types/producer';
 
@@ -17,8 +16,7 @@ interface LikesProps {
 const Likes = ({ producer }: LikesProps) => {
   const { data: session, status } = useSession();
 
-  const defaultUsersLikes = producer.attributes.usersLikes.data.map((userLike) => userLike.id);
-  const [usersLikes, setUsersLikes] = useState<number[]>(defaultUsersLikes);
+  const usersLikes = producer.attributes.usersLikes.data.map((userLike) => userLike.id);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -42,17 +40,13 @@ const Likes = ({ producer }: LikesProps) => {
         newUsersLikes = [...usersLikes, user.id];
       }
 
-      const result = await updateProducer({
+      await updateProducer({
         token: user.jwt,
         id: producer.id,
         data: {
           usersLikes: newUsersLikes,
         },
       });
-
-      if (result) {
-        setUsersLikes(newUsersLikes);
-      }
     }
   };
 

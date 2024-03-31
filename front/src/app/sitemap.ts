@@ -1,10 +1,21 @@
 import { MetadataRoute } from 'next';
+import qs from 'qs';
 
-import { getAllProducers } from '@/services/producer';
+import { getAllProducers } from '@/queries/producer';
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+  const query = qs.stringify(
+    {
+      fields: ['slug', 'updatedAt'],
+      sort: ['title'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
   const producers = await getAllProducers({
-    sort: 'title',
+    query,
   });
 
   const producersSitemap: MetadataRoute.Sitemap = producers.data.map((producer) => ({
@@ -40,7 +51,19 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
       priority: 0.8,
     },
     {
-      url: 'https://greensatable.fr/account',
+      url: 'https://greensatable.fr/account/settings',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.2,
+    },
+    {
+      url: 'https://greensatable.fr/account/reservations',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.2,
+    },
+    {
+      url: 'https://greensatable.fr/account/likes',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.2,

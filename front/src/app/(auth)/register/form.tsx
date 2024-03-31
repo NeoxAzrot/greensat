@@ -1,14 +1,12 @@
 'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { register as registerNewUser } from '@/services/auth';
+import { register as registerNewUser } from '@/actions/auth';
 
 import { FormRegister } from '@/types/form';
 
@@ -20,9 +18,9 @@ const schema = yup
     lastname: yup.string().required('Le nom est obligatoire.'),
     studentNumber: yup
       .string()
-      .matches(/^(\d{10}[A-Z]{1}|\d{9}[A-Z]{2})$/, {
+      .matches(/^(\d{10}[A-Z]{1}|\d{9}[A-Z]{2}|\d{8})$/, {
         message:
-          'Le numéro étudiant doit être composé de 10 chiffres et 1 lettre ou 9 chiffres et 2 lettres.',
+          'Le numéro étudiant doit être composé de 10 chiffres et 1 lettre, ou 9 chiffres et 2 lettres, ou simplement de 8 chiffres.',
         excludeEmptyString: true,
       })
       .optional(),
@@ -59,9 +57,6 @@ const Form = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
   const [globalError, setGlobalError] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
-
-  const { status } = useSession();
-  const router = useRouter();
 
   const {
     register,
@@ -107,12 +102,6 @@ const Form = () => {
       setGlobalError("Une erreur est survenue lors de l'inscription.");
     }
   };
-
-  useEffect(() => {
-    if (status === 'authenticated') {
-      router.push('/');
-    }
-  }, [status, router]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

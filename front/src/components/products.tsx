@@ -3,19 +3,30 @@
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import qs from 'qs';
 import { useState } from 'react';
 
-import { getOneProductById, updateProduct } from '@/services/product';
+import { updateProduct } from '@/actions/product';
+import { createReservation } from '@/actions/reservation';
 
-import { Product, Products } from '@/types/product';
+import { getOneProductById } from '@/queries/product';
+import { getAllReservations } from '@/queries/reservation';
+
+import { Product, Products as ProductsType } from '@/types/product';
+import { Reservations } from '@/types/reservation';
 
 import { JwtUserProps } from '@/utils/auth';
+
+interface ProductsProps {
+  products: ProductsType;
+  reservations: Reservations;
+}
 
 interface HandleClickProps {
   id: number;
 }
 
-const Products = ({ products }: { products: Products }) => {
+const Products = ({ products, reservations }: ProductsProps) => {
   const [errorMessages, setErrorMessages] = useState<{ [key: number]: string }>({});
 
   const { data: session, status } = useSession();
@@ -25,12 +36,12 @@ const Products = ({ products }: { products: Products }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const organizeProducts = (newProducts: Products): Products => {
+  const organizeProducts = (newProducts: ProductsType): ProductsType => {
     const productsWithCount = newProducts.filter((product) => product.attributes.count > 0);
     const productsWithZeroCount = newProducts.filter((product) => product.attributes.count === 0);
 
-    const organizedProducts: Products = [];
-    let currentLine: Products = [];
+    const organizedProducts: ProductsType = [];
+    let currentLine: ProductsType = [];
 
     productsWithCount.forEach((product) => {
       currentLine.push(product);
@@ -40,7 +51,7 @@ const Products = ({ products }: { products: Products }) => {
       }
     });
 
-    while (currentLine.length > 0 && currentLine.length < 3 && productsWithZeroCount.length > 0) {
+    while (currentLine.length >= 0 && currentLine.length < 3 && productsWithZeroCount.length > 0) {
       currentLine.push(productsWithZeroCount.shift() as Product);
     }
 
@@ -60,8 +71,18 @@ const Products = ({ products }: { products: Products }) => {
       return;
     }
 
+    const query = qs.stringify(
+      {
+        fields: ['count', 'active'],
+      },
+      {
+        encodeValuesOnly: true,
+      },
+    );
+
     const product = await getOneProductById({
       id,
+      query,
     });
 
     if (product.data.attributes.count <= 0 || !product.data.attributes.active) {
@@ -71,25 +92,61 @@ const Products = ({ products }: { products: Products }) => {
     }
 
     if (user) {
-      const users = product.data.attributes.users.data.map((u) => u.id);
+      const queryReservations = qs.stringify(
+        {
+          filters: {
+            product: {
+              id: {
+                $eq: id,
+              },
+            },
+            user: {
+              id: {
+                $eq: user.id,
+              },
+            },
+          },
+        },
+        {
+          encodeValuesOnly: true,
+        },
+      );
 
-      if (users.includes(user.id)) {
+      const reservationsCheck = await getAllReservations({
+        query: queryReservations,
+      });
+
+      if (reservationsCheck.data.length > 0) {
         setErrorMessages({ ...errorMessages, [id]: 'Tu as déjà réservé ce produit' });
 
         return;
       }
 
-      const result = await updateProduct({
+      const result = await createReservation({
         token: user.jwt,
-        id: product.data.id,
         data: {
-          count: product.data.attributes.count - 1,
-          users: [...users, user.id],
+          confirmed: false,
+          canceled: false,
+          confirmationDate: null,
+          cancelationDate: null,
+          reservationDate: new Date(),
+          product: product.data.id,
+          user: user.id,
         },
       });
 
       if (result) {
-        router.push('/account?tab=products');
+        const resultProduct = await updateProduct({
+          token: user.jwt,
+          id: product.data.id,
+          data: {
+            count: product.data.attributes.count - 1,
+          },
+        });
+
+        if (resultProduct) {
+          router.push('/account/reservations');
+        }
       }
     }
   };
@@ -99,9 +156,7 @@ const Products = ({ products }: { products: Products }) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="py-12 md:py-20">
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-            <h2 className="h2 font-playfair-display text-slate-800">
-              Les produits offerts par le producteur
-            </h2>
+            <h2 className="h2 font-playfair-display text-slate-800">Les produits prépayés</h2>
           </div>
 
           <div
@@ -109,13 +164,18 @@ const Products = ({ products }: { products: Products }) => {
             data-aos-id-products
           >
             {organizedProducts.map((product) => {
-              const users = product.attributes.users.data.map((u) => u.id);
-              const alreadyBooked = users.includes(user.id);
+              const reservation = reservations.find(
+                (r) =>
+                  r.attributes.product.data.id === product.id &&
+                  r.attributes.user.data.id === user?.id,
+              );
+
+              const alreadyBooked = reservation ? true : false;
 
               return (
                 <article
                   key={product.id}
-                  className="h-full bg-white p-6 shadow-xl"
+                  className="h-full bg-white p-6 shadow-xl relative"
                   data-aos="fade-up"
                   data-aos-anchor="[data-aos-id-products]"
                 >
@@ -124,6 +184,24 @@ const Products = ({ products }: { products: Products }) => {
                   ${product.attributes.count === 0 && 'opacity-30'}`}
                   >
                     <header>
+                      {product.attributes.count > 0 ? (
+                        <>
+                          {alreadyBooked && (
+                            <div className="absolute top-0 right-0 mr-6 -mt-4">
+                              <div className="inline-flex text-sm font-semibold py-1 px-3 text-emerald-700 bg-emerald-200 rounded-full">
+                                Tu as déjà réservé ce produit
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <div className="absolute top-0 right-0 mr-6 -mt-4">
+                          <div className="inline-flex text-sm font-semibold py-1 px-3 text-rose-700 bg-rose-200 rounded-full">
+                            Ce produit n&apos;est plus disponible
+                          </div>
+                        </div>
+                      )}
+
                       <div className="flex items-center mb-4">
                         <div className="relative mr-5">
                           <div className="w-12 h-12 shrink-0">
@@ -182,30 +260,10 @@ const Products = ({ products }: { products: Products }) => {
                         {errorMessages[product.id] ? (
                           <span className="text-rose-500 mt-2">{errorMessages[product.id]}</span>
                         ) : (
-                          <>
-                            {product.attributes.count > 0 ? (
-                              <>
-                                <span className="text-slate-500">
-                                  {product.attributes.count} restant
-                                  {product.attributes.count > 1 ? 's' : ''}
-                                </span>
-
-                                {alreadyBooked && (
-                                  <>
-                                    <span className="text-slate-300"> · </span>
-
-                                    <span className="text-emerald-500">
-                                      Tu as déjà réservé ce produit
-                                    </span>
-                                  </>
-                                )}
-                              </>
-                            ) : (
-                              <span className="text-rose-500">
-                                Ce produit n&apos;est plus disponible
-                              </span>
-                            )}
-                          </>
+                          <span className="text-slate-500">
+                            {product.attributes.count} produit{product.attributes.count > 1 && 's'}{' '}
+                            disponible{product.attributes.count > 1 && 's'}
+                          </span>
                         )}
                       </div>
                     </footer>

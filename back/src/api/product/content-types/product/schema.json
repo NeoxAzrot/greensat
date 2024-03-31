@@ -48,11 +48,11 @@
       "type": "string",
       "required": true
     },
-    "users": {
+    "reservations": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "products"
+      "relation": "oneToMany",
+      "target": "api::reservation.reservation",
+      "mappedBy": "product"
     }
   }
 }

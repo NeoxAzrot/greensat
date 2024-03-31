@@ -1,4 +1,5 @@
 import { Metadata } from 'next/types';
+import qs from 'qs';
 
 import CtaMap from '@/components/cta-map';
 import FeaturesBlocks from '@/components/features-blocks';
@@ -6,7 +7,7 @@ import FeaturesSlider from '@/components/features-slider';
 import Hero from '@/components/hero-home';
 import Partners from '@/components/partners';
 
-import { getAllProducers } from '@/services/producer';
+import { getAllProducers } from '@/queries/producer';
 
 export const metadata: Metadata = {
   title: "Manger local près de l'ENSAT",
@@ -37,9 +38,26 @@ export const metadata: Metadata = {
 };
 
 const Home = async () => {
+  const query = qs.stringify(
+    {
+      fields: ['slug', 'title', 'address', 'latitude', 'longitude', 'businessType'],
+      populate: {
+        products: {
+          fields: ['active', 'count'],
+        },
+        image: {
+          fields: ['url'],
+        },
+      },
+      sort: ['title'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
   const producers = await getAllProducers({
-    sort: 'title',
-    populate: '*',
+    query,
   });
 
   return (

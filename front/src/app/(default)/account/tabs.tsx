@@ -1,48 +1,18 @@
-'use client';
+import { usePathname, useRouter } from 'next/navigation';
 
-import { useSession } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-
-import { Products } from '@/types/product';
-import { User } from '@/types/user';
-
-import Form from './form';
-import AccountProducts from './products';
-
-type TabProps = 'parameters' | 'products';
-
-interface AccountTabsProps {
-  products: Products;
-  user: User;
-}
-
-const AccountTabs = ({ products, user }: AccountTabsProps) => {
-  const { status } = useSession();
+const AccountTabs = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const searchParams = useSearchParams();
-  const defaultTab = searchParams.get('tab');
+  const tab = pathname.split('/').pop();
 
-  const [tab, setTab] = useState<TabProps>(defaultTab === 'products' ? 'products' : 'parameters');
-
-  const getButtonClasses = (newTab: TabProps) => {
-    if (tab === newTab) {
-      return 'font-medium whitespace-nowrap text-blue-600';
-    }
-
-    return 'font-medium whitespace-nowrap text-slate-500 hover:text-slate-600 transition duration-150 ease-in-out';
+  const getButtonClasses = (path: string) => {
+    return `font-medium whitespace-nowrap ${tab === path ? 'text-blue-600' : 'text-slate-500 hover:text-slate-600 transition duration-150 ease-in-out'}`;
   };
 
-  const handleClick = (newTab: TabProps) => {
-    setTab(newTab);
+  const handleClick = (path: string) => {
+    router.push(`/account/${path}`);
   };
-
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login');
-    }
-  }, [status, router]);
 
   return (
     <section>
@@ -52,8 +22,8 @@ const AccountTabs = ({ products, user }: AccountTabsProps) => {
             <ul className="flex md:flex-wrap -mx-5 -my-2">
               <li className="mx-5 my-2">
                 <button
-                  className={getButtonClasses('parameters')}
-                  onClick={() => handleClick('parameters')}
+                  className={getButtonClasses('settings')}
+                  onClick={() => handleClick('settings')}
                 >
                   Paramètres du compte
                 </button>
@@ -61,19 +31,20 @@ const AccountTabs = ({ products, user }: AccountTabsProps) => {
 
               <li className="mx-5 my-2">
                 <button
-                  className={getButtonClasses('products')}
-                  onClick={() => handleClick('products')}
+                  className={getButtonClasses('reservations')}
+                  onClick={() => handleClick('reservations')}
                 >
-                  Les produits
+                  Mes réservations
+                </button>
+              </li>
+
+              <li className="mx-5 my-2">
+                <button className={getButtonClasses('likes')} onClick={() => handleClick('likes')}>
+                  Mes producteurs préférés
                 </button>
               </li>
             </ul>
           </div>
-        </div>
-
-        <div className="py-8">
-          {tab === 'parameters' && <Form user={user} />}
-          {tab === 'products' && <AccountProducts products={products} />}
         </div>
       </div>
     </section>

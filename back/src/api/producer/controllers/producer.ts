@@ -124,7 +124,7 @@ export default factories.createCoreController(
           .service("api::producer.producer")
           .findPopular();
 
-        if (!producers || producers.length === 0) {
+        if (!producers) {
           ctx.status = 404;
           ctx.body = {
             data: null,

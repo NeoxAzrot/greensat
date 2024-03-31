@@ -45,6 +45,16 @@ const Header = ({ mode = 'dark' }: HeaderProps) => {
 
               <li>
                 <Link
+                  href="/events"
+                  className="font-medium text-slate-800 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-600 px-3 lg:px-5 py-2 flex items-center transition duration-150 ease-in-out"
+                  aria-label="Les événements"
+                >
+                  Les événements
+                </Link>
+              </li>
+
+              <li>
+                <Link
                   href="/support"
                   className="font-medium text-slate-800 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-600 px-3 lg:px-5 py-2 flex items-center transition duration-150 ease-in-out"
                   aria-label="Support"

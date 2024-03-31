@@ -36,6 +36,12 @@ const PlanContent = ({ producers }: PlanContentProps) => {
               </li>
 
               <li>
+                <Link href="/events" aria-label="Les événements">
+                  Les événements
+                </Link>
+              </li>
+
+              <li>
                 <Link href="/support" aria-label="Support">
                   Support
                 </Link>

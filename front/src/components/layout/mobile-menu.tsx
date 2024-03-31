@@ -105,6 +105,17 @@ const MobileMenu = () => {
               </Link>
             </li>
 
+            <li>
+              <Link
+                href="/events"
+                className="flex font-medium text-slate-800 hover:text-blue-600 py-2"
+                onClick={handleClose}
+                aria-label="Les événements"
+              >
+                Les événements
+              </Link>
+            </li>
+
             <li className="pb-2 mb-2 border-b border-gray-200">
               <Link
                 href="/support"

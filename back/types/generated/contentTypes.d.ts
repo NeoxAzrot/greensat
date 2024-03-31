@@ -696,12 +696,18 @@ export interface ApiEventEvent extends Schema.CollectionType {
     singularName: 'event';
     pluralName: 'events';
     displayName: 'Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    summary: Attribute.Text & Attribute.Required;
+    startDate: Attribute.Date & Attribute.Required;
+    endDate: Attribute.Date;
+    slug: Attribute.UID<'api::event.event', 'title'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -28,7 +28,7 @@ export const fetchData = async <T>({
 
     const options: RequestInit = {
       headers,
-      cache: 'no-cache',
+      cache: 'no-store',
       method,
       ...(tags ? { next: { tags } } : {}),
       ...(bodyData ? { body: JSON.stringify(bodyData) } : {}),

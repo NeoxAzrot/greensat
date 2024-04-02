@@ -47,7 +47,7 @@ const TermsOfUseContent = () => {
 
             <h2>Directeur de publication</h2>
 
-            <p>Le Directeur de la publication du Site est Jeanne Condom--Ouvry.</p>
+            <p>Le Directeur de la publication du Site est Lise Michel.</p>
 
             <Separator />
 

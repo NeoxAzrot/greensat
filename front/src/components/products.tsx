@@ -123,7 +123,7 @@ const Products = ({ products, reservations }: ProductsProps) => {
       });
 
       if (reservationsCheck.data.length > 0 && alreadyBookedThisMonth) {
-        setErrorMessages({ ...errorMessages, [id]: 'Tu as déjà réservé ce produit' });
+        setErrorMessages({ ...errorMessages, [id]: 'Tu as déjà réservé ce produit ce mois-ci' });
 
         return;
       }
@@ -198,7 +198,7 @@ const Products = ({ products, reservations }: ProductsProps) => {
                           {alreadyBookedThisMonth && (
                             <div className="absolute top-0 right-0 mr-6 -mt-4">
                               <div className="inline-flex text-sm font-semibold py-1 px-3 text-emerald-700 bg-emerald-200 rounded-full">
-                                Tu as déjà réservé ce produit
+                                Déjà réservé ce mois-ci
                               </div>
                             </div>
                           )}
@@ -206,7 +206,7 @@ const Products = ({ products, reservations }: ProductsProps) => {
                       ) : (
                         <div className="absolute top-0 right-0 mr-6 -mt-4">
                           <div className="inline-flex text-sm font-semibold py-1 px-3 text-rose-700 bg-rose-200 rounded-full">
-                            Ce produit n&apos;est plus disponible
+                            Produit indisponible
                           </div>
                         </div>
                       )}

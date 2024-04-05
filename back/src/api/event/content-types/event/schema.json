@@ -29,15 +29,23 @@
       "required": true
     },
     "startDate": {
-      "type": "date",
+      "type": "datetime",
       "required": true
     },
     "endDate": {
-      "type": "date"
+      "type": "datetime"
     },
     "slug": {
       "type": "uid",
       "targetField": "title",
+      "required": true
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.image",
+        "content.text"
+      ],
       "required": true
     }
   }

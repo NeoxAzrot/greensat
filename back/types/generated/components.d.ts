@@ -1,5 +1,24 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface ContentImage extends Schema.Component {
+  collectionName: 'components_content_images';
+  info: {
+    displayName: 'image';
+    icon: 'picture';
+  };
+  attributes: {};
+}
+
+export interface ContentText extends Schema.Component {
+  collectionName: 'components_content_texts';
+  info: {
+    displayName: 'text';
+    icon: 'layer';
+    description: '';
+  };
+  attributes: {};
+}
+
 export interface SurveysAnimal extends Schema.Component {
   collectionName: 'components_surveys_animals';
   info: {
@@ -93,6 +112,8 @@ export interface SurveysVegetable extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'content.image': ContentImage;
+      'content.text': ContentText;
       'surveys.animal': SurveysAnimal;
       'surveys.store': SurveysStore;
       'surveys.transform': SurveysTransform;

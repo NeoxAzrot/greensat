@@ -144,7 +144,7 @@ const AccountReservationsList = ({
                               {format(parseISO(confirmationDate || ''), 'd MMMM, yyyy', {
                                 locale: fr,
                               })}
-                            </time>{' '}
+                            </time>
                           </span>
                         )}
 
@@ -155,7 +155,7 @@ const AccountReservationsList = ({
                               {format(parseISO(cancelationDate || ''), 'd MMMM, yyyy', {
                                 locale: fr,
                               })}
-                            </time>{' '}
+                            </time>
                           </span>
                         )}
                       </div>

@@ -30,7 +30,7 @@ const HeroImage = () => {
 
           <div className="flex justify-center items-center" data-aos="fade-up" data-aos-delay="100">
             <Image
-              className="mx-auto object-cover h-[32rem]"
+              className="mx-auto object-cover aspect-video min-h-60"
               src={TeamImage}
               width={1024}
               height={576}

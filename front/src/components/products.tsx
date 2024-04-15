@@ -206,7 +206,7 @@ const Products = ({ products, reservations }: ProductsProps) => {
                       ) : (
                         <div className="absolute top-0 right-0 mr-6 -mt-4">
                           <div className="inline-flex text-sm font-semibold py-1 px-3 text-rose-700 bg-rose-200 rounded-full">
-                            Produit indisponible
+                            Indisponible
                           </div>
                         </div>
                       )}

@@ -242,7 +242,7 @@ const Producer = async ({ params }: ProducerProps) => {
                 {data.image && (
                   <figure>
                     <Image
-                      className="w-full"
+                      className="w-full object-cover aspect-video"
                       src={data.image.data.attributes.url}
                       width={768}
                       height={432}

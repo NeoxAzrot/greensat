@@ -1,5 +1,6 @@
 'use client';
 
+import cn from 'classnames';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
@@ -14,7 +15,11 @@ const Header = ({ mode = 'dark' }: HeaderProps) => {
   const { status } = useSession();
 
   return (
-    <header className={`absolute w-full z-30 ${mode !== 'light' && 'dark'}`}>
+    <header
+      className={cn('absolute w-full z-30', {
+        dark: mode !== 'light',
+      })}
+    >
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="shrink-0 mr-4">
@@ -40,6 +45,16 @@ const Header = ({ mode = 'dark' }: HeaderProps) => {
                   aria-label="Les producteurs"
                 >
                   Les producteurs
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/events"
+                  className="font-medium text-slate-800 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-600 px-3 lg:px-5 py-2 flex items-center transition duration-150 ease-in-out"
+                  aria-label="Les événements"
+                >
+                  Les événements
                 </Link>
               </li>
 

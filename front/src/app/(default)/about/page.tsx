@@ -2,7 +2,7 @@ import { Metadata } from 'next/types';
 
 import CtaMap from '@/components/cta-map';
 import HeroImage from '@/components/hero-image';
-import Partners from '@/components/partners';
+import PartnersDark from '@/components/partners-dark';
 import PartnersExplanation from '@/components/partners-explanation';
 import TeamMembers from '@/components/team-members';
 
@@ -42,7 +42,7 @@ const About = () => {
       <HeroImage />
       <Content />
       <TeamMembers />
-      <Partners />
+      <PartnersDark />
       <PartnersExplanation />
       <CtaMap />
     </>

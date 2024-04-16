@@ -298,9 +298,9 @@ const Form = ({ user }: FormProps) => {
             </div>
           </div>
           <div className="flex items-center my-6">
-            <div className="border-t border-slate-200 grow mr-3" aria-hidden="true"></div>
+            <div className="border-t border-slate-200 grow mr-3" aria-hidden="true" />
             <div className="text-sm text-slate-500 italic">Changer de mot de passe</div>
-            <div className="border-t border-slate-200 grow ml-3" aria-hidden="true"></div>
+            <div className="border-t border-slate-200 grow ml-3" aria-hidden="true" />
           </div>
           <div className="space-y-4">
             <div>

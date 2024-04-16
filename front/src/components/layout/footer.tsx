@@ -31,7 +31,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="sm:col-span-6 md:col-span-3 lg:col-span-2"></div>
+          <div className="sm:col-span-6 md:col-span-3 lg:col-span-2" />
 
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
             <h6 className="text-sm text-slate-800 font-semibold mb-2">Pages</h6>
@@ -59,11 +59,11 @@ const Footer = () => {
 
               <li>
                 <Link
-                  href="/support"
+                  href="/events"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
-                  aria-label="Support"
+                  aria-label="Les événements"
                 >
-                  Des questions ?
+                  Les événements
                 </Link>
               </li>
             </ul>
@@ -85,21 +85,11 @@ const Footer = () => {
 
               <li>
                 <Link
-                  href="/login"
+                  href="/support"
                   className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
-                  aria-label="Se connecter"
+                  aria-label="Support"
                 >
-                  Se connecter
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/register"
-                  className="text-slate-500 hover:text-blue-600 transition duration-150 ease-in-out"
-                  aria-label="Créer un compte"
-                >
-                  S&apos;inscrire
+                  Des questions ?
                 </Link>
               </li>
             </ul>

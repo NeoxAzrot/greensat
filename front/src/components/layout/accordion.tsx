@@ -1,5 +1,6 @@
 'use client';
 
+import cn from 'classnames';
 import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
 
 interface AccordionProps {
@@ -33,9 +34,9 @@ const Accordion = ({ children, tag = 'li', title, active = false }: AccordionPro
         <span>{title}</span>
 
         <svg
-          className={`w-4 h-4 fill-current text-blue-600 shrink-0 ml-8 ${
-            accordionOpen && 'rotate-180'
-          }`}
+          className={cn('w-4 h-4 fill-current text-blue-600 shrink-0 ml-8', {
+            'rotate-180': accordionOpen,
+          })}
           viewBox="0 0 16 16"
         >
           <path d="m3 5 5 6 5-6z" />

@@ -3,6 +3,7 @@ import qs from 'qs';
 
 import Hero from '@/components/hero';
 
+import { getAllEvents } from '@/queries/event';
 import { getAllProducers } from '@/queries/producer';
 
 import Content from './content';
@@ -50,10 +51,14 @@ const Plan = async () => {
     query,
   });
 
+  const events = await getAllEvents({
+    query,
+  });
+
   return (
     <>
       <Hero title="Plan du site" />
-      <Content producers={producers.data} />
+      <Content producers={producers.data} events={events.data} />
     </>
   );
 };

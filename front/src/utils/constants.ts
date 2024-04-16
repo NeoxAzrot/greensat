@@ -10,4 +10,7 @@ export const TAGS = {
   RESERVATIONS: 'reservations',
   ME: 'me',
   USERS: 'users',
+  EVENTS: 'events',
+  EVENTS_ID: (id: number) => `events-${id}`,
+  EVENTS_SLUG: (slug: string) => `events-${slug}`,
 };

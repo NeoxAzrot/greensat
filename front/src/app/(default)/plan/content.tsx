@@ -2,13 +2,15 @@ import Link from 'next/link';
 
 import Separator from '@/components/separator';
 
+import { Events } from '@/types/event';
 import { Producers } from '@/types/producer';
 
 interface PlanContentProps {
   producers: Producers;
+  events: Events;
 }
 
-const PlanContent = ({ producers }: PlanContentProps) => {
+const PlanContent = ({ producers, events }: PlanContentProps) => {
   return (
     <section className="relative max-w-6xl mx-auto px-4 sm:px-6">
       <div className="max-w-3xl mx-auto">
@@ -32,6 +34,12 @@ const PlanContent = ({ producers }: PlanContentProps) => {
               <li>
                 <Link href="/producers" aria-label="Les producteurs">
                   Les producteurs
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/events" aria-label="Les événements">
+                  Les événements
                 </Link>
               </li>
 
@@ -102,6 +110,23 @@ const PlanContent = ({ producers }: PlanContentProps) => {
                     aria-label={producer.attributes.title}
                   >
                     {producer.attributes.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <Separator />
+
+            <h2>Les événements</h2>
+
+            <ul>
+              {events.map((event) => (
+                <li key={event.id}>
+                  <Link
+                    href={`/events/${event.attributes.slug}`}
+                    aria-label={event.attributes.title}
+                  >
+                    {event.attributes.title}
                   </Link>
                 </li>
               ))}

@@ -1,6 +1,7 @@
 'use client';
 
 import { Transition } from '@headlessui/react';
+import cn from 'classnames';
 import Image from 'next/image';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
 
@@ -77,9 +78,9 @@ const FeaturesSlider = () => {
           <div className="max-w-3xl mx-auto">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pb-12">
               <button
-                className={`text-center transition-opacity ${
-                  tab !== 1 && 'opacity-50 hover:opacity-75'
-                }`}
+                className={cn('text-center transition-opacity', {
+                  'opacity-50 hover:opacity-75': tab !== 1,
+                })}
                 onClick={(e) => handleClick(e, 1)}
               >
                 <div>
@@ -100,9 +101,9 @@ const FeaturesSlider = () => {
               </button>
 
               <button
-                className={`text-center transition-opacity ${
-                  tab !== 2 && 'opacity-50 hover:opacity-75'
-                }`}
+                className={cn('text-center transition-opacity', {
+                  'opacity-50 hover:opacity-75': tab !== 2,
+                })}
                 onClick={(e) => handleClick(e, 2)}
               >
                 <div>
@@ -123,9 +124,9 @@ const FeaturesSlider = () => {
               </button>
 
               <button
-                className={`text-center transition-opacity ${
-                  tab !== 3 && 'opacity-50 hover:opacity-75'
-                }`}
+                className={cn('text-center transition-opacity', {
+                  'opacity-50 hover:opacity-75': tab !== 3,
+                })}
                 onClick={(e) => handleClick(e, 3)}
               >
                 <div>

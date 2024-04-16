@@ -1,5 +1,7 @@
 'use client';
 
+import cn from 'classnames';
+import { isSameMonth, parseISO } from 'date-fns';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -116,8 +118,13 @@ const Products = ({ products, reservations }: ProductsProps) => {
         query: queryReservations,
       });
 
-      if (reservationsCheck.data.length > 0) {
-        setErrorMessages({ ...errorMessages, [id]: 'Tu as déjà réservé ce produit' });
+      const alreadyBookedThisMonth = reservationsCheck.data.some((r) => {
+        const reservationDate = r.attributes.reservationDate.toString();
+        return isSameMonth(parseISO(reservationDate), new Date());
+      });
+
+      if (reservationsCheck.data.length > 0 && alreadyBookedThisMonth) {
+        setErrorMessages({ ...errorMessages, [id]: 'Tu as déjà réservé ce produit ce mois-ci' });
 
         return;
       }
@@ -164,13 +171,16 @@ const Products = ({ products, reservations }: ProductsProps) => {
             data-aos-id-products
           >
             {organizedProducts.map((product) => {
-              const reservation = reservations.find(
+              const filteredReservations = reservations.filter(
                 (r) =>
                   r.attributes.product.data.id === product.id &&
                   r.attributes.user.data.id === user?.id,
               );
 
-              const alreadyBooked = reservation ? true : false;
+              const alreadyBookedThisMonth = filteredReservations.some((r) => {
+                const reservationDate = r.attributes.reservationDate.toString();
+                return isSameMonth(parseISO(reservationDate), new Date());
+              });
 
               return (
                 <article
@@ -180,16 +190,17 @@ const Products = ({ products, reservations }: ProductsProps) => {
                   data-aos-anchor="[data-aos-id-products]"
                 >
                   <div
-                    className={`h-full flex flex-col 
-                  ${product.attributes.count === 0 && 'opacity-30'}`}
+                    className={cn('h-full flex flex-col', {
+                      'opacity-30': product.attributes.count === 0,
+                    })}
                   >
                     <header>
                       {product.attributes.count > 0 ? (
                         <>
-                          {alreadyBooked && (
+                          {alreadyBookedThisMonth && (
                             <div className="absolute top-0 right-0 mr-6 -mt-4">
                               <div className="inline-flex text-sm font-semibold py-1 px-3 text-emerald-700 bg-emerald-200 rounded-full">
-                                Tu as déjà réservé ce produit
+                                Déjà réservé ce mois-ci
                               </div>
                             </div>
                           )}
@@ -197,7 +208,7 @@ const Products = ({ products, reservations }: ProductsProps) => {
                       ) : (
                         <div className="absolute top-0 right-0 mr-6 -mt-4">
                           <div className="inline-flex text-sm font-semibold py-1 px-3 text-rose-700 bg-rose-200 rounded-full">
-                            Ce produit n&apos;est plus disponible
+                            Indisponible
                           </div>
                         </div>
                       )}
@@ -238,7 +249,7 @@ const Products = ({ products, reservations }: ProductsProps) => {
                     </div>
 
                     <footer>
-                      {product.attributes.count > 0 && !alreadyBooked && (
+                      {product.attributes.count > 0 && !alreadyBookedThisMonth && (
                         <div className="p-3 rounded bg-slate-50">
                           <button
                             className="btn-sm text-white bg-blue-600 hover:bg-blue-700 w-full group"

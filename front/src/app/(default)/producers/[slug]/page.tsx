@@ -65,7 +65,7 @@ export const generateMetadata = async ({
     slug: params.slug,
   });
 
-  if (!producer) return;
+  if (!producer.data) return;
 
   const { title, summary: description, slug } = producer.data.attributes;
 
@@ -187,7 +187,7 @@ const Producer = async ({ params }: ProducerProps) => {
     slug: params.slug,
   });
 
-  if (!producer) notFound();
+  if (!producer.data) notFound();
 
   const data = producer.data.attributes;
   const survey = data.survey[0];
@@ -242,7 +242,7 @@ const Producer = async ({ params }: ProducerProps) => {
                 {data.image && (
                   <figure>
                     <Image
-                      className="w-full"
+                      className="w-full object-cover aspect-video"
                       src={data.image.data.attributes.url}
                       width={768}
                       height={432}

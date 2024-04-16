@@ -75,7 +75,7 @@ const MapAndText = ({ producer }: MapAndTextProps) => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <div className="flex items-center mt-2">
+                    <div className="inline-flex items-center mt-2">
                       <span className="text-blue-500 hover:text-blue-600 transition duration-150 ease-in-out">
                         {producer.attributes.address}
                       </span>

@@ -1,5 +1,6 @@
 'use client';
 
+import cn from 'classnames';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
@@ -14,7 +15,11 @@ const Header = ({ mode = 'dark' }: HeaderProps) => {
   const { status } = useSession();
 
   return (
-    <header className={`absolute w-full z-30 ${mode !== 'light' && 'dark'}`}>
+    <header
+      className={cn('absolute w-full z-30', {
+        dark: mode !== 'light',
+      })}
+    >
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="shrink-0 mr-4">

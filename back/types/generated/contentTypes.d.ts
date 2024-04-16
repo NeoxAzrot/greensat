@@ -705,11 +705,14 @@ export interface ApiEventEvent extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     image: Attribute.Media & Attribute.Required;
     summary: Attribute.Text & Attribute.Required;
-    startDate: Attribute.DateTime & Attribute.Required;
-    endDate: Attribute.DateTime;
+    date: Attribute.Date & Attribute.Required;
     slug: Attribute.UID<'api::event.event', 'title'> & Attribute.Required;
     content: Attribute.DynamicZone<['content.image', 'content.text']> &
       Attribute.Required;
+    latitude: Attribute.Float;
+    longitude: Attribute.Float;
+    address: Attribute.String;
+    distance: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

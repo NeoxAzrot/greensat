@@ -4,8 +4,11 @@ import { Global, GlobalArray, Image } from './global';
 interface SimpleProps {
   title: string;
   summary: string;
-  startDate: Date;
-  endDate: Date | null;
+  date: Date;
+  latitude?: number;
+  longitude?: number;
+  address?: string;
+  distance?: string;
   slug: string;
   content: Content[];
 }

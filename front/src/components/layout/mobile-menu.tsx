@@ -1,6 +1,7 @@
 'use client';
 
 import { Transition } from '@headlessui/react';
+import cn from 'classnames';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
@@ -51,7 +52,7 @@ const MobileMenu = () => {
     <div className="flex md:hidden">
       <button
         ref={trigger}
-        className={`hamburger ${mobileNavOpen && 'active'}`}
+        className={cn('hamburger', { active: mobileNavOpen })}
         aria-controls="mobile-nav"
         aria-expanded={mobileNavOpen}
         onClick={toggleMobileNav}

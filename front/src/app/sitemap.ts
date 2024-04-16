@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import qs from 'qs';
 
+import { getAllEvents } from '@/queries/event';
 import { getAllProducers } from '@/queries/producer';
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
@@ -18,9 +19,20 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     query,
   });
 
+  const events = await getAllEvents({
+    query,
+  });
+
   const producersSitemap: MetadataRoute.Sitemap = producers.data.map((producer) => ({
     url: `https://greensatable.fr/producers/${producer.attributes.slug}`,
     lastModified: producer.attributes.updatedAt,
+    changeFrequency: 'daily',
+    priority: 0.5,
+  }));
+
+  const eventsSitemap: MetadataRoute.Sitemap = events.data.map((event) => ({
+    url: `https://greensatable.fr/events/${event.attributes.slug}`,
+    lastModified: event.attributes.updatedAt,
     changeFrequency: 'daily',
     priority: 0.5,
   }));
@@ -40,6 +52,12 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
     },
     {
       url: 'https://greensatable.fr/producers',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://greensatable.fr/events',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
@@ -99,6 +117,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
       priority: 0.1,
     },
     ...producersSitemap,
+    ...eventsSitemap,
   ];
 };
 

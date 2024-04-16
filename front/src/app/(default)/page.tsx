@@ -5,7 +5,7 @@ import CtaMap from '@/components/cta-map';
 import FeaturesBlocks from '@/components/features-blocks';
 import FeaturesSlider from '@/components/features-slider';
 import Hero from '@/components/hero-home';
-import Partners from '@/components/partners';
+import PartnersDark from '@/components/partners-dark';
 
 import { getAllProducers } from '@/queries/producer';
 
@@ -65,7 +65,7 @@ const Home = async () => {
       <Hero producers={producers.data} />
       <FeaturesBlocks />
       <FeaturesSlider />
-      <Partners />
+      <PartnersDark />
       <CtaMap />
     </>
   );

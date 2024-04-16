@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 interface HeroProps {
   title: string;
   description?: string;
@@ -12,7 +14,10 @@ const Hero = ({ title, description }: HeroProps) => {
         <div className="pt-32 pb-12 md:pt-40 md:pb-20">
           <div className="max-w-3xl mx-auto text-center">
             <h1
-              className={`h1 font-playfair-display text-slate-100 ${description ? 'mb-4' : 'mb-8'}`}
+              className={cn('h1 font-playfair-display text-slate-100', {
+                'mb-4': description,
+                'mb-8': !description,
+              })}
             >
               {title}
             </h1>

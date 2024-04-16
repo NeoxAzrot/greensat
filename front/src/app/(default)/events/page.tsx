@@ -1,6 +1,13 @@
 import { Metadata } from 'next/types';
+import qs from 'qs';
 
-import Hero from '@/components/hero';
+import CtaDark from '@/components/cta-recommendation';
+import EventsList from '@/components/events';
+import HeroEvents from '@/components/hero-events';
+import Partners from '@/components/partners';
+import PastEvents from '@/components/past-events';
+
+import { getAllEvents } from '@/queries/event';
 
 export const metadata: Metadata = {
   title: 'Au coeur des évènements verts',
@@ -31,23 +38,62 @@ export const metadata: Metadata = {
 };
 
 const Events = async () => {
-  // const query = qs.stringify(
-  //   {
-  //     fields: ['slug', 'title'],
-  //     sort: ['title'],
-  //   },
-  //   {
-  //     encodeValuesOnly: true,
-  //   },
-  // );
+  const defaultQueryEvents = {
+    fields: ['slug', 'title', 'summary', 'date', 'latitude', 'longitude', 'address', 'distance'],
+    populate: {
+      image: {
+        fields: ['url', 'alternativeText'],
+      },
+    },
+  };
 
-  // const producers = await getAllProducers({
-  //   query,
-  // });
+  const queryComingEvents = qs.stringify(
+    {
+      fields: defaultQueryEvents.fields,
+      populate: defaultQueryEvents.populate,
+      filters: {
+        date: {
+          $gte: new Date().toISOString(),
+        },
+      },
+      sort: ['date'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const queryPastEvents = qs.stringify(
+    {
+      fields: defaultQueryEvents.fields,
+      populate: defaultQueryEvents.populate,
+      filters: {
+        date: {
+          $lt: new Date().toISOString(),
+        },
+      },
+      sort: ['date:desc'],
+    },
+    {
+      encodeValuesOnly: true,
+    },
+  );
+
+  const comingEvents = await getAllEvents({
+    query: queryComingEvents,
+  });
+
+  const pastEvents = await getAllEvents({
+    query: queryPastEvents,
+  });
 
   return (
     <>
-      <Hero title="Test" />
+      <HeroEvents />
+      <Partners />
+      <EventsList events={comingEvents.data} />
+      <PastEvents events={pastEvents.data} />
+      <CtaDark />
     </>
   );
 };

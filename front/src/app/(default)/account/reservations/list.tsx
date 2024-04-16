@@ -1,7 +1,8 @@
-import { format, parseISO } from 'date-fns';
-import fr from 'date-fns/locale/fr';
+import cn from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import Date from '@/components/date';
 
 import { Reservations } from '@/types/reservation';
 
@@ -45,8 +46,9 @@ const AccountReservationsList = ({
                   data-aos-anchor="[data-aos-id-reservations]"
                 >
                   <div
-                    className={`h-full flex flex-col 
-                  ${status === 'canceled' && 'opacity-30'}`}
+                    className={cn('h-full flex flex-col', {
+                      'opacity-30': status === 'canceled',
+                    })}
                   >
                     <header>
                       {status === 'confirmed' && (
@@ -117,6 +119,10 @@ const AccountReservationsList = ({
                         <Link
                           className="text-slate-800 hover:text-blue-600 transition duration-150 ease-in-out"
                           href={`/producers/${reservation.attributes.product.data.attributes.producer.data.attributes.slug}`}
+                          aria-label={
+                            reservation.attributes.product.data.attributes.producer.data.attributes
+                              .title
+                          }
                         >
                           {
                             reservation.attributes.product.data.attributes.producer.data.attributes
@@ -128,34 +134,19 @@ const AccountReservationsList = ({
 
                         {status === 'pending' && (
                           <span className="text-slate-500">
-                            Réservé le{' '}
-                            <time dateTime={reservationDate}>
-                              {format(parseISO(reservationDate), 'd MMMM, yyyy', {
-                                locale: fr,
-                              })}
-                            </time>
+                            Réservé le <Date dateString={reservationDate} />
                           </span>
                         )}
 
                         {status === 'confirmed' && reservation.attributes.confirmationDate && (
                           <span className="text-slate-500">
-                            Confirmé le{' '}
-                            <time dateTime={confirmationDate}>
-                              {format(parseISO(confirmationDate || ''), 'd MMMM, yyyy', {
-                                locale: fr,
-                              })}
-                            </time>
+                            Confirmé le <Date dateString={confirmationDate || ''} />
                           </span>
                         )}
 
                         {status === 'canceled' && reservation.attributes.cancelationDate && (
                           <span className="text-slate-500">
-                            Annulé le{' '}
-                            <time dateTime={cancelationDate}>
-                              {format(parseISO(cancelationDate || ''), 'd MMMM, yyyy', {
-                                locale: fr,
-                              })}
-                            </time>
+                            Annulé le <Date dateString={cancelationDate || ''} />
                           </span>
                         )}
                       </div>

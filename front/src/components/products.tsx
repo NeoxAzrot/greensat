@@ -1,5 +1,6 @@
 'use client';
 
+import cn from 'classnames';
 import { isSameMonth, parseISO } from 'date-fns';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
@@ -189,8 +190,9 @@ const Products = ({ products, reservations }: ProductsProps) => {
                   data-aos-anchor="[data-aos-id-products]"
                 >
                   <div
-                    className={`h-full flex flex-col 
-                  ${product.attributes.count === 0 && 'opacity-30'}`}
+                    className={cn('h-full flex flex-col', {
+                      'opacity-30': product.attributes.count === 0,
+                    })}
                   >
                     <header>
                       {product.attributes.count > 0 ? (

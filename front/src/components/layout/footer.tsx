@@ -31,7 +31,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="sm:col-span-6 md:col-span-3 lg:col-span-2"></div>
+          <div className="sm:col-span-6 md:col-span-3 lg:col-span-2" />
 
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
             <h6 className="text-sm text-slate-800 font-semibold mb-2">Pages</h6>
